@@ -1,7 +1,9 @@
 dist/
 node_modules/
+bower_components/
 config.js
 npm-debug.log
+client/lib/angular-route/
 
 __MACOSX
 .DS_Store
