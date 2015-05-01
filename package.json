@@ -1,0 +1,30 @@
+{
+  "name": "Interim",
+  "version": "0.0.0",
+  "private": true,
+  "contributors": [
+    {
+      "name": "Thomas Logan",
+      "github": "https://github.com/tdlogan",
+      "email": "tdloganj@gmail.com"
+    },
+    {
+      "name": "Janessa Link"
+    },
+    {
+      "name": "Trace Thompson"
+    },
+    {
+      "name": "Vlad Ilin"
+    }
+  ],
+  "scripts": {
+    "start": "node ./server.js"
+  },
+  "dependencies": {
+    "ui-router": "0.0.1"
+  },
+  "devDependencies": {
+    "karma": "^0.12.31"
+  }
+}
