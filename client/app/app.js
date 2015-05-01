@@ -6,8 +6,12 @@ angular.module('interim', [
   'interim.nav',
   'interim.services',
   'interim.userProfile',
-  'inteirm.yourCommunityList'
-]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: 'app/landingPage/landingPage.html'});
+  'interim.yourCommunityList'
+])
+.config(['$routeProvider', function($routeProvider) {
+  $routeProvider
+  .when('/land', {
+    templateUrl: './client/app/landingPage/landingPage.html',
+    controller: 'LandingPageController'
+  });
 }]);
