@@ -1,5 +1,4 @@
-/*landing page css starts here*/
-
+/*landingPage.html css starts here*/
 /*github button*/
 #github {
   width: 180px;
@@ -8,12 +7,67 @@
   margin-left: auto;
 }
 
-/*Interim*/
+/*Interim Name*/
 #nameLoginPage {
   color: #0288d1;
   font-size: 450%;
   text-align: center;
   margin-top: 15%;
 }
+/*landingPage.html css ends here*/
 
-/*landing page css ends here*/
+/*yourCommunityList.html css starts here*/
+#navContent {
+  float:right;
+  padding-right: 2%;
+}
+
+#YourCommunitiesName {
+  font-size: 250%;
+  text-align: center;
+  margin-top: 80px;
+}
+
+#communityThumbnail {
+  background-color: #ccd3dc;
+  width: 200px;
+  height: 200px;
+  margin-top: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  box-shadow: 1px 1px 5px #888888;
+}
+
+/*yourCommunityList.html css ends here*/
+#user {
+  background-image: url("./assets/profilebg.png");
+  background-size: 100% 100%;
+  width: 260px;
+  height: 390px;
+  margin-top: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  box-shadow: 1px 1px 5px #888888;
+}
+
+#userProfileImage {
+  border: 2px solid white;
+  width: 100%;
+  height: 42%;
+}
+
+#profileImage {
+  width: 98%;
+  height: 98%;
+}
+
+#userProfileName {
+  text-align: center;
+  color: white;
+}
+
+#userBio {
+  height: 30%;
+  overflow: auto;
+}
+/*userProfile.html css starts here*/
