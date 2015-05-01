@@ -1,6 +1,6 @@
 # Contributing
 
-## General Workflow
+## General Workflow 
 
 1. Cut a namespaced feature branch from master
   - bug/...
