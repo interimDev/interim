@@ -21,3 +21,5 @@ __MACOSX
 Icon?
 ehthumbs.db
 Thumbs.db
+
+client/lib/bower_components
