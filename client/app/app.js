@@ -1,6 +1,6 @@
 // Declare app level module which depends on views, and components
 angular.module('interim', [
-  'ngRoute',
+  'ui.router',
   'interim.communityFrame',
   'interim.landingPage',
   'interim.nav',
@@ -8,10 +8,20 @@ angular.module('interim', [
   'interim.userProfile',
   'interim.yourCommunityList'
 ])
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider
-  .when('/land', {
-    templateUrl: './client/app/landingPage/landingPage.html',
-    controller: 'LandingPageController'
-  });
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise('/signin');
+
+  $stateProvider
+  .state('signin', {
+    url: '/signin',
+    templateUrl: './client/app/landingPage/landingPage.html'
+  })
+  .state('communities', {
+    url: '/communities',
+    templateUrl: './client/app/yourCommunityList/yourCommunityList.html'
+  })
+  .state('chat', {
+    url: '/chat',
+    templateUrl: './firechat/examples/anonymous/index.html'
+  })
 }]);

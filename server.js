@@ -9,7 +9,7 @@ app.get("/", function(req, res) {
 
 /* serves all the static files */
 app.get(/^(.+)$/, function(req, res){ 
-  res.sendfile( __dirname + req.params[0]); 
+  res.sendFile( __dirname + req.params[0]); 
 });
 
 var port = process.env.PORT || 5000;
