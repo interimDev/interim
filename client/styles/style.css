@@ -1,0 +1,19 @@
+/*landing page css starts here*/
+
+/*github button*/
+#github {
+  width: 180px;
+  margin-top: 5%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/*Interim*/
+#nameLoginPage {
+  color: #0288d1;
+  font-size: 450%;
+  text-align: center;
+  margin-top: 15%;
+}
+
+/*landing page css ends here*/
