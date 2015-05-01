@@ -5,6 +5,12 @@ Interim is a social platform that nables building temporary, authentic communiti
 It uses a modified  [Firechat](https://firechat.firebaseapp.com/) widget and is powered by [Firebase](https://www.firebase.com/?utm_source=firechat).
 
 
+##Interim Team
+
+- Product Owner: Janessa Link
+- Scrum Master: Trace Thompson
+- Development Team: Vlad Ilin, Thomas Logan
+
 ##Installation steps:
 
 ###Install the grunt-cli
