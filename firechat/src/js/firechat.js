@@ -252,7 +252,7 @@
   Firechat.prototype.setUser = function(userId, userName, callback) {
     var self = this;
 
-    self._firebase.onAuth(function(authData) {
+    // self._firebase.onAuth(function(authData) {
       if (authData) {
         self._userId = userId.toString();
         self._userName = userName.toString();
@@ -266,7 +266,7 @@
       } else {
         self.warn('Firechat requires an authenticated Firebase reference. Pass an authenticated reference before loading.');
       }
-    });
+    // });
   };
 
   // Resumes the previous session by automatically entering rooms.
