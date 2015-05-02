@@ -1,0 +1,53 @@
+<div class="chat">
+  <div class="col-xs-9 hundred" id ="chatMessage">
+    <!-- contains all messages -->
+    <div id="contentMessages">
+      <!-- single message -->
+      <div class="message">
+        <article class="row">
+          <div class="col-md-12 col-sm-12">
+            <div class="panel panel-default arrow left">
+              <div class="panel-body">
+                <!-- users chat image -->
+                <div class="col-md-2 col-sm-2 hidden-xs">
+                <img src = "../assets/vladProfile.png" class = "img-rounded" id = "chatImage" />
+                </div>
+                <!-- users chat name  -->
+                <div><i class="fa fa-user"></i> Vladislav
+                  <!-- users chat time -->
+                  <time id = "chatTime"><i class="fa fa-clock-o"></i> 3 minutes ago
+                  </time>
+                </div>
+                <!-- users chat message (text) -->
+                <div>
+                  <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                  </p>
+                  <!-- users tags for message above -->
+                  <p class = "chatTags">
+                    Tags: #awesome
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- chat input -->
+    <div class="row" id = "chatRow">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <span class="input-group-btn">
+            <!-- chat input settings button -->
+            <button class="btn btn-default" type="button" id="chatUpButton">
+              <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+            </button>
+          </span>
+          <input type="text" class="form-control" placeholder="Enter message here...">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
