@@ -10,7 +10,7 @@ angular.module('interim', [
   'interim.yourCommunityList'
 ])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/signin');
+  // $urlRouterProvider.otherwise('/signin');
 
   $stateProvider
   .state('signin', {
