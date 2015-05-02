@@ -39,6 +39,8 @@
 }
 
 /*yourCommunityList.html css ends here*/
+
+/*userProfile.html css starts here*/
 #user {
   background-image: url("./assets/profilebg.png");
   background-size: 100% 100%;
@@ -70,4 +72,32 @@
   height: 30%;
   overflow: auto;
 }
-/*userProfile.html css starts here*/
+/*userProfile.html css ends here*/
+
+/*useruserBottomSidebar.html css starts here*/
+#userBottomSidebar {
+  position: absolute;
+  background-color: #2869b2;
+  width:24%;
+  height: 60px;
+  bottom:0;
+}
+
+/*aligns image and limits display size*/
+#contentImage {
+  margin-top: 4%;
+  margin-left: 6%;
+  height: 40px;
+  width: 40px;
+}
+
+/*aligns text for username*/
+.text-right {
+  top: 20px;
+  left: 80px;
+  position: absolute;
+  color: white;
+}
+/*useruserBottomSidebar.html css ends here*/
+
+
