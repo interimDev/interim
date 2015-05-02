@@ -1,6 +1,7 @@
 // Declare app level module which depends on views, and components
 angular.module('interim', [
   'ui.router',
+  'ui.bootstrap',
   'interim.communityFrame',
   'interim.landingPage',
   'interim.nav',
