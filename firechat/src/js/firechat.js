@@ -75,6 +75,7 @@
 
     // Load the initial metadata for the user's account and set initial state.
     _loadUserMetadata: function(onComplete) {
+      console.log("loadUserMetadata is activating")
       var self = this;
 
       // Update the user record with a default name on user's first visit.
@@ -187,6 +188,7 @@
 
     // Event to monitor current auth + user state.
     _onAuthRequired: function() {
+      console.log("_onAuthRequired is activating!")
       this._invokeEventCallbacks('auth-required');
     },
 
