@@ -35,7 +35,10 @@
       //This sets up the anonymous chat
       chatRef.onAuth(function(authData) {
         if (authData) {
-          chat.setUser(authData.uid, "Anonymous" + authData.uid.substr(10, 8));
+          // INTERIM ADDITION
+          // Allows anonymous users to set there username
+          var userName = prompt("Enter Username");
+          chat.setUser(authData.uid, userName + authData.uid.substr(10, 8));
         } else {
           chatRef.authAnonymously(function(error, authData) {
             if (error) {
