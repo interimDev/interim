@@ -32,6 +32,7 @@
     <script type="text/javascript">
       var chatRef = new Firebase("https://interim.firebaseio.com");
       var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+      //This sets up the anonymous chat
       chatRef.onAuth(function(authData) {
         if (authData) {
           chat.setUser(authData.uid, "Anonymous" + authData.uid.substr(10, 8));
