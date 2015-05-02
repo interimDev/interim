@@ -143,4 +143,58 @@
 }
 /*dashboard.html css ends here*/
 
+/*chat.html css starts here*/
+.chat {
+  right: 0px;
+  width: 66%;
+}
 
+/*css for displaying messages starts here*/
+#chatMessage {
+  position: absolute;
+  top: 2%;
+  right:0;
+  height: 95vh;
+}
+
+#contentMessages {
+  position: inherit;
+  overflow: auto;
+  width: 90%;
+  height: 90vh;
+  left: 5%;
+  bottom:20px;
+}
+
+.message {
+  width:90%;
+}
+
+#chatImage {
+  width:60px;
+  height:60px
+}
+
+#chatTime {
+  color: #888888;
+  margin-left: 10%;
+}
+
+.chatTags {
+  color:#888888;
+}
+/*css for displaying messages ends here*/
+
+/*chat input starts here*/
+#chatRow {
+  position: absolute;
+  right: 17%;
+  width: 70%;
+  bottom: 5px;
+}
+
+#chatUpButton {
+  height:34px;
+}
+/*chat input ends here*/
+/*chat.html css ends here*/
