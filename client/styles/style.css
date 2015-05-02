@@ -112,3 +112,35 @@
   color: white;
 }
 /*useruserBottomSidebar.html and communityTopSidebar.html css ends here*/
+
+/*dashboard.html css starts here*/
+.dashboard {
+  padding-top: 5%;
+  background-color: #80b1e8;
+  width: 24%;
+  height: 100%;
+}
+
+#roomsContent {
+  color: white;
+  margin-left: 10%;
+}
+
+#contentNames {
+  margin-top: 10%;
+  color: #2869b2;
+  text-shadow: 1px 1px #888888;
+}
+
+#contentBucket {
+  overflow: hidden;
+  height: 30%;
+}
+
+#insideContent {
+  margin-left: 4%;
+  margin-right: 3%;
+}
+/*dashboard.html css ends here*/
+
+
