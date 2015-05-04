@@ -39,6 +39,10 @@ App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       'chat@community': { templateUrl: './client/app/communityFrame/chat/chat.html' }
     }
   })
+  .state('chat', {
+    url: '/chat',
+    templateUrl: './client/app/communityFrame/chat/chat.html'
+  })
   .state('exampleChat', {
     url: '/exampleChat',
     templateUrl: './firechat/examples/anonymous/index.html'
