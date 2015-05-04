@@ -7,7 +7,8 @@ angular.module('interim', [
   'interim.nav',
   'interim.services',
   'interim.userProfile',
-  'interim.yourCommunityList'
+  'interim.yourCommunityList',
+  'interim.dashboard'
 ])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/signin');
