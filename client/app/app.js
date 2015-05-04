@@ -10,7 +10,7 @@ angular.module('interim', [
   'interim.yourCommunityList'
 ])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-  // $urlRouterProvider.otherwise('/signin');
+  $urlRouterProvider.otherwise('/signin');
 
   $stateProvider
   .state('signin', {
@@ -34,5 +34,9 @@ angular.module('interim', [
   .state('exampleChat', {
     url: '/exampleChat',
     templateUrl: '/firechat/examples/anonymous/index.html'
+  })
+  .state('community-profile', {
+    url: '/community-profile',
+    templateUrl: '/app/communityProfile/communityProfile.html'
   })
 }]);
