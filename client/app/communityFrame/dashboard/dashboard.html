@@ -1,4 +1,5 @@
-<div class = "dashboard">
+
+<div class = "dashboard" ng-controller="DashboardController">
   <div id = "roomsContent">
     <!-- Rooms Name -->
     <div id = "rooms">
@@ -6,8 +7,8 @@
       <!-- Rooms are added and removed here -->
       <div id = "contentBucketRooms">
         <!-- Each room -->
-        <h6 id = "insideContent">Introduction</h6>
-        <h6 id = "insideContent">Carpooling</h6>
+        <h6 ng-repeat="room in rooms" id = "insideContent">{{room.name}}</h6>
+       <!--  <h6 id = "insideContent">Carpooling</h6>
         <h6 id = "insideContent">Javascript is sexy</h6>
         <h6 id = "insideContent">N-Queens</h6>
         <h6 id = "insideContent">Introduction</h6>
@@ -16,8 +17,8 @@
         <h6 id = "insideContent">N-Queens</h6>
         <h6 id = "insideContent">Introduction</h6>
         <h6 id = "insideContent">Carpooling</h6>
-        <h6 id = "insideContent">Javascript is sexy Javascript is sexy Javascript is sexy</h6>
-        <h6 id = "insideContent">N-Queens</h6>
+        <h6 id = "insideContent">Javascript is sexy Javascript is sexy Javascript is sexy</h6> 
+        <h6 id = "insideContent">N-Queens</h6> -->
       </div>
     </div>
     <!-- Tags Name -->

@@ -7,7 +7,8 @@ angular.module('interim', [
   'interim.nav',
   'interim.services',
   'interim.userProfile',
-  'interim.yourCommunityList'
+  'interim.yourCommunityList',
+  'interim.dashboard'
 ])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   // $urlRouterProvider.otherwise('/signin');
@@ -26,7 +27,7 @@ angular.module('interim', [
     views: {
       '': { templateUrl: './client/app/communityFrame/communityFrame.html' },
       'communityTopSidebar@community': { templateUrl: './client/app/communityFrame/communityTopSidebar/communityTopSidebar.html' },
-      'dashboard@community': { templateUrl: './client/app/communityFrame/dashboard/dashboard.html' },
+      'dashboard@community': { templateUrl: './client/app/communityFrame/dashboard/dashboard.html'},
       'userBottomSidebar@community': { templateUrl: './client/app/communityFrame/userBottomSidebar/userBottomSidebar.html' },
       'chat@community': { templateUrl: './client/app/communityFrame/chat/chat.html' }
     }
