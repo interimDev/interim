@@ -15,7 +15,8 @@ angular.module('interim', [
   $stateProvider
   .state('signin', {
     url: '/signin',
-    templateUrl: './client/app/landingPage/landingPage.html'
+    templateUrl: './client/app/landingPage/landingPage.html',
+    controller: 'LandingPageController'
   })
   .state('communities', {
     url: '/communities',
