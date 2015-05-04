@@ -34,3 +34,7 @@ membership. (Example: SF Summer Interns 2016 will be public, while MakerSquare C
 If you have a question about Interim, check on the public HelpMe! Community. Feel free to post a
 message if you still need support!
 
+=======
+[![Stories in Ready](https://badge.waffle.io/interimDev/interim.png?label=ready&title=Ready)](https://waffle.io/interimDev/interim)
+# interim
+MKS 15 Thesis
