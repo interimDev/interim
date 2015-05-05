@@ -7,13 +7,13 @@ var dataRef = new Firebase('https://unsheep.firebaseio.com/');
 //dataRef.set('UsersDB');
 
 // Shorthand to access stored data
-exports.communityRef = function(community) {
+var communityRef = function(community) {
   return dataRef.child('CommunityDB').child(community);
 };
-exports.groupRef = function(group) {
+var groupRef = function(group) {
   return dataRef.child('CommunityDB').child('group');
 };
-exports.usersRef = function(user){
+var usersRef = function(user){
   return dataRef.child('UsersDB');
 };
 
@@ -83,7 +83,7 @@ exports.usersRef = function(user){
 // Creating Profiles adding to the database.
 // To-do: Data will need be to be validated when storing to datebase.
 // user argument should be a completed object
-exports.createUser = function(user, cb){
+var createUser = function(user, cb){
 // Generate a userId by storing in db
   var userObj = {};
   var dbName = user.userName +"-" + user.authType;
@@ -102,9 +102,9 @@ exports.createUser = function(user, cb){
 // Updating Profiles that already exist in the database.
 // TBV: May only need generic update, where type indicates user/group/community.
 // To-do: Data will need be to be validated when storing to databse.
-// exports.updateProfile = function(name, type, profile);
+// var updateProfile = function(name, type, profile);
 
-exports.updateUser = function(userName, changedField, fieldValue){
+var updateUser = function(userName, changedField, fieldValue){
   console.log(userName, " requested a profile update");
   var tempObj = {};
   tempObj[changedField] = fieldValue;
@@ -112,7 +112,7 @@ exports.updateUser = function(userName, changedField, fieldValue){
 
 };
 
-exports.createCommunity = function(communityName, currentAdmin, cb){
+var createCommunity = function(communityName, currentAdmin, cb){
 
   if(dataRef.child('CommunityDB').child(communityName) ){
     dataRef.child('CommunityDB').set({ communityName: communityName,
@@ -127,7 +127,7 @@ exports.createCommunity = function(communityName, currentAdmin, cb){
 
 };
 
-exports.createGroup = function(groupName, communityName, currentAdmin){
+var createGroup = function(groupName, communityName, currentAdmin){
   if(dataRef.child('CommunityDB').child(communityName).child(groupName) ){
     dataRef.child('CommunityDB').child(communityName).set({ groupName: groupName,
                                        groupFounder: currentAdmin,
@@ -145,24 +145,24 @@ exports.createGroup = function(groupName, communityName, currentAdmin){
 };
 
 // Creation of helpers in the Community frame
-exports.createRoom = function(room){};
-exports.createTag = function(tag){};
+var createRoom = function(room){};
+var createTag = function(tag){};
 
-exports.updateGroup = function(group, groupProfile){};
-exports.updateCommunity = function(community, communityProfile){};
+var updateGroup = function(group, groupProfile){};
+var updateCommunity = function(community, communityProfile){};
 
 // Admin utilities: Validations during the creation process.
-exports.validateUserToGroup = function(user, group) {};
-exports.validateUserToCommunity = function(user, community){};
-exports.validateGroup = function(sessionInfo) {};
-exports.validateCommunity = function(community){};
-exports.deactivateUserFromGroup = function(user, group){};
+var validateUserToGroup = function(user, group) {};
+var validateUserToCommunity = function(user, community){};
+var validateGroup = function(sessionInfo) {};
+var validateCommunity = function(community){};
+var deactivateUserFromGroup = function(user, group){};
 
 
 // Opening Groups & Communities, retrieving their info.
 // Expect these to be called by Angular front-end
-exports.openGroup = function(group){};
-exports.openCommunity = function(community){};
+var openGroup = function(group){};
+var openCommunity = function(community){};
 
 // Database helper methods
 var defaultCb = function(message) {
@@ -175,11 +175,11 @@ var defaultCb = function(message) {
 };
 
 // Switch to a new reference database for testing purposes
-// exports._changeRef = function(newRef) {
+// var _changeRef = function(newRef) {
 //   dataRef = newRef || dataRef;
 // };
 
 // Debugging tests purposes
-exports.helloWorld = function(){
+var helloWorld = function(){
   console.log("Hello from dbUtils!");
 }
