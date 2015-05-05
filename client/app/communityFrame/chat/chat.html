@@ -1,34 +1,36 @@
-<div class="chat">
+<div class="chat" ng-controller="ChatController">
   <div class="col-xs-9 hundred" id ="chatMessage">
     <!-- contains all messages -->
     <div id="contentMessages">
+
+      <button ng-click=messagesTest()>Messages</button>
       <!-- single message -->
-      <div class="message">
+      <div class="message" ng-repeat="message in messages ">
         <article class="row">
           <div class="col-md-12 col-sm-12">
             <div class="panel panel-default arrow left">
               <div class="panel-body">
-                <!-- users chat image -->
+                <!-- displays users picture -->
                 <div class="col-md-2 col-sm-2 hidden-xs">
                 <img src = "/app/assets/vladProfile.png" class = "img-rounded" id = "chatImage" />
                 </div>
-                <!-- users chat name  -->
-                <div><i class="fa fa-user"></i> Vladislav
-                  <!-- users chat time -->
-                  <time id = "chatTime"><i class="fa fa-clock-o"></i> 3 minutes ago
+                <!-- displays users name -->
+                <div><i class="fa fa-user"></i> {{message.name}}
+                  <!-- displays time when message was send -->
+                  <time id = "chatTime"><i class="fa fa-clock-o"></i> {{ message.timestamp| date:'medium' }}
                   </time>
                 </div>
-                <!-- users chat message (text) -->
+               <!-- displays usesrs message -->
                 <div>
                   <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    {{message.message}}
                   </p>
-                  <!-- users tags for message above -->
+                  <!-- displays users tag -->
                   <p class = "chatTags">
                     Tags: #awesome
                   </p>
                 </div>
-              </div>
+              </div> 
             </div>
           </div>
         </article>
@@ -45,7 +47,8 @@
               <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
             </button>
           </span>
-          <input type="text" class="form-control" placeholder="Enter message here...">
+          <!-- input sends message when user presses enter key on key board -->
+          <input type="text" ng-keyup="$event.keyCode == 13 && sendMessage()" class="form-control" placeholder="Enter message here..."/>
         </div>
       </div>
     </div>

@@ -1,23 +1,17 @@
-<div class = "dashboard">
+
+<div class = "dashboard" ng-controller="DashboardController">
   <div id = "roomsContent">
     <!-- Rooms Name -->
     <div id = "rooms">
-    <h4 id = "contentNames">Rooms</h4>
+    <h4 id = "contentNames">Rooms
+      <!-- button to add rooms -->
+      <div class="glyphicon glyphicon-plus" ng-click="add()"></div>
+    </h4>
       <!-- Rooms are added and removed here -->
       <div id = "contentBucketRooms">
         <!-- Each room -->
-        <h6 id = "insideContent">Introduction</h6>
-        <h6 id = "insideContent">Carpooling</h6>
-        <h6 id = "insideContent">Javascript is sexy</h6>
-        <h6 id = "insideContent">N-Queens</h6>
-        <h6 id = "insideContent">Introduction</h6>
-        <h6 id = "insideContent">Carpooling</h6>
-        <h6 id = "insideContent">Javascript is sexy</h6>
-        <h6 id = "insideContent">N-Queens</h6>
-        <h6 id = "insideContent">Introduction</h6>
-        <h6 id = "insideContent">Carpooling</h6>
-        <h6 id = "insideContent">Javascript is sexy Javascript is sexy Javascript is sexy</h6>
-        <h6 id = "insideContent">N-Queens</h6>
+        <h6 ng-repeat="room in rooms" id="insideContent"><a href="javascript:void(0);" ng-click="roomName(this);">{{room.name}}</a></h6>
+    
       </div>
     </div>
     <!-- Tags Name -->

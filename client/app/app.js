@@ -1,5 +1,5 @@
 // Declare app level module which depends on views, and components
-angular.module('interim', [
+var App = angular.module('interim', [
   'ui.router',
   'ui.bootstrap',
   'interim.communityFrame',
@@ -7,11 +7,18 @@ angular.module('interim', [
   'interim.nav',
   'interim.services',
   'interim.userProfile',
-  'interim.yourCommunityList'
-])
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/signin');
+  'interim.yourCommunityList',
+  'interim.dashboard'
+  'interim.dashboard',
+  'interim.chat'
+]);
+//global variable for current room id
+App.run(function($rootScope){
+  $rootScope.roomId;
+});
 
+App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+  // $urlRouterProvider.otherwise('/signin');
   $stateProvider
   .state('signin', {
     url: '/signin',
