@@ -90,7 +90,7 @@ var createUser = function(user, cb){
   userObj[dbName] = user;
 
   //dataRef.child('UsersDB').push(user);
-    dataRef.child('UsersDB').set( userObj , function(error){
+    dataRef.child('UsersDB').update( userObj , function(error){
       if(!error){
       console.log("User ", user.userName, "sucessfully created.");
     }else{
@@ -108,7 +108,7 @@ var updateUser = function(userName, changedField, fieldValue){
   console.log(userName, " requested a profile update");
   var tempObj = {};
   tempObj[changedField] = fieldValue;
-  dataRef.child('UsersDB').child(userName).child('profile').update(tempObj);
+  dataRef.child('UsersDB').child(userName).child('userProfile').update(tempObj);
 
 };
 

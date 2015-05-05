@@ -7,27 +7,6 @@ describe('dbUtils creating and updating profiles', function() {
  // var dataRef = new Firebase('https://interim.firebaseio.com/');
   var dataRef = new Firebase('https://unsheep.firebaseio.com/');
 
-  var testCommunity = {
-    name: 'SF',
-    ownGroups:{ MakerSquare:true}
-  };
-  var testGroup1 = {
-    groupName: 'MakerSquare',
-    groupId: 1234,
-    private: true,
-    users: {
-      Yoda: true,
-      Felurian: true
-    },
-    profile: {
-      location: 'San Francisco, CA',
-      url: 'www.makersquare.com',
-      freeText: 'Advanced software immersive. Not your typical dev bootcamp.'
-    },
-    chats: {},
-    rooms:{},
-    tags:{}
-  };
   var testUser1 = {
     userName: 'Yoda',
     userId: null,
@@ -37,13 +16,12 @@ describe('dbUtils creating and updating profiles', function() {
     // Requested an authenticated groups are indicated as true
     // Pending groups are indicated as false
     authType: 'Github',
-    profile: {
+    userProfile: {
       location: 'Dagoba',
       url: 'http://en.wikipedia.org/wiki/Yoda',
       freeText: 'Try not! Do or do not. There is no try.',
       image: 'http://upload.wikimedia.org/wikipedia/en/9/9b/Yoda_Empire_Strikes_Back.png'
-    },
-  };
+    }};
   var testUser2 = {
     userName: 'Felurian',
     userId: null,
@@ -51,27 +29,28 @@ describe('dbUtils creating and updating profiles', function() {
     role: 'admin',
     groups: {Fae: true, MakerSquare:true},
     authType: 'Github',
-    profile: {
+    userProfile: {
       location: 'twilight woodland glade in Fae',
       url: 'http://kingkiller.wikia.com/wiki/Felurian',
       freeText: 'am I mere brightness with no spark beneath?',
       image: 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Marbled_emperor_moth_heniocha_dyops.jpg/1920px-Marbled_emperor_moth_heniocha_dyops.jpg'
-    },
-  };
+    }};
   var testUser3 = {
       userName: 'Ned',
       userEmail: 'ned_flanders@hotmail.com',
       password: 'okiedokielee',
       authType: 'email'
-  };
+    };
   var testCommmunity1 = {
     communityName: 'MakerSquare',
-    communityLocation: "Austin & San Francisco"
-  };
+    communityLocation: "Austin & San Francisco",
+    communityPrivacy: true
+    };
   var testCommmunity2 = {
     communityName: "SF Interns",
-    communityLocation: "San Francisco, CA"
-  };
+    communityLocation: "San Francisco, CA",
+    communityPrivacy: true
+    };
   var testGroup1 = {
     groupName: 'MKS 15',
     groupLocation: 'San Francisco, CA',
@@ -80,11 +59,9 @@ describe('dbUtils creating and updating profiles', function() {
     groupSuperAdmins: {"Felurian-Github": true},
     groupMembers: {"Felurian-Github": true,
               "Yoda-Github": true, "Ned-Github": false},
-    groupTags: {}
-
-  };
-
-
+    groupTags: {},
+    groupPrivacy: true
+    };
 
   // User profile and functions.
 
@@ -95,7 +72,6 @@ describe('dbUtils creating and updating profiles', function() {
      console.log('Tests initialized inside timeout.');
      done();
      }, 1000);
-
 
   var clearData = function(){dataRef.set({}, function(err){
       if(err){
@@ -109,28 +85,37 @@ describe('dbUtils creating and updating profiles', function() {
 
   });
 
-  xit('retrieves references', function(done) {
-    console.log("New Reference test");
-    //expect(dbUtils.dataRef.children()).toBe();
-    done();
-    });
-
-    it('creates a new user', function(done) {
-    //console.log("New User test: ", testUser1);
+  it('creates a new user', function(done) {
     dbUtils.createUser(testUser2);
-    //dbUtils.createUser(testUser2);
+    //dbUtils.createUser(testUser1);
     //expect(dataRef.child('UsersDB').child('Yoda-Github').userName.val() ).toBe('Yoda');
     //expect(dbUtils.usersRef(testUser2.userName)).toBe(testUser2.userName);
     done();
     }); //working
 
-     it('expects a new user', function(done) {
+ it('creates a second user', function(done) {
+    //dbUtils.createUser(testUser2);
+    dbUtils.createUser(testUser1);
     //expect(dataRef.child('UsersDB').child('Yoda-Github').userName.val() ).toBe('Yoda');
-    expect(dataRef.child('UsersDB').child('Felurian-Github').userName.val() ).toBe('Felurian');
+    //expect(dbUtils.usersRef(testUser2.userName)).toBe(testUser2.userName);
+    done();
+    }); //working
+
+
+  it('expects a new user', function(done) {
+    dataRef.child('UsersDB').child('Felurian-Github').child('userName').once('value', function(snapshot) {
+      expect( snapshot.val() ).to.be('Felurian');
+    });
     done();
     });
 
-
+   xit('expects a second user', function(done) {
+    //expect(dataRef.child('UsersDB').child('Yoda-Github').userName.val() ).toBe('Yoda');
+    dataRef.child('UsersDB').child('Yoda-Github').child('userName').once('value', function(snapshot) {
+      expect(snapshot.val()).to.be('Yoda');
+    });
+    done();
+    });
 
    xit('can delete a user', function(done) {
     dbUtils.createUser(testUser1.userName);
@@ -138,10 +123,12 @@ describe('dbUtils creating and updating profiles', function() {
     done();
     }); //not written, nor tested
 
-    it('can update a user profile', function(done) {
+  it('can update a user profile', function(done) {
     //dbUtils.createUser(testUser2);
-    dbUtils.updateUser('Felurian-Github', 'freeText', 'how how my poet is an owl.')
-    expect(dataRef.child('UsersDB').child('Felurian-Github').child('profile').child('freeText').val()).toBe('how how my poet is an owl.');
+    dbUtils.updateUser('Felurian-Github', 'freeText','how how my poet is an owl.' );
+    // dataRef.child('UsersDB').child('Felurian-Github').child('userName').child('userProfile').child('freeText').once('value', function(snapshot) {
+    //   expect(snapshot.val()).to.equal('how how my poet is an owl.');
+    // });
     done();
     }); //working
 
