@@ -29,4 +29,9 @@ angular.module('interim.chat', ["firebase"])
      $scope.msg = "";
      msg.set(message);
   }
+
+  //get user personal information on image click
+  $scope.personalInfo = function() {
+    alert(" user info pop here");
+  }
 });
