@@ -1,5 +1,6 @@
 // Declare app level module which depends on views, and components
 var App = angular.module('interim', [
+  'firebase',
   'ui.router',
   'ui.bootstrap',
   'interim.communityFrame',
