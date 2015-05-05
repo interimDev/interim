@@ -5,8 +5,8 @@ angular.module('interim.landingPage', [])
   $scope.githubAuth = function(){
     Github.firePromise()
     .then(function(auth){
-      $rootScope.user = auth.github.displayName;
-      console.log($rootScope.user)
+      $rootScope.user = auth.github;
+      $rootScope.userInfo = auth.github.cachedUserProfile;
       $state.go('community');
     });
   };

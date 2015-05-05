@@ -10,11 +10,13 @@ var App = angular.module('interim', [
   'interim.yourCommunityList',
   'interim.dashboard',
   'interim.chat',
-  'interim.userBottomSidebar'
+  'interim.userBottomSidebar',
+  'interim.userProfile'
 ]);
 //global variable for current room id and user
 App.run(function($rootScope){
   $rootScope.user;
+  $rootScope.userInfo;
 
 });
 
@@ -29,6 +31,10 @@ App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
   .state('communities', {
     url: '/communities',
     templateUrl: '/app/yourCommunityList/yourCommunityList.html'
+  })
+  .state('userprofile', {
+    url: '/user',
+    templateUrl: '/app/userProfile/userProfile.html'
   })
   .state('community', {
     url: '/community',

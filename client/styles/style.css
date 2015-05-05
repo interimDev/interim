@@ -37,12 +37,11 @@
   margin-left: auto;
   box-shadow: 1px 1px 5px #888888;
 }
-
 /*yourCommunityList.html css ends here*/
 
 /*userProfile.html css starts here*/
 #user {
-  background-image: url("./assets/profilebg.png");
+  background-image: url("/app/assets/profilebg.png");
   background-size: 100% 100%;
   width: 260px;
   height: 390px;

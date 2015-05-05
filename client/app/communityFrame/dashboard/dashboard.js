@@ -32,4 +32,5 @@ angular.module('interim.dashboard', ["firebase"])
     //set current room (since no user just storing it globally)
     $rootScope.displayMessages(obj.room.id);
   }
+
 });

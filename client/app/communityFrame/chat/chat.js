@@ -20,7 +20,7 @@ angular.module('interim.chat', ["firebase"])
     var msg = ref.child($scope.roomId).push();
       var message = {
         userId: $rootScope.user,
-        name: "anonymous",   // TODO: FIX THIS!!!
+        name: $rootScope.user,
         timestamp: Firebase.ServerValue.TIMESTAMP,
         message: $scope.msg,
         type: 'default'
@@ -28,5 +28,10 @@ angular.module('interim.chat', ["firebase"])
      //reset input box
      $scope.msg = "";
      msg.set(message);
+  }
+
+  //get user personal information on image click
+  $scope.personalInfo = function() {
+    alert(" user info pop here");
   }
 });
