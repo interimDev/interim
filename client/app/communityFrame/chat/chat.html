@@ -2,8 +2,6 @@
   <div class="col-xs-9 hundred" id ="chatMessage">
     <!-- contains all messages -->
     <div id="contentMessages">
-
-      <button ng-click=messagesTest()>Messages</button>
       <!-- single message -->
       <div class="message" ng-repeat="message in messages ">
         <article class="row">
@@ -48,7 +46,7 @@
             </button>
           </span>
           <!-- input sends message when user presses enter key on key board -->
-          <input type="text" ng-keyup="$event.keyCode == 13 && sendMessage()" class="form-control" placeholder="Enter message here..."/>
+          <input type="text" ng-model="msg" ng-keyup="$event.keyCode == 13 && sendMessage()" class="form-control" placeholder="Enter message here..."/>
         </div>
       </div>
     </div>

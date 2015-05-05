@@ -4,23 +4,26 @@ angular.module('interim.chat', ["firebase"])
 
   var ref = new Firebase("https://interim.firebaseio.com/room-messages");
   //get all messages for specific room
-  $scope.messagesTest = function() {
+  $rootScope.displayMessages = function(roomId) {
     //get data for specific room
-    var messages = $firebaseArray(ref.child($rootScope.roomId));
+    var messages = $firebaseArray(ref.child(roomId));
     $scope.messages = messages;
-    console.log(messages);
+    $scope.roomId = roomId;
+    //console.log(messages);
   }
 
-  //TODO: send messages to specific room
+  //send messages to specific room
   $scope.sendMessage = function() {
-
-    var message = {
-      userId: "anonymous:-JoWKcuh_THLgIR8wXKy",
-      name: "-JoWKcuh",
-      timestamp: Firebase.ServerValue.TIMESTAMP,
-      message: messageContent,
-      type: 'default'
-    }
+    var msg = ref.child($scope.roomId).push();
+      var message = {
+        userId: $rootScope.user,
+        name: "anonymous",   // TODO: FIX THIS!!!
+        timestamp: Firebase.ServerValue.TIMESTAMP,
+        message: $scope.msg,
+        type: 'default'
+      }
+     //reset input box
+     $scope.msg = "";
+     msg.set(message);
   }
-
 });
