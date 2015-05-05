@@ -1,4 +1,4 @@
-angular.module('interim.chat', ["firebase"])
+angular.module('interim.chat', ["firebase", "luegg.directives"])
 
 .controller('ChatController', function ($scope, $firebaseArray, $rootScope) {
 
@@ -25,9 +25,9 @@ angular.module('interim.chat', ["firebase"])
         message: $scope.msg,
         type: 'default'
       }
-     //reset input box
-     $scope.msg = "";
-     msg.set(message);
+    //reset input box
+    $scope.msg = "";
+    msg.set(message);
   }
 
   //get user personal information on image click

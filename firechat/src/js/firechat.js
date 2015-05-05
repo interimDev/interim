@@ -286,6 +286,7 @@
 
   // Create and automatically enter a new chat room.
   Firechat.prototype.createRoom = function(roomName, roomType, callback) {
+    //room created!
     var self = this,
         newRoomRef = this._roomRef.push();
     //WE MIGHT WANT TO ADD MESSAGES TO THE CHATROOM OBJECT

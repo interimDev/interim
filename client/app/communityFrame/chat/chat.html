@@ -1,7 +1,7 @@
 <div class="chat" ng-controller="ChatController">
   <div class="col-xs-9 hundred" id ="chatMessage">
     <!-- contains all messages -->
-    <div id="contentMessages">
+    <div id="contentMessages"  scroll-glue>
       <!-- single message -->
       <div class="message" ng-repeat="message in messages ">
         <article class="row">

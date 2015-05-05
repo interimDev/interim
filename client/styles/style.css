@@ -143,7 +143,7 @@
   width: 90%;
 }
 
-#contentBucketTags {
+#contentBucketUsers {
   position: absolute;
   overflow: auto;
   height: 100%;
@@ -160,6 +160,7 @@
   top: 300px;
   width: 100%;
   height: 30%;
+  color: #2869b2;
 }
 
 #insideContent {
