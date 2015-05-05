@@ -75,14 +75,14 @@ describe('dbUtils creating and updating profiles', function() {
      }, 100);
 
 
-    dataRef.set({}, function(err){
-      if(err){
-        console.log(err);
-      }else{
-        console.log("DB Tests initialized, database set");
+    // dataRef.set({}, function(err){
+    //   if(err){
+    //     console.log(err);
+    //   }else{
+    //     console.log("DB Tests initialized, database set");
         //dbUtils.child('UsersDB').createUser(testUser1.userName);
-    }
-  });
+  //   }
+  // });
 
   });
 
@@ -92,11 +92,12 @@ describe('dbUtils creating and updating profiles', function() {
     done();
     });
 
-  xit('creates a new user', function(done) {
+    it('creates a new user', function(done) {
     //console.log("New User test: ", testUser1);
-    dbUtils.createUser(testUser1);
-    //dbUtils.createUser(testUser2);
-    expect(dbUtils.usersRef(testUser1.userName)).toBe(testUser1.userName);
+    //dbUtils.createUser(testUser1);
+    dbUtils.createUser(testUser2);
+    //expect(dbUtils.usersRef(testUser1.userName)).toBe(testUser1.userName);
+    //expect(dbUtils.usersRef(testUser2.userName)).toBe(testUser2.userName);
     done();
     });
 
@@ -107,8 +108,8 @@ describe('dbUtils creating and updating profiles', function() {
     });
 
   it('can update a user profile', function(done) {
-    dbUtils.createUser(testUser2);
-    dbUtils.updateUser('Felurian-Github', 'freeText', 'hooo hoo like an owl.');
+      dbUtils.updateUser('Felurian-Github', 'freeText', 'how how my poet is an owl.')
+      expect(dbUtils.usersRef(testUser2.profile.freeText)).toBe(testUser2.profile.freeText);
     done();
     });
 

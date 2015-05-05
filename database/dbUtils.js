@@ -14,7 +14,7 @@ exports.groupRef = function(group) {
   return dataRef.child('CommunityDB').child('group');
 };
 exports.usersRef = function(user){
-  return dataRef.child('UsersDB').child(user);
+  return dataRef.child('UsersDB');
 };
 
 
@@ -111,9 +111,10 @@ exports.createTag = function(tag){};
 // exports.updateProfile = function(name, type, profile);
 
 exports.updateUser = function(userName, changedField, fieldValue){
+  console.log(userName, " requested a profile update");
   var tempObj = {};
   tempObj[changedField] = fieldValue;
-  usersRef(userName).child('profile').update(tempObj);
+  dataRef.child('UsersDB').child(userName).child('profile').update(tempObj);
 
 };
 exports.updateGroup = function(group, groupProfile){};
