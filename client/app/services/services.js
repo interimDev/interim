@@ -66,12 +66,12 @@ angular.module('interim.services', [])
     userObj[dbName] = user;
 
     //dataRef.child('UsersDB').push(user);
-    dataRef.child('UsersDB').set( userObj , function(error){
+    dataRef.child('UsersDB').update( userObj , function(error){
       if(!error){
-        console.log("User ", user.userName, "sucessfully created.");
+        console.log("user inserted!")
       }
       else{
-        console.log("Error while setting user information");
+        console.log(error);
       }
     })
   }
