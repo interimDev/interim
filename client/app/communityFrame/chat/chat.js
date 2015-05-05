@@ -4,7 +4,7 @@ angular.module('interim.chat', ["firebase"])
 
   var ref = new Firebase("https://interim.firebaseio.com/room-messages");
   //get all messages for specific room
-  $scope.messagesTest = function() {
+  $rootScope.messagesTest = function() {
     //get data for specific room
     var messages = $firebaseArray(ref.child($rootScope.roomId));
     $scope.messages = messages;

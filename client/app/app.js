@@ -9,11 +9,14 @@ var App = angular.module('interim', [
   'interim.userProfile',
   'interim.yourCommunityList',
   'interim.dashboard',
-  'interim.chat'
+  'interim.chat',
+  'interim.userBottomSidebar'
 ]);
-//global variable for current room id
+//global variable for current room id and user
 App.run(function($rootScope){
   $rootScope.roomId;
+  $rootScope.user;
+
 });
 
 App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {

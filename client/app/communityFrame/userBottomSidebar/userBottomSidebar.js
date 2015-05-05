@@ -1,6 +1,8 @@
-angular.module('interim.userBottomSidebar', [])
+angular.module('interim.userBottomSidebar', ["firebase"])
 
-.controller('BottomSidebarController', function ($scope, factoryPlaceHolder) {
-  // Your code here
+.controller('BottomSidebarController', function ($scope, $rootScope) {
+  console.log($rootScope.user);
+ 
+ $scope.userName = $rootScope.user;
   
 });
