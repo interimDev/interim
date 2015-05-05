@@ -20,6 +20,7 @@ App.run(function($rootScope){
 
 });
 
+
 App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   // $urlRouterProvider.otherwise('/signin');
   $stateProvider
