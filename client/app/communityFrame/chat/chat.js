@@ -20,7 +20,7 @@ angular.module('interim.chat', ["firebase"])
     var msg = ref.child($scope.roomId).push();
       var message = {
         userId: $rootScope.user,
-        name: $rootScope.user,
+        name: $rootScope.user.displayName,
         timestamp: Firebase.ServerValue.TIMESTAMP,
         message: $scope.msg,
         type: 'default'
