@@ -41,7 +41,7 @@ describe('dbUtils creating and updating profiles', function() {
       location: 'Dagoba',
       url: 'http://en.wikipedia.org/wiki/Yoda',
       freeText: 'Try not! Do or do not. There is no "try".',
-      image: 'lib/yoda.png'
+      image: 'http://upload.wikimedia.org/wikipedia/en/9/9b/Yoda_Empire_Strikes_Back.png'
     },
   };
   var testUser2 = {
@@ -55,7 +55,7 @@ describe('dbUtils creating and updating profiles', function() {
       location: 'twilight woodland glade in Fae',
       url: 'http://kingkiller.wikia.com/wiki/Felurian',
       freeText: 'am I mere brightness with no spark beneath?',
-      image: 'lib/felurian.gif'
+      image: 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Marbled_emperor_moth_heniocha_dyops.jpg/1920px-Marbled_emperor_moth_heniocha_dyops.jpg'
     },
   };
   var testUser3 = {
@@ -64,6 +64,27 @@ describe('dbUtils creating and updating profiles', function() {
       password: 'okiedokielee',
       authType: 'email'
   };
+  var testCommmunity1 = {
+    communityName: 'MakerSquare',
+    communityLocation: "Austin & San Francisco"
+  };
+  var testCommmunity2 = {
+    communityName: "SF Interns",
+    communityLocation: "San Francisco, CA"
+  };
+  var testGroup1 = {
+    groupName: 'MKS 15',
+    groupLocation: 'San Francisco, CA',
+    groupDates: '',
+    groupAdmins: {"Felurian-Github": true},
+    groupSuperAdmins: {"Felurian-Github": true},
+    groupMembers: {"Felurian-Github": true,
+              "Yoda-Github": true, "Ned-Github": false},
+    groupTags: {}
+
+  };
+
+
 
   // User profile and functions.
 
@@ -72,15 +93,16 @@ describe('dbUtils creating and updating profiles', function() {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 2000;
     setTimeout(function() {
      console.log('Tests initialized inside timeout.');
-     }, 100);
+     done();
+     }, 5000);
 
 
-    // dataRef.set({}, function(err){
-    //   if(err){
-    //     console.log(err);
-    //   }else{
-    //     console.log("DB Tests initialized, database set");
-        //dbUtils.child('UsersDB').createUser(testUser1.userName);
+  //   dataRef.set({}, function(err){
+  //     if(err){
+  //       console.log(err);
+  //     }else{
+  //       console.log("DB Tests initialized, database set");
+  //      // dbUtils.child('UsersDB').createUser(testUser1.userName);
   //   }
   // });
 
@@ -92,29 +114,37 @@ describe('dbUtils creating and updating profiles', function() {
     done();
     });
 
-    it('creates a new user', function(done) {
+    xit('creates a new user', function(done) {
     //console.log("New User test: ", testUser1);
     //dbUtils.createUser(testUser1);
     dbUtils.createUser(testUser2);
     //expect(dbUtils.usersRef(testUser1.userName)).toBe(testUser1.userName);
     //expect(dbUtils.usersRef(testUser2.userName)).toBe(testUser2.userName);
     done();
-    });
+    }); //working
 
    xit('can delete a user', function(done) {
     dbUtils.createUser(testUser1.userName);
     dbUtils.deleteUser(testUser1.userName);
     done();
-    });
+    }); //not written, nor tested
 
-  it('can update a user profile', function(done) {
+  xit('can update a user profile', function(done) {
       dbUtils.updateUser('Felurian-Github', 'freeText', 'how how my poet is an owl.')
       expect(dbUtils.usersRef(testUser2.profile.freeText)).toBe(testUser2.profile.freeText);
     done();
-    });
+    }); //working
 
+
+  // Community profile and functions
+  it('creates a new community', function(done) {
+      console.log("Community buildling tests");
+      dbUtils.createCommunity("MakerSquare", "Felurian-Github");
+      done();
+    });
    // Group profile and functions
-  xit('creates a new group', function(done) {
+  it('creates a new group', function(done) {
+
       done();
     });
   xit('defaults to be a private group', function(done) {

@@ -41,6 +41,11 @@ exports.usersRef = function(user){
         - role: (admin, superadmin, user)
     - CommunityDB
       - "SFInterns"
+        - communityName:
+        - communityLocation:
+        - communityFounder:
+        - communityFoundingDate:
+        - communityGroups:
         - "Summer 2015"
         - "Fall 2015"
         - "Summer 2016"
@@ -94,17 +99,6 @@ exports.createUser = function(user, cb){
      })
 
 };
-
-
-
-exports.createGroup = function(group){};
-exports.createCommunity = function(community){};
-
-// Creation of helpers in the Community frame
-exports.createRoom = function(room){};
-exports.createTag = function(tag){};
-
-
 // Updating Profiles that already exist in the database.
 // TBV: May only need generic update, where type indicates user/group/community.
 // To-do: Data will need be to be validated when storing to databse.
@@ -117,6 +111,30 @@ exports.updateUser = function(userName, changedField, fieldValue){
   dataRef.child('UsersDB').child(userName).child('profile').update(tempObj);
 
 };
+
+exports.createCommunity = function(communityName, currentAdmin, cb){
+
+  if(dataRef.child('CommunityDB').child(communityName) ){
+    dataRef.child('CommunityDB').set({ communityName: communityName,
+                                       communityFounder: currentAdmin,
+                                       communityFoundingDate: Firebase.ServerValue.TIMESTAMP,
+                                       communityGroups: {}
+                                       // communityGroups not made
+                                     });
+  }else{
+    console.log("Error: Community already exits in database.")
+  }
+
+};
+
+exports.createGroup = function(groupName, currentAdmin){
+
+};
+
+// Creation of helpers in the Community frame
+exports.createRoom = function(room){};
+exports.createTag = function(tag){};
+
 exports.updateGroup = function(group, groupProfile){};
 exports.updateCommunity = function(community, communityProfile){};
 
