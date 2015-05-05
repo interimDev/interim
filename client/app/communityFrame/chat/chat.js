@@ -1,4 +1,4 @@
-angular.module('interim.chat', ["firebase"])
+angular.module('interim.chat', ["firebase", "luegg.directives"])
 
 .controller('ChatController', function ($scope, $firebaseArray, $rootScope) {
 
