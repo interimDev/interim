@@ -20,6 +20,7 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
     var msg = ref.child($scope.roomId).push();
       var message = {
         userId: $rootScope.user,
+        userProfileImage: $rootScope.userInfo.avatar_url,
         name: $rootScope.user.displayName,
         timestamp: Firebase.ServerValue.TIMESTAMP,
         message: $scope.msg,
