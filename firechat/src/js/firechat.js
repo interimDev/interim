@@ -288,13 +288,14 @@
   Firechat.prototype.createRoom = function(roomName, roomType, callback) {
     var self = this,
         newRoomRef = this._roomRef.push();
-
+    //WE MIGHT WANT TO ADD MESSAGES TO THE CHATROOM OBJECT
     var newRoom = {
       id: newRoomRef.key(),
       name: roomName,
       type: roomType || 'public',
       createdByUserId: this._userId,
-      createdAt: Firebase.ServerValue.TIMESTAMP
+      createdAt: Firebase.ServerValue.TIMESTAMP,
+      users: 
     };
 
     if (roomType === 'private') {
