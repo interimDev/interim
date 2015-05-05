@@ -23,6 +23,7 @@ angular.module('interim.services', [])
     var githubPromisified = githubAuth();
     return githubPromisified.then(function(auth) {
       console.log("github user obj ",auth);
+      return auth
     }, function(reason) {
       return reason
     });
