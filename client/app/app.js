@@ -8,7 +8,6 @@ var App = angular.module('interim', [
   'interim.services',
   'interim.userProfile',
   'interim.yourCommunityList',
-  'interim.dashboard'
   'interim.dashboard',
   'interim.chat'
 ]);
@@ -22,7 +21,7 @@ App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
   $stateProvider
   .state('signin', {
     url: '/signin',
-    controller: 'LandingPageController'
+    controller: 'LandingPageController',
     templateUrl: '/app/landingPage/landingPage.html'
   })
   .state('communities', {
