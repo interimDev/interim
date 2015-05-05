@@ -46,7 +46,7 @@
             </button>
           </span>
           <!-- input sends message when user presses enter key on key board -->
-          <input type="text" ng-keyup="$event.keyCode == 13 && sendMessage()" class="form-control" placeholder="Enter message here..."/>
+          <input type="text" ng-model="msg" ng-keyup="$event.keyCode == 13 && sendMessage()" class="form-control" placeholder="Enter message here..."/>
         </div>
       </div>
     </div>
