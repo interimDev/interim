@@ -5,11 +5,14 @@ angular.module('interim.chat', ["firebase"])
   var ref = new Firebase("https://interim.firebaseio.com/room-messages");
   //get all messages for specific room
   $rootScope.displayMessages = function(roomId) {
+    
     //get data for specific room
     var messages = $firebaseArray(ref.child(roomId));
     $scope.messages = messages;
     $scope.roomId = roomId;
-    //console.log(messages);
+
+    //show chat input when room is selected
+    $("#chatRow").css('visibility', 'visible');
   }
 
   //send messages to specific room

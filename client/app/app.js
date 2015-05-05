@@ -14,7 +14,6 @@ var App = angular.module('interim', [
 ]);
 //global variable for current room id and user
 App.run(function($rootScope){
-  $rootScope.roomId;
   $rootScope.user;
 
 });
