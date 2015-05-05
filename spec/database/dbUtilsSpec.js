@@ -87,14 +87,12 @@ describe('dbUtils creating and updating profiles', function() {
 
   it('creates a new user', function(done) {
     dbUtils.createUser(testUser2);
-    //dbUtils.createUser(testUser1);
     //expect(dataRef.child('UsersDB').child('Yoda-Github').userName.val() ).toBe('Yoda');
     //expect(dbUtils.usersRef(testUser2.userName)).toBe(testUser2.userName);
     done();
     }); //working
 
  it('creates a second user', function(done) {
-    //dbUtils.createUser(testUser2);
     dbUtils.createUser(testUser1);
     //expect(dataRef.child('UsersDB').child('Yoda-Github').userName.val() ).toBe('Yoda');
     //expect(dbUtils.usersRef(testUser2.userName)).toBe(testUser2.userName);
@@ -103,16 +101,21 @@ describe('dbUtils creating and updating profiles', function() {
 
 
   it('expects a new user', function(done) {
-    dataRef.child('UsersDB').child('Felurian-Github').child('userName').once('value', function(snapshot) {
-      expect( snapshot.val() ).to.be('Felurian');
+    // dataRef.child('UsersDB').child('Felurian-Github').child('userName').once('value', function(snapshot) {
+    //   expect( snapshot.val() ).to.be('Felurian');
+    // });
+
+    dataRef.child('UsersDB').child('Felurian-Github').child('userName').once("value", function(data) {
+    console.log("Data from first user test ", data)
+    expect( (data.userName).to.be('Felurian') );
     });
     done();
     });
 
    xit('expects a second user', function(done) {
     //expect(dataRef.child('UsersDB').child('Yoda-Github').userName.val() ).toBe('Yoda');
-    dataRef.child('UsersDB').child('Yoda-Github').child('userName').once('value', function(snapshot) {
-      expect(snapshot.val()).to.be('Yoda');
+    dataRef.child('UsersDB').child('Yoda-Github').child('userName').once('value', function(data) {
+      expect( (data.userName).to.be('Yoda') );
     });
     done();
     });
