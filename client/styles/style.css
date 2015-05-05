@@ -224,3 +224,16 @@
 }
 /*chat input ends here*/
 /*chat.html css ends here*/
+
+
+
+/*community profile start*/
+#communityProfAvi {
+  margin-right: 5%;
+  float: left;
+}
+
+.communityProfBasicInfo {
+  margin-top: 1%;
+}
+/*community profile end*/

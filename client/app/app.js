@@ -10,30 +10,34 @@ angular.module('interim', [
   'interim.yourCommunityList'
 ])
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-  // $urlRouterProvider.otherwise('/signin');
+  $urlRouterProvider.otherwise('/signin');
 
   $stateProvider
   .state('signin', {
     url: '/signin',
-    templateUrl: './client/app/landingPage/landingPage.html',
     controller: 'LandingPageController'
+    templateUrl: '/app/landingPage/landingPage.html'
   })
   .state('communities', {
     url: '/communities',
-    templateUrl: './client/app/yourCommunityList/yourCommunityList.html'
+    templateUrl: '/app/yourCommunityList/yourCommunityList.html'
   })
   .state('community', {
     url: '/community',
     views: {
-      '': { templateUrl: './client/app/communityFrame/communityFrame.html' },
-      'communityTopSidebar@community': { templateUrl: './client/app/communityFrame/communityTopSidebar/communityTopSidebar.html' },
-      'dashboard@community': { templateUrl: './client/app/communityFrame/dashboard/dashboard.html' },
-      'userBottomSidebar@community': { templateUrl: './client/app/communityFrame/userBottomSidebar/userBottomSidebar.html' },
-      'chat@community': { templateUrl: './client/app/communityFrame/chat/chat.html' }
+      '': { templateUrl: '/app/communityFrame/communityFrame.html' },
+      'communityTopSidebar@community': { templateUrl: '/app/communityFrame/communityTopSidebar/communityTopSidebar.html' },
+      'dashboard@community': { templateUrl: '/app/communityFrame/dashboard/dashboard.html' },
+      'userBottomSidebar@community': { templateUrl: '/app/communityFrame/userBottomSidebar/userBottomSidebar.html' },
+      'chat@community': { templateUrl: '/app/communityFrame/chat/chat.html' }
     }
   })
   .state('exampleChat', {
     url: '/exampleChat',
-    templateUrl: './firechat/examples/anonymous/index.html'
+    templateUrl: '/firechat/examples/anonymous/index.html'
+  })
+  .state('community-profile', {
+    url: '/community-profile',
+    templateUrl: '/app/communityProfile/communityProfile.html'
   })
 }]);
