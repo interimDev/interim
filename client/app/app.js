@@ -22,7 +22,7 @@ App.run(function($rootScope){
 
 
 App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-  // $urlRouterProvider.otherwise('/signin');
+  $urlRouterProvider.otherwise('/signin');
   $stateProvider
   .state('signin', {
     url: '/signin',

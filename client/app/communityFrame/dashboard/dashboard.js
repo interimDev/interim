@@ -2,16 +2,16 @@ angular.module('interim.dashboard', ["firebase"])
 
 .controller('DashboardController', function($scope, $firebaseArray, $rootScope) {
 
-  var ref = new Firebase("https://interim.firebaseio.com/room-metadata");
+  var roomRef = new Firebase("https://interim.firebaseio.com/room-metadata");
   // download the data into a local object
-  $scope.rooms = $firebaseArray(ref);
+  $scope.rooms = $firebaseArray(roomRef);
 
   //adding room
   $scope.add = function(event) {
     //sweetprompt use it here
     var roomName =  prompt("Please enter new room name?");
     //creates entry
-    var newRoom = ref.push();
+    var newRoom = roomRef.push();
     //create new room
     var room = {
       id: newRoom.key(),
@@ -32,5 +32,9 @@ angular.module('interim.dashboard', ["firebase"])
     //set current room (since no user just storing it globally)
     $rootScope.displayMessages(obj.room.id);
   }
+
+  //get all messages for specific room
+  var userRef = new Firebase("https://interim.firebaseio.com/user-names-online");
+  $scope.users = $firebaseArray(userRef);
 
 });
