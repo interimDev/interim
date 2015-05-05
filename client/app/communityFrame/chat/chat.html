@@ -3,30 +3,29 @@
     <!-- contains all messages -->
     <div id="contentMessages">
 
-      <button ng-click= messagesTest()>Messages</button>
+      <button ng-click=messagesTest()>Messages</button>
       <!-- single message -->
-      <div class="message">
+      <div class="message" ng-repeat="message in messages ">
         <article class="row">
           <div class="col-md-12 col-sm-12">
             <div class="panel panel-default arrow left">
-            
               <div class="panel-body">
-               
+                <!-- displays users picture -->
                 <div class="col-md-2 col-sm-2 hidden-xs">
                 <img src = "./client/app/assets/vladProfile.png" class = "img-rounded" id = "chatImage" />
                 </div>
-        
-                <div><i class="fa fa-user"></i> {{username}}
-               
-                  <time id = "chatTime"><i class="fa fa-clock-o"></i> 3 minutes ago
+                <!-- displays users name -->
+                <div><i class="fa fa-user"></i> {{message.name}}
+                  <!-- displays time when message was send -->
+                  <time id = "chatTime"><i class="fa fa-clock-o"></i> {{ message.timestamp| date:'medium' }}
                   </time>
                 </div>
-               
+               <!-- displays usesrs message -->
                 <div>
                   <p>
-                    {{messages}}
+                    {{message.message}}
                   </p>
-                  
+                  <!-- displays users tag -->
                   <p class = "chatTags">
                     Tags: #awesome
                   </p>
@@ -48,7 +47,8 @@
               <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
             </button>
           </span>
-          <input type="text" class="form-control" placeholder="Enter message here...">
+          <!-- input sends message when user presses enter key on key board -->
+          <input type="text" ng-keyup="$event.keyCode == 13 && sendMessage()" class="form-control" placeholder="Enter message here..."/>
         </div>
       </div>
     </div>
