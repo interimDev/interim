@@ -6,7 +6,6 @@ describe('dbUtils creating and updating profiles', function() {
   // Test the Interim Firebase instance
  // var dataRef = new Firebase('https://interim.firebaseio.com/');
   var dataRef = new Firebase('https://unsheep.firebaseio.com/');
-  //dbUtils._changeRef(dataRef);
 
   var testCommunity = {
     name: 'SF',
@@ -31,7 +30,8 @@ describe('dbUtils creating and updating profiles', function() {
   };
   var testUser1 = {
     userName: 'Yoda',
-    chatID: '1234',
+    userId: null,
+    chatId: null,
     role: 'user',
     groups: {Jedi: false, MakerSquare: true},
     // Requested an authenticated groups are indicated as true
@@ -46,9 +46,11 @@ describe('dbUtils creating and updating profiles', function() {
   };
   var testUser2 = {
     userName: 'Felurian',
+    userId: null,
+    chatId: null,
     role: 'admin',
     groups: {Fae: true, MakerSquare:true},
-    auth: 'Github',
+    authType: 'Github',
     profile: {
       location: 'twilight woodland glade in Fae',
       url: 'http://kingkiller.wikia.com/wiki/Felurian',
@@ -56,37 +58,45 @@ describe('dbUtils creating and updating profiles', function() {
       image: 'lib/felurian.gif'
     },
   };
+  var testUser3 = {
+      userName: 'Ned',
+      userEmail: 'ned_flanders@hotmail.com',
+      password: 'okiedokielee',
+      authType: 'email'
+  };
 
   // User profile and functions.
 
   // Load the Firebase DB with user information to check.
   beforeEach(function(done) {
-     setTimeout(function() {
-     console.log("DB Tests initialized");
-     //dbUtils.helloWorld();
-     //timerCallback();
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 2000;
+    setTimeout(function() {
+     console.log('Tests initialized inside timeout.');
      }, 100);
+
+
     dataRef.set({}, function(err){
       if(err){
         console.log(err);
       }else{
         console.log("DB Tests initialized, database set");
-        dbUtils.createUser(testUser1.userName);
+        //dbUtils.child('UsersDB').createUser(testUser1.userName);
     }
   });
+
   });
 
-  it('retrieves references', function(done) {
-    console.log("New Reference test: ");
-    dbUtils.dataRef;
+  xit('retrieves references', function(done) {
+    console.log("New Reference test");
+    //expect(dbUtils.dataRef.children()).toBe();
     done();
     });
 
-  it('creates a new user', function(done) {
-    console.log("New User test: ", testUser1.userName);
-    dbUtils.createUser(testUser1.userName);
-    dbUtils.userRef(testUser1.userName);
-    expect(dbUtils.userRef(testUser1.userName)).toBe(testUser1.userName);
+  xit('creates a new user', function(done) {
+    //console.log("New User test: ", testUser1);
+    dbUtils.createUser(testUser1);
+    //dbUtils.createUser(testUser2);
+    expect(dbUtils.usersRef(testUser1.userName)).toBe(testUser1.userName);
     done();
     });
 
@@ -96,8 +106,10 @@ describe('dbUtils creating and updating profiles', function() {
     done();
     });
 
-  xit('can update a user profile', function(done) {
-      done();
+  it('can update a user profile', function(done) {
+    dbUtils.createUser(testUser2);
+    dbUtils.updateUser('Felurian-Github', 'freeText', 'hooo hoo like an owl.');
+    done();
     });
 
    // Group profile and functions

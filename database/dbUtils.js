@@ -3,15 +3,15 @@ var Firebase = require('firebase');
 var dataRef = new Firebase('https://unsheep.firebaseio.com/');
 
 // Initalize main folders in database
-dataRef.child('CommunityDB');
-dataRef.child('UsersDB');
+//dataRef.set('CommunityDB');
+//dataRef.set('UsersDB');
 
 // Shorthand to access stored data
 exports.communityRef = function(community) {
   return dataRef.child('CommunityDB').child(community);
 };
 exports.groupRef = function(group) {
-  return dataRef.child('CommunityDB').child().child('group');
+  return dataRef.child('CommunityDB').child('group');
 };
 exports.usersRef = function(user){
   return dataRef.child('UsersDB').child(user);
@@ -21,9 +21,10 @@ exports.usersRef = function(user){
 /*Database layout:
   Interim
     - UsersDB
-      -randomNumber333333
-        - userName:
-        - chatID: null, // value once chatted
+      -userName-authType
+        - userName: ,
+        - userId: randomNumber333333,
+        - chatId: null, // value once chatted
         - usersGroups: {
             Group1: true,
             Group2: false
@@ -36,7 +37,7 @@ exports.usersRef = function(user){
             freeText: " ",
             image: null
                         },
-        - auth:
+        - authType: Github/Twitter/FB/etc
         - role: (admin, superadmin, user)
     - CommunityDB
       - "SFInterns"
@@ -76,38 +77,26 @@ exports.usersRef = function(user){
 
 // Creating Profiles adding to the database.
 // To-do: Data will need be to be validated when storing to datebase.
+// user argument should be a completed object
 exports.createUser = function(user, cb){
 // Generate a userId by storing in db
-cb = cb || defaultCb('Failed to create user');
-  dataRef.push(user, cb);
+  var userObj = {};
+  var dbName = user.userName +"-" + user.authType;
+  userObj[dbName] = user;
 
-
-// function go() {
-//   var userData = { 'userName': userName };
-//   tryCreateUser(userName, userData);
-// }
-
-// var userCreated = function(userName, success) {
-//   if (!success) {
-//     alert('user ' + userName + ' already exists!');
-//   } else {
-//     alert('Successfully created ' + userName);
-//   }
-// }
-
-// // Tries to set /usersDB/<userId> to the specified data, but only
-// // if there's no data there already.
-// function tryCreateUser(userName, userData) {
-//   usersRef.child(userName).transaction(function(currentUserData) {
-//     if (currentUserData === null)
-//       return userData;
-//   }, function(error, committed) {
-//     userCreated(userName, committed);
-//   });
-// }
-
+  //dataRef.child('UsersDB').push(user);
+    dataRef.child('UsersDB').set( userObj , function(error){
+      if(!error){
+      console.log("User ", user.userName, "sucessfully created.");
+    }else{
+      console.log("Error while setting user information");
+    }
+     })
 
 };
+
+
+
 exports.createGroup = function(group){};
 exports.createCommunity = function(community){};
 
@@ -121,7 +110,12 @@ exports.createTag = function(tag){};
 // To-do: Data will need be to be validated when storing to databse.
 // exports.updateProfile = function(name, type, profile);
 
-exports.updateUser = function(userName, userProfile){};
+exports.updateUser = function(userName, changedField, fieldValue){
+  var tempObj = {};
+  tempObj[changedField] = fieldValue;
+  usersRef(userName).child('profile').update(tempObj);
+
+};
 exports.updateGroup = function(group, groupProfile){};
 exports.updateCommunity = function(community, communityProfile){};
 
