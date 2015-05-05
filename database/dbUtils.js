@@ -127,7 +127,20 @@ exports.createCommunity = function(communityName, currentAdmin, cb){
 
 };
 
-exports.createGroup = function(groupName, currentAdmin){
+exports.createGroup = function(groupName, communityName, currentAdmin){
+  if(dataRef.child('CommunityDB').child(communityName).child(groupName) ){
+    dataRef.child('CommunityDB').child(communityName).set({ groupName: groupName,
+                                       groupFounder: currentAdmin,
+                                       groupFoundingDate: Firebase.ServerValue.TIMESTAMP,
+                                       communityGroups: {}
+                                       // communityGroups not made yet
+                                     });
+    var newGroup = {};
+    newGroup[groupName] = groupName;
+    dataRef.child('CommunityDB').child(communityName).child('communityGroups').set(newGroup);
+  }else{
+    console.log("Error: Community already exits in database.")
+  }
 
 };
 

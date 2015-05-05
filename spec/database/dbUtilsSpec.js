@@ -36,11 +36,11 @@ describe('dbUtils creating and updating profiles', function() {
     groups: {Jedi: false, MakerSquare: true},
     // Requested an authenticated groups are indicated as true
     // Pending groups are indicated as false
-    auth: 'Github',
+    authType: 'Github',
     profile: {
       location: 'Dagoba',
       url: 'http://en.wikipedia.org/wiki/Yoda',
-      freeText: 'Try not! Do or do not. There is no "try".',
+      freeText: 'Try not! Do or do not. There is no try.',
       image: 'http://upload.wikimedia.org/wikipedia/en/9/9b/Yoda_Empire_Strikes_Back.png'
     },
   };
@@ -94,17 +94,18 @@ describe('dbUtils creating and updating profiles', function() {
     setTimeout(function() {
      console.log('Tests initialized inside timeout.');
      done();
-     }, 5000);
+     }, 1000);
 
 
-  //   dataRef.set({}, function(err){
-  //     if(err){
-  //       console.log(err);
-  //     }else{
-  //       console.log("DB Tests initialized, database set");
-  //      // dbUtils.child('UsersDB').createUser(testUser1.userName);
-  //   }
-  // });
+  var clearData = function(){dataRef.set({}, function(err){
+      if(err){
+        console.log(err);
+      }else{
+        console.log("DB Tests initialized, database set");
+       // dbUtils.child('UsersDB').createUser(testUser1.userName);
+    }
+  });
+  }
 
   });
 
@@ -114,14 +115,22 @@ describe('dbUtils creating and updating profiles', function() {
     done();
     });
 
-    xit('creates a new user', function(done) {
+    it('creates a new user', function(done) {
     //console.log("New User test: ", testUser1);
-    //dbUtils.createUser(testUser1);
     dbUtils.createUser(testUser2);
-    //expect(dbUtils.usersRef(testUser1.userName)).toBe(testUser1.userName);
+    //dbUtils.createUser(testUser2);
+    //expect(dataRef.child('UsersDB').child('Yoda-Github').userName.val() ).toBe('Yoda');
     //expect(dbUtils.usersRef(testUser2.userName)).toBe(testUser2.userName);
     done();
     }); //working
+
+     it('expects a new user', function(done) {
+    //expect(dataRef.child('UsersDB').child('Yoda-Github').userName.val() ).toBe('Yoda');
+    expect(dataRef.child('UsersDB').child('Felurian-Github').userName.val() ).toBe('Felurian');
+    done();
+    });
+
+
 
    xit('can delete a user', function(done) {
     dbUtils.createUser(testUser1.userName);
@@ -129,24 +138,32 @@ describe('dbUtils creating and updating profiles', function() {
     done();
     }); //not written, nor tested
 
-  xit('can update a user profile', function(done) {
-      dbUtils.updateUser('Felurian-Github', 'freeText', 'how how my poet is an owl.')
-      expect(dbUtils.usersRef(testUser2.profile.freeText)).toBe(testUser2.profile.freeText);
+    it('can update a user profile', function(done) {
+    //dbUtils.createUser(testUser2);
+    dbUtils.updateUser('Felurian-Github', 'freeText', 'how how my poet is an owl.')
+    expect(dataRef.child('UsersDB').child('Felurian-Github').child('profile').child('freeText').val()).toBe('how how my poet is an owl.');
     done();
     }); //working
 
 
   // Community profile and functions
-  it('creates a new community', function(done) {
+  xit('creates a new community', function(done) {
       console.log("Community buildling tests");
       dbUtils.createCommunity("MakerSquare", "Felurian-Github");
       done();
     });
    // Group profile and functions
-  it('creates a new group', function(done) {
-
+  xit('creates a new group within a community', function(done) {
+      // dbUtils.createCommunity("MakerSquare", "Felurian-Github");
+      dbUtils.createGroup("MKS15", 'MakerSquare', 'Felurian-Github');
       done();
     });
+  xit('creates a new groups', function(done) {
+      dbUtils.createGroup("MKS17", 'MakerSquare', 'Felurian-Github');
+      done();
+    });
+
+
   xit('defaults to be a private group', function(done) {
       done();
     });
