@@ -13,6 +13,7 @@ angular.module('interim.chat', ["firebase"])
 
   //TODO: send messages to specific room
   $scope.sendMessage = function() {
+
     var message = {
       userId: "anonymous:-JoWKcuh_THLgIR8wXKy",
       name: "-JoWKcuh",
