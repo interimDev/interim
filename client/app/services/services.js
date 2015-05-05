@@ -22,7 +22,6 @@ angular.module('interim.services', [])
   var firePromise = function(){
     var githubPromisified = githubAuth();
     return githubPromisified.then(function(auth) {
-      console.log("github user obj ",auth);
       return auth;
     }, function(reason) {
       return reason;
@@ -63,7 +62,7 @@ angular.module('interim.services', [])
     //bio
     //admin
     var userObj = {};
-    var dbName = user.userName +"-" + user.authType;
+    var dbName = user.github.displayName;
     userObj[dbName] = user;
 
     //dataRef.child('UsersDB').push(user);
