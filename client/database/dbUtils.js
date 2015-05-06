@@ -7,13 +7,13 @@ var dataRef = new Firebase('https://unsheep.firebaseio.com/');
 //dataRef.set('UsersDB');
 
 // Shorthand to access stored data
-var communityRef = function(community) {
+exports.communityRef = function(community) {
   return dataRef.child('CommunityDB').child(community);
 };
-var groupRef = function(group) {
+exports.groupRef = function(group) {
   return dataRef.child('CommunityDB').child('group');
 };
-var usersRef = function(user){
+exports.usersRef = function(user){
   return dataRef.child('UsersDB');
 };
 
@@ -83,14 +83,14 @@ var usersRef = function(user){
 // Creating Profiles adding to the database.
 // To-do: Data will need be to be validated when storing to datebase.
 // user argument should be a completed object
-var createUser = function(user, cb){
+exports.createUser = function(user, cb){
 // Generate a userId by storing in db
   var userObj = {};
   var dbName = user.userName +"-" + user.authType;
   userObj[dbName] = user;
 
   //dataRef.child('UsersDB').push(user);
-    dataRef.child('UsersDB').set( userObj , function(error){
+    dataRef.child('UsersDB').update( userObj , function(error){
       if(!error){
       console.log("User ", user.userName, "sucessfully created.");
     }else{
@@ -102,67 +102,83 @@ var createUser = function(user, cb){
 // Updating Profiles that already exist in the database.
 // TBV: May only need generic update, where type indicates user/group/community.
 // To-do: Data will need be to be validated when storing to databse.
-// var updateProfile = function(name, type, profile);
+// exports.updateProfile = function(name, type, profile);
 
-var updateUser = function(userName, changedField, fieldValue){
+exports.updateUser = function(userName, changedField, fieldValue){
   console.log(userName, " requested a profile update");
   var tempObj = {};
   tempObj[changedField] = fieldValue;
-  dataRef.child('UsersDB').child(userName).child('profile').update(tempObj);
+  dataRef.child('UsersDB').child(userName).child('userProfile').update(tempObj);
 
 };
 
-var createCommunity = function(communityName, currentAdmin, cb){
+exports.createCommunity = function(communityName, currentAdmin, cb){
 
   if(dataRef.child('CommunityDB').child(communityName) ){
     dataRef.child('CommunityDB').set({ communityName: communityName,
                                        communityFounder: currentAdmin,
                                        communityFoundingDate: Firebase.ServerValue.TIMESTAMP,
-                                       communityGroups: {}
+                                       communityGroups: {},
+                                       communityLocation: 'unknown',
+                                       communityPrivacy: 'private'
                                        // communityGroups not made
                                      });
+  console.log("Community ", communityName, " sucessfully created");
   }else{
     console.log("Error: Community already exits in database.")
   }
 
 };
 
-var createGroup = function(groupName, communityName, currentAdmin){
-  if(dataRef.child('CommunityDB').child(communityName).child(groupName) ){
-    dataRef.child('CommunityDB').child(communityName).set({ groupName: groupName,
-                                       groupFounder: currentAdmin,
-                                       groupFoundingDate: Firebase.ServerValue.TIMESTAMP,
-                                       communityGroups: {}
-                                       // communityGroups not made yet
-                                     });
-    var newGroup = {};
-    newGroup[groupName] = groupName;
-    dataRef.child('CommunityDB').child(communityName).child('communityGroups').set(newGroup);
+exports.createGroup = function(groupName, communityName, currentAdmin){
+  if(dataRef.child('CommunityDB').child(communityName).child(groupName)){
+     var newGroup = { groupName: groupName,
+                      groupFounder: currentAdmin,
+                      groupFoundingDate: Firebase.ServerValue.TIMESTAMP,
+                      groupLocation: 'unknown',
+                      groupPrivacy: 'private'
+                     };
+    var tempGroup ={};
+    tempGroup[groupName] = newGroup;
+    dataRef.child('CommunityDB').child(communityName).child('communityGroups').update(tempGroup);
+    console.log("Group ", groupName, " sucessfully created in ", communityName);
   }else{
-    console.log("Error: Community already exits in database.")
+    console.log("Error: Group ", groupName ," already exits in under the ", communityName, " community.");
   }
-
 };
+
+// Group & Community update functions
+exports.updateGroup = function(communityName, groupName, changedField, fieldValue){
+  var groupObj = {};
+  groupObj[changedField] = fieldValue;
+  dataRef.child('CommunityDB').child(communityName).child('communityGroups').child(groupName).update(groupObj);
+  console.log("Group ", groupName, " updated ", changedField, " to ", fieldValue);
+};
+
+exports.updateCommunity = function(communityName, changedField, fieldValue){
+  var commObj = {};
+  commObj[changedField] = fieldValue;
+  dataRef.child('CommunityDB').child(communityName).update(commObj);
+  console.log("Community ", communityName, " updated ", changedField, " to ", fieldValue);
+};
+
+
 
 // Creation of helpers in the Community frame
-var createRoom = function(room){};
-var createTag = function(tag){};
-
-var updateGroup = function(group, groupProfile){};
-var updateCommunity = function(community, communityProfile){};
+exports.createTag = function(tag){};
 
 // Admin utilities: Validations during the creation process.
-var validateUserToGroup = function(user, group) {};
-var validateUserToCommunity = function(user, community){};
-var validateGroup = function(sessionInfo) {};
-var validateCommunity = function(community){};
-var deactivateUserFromGroup = function(user, group){};
+exports.validateUserToGroup = function(user, group) {};
+exports.validateUserToCommunity = function(user, community){};
+exports.validateGroup = function(sessionInfo) {};
+exports.validateCommunity = function(community){};
+exports.deactivateUserFromGroup = function(user, group){};
 
 
 // Opening Groups & Communities, retrieving their info.
 // Expect these to be called by Angular front-end
-var openGroup = function(group){};
-var openCommunity = function(community){};
+exports.openGroup = function(group){};
+exports.openCommunity = function(community){};
 
 // Database helper methods
 var defaultCb = function(message) {
@@ -175,11 +191,11 @@ var defaultCb = function(message) {
 };
 
 // Switch to a new reference database for testing purposes
-// var _changeRef = function(newRef) {
+// exports._changeRef = function(newRef) {
 //   dataRef = newRef || dataRef;
 // };
 
 // Debugging tests purposes
-var helloWorld = function(){
+exports.helloWorld = function(){
   console.log("Hello from dbUtils!");
 }
