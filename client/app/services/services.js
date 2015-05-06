@@ -56,14 +56,26 @@ angular.module('interim.services', [])
   // user argument should be a completed object
   var createUser = function(user){
     console.log("factory user ",user)
-    //username
-    //userID
-    //picture
-    //bio
-    //admin
+
+    //pulls data from the github user data to create a cleaner
+    //filtered user object that we insert to the database
+    filteredUser = {
+      'name' : user.github.displayName,
+      'id' : user.github.id,
+      'token' : user.token,
+      'auth' : user.auth,
+      'superadmin' : false,
+      'communities' : null,
+      'permissions' : null,
+      'avi_url' : user.github.cachedUserProfile.avatar_url
+      }
+
+
+    //users are stored in the database by their name and auth provider
+    // example - "Trace Thompson-github"
+    var username = user.github.displayName+"-"+user.provider;
     var userObj = {};
-    var dbName = user.github.displayName;
-    userObj[dbName] = user;
+    userObj[username] = filteredUser;
 
     //dataRef.child('UsersDB').push(user);
     dataRef.child('UsersDB').update( userObj , function(error){

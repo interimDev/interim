@@ -16,9 +16,6 @@ angular.module('interim', [
 ])
 //global variable for current room id and user
 .run(function($rootScope){
-  $rootScope.user;
-  $rootScope.userInfo;
-
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, $state) {
     if(toState.url === '/superadmin'){
       var requireLogin = toState.data.requirePermission;
