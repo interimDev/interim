@@ -9,10 +9,9 @@ angular.module('interim.landingPage', [])
 
       //set all our root scope necessities here
       $rootScope.superAdmin = Permissions.isSuperAdmin(filteredUser);
-      $rootScope.userInfo = userObj.github.cachedUserProfile;
-      $rootScope.user = userObj.github;
-      
+      $rootScope.user = filteredUser;
       $state.go('community');
+
     });
   };
 });
