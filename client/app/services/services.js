@@ -64,7 +64,9 @@ angular.module('interim.services', [])
       'auth' : user.auth,
       'communities' : null,
       'permissions' : null,
-      'avi_url' : user.github.cachedUserProfile.avatar_url
+      'avi_url' : user.github.cachedUserProfile.avatar_url,
+      'location' : user.github.cachedUserProfile.location,
+      'github_url' : user.github.cachedUserProfile.html_url 
       }
 
 
