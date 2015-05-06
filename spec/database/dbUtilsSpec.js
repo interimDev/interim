@@ -1,6 +1,6 @@
 var jasmine = require('jasmine');
 var Firebase = require('firebase');
-var dbUtils = require('../../database/dbUtils');
+var dbUtils = require('../../client/database/dbUtils');
 
 describe('dbUtils creating and updating profiles', function() {
   // Test the Interim Firebase instance
@@ -69,7 +69,7 @@ describe('dbUtils creating and updating profiles', function() {
   beforeEach(function(done) {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 2000;
     setTimeout(function() {
-     console.log('Tests initialized inside timeout.');
+     //console.log('Tests initialized inside timeout.');
      done();
      }, 1000);
 
@@ -78,21 +78,20 @@ describe('dbUtils creating and updating profiles', function() {
         console.log(err);
       }else{
         console.log("DB Tests initialized, database set");
-       // dbUtils.child('UsersDB').createUser(testUser1.userName);
     }
   });
   }
 
   });
 
-  it('creates a new user', function(done) {
+   xit('creates a new user', function(done) {
     dbUtils.createUser(testUser2);
     //expect(dataRef.child('UsersDB').child('Yoda-Github').userName.val() ).toBe('Yoda');
     //expect(dbUtils.usersRef(testUser2.userName)).toBe(testUser2.userName);
     done();
     }); //working
 
- it('creates a second user', function(done) {
+  xit('creates a second user', function(done) {
     dbUtils.createUser(testUser1);
     //expect(dataRef.child('UsersDB').child('Yoda-Github').userName.val() ).toBe('Yoda');
     //expect(dbUtils.usersRef(testUser2.userName)).toBe(testUser2.userName);
@@ -100,23 +99,24 @@ describe('dbUtils creating and updating profiles', function() {
     }); //working
 
 
-  it('expects a new user', function(done) {
+  xit('expects a new user', function(done) {
     // dataRef.child('UsersDB').child('Felurian-Github').child('userName').once('value', function(snapshot) {
     //   expect( snapshot.val() ).to.be('Felurian');
     // });
 
     dataRef.child('UsersDB').child('Felurian-Github').child('userName').once("value", function(data) {
     console.log("Data from first user test ", data)
-    expect( (data.userName).to.be('Felurian') );
+    //expect( (data.userName).to.be('Felurian') );
     });
     done();
     });
 
    xit('expects a second user', function(done) {
     //expect(dataRef.child('UsersDB').child('Yoda-Github').userName.val() ).toBe('Yoda');
-    dataRef.child('UsersDB').child('Yoda-Github').child('userName').once('value', function(data) {
-      expect( (data.userName).to.be('Yoda') );
-    });
+    // dataRef.child('UsersDB').child('Yoda-Github').child('userName').once('value', function(data) {
+    //   var tempData = data.userName
+      //expect(data.to.exist);
+    // });
     done();
     });
 
@@ -126,30 +126,37 @@ describe('dbUtils creating and updating profiles', function() {
     done();
     }); //not written, nor tested
 
-  it('can update a user profile', function(done) {
+   xit('can update a user profile', function(done) {
     //dbUtils.createUser(testUser2);
     dbUtils.updateUser('Felurian-Github', 'freeText','how how my poet is an owl.' );
     // dataRef.child('UsersDB').child('Felurian-Github').child('userName').child('userProfile').child('freeText').once('value', function(snapshot) {
     //   expect(snapshot.val()).to.equal('how how my poet is an owl.');
     // });
     done();
-    }); //working
+    });
 
 
   // Community profile and functions
-  xit('creates a new community', function(done) {
+  it('creates a new community', function(done) {
       console.log("Community buildling tests");
       dbUtils.createCommunity("MakerSquare", "Felurian-Github");
       done();
     });
    // Group profile and functions
-  xit('creates a new group within a community', function(done) {
-      // dbUtils.createCommunity("MakerSquare", "Felurian-Github");
+  it('creates a new groups', function(done) {
+      dbUtils.createGroup("MKS17", 'MakerSquare', 'Felurian-Github');
+      done();
+    });
+   it('creates a new group within a community', function(done) {
       dbUtils.createGroup("MKS15", 'MakerSquare', 'Felurian-Github');
       done();
     });
-  xit('creates a new groups', function(done) {
-      dbUtils.createGroup("MKS17", 'MakerSquare', 'Felurian-Github');
+  it('can update a group profile', function(done) {
+      dbUtils.updateGroup("MakerSquare", "MKS17", "groupLocation", "Frisco");
+      done();
+    });
+  it('can update a community profile', function(done) {
+      dbUtils.updateCommunity("MakerSquare", "communityLocation", "Austin and San Francisco and Los Angeles");
       done();
     });
 
