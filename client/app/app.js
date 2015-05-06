@@ -1,5 +1,5 @@
 // Declare app level module which depends on views, and components
-var App = angular.module('interim', [
+angular.module('interim', [
   'firebase',
   'ui.router',
   'ui.bootstrap',
@@ -13,16 +13,28 @@ var App = angular.module('interim', [
   'interim.chat',
   'interim.userBottomSidebar',
   'interim.userProfile'
-]);
+])
 //global variable for current room id and user
-App.run(function($rootScope){
+.run(function($rootScope){
   $rootScope.user;
   $rootScope.userInfo;
 
-});
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams, $state) {
+    if(toState.url === '/superadmin'){
+      var requireLogin = toState.data.requirePermission;
+      console.log(event, toState)
+
+      if(!$rootScope.permission){
+        alert("you are not an admin!");
+        event.preventDefault()
+      }
+    }
+  });
+
+})
 
 
-App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/signin');
   $stateProvider
   .state('signin', {
@@ -55,5 +67,12 @@ App.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
   .state('community-profile', {
     url: '/community-profile',
     templateUrl: '/app/communityProfile/communityProfile.html'
+  })
+  .state('superadmin', {
+    url:'/superadmin',
+    templateUrl: '/app/superadmin/superadmin.html',
+    data: {
+      requirePermission: true
+    }
   })
 }]);
