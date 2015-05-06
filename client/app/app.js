@@ -14,20 +14,25 @@ angular.module('interim', [
   'interim.userBottomSidebar',
   'interim.userProfile'
 ])
-//global variable for current room id and user
+
 .run(function($rootScope){
+
+  // handles routing permission authorization by checking the privelege of the user
+  // ~check ur privelege~ https://alizetigirl.files.wordpress.com/2014/10/check-your-privilege.jpg
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, $state) {
-    if(toState.url === '/superadmin'){
-      var requireLogin = toState.data.requirePermission;
+    //checks the state's data (held in the router config) to see
+    //if the route requires permission
+    var requireAuth = toState.data.requirePermission;
+
+    if(requireAuth){
       console.log(event, toState)
 
-      if(!$rootScope.permission){
+      if(!$rootScope.superAdmin){
         alert("you are not an admin!");
         event.preventDefault()
       }
     }
   });
-
 })
 
 
