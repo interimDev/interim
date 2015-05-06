@@ -12,7 +12,8 @@
       <div id="contentBucketRooms">
         <!-- Each room -->
         <h6 ng-repeat="room in rooms | orderBy: 'name'" id="insideContent"><a href="javascript:void(0);" ng-click="roomName(this);" id="linkColor">{{room.name}}</a></h6>
-        <h6 ng-repeat="room in privateRooms | orderBy: 'name'" id="insideContent"><a href="javascript:void(0);" ng-click="roomName(this);" id="linkColor">{{room.name}}</a></h6>
+
+        <h6 ng-repeat="room in rooms | orderBy: 'name'" id="insideContent"><a href="javascript:void(0);" ng-click="roomName(this);" id="linkColor">{{room}}</a></h6>
     
       </div>
     </div>
