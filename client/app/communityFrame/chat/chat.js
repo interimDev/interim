@@ -31,8 +31,41 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
     msg.set(message);
   }
 
-  //get user personal information on image click
-  $scope.personalInfo = function() {
-    alert(" user info pop here");
+  //this function creates a popup modal with the users information
+  $scope.personalInfo = function(user) {
+    console.log(user);
+    console.log(user.userId.cachedUserProfile.avatar_url);
+    bootbox.dialog({
+      //message provides us with most of the major details in the user profile.
+      message:  "<img id='modalProfilePic' src='" + user.userProfileImage + "'/>"+ "<br>" +
+                "<h3>" + user.userId.username + "</h3>" + "<br>" +
+                "Location: " + user.userId.cachedUserProfile.location + "<br>" +
+                "<a target='new' href='" + user.userId.cachedUserProfile.html_url + "'>Github Profile</a>", 
+      title: user.name + "'s Profile",
+      buttons: {
+        main: {
+          label: "Okay",
+          className: "btn-primary",
+          callback: function() {
+            roomName = $('#room_name').val();
+            //creates entry
+            var newRoom = roomRef.push();
+            //create new room
+            var room = {
+              id: newRoom.key(),
+              //TODO: have to fix created by userid when user is logged in
+              createdByUserId: "anonymous:-JoQq9FpU-oOGmI7E4Mc",
+              name: roomName,
+              type: 'public',
+              createdAt: Firebase.ServerValue.TIMESTAMP
+            };
+            //sets data
+            newRoom.set(room, function(error) {
+                // room successfully created
+            });
+          }
+        }
+      }
+    });
   }
 });
