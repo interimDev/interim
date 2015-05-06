@@ -5,6 +5,9 @@ angular.module('interim.dashboard', ["firebase"])
   var roomRef = new Firebase("https://interim.firebaseio.com/room-metadata");
   //display room names
   var publicRooms = $firebaseArray(roomRef);
+
+
+
   // $scope.rooms = $firebaseArray(roomRef);
   $scope.rooms = publicRooms;
 
