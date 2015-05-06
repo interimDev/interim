@@ -32,9 +32,13 @@ angular.module('interim.dashboard', ["firebase"])
     //set current room (since no user just storing it globally)
     $rootScope.displayMessages(obj.room.id);
   }
+  
+  // //get all messages for specific room
+  // var userRef = new Firebase("https://interim.firebaseio.com/user-names-online");
+  // $scope.users = $firebaseArray(userRef);
 
   //get all messages for specific room
-  var userRef = new Firebase("https://interim.firebaseio.com/user-names-online");
+  var userRef = new Firebase("https://interim.firebaseio.com/UsersDB");
   $scope.users = $firebaseArray(userRef);
 
 });

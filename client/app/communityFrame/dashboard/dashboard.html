@@ -10,7 +10,7 @@
       <!-- Rooms are added and removed here -->
       <div id="contentBucketRooms">
         <!-- Each room -->
-        <h6 ng-repeat="room in rooms" id="insideContent"><a href="javascript:void(0);" ng-click="roomName(this);" id="linkColor">{{room.name}}</a></h6>
+        <h6 ng-repeat="room in rooms | orderBy: 'name'" id="insideContent"><a href="javascript:void(0);" ng-click="roomName(this);" id="linkColor">{{room.name}}</a></h6>
     
       </div>
     </div>
@@ -30,7 +30,7 @@
       <!-- Tags are added and removed here -->
       <div id="contentBucketUsers">
         <!-- Each Tag -->
-        <h6 id="insideContent" ng-repeat="name in users">{{user}}</h6>
+        <h6 id="insideContent" ng-repeat="user in users| orderBy: name">{{user.github.cachedUserProfile.name}}</h6>
 <!--         <h6 id = "insideContent">#Housing</h6>
         <h6 id = "insideContent">#Social</h6>
         <h6 id = "insideContent">#Curriculum</h6>
