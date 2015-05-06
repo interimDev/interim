@@ -19,7 +19,7 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
   $scope.sendMessage = function() {
     var msg = ref.child($scope.roomId).push();
       var message = {
-        userId: $rootScope.user,
+        userId: $rootScope.user.id,
         userProfileImage: $rootScope.userInfo.avatar_url,
         name: $rootScope.user.displayName,
         timestamp: Firebase.ServerValue.TIMESTAMP,
@@ -28,6 +28,7 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
       }
     //reset input box
     $scope.msg = "";
+
     msg.set(message);
   }
 

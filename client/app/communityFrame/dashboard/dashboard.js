@@ -38,7 +38,7 @@ angular.module('interim.dashboard', ["firebase"])
             var room = {
               id: newRoom.key(),
               //TODO: have to fix created by userid when user is logged in
-              createdByUserId: "anonymous:-JoQq9FpU-oOGmI7E4Mc",
+              createdByUserId: $rootScope.user,
               name: roomName,
               type: roomType,
               createdAt: Firebase.ServerValue.TIMESTAMP
