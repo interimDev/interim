@@ -10,11 +10,11 @@ var dataRef = new Firebase('https://unsheep.firebaseio.com/');
 exports.communityRef = function(community) {
   return dataRef.child('CommunityDB').child(community);
 };
-exports.groupRef = function(group) {
-  return dataRef.child('CommunityDB').child('group');
+exports.groupRef = function(group, community) {
+  return dataRef.child('CommunityDB').child(community).child(group);
 };
 exports.usersRef = function(user){
-  return dataRef.child('UsersDB');
+  return dataRef.child('UsersDB').child(user);
 };
 
 
@@ -104,13 +104,37 @@ exports.createUser = function(user, cb){
 // To-do: Data will need be to be validated when storing to databse.
 // exports.updateProfile = function(name, type, profile);
 
-exports.updateUser = function(userName, changedField, fieldValue){
+exports.updateUser = function(userName, changedField, fieldValue, cb){
   console.log(userName, " requested a profile update");
+  cb = cb || defaultCb('Failed to update user profile for ', userName);
   var tempObj = {};
   tempObj[changedField] = fieldValue;
-  dataRef.child('UsersDB').child(userName).child('userProfile').update(tempObj);
-
+  dataRef.child('UsersDB').child(userName).child('userProfile').update(tempObj, cb);
 };
+
+exports.requestUserToGroup = function(userName, groupName, communityName, cb) {
+  // To-do: Check if user already authenitcated for this group
+  // We do not want to erase existing approval from the group by mis-click
+  var commGroupName = groupName +"-" + communityName;
+    if(!dataRef.child('UsersDB').child(userName).child('usersGroups').child(commGroupName) ){
+
+    // Update user profile to reflect request
+    console.log(userName, " requested to join ", groupName, " of ", communityName);
+    var tempObj = {};
+    tempObj[groupName] = false;
+    cb = cb || defaultCb('Failed to request user ', userName, ' to join group ', groupName );
+    dataRef.child('UsersDB').child(userName).child('usersGroups').update(tempObj);
+
+    // Update group profile to alert admins to user request
+    console.log(groupName, "notified of request to join from ", userName);
+    var groupObj = {};
+    groupObj[userName] = false;
+    //console.log("Temp group permission request object ", groupObj);
+    dataRef.child('CommunityDB').child(communityName).child('communityGroups').child(groupName).child('groupMembers').update(groupObj, cb);;
+  }else{
+    console.log("User ", userName, " already is a member of ", groupName, " within ", communityName);
+  }
+}; //1
 
 exports.createCommunity = function(communityName, currentAdmin, cb){
 
@@ -130,7 +154,7 @@ exports.createCommunity = function(communityName, currentAdmin, cb){
 
 };
 
-exports.createGroup = function(groupName, communityName, currentAdmin){
+exports.createGroup = function(groupName, communityName, currentAdmin, cb){
   if(dataRef.child('CommunityDB').child(communityName).child(groupName)){
      var newGroup = { groupName: groupName,
                       groupFounder: currentAdmin,
@@ -138,9 +162,10 @@ exports.createGroup = function(groupName, communityName, currentAdmin){
                       groupLocation: 'unknown',
                       groupPrivacy: 'private'
                      };
+    cb = cb || defaultCb('Failed to create Group ', groupName, communityName );
     var tempGroup ={};
     tempGroup[groupName] = newGroup;
-    dataRef.child('CommunityDB').child(communityName).child('communityGroups').update(tempGroup);
+    dataRef.child('CommunityDB').child(communityName).child('communityGroups').update(tempGroup, cb);
     console.log("Group ", groupName, " sucessfully created in ", communityName);
   }else{
     console.log("Error: Group ", groupName ," already exits in under the ", communityName, " community.");
@@ -148,31 +173,46 @@ exports.createGroup = function(groupName, communityName, currentAdmin){
 };
 
 // Group & Community update functions
-exports.updateGroup = function(communityName, groupName, changedField, fieldValue){
+exports.updateGroup = function(communityName, groupName, changedField, fieldValue, cb){
   var groupObj = {};
   groupObj[changedField] = fieldValue;
-  dataRef.child('CommunityDB').child(communityName).child('communityGroups').child(groupName).update(groupObj);
+  cb = cb || defaultCb('Failed to update group ', groupName, "property: ", changedField, fieldValue);
+  dataRef.child('CommunityDB').child(communityName).child('communityGroups').child(groupName).update(groupObj, cb);
   console.log("Group ", groupName, " updated ", changedField, " to ", fieldValue);
 };
 
-exports.updateCommunity = function(communityName, changedField, fieldValue){
+exports.updateCommunity = function(communityName, changedField, fieldValue, cb){
   var commObj = {};
   commObj[changedField] = fieldValue;
-  dataRef.child('CommunityDB').child(communityName).update(commObj);
+  cb = cb || defaultCb('Failed to update community ', communityName, "'s property ", changedField, fieldValue);
+  dataRef.child('CommunityDB').child(communityName).update(commObj, cb);
   console.log("Community ", communityName, " updated ", changedField, " to ", fieldValue);
 };
 
 
 
 // Creation of helpers in the Community frame
-exports.createTag = function(tag){};
+exports.createTag = function(tag){};  //last
 
 // Admin utilities: Validations during the creation process.
-exports.validateUserToGroup = function(user, group) {};
-exports.validateUserToCommunity = function(user, community){};
-exports.validateGroup = function(sessionInfo) {};
-exports.validateCommunity = function(community){};
-exports.deactivateUserFromGroup = function(user, group){};
+exports.validateUserToGroup = function(userName, groupName, communityName, cb) {
+
+  // Update in user's profile
+
+  var tempObj = {};
+  tempObj[groupName] = true;
+  cb = cb || defaultCb('Failed to validate user ', userName, "to group ", groupName);
+  dataRef.child('UsersDB').child(userName).child('userProfile').child('usersGroups').update(tempObj)
+
+  // Update in group's profile
+
+}; //1
+
+
+exports.validateUserToCommunity = function(user, community){};  //2
+exports.validateGroup = function(sessionInfo) {}; //3
+exports.validateCommunity = function(community){}; //4
+exports.deactivateUserFromGroup = function(user, group){};  //5
 
 
 // Opening Groups & Communities, retrieving their info.

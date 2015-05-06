@@ -9,12 +9,11 @@ describe('dbUtils creating and updating profiles', function() {
 
   var testUser1 = {
     userName: 'Yoda',
-    userId: null,
-    chatId: null,
     role: 'user',
-    groups: {Jedi: false, MakerSquare: true},
+    usersCommunities: {Jedi: false, MakerSquare: true},
     // Requested an authenticated groups are indicated as true
     // Pending groups are indicated as false
+    usersGroups:{"MKS15-MakerSquare": true},
     authType: 'Github',
     userProfile: {
       location: 'Dagoba',
@@ -24,10 +23,9 @@ describe('dbUtils creating and updating profiles', function() {
     }};
   var testUser2 = {
     userName: 'Felurian',
-    userId: null,
-    chatId: null,
     role: 'admin',
-    groups: {Fae: true, MakerSquare:true},
+    usersCommunities: {Fae: true, MakerSquare:true},
+    usersGroups: {MKS17: true},
     authType: 'Github',
     userProfile: {
       location: 'twilight woodland glade in Fae',
@@ -52,7 +50,7 @@ describe('dbUtils creating and updating profiles', function() {
     communityPrivacy: true
     };
   var testGroup1 = {
-    groupName: 'MKS 15',
+    groupName: 'MKS15',
     groupLocation: 'San Francisco, CA',
     groupDates: '',
     groupAdmins: {"Felurian-Github": true},
@@ -62,16 +60,16 @@ describe('dbUtils creating and updating profiles', function() {
     groupTags: {},
     groupPrivacy: true
     };
-
+    var tempUserVal;
   // User profile and functions.
 
   // Load the Firebase DB with user information to check.
   beforeEach(function(done) {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 2000;
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 4000;
     setTimeout(function() {
      //console.log('Tests initialized inside timeout.');
      done();
-     }, 1000);
+     }, 1200);
 
   var clearData = function(){dataRef.set({}, function(err){
       if(err){
@@ -84,10 +82,10 @@ describe('dbUtils creating and updating profiles', function() {
 
   });
 
-   xit('creates a new user', function(done) {
+   it('creates a new user', function(done) {
     dbUtils.createUser(testUser2);
     //expect(dataRef.child('UsersDB').child('Yoda-Github').userName.val() ).toBe('Yoda');
-    //expect(dbUtils.usersRef(testUser2.userName)).toBe(testUser2.userName);
+    expect(testUser2.userName).toBe('Felurian');
     done();
     }); //working
 
@@ -99,16 +97,15 @@ describe('dbUtils creating and updating profiles', function() {
     }); //working
 
 
-  xit('expects a new user', function(done) {
-    // dataRef.child('UsersDB').child('Felurian-Github').child('userName').once('value', function(snapshot) {
-    //   expect( snapshot.val() ).to.be('Felurian');
-    // });
-
-    dataRef.child('UsersDB').child('Felurian-Github').child('userName').once("value", function(data) {
-    console.log("Data from first user test ", data)
-    //expect( (data.userName).to.be('Felurian') );
-    });
-    done();
+  it('expects a new user', function(done) {
+    dataRef.child('UsersDB').child('Felurian-Github').child('userName').on("value", function(snapshot) {
+        console.log("User test snapshot", snapshot.val());
+        var tempUserVal = snapshot.val();
+        expect(tempUserVal).toBe('Felurian');
+        done();
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      });
     });
 
    xit('expects a second user', function(done) {
@@ -137,25 +134,25 @@ describe('dbUtils creating and updating profiles', function() {
 
 
   // Community profile and functions
-  it('creates a new community', function(done) {
+  xit('creates a new community', function(done) {
       console.log("Community buildling tests");
       dbUtils.createCommunity("MakerSquare", "Felurian-Github");
       done();
     });
    // Group profile and functions
-  it('creates a new groups', function(done) {
+   xit('creates a new groups within a community', function(done) {
       dbUtils.createGroup("MKS17", 'MakerSquare', 'Felurian-Github');
       done();
     });
-   it('creates a new group within a community', function(done) {
+   xit('creates a new group within a community', function(done) {
       dbUtils.createGroup("MKS15", 'MakerSquare', 'Felurian-Github');
       done();
     });
-  it('can update a group profile', function(done) {
+  xit('can update a group profile', function(done) {
       dbUtils.updateGroup("MakerSquare", "MKS17", "groupLocation", "Frisco");
       done();
     });
-  it('can update a community profile', function(done) {
+  xit('can update a community profile', function(done) {
       dbUtils.updateCommunity("MakerSquare", "communityLocation", "Austin and San Francisco and Los Angeles");
       done();
     });
@@ -167,6 +164,22 @@ describe('dbUtils creating and updating profiles', function() {
   xit('can update a group profile', function(done) {
       done();
     });
+
+  // User requesting permission to join a group
+  it('a user can request to be a member of that group', function(done) {
+      dbUtils.requestUserToGroup("Felurian-Github", "MKS15", "MakerSquare");
+      done();
+    });
+  it('a user should not be able to request to join a group of which they are already a member', function(done) {
+      dbUtils.requestUserToGroup("Felurian-Github", "MKS17", "MakerSquare");
+      done();
+    });
+
+  xit('a group should be updated by a user request to join ', function(done) {
+      //dbUtils.requestUserToGroup("Felurian-Github", "MKS15", "MakerSquare");
+      done();
+    });
+
   xit('can authenticate a user as a member of that group', function(done) {
       done();
     });
@@ -175,9 +188,7 @@ describe('dbUtils creating and updating profiles', function() {
     });
 
   // Community profile and functions
-  xit('creates a new community', function(done) {
-      done();
-    });
+
 
 });
 
