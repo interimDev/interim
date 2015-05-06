@@ -55,18 +55,27 @@ angular.module('interim.services', [])
   // To-do: Data will need be to be validated when storing to datebase.
   // user argument should be a completed object
   var createUser = function(user){
-    console.log("factory user ",user)
-    //username
-    //userID
-    //picture
-    //bio
-    //admin
+    //pulls data from the github user data to create a cleaner
+    //filtered user object that we insert to the database
+    filteredUser = {
+      'name' : user.github.displayName,
+      'id' : user.github.id,
+      'token' : user.token,
+      'auth' : user.auth,
+      'communities' : null,
+      'permissions' : null,
+      'avi_url' : user.github.cachedUserProfile.avatar_url
+      }
+
+
+    //users are stored in the database by their name and auth provider
+    // example - "Trace Thompson-github"
+    var username = user.github.displayName+"-"+user.provider;
     var userObj = {};
-    var dbName = user.github.displayName;
-    userObj[dbName] = user;
+    userObj[username] = filteredUser;
 
     //dataRef.child('UsersDB').push(user);
-    dataRef.child('UsersDB').update( userObj , function(error){
+    dataRef.child('UsersDB').update(userObj , function(error) {
       if(!error){
         console.log("user inserted!")
       }
@@ -74,9 +83,41 @@ angular.module('interim.services', [])
         console.log(error);
       }
     })
+    return userObj[username];
+  }
+
+  var addSuperAdmin = function(user){ //TO-DO **********************************
+    //take name of user
+      //dataRef.child('superAdmin').update({"name_of_user" : true})
   }
 
   return {
     createUser: createUser
+  }
+})
+.factory('Permissions', function($q){
+  var dataRef = new Firebase('https://interim.firebaseio.com/');
+
+  //determines if user is a super admin by
+  //querying the db and checking if the username exists
+  //returns true or false value
+  var isSuperAdmin = function(user){
+    dataRef.child('superAdmin').on("value", function(snapshot) {
+      var superAdminObj = snapshot.val();
+      if(superAdminObj[user.name+"-"+user.auth.provider] === true){
+        console.log("You are super!")
+        return true;
+      }
+      else {
+        return false;
+      }
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+  }
+
+
+  return {
+    isSuperAdmin : isSuperAdmin
   }
 })
