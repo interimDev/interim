@@ -104,7 +104,7 @@ angular.module('interim.services', [])
   //querying the db and checking if the username exists
   //returns true or false value
   var isSuperAdmin = function(user){
-    dataRef.child('superAdmin').on("value", function(snapshot) {
+    return dataRef.child('superAdmin').on("value", function(snapshot) {
       var superAdminObj = snapshot.val();
       if(superAdminObj[user.name+"-"+user.auth.provider] === true){
         console.log("You are super!")
