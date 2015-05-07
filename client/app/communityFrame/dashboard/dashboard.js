@@ -4,14 +4,12 @@ angular.module('interim.dashboard', ["firebase"])
 
   var roomRef = new Firebase("https://interim.firebaseio.com/room-metadata");
   //display room names
-  var publicRooms = $firebaseArray(roomRef);
-
-
-
+  var rooms = $firebaseArray(roomRef);
   // $scope.rooms = $firebaseArray(roomRef);
-  $scope.rooms = publicRooms;
 
-
+  //current user id
+  $scope.userID = $rootScope.user.id;
+  $scope.rooms = rooms;
   //adding room
   $scope.add = function(event) {
    //getting user room name here;
@@ -37,12 +35,17 @@ angular.module('interim.dashboard', ["firebase"])
             //create new room
             var room = {
               id: newRoom.key(),
-              //TODO: have to fix created by userid when user is logged in
-              createdByUserId: "anonymous:-JoQq9FpU-oOGmI7E4Mc",
+              createdByUserId: $rootScope.user.id,
               name: roomName,
               type: roomType,
+              users: "undefined",
               createdAt: Firebase.ServerValue.TIMESTAMP
             };
+            //if room is private add id of user
+            if (roomType === 'private') {
+              room.users = $rootScope.user.id;
+            }
+
             //sets data
             newRoom.set(room, function(error) {
                 // room successfully created
