@@ -33,8 +33,6 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
 
   //this function creates a popup modal with the users information
   $scope.personalInfo = function(user) {
-    console.log(user);
-    console.log(user.userId.cachedUserProfile.avatar_url);
     bootbox.dialog({
       //message provides us with most of the major details in the user profile.
       message:  "<img id='modalProfilePic' src='" + user.userProfileImage + "'/>"+ "<br>" +

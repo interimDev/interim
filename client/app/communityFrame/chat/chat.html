@@ -1,7 +1,7 @@
 <div class="chat" ng-controller="ChatController">
   <div class="col-xs-9 hundred" id ="chatMessage">
     <!-- contains all messages -->
-    <div id="contentMessages"  scroll-glue>
+    <div id="contentMessages" scroll-glue>
       <!-- single message -->
       <div class="message" ng-repeat="message in messages ">
         <article class="row">
@@ -10,12 +10,12 @@
               <div class="panel-body">
                 <!-- displays users picture -->
                 <div class="col-md-2 col-sm-2 hidden-xs">
-                <img src = {{message.userProfileImage}} ng-click = "personalInfo(message)" class = "img-rounded" id = "chatImage" />
+                <img src={{message.userProfileImage}} ng-click="personalInfo(message)" class="img-rounded" id="chatImage"/>
                 </div>
                 <!-- displays users name -->
                 <div><i class="fa fa-user"></i> {{message.name}}
                   <!-- displays time when message was send -->
-                  <time id = "chatTime"><i class="fa fa-clock-o"></i> {{ message.timestamp| date:'medium' }}
+                  <time id="chatTime"><i class="fa fa-clock-o"></i> {{ message.timestamp| date:'medium' }}
                   </time>
                 </div>
                <!-- displays usesrs message -->
@@ -24,7 +24,7 @@
                     {{message.message}}
                   </p>
                   <!-- displays users tag -->
-                  <p class = "chatTags">
+                  <p class="chatTags">
                     Tags: #awesome
                   </p>
                 </div>
@@ -36,7 +36,7 @@
     </div>
 
     <!-- chat input -->
-    <div class="row" id = "chatRow">
+    <div class="row" id="chatRow">
       <div class="col-lg-6">
         <div class="input-group">
           <span class="input-group-btn">
