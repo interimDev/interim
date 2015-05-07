@@ -11,7 +11,7 @@ exports.communityRef = function(community) {
   return dataRef.child('CommunityDB').child(community);
 };
 exports.groupRef = function(group, community) {
-  return dataRef.child('CommunityDB').child(community).child(group);
+  return dataRef.child('CommunityDB').child(community).child('communityGroups');
 };
 exports.usersRef = function(user){
   return dataRef.child('UsersDB').child(user);
@@ -72,13 +72,6 @@ exports.usersRef = function(user){
 
 */
 
-// Data validation that the appropriate parameters are present
-// var validateDataUser = function(userInfo) {
-//   return userInfo && userInfo.auth && userInfo.userId;
-// };
-// var validateDataGroup = function(groupInfo) {
-//   return validateUser(groupInfo.name) && sessionInfo.sessionId;
-// };
 
 // Creating Profiles adding to the database.
 // To-do: Data will need be to be validated when storing to datebase.
@@ -89,7 +82,6 @@ exports.createUser = function(user, cb){
   var dbName = user.userName +"-" + user.authType;
   userObj[dbName] = user;
 
-  //dataRef.child('UsersDB').push(user);
     dataRef.child('UsersDB').update( userObj , function(error){
       if(!error){
       console.log("User ", user.userName, "sucessfully created.");
@@ -102,7 +94,7 @@ exports.createUser = function(user, cb){
 // Updating Profiles that already exist in the database.
 // TBV: May only need generic update, where type indicates user/group/community.
 // To-do: Data will need be to be validated when storing to databse.
-// exports.updateProfile = function(name, type, profile);
+// To-do refactor: exports.updateProfile = function(name, type, profile);
 
 exports.updateUser = function(userName, changedField, fieldValue, cb){
   console.log(userName, " requested a profile update");
@@ -113,28 +105,40 @@ exports.updateUser = function(userName, changedField, fieldValue, cb){
 };
 
 exports.requestUserToGroup = function(userName, groupName, communityName, cb) {
-  // To-do: Check if user already authenitcated for this group
+  // Check if user already authenitcated for this group
   // We do not want to erase existing approval from the group by mis-click
+
   var commGroupName = groupName +"-" + communityName;
-    if(!dataRef.child('UsersDB').child(userName).child('usersGroups').child(commGroupName) ){
+  console.log(userName, "'s request to join ", commGroupName, " in progress...")
 
-    // Update user profile to reflect request
-    console.log(userName, " requested to join ", groupName, " of ", communityName);
-    var tempObj = {};
-    tempObj[groupName] = false;
-    cb = cb || defaultCb('Failed to request user ', userName, ' to join group ', groupName );
-    dataRef.child('UsersDB').child(userName).child('usersGroups').update(tempObj);
+  if(dataRef.child('UsersDB').child(userName).child('usersGroups').child(commGroupName)){
 
-    // Update group profile to alert admins to user request
-    console.log(groupName, "notified of request to join from ", userName);
-    var groupObj = {};
-    groupObj[userName] = false;
-    //console.log("Temp group permission request object ", groupObj);
-    dataRef.child('CommunityDB').child(communityName).child('communityGroups').child(groupName).child('groupMembers').update(groupObj, cb);;
+      // Update user profile to reflect request
+      console.log(userName, " requested to join ", groupName, " of ", communityName);
+      var tempObj = {};
+      // Pull data, check false || snapshot.val()
+      // TO-DO: This is still overwriting groupName:true for existing approvals
+      tempObj[commGroupName] = false;
+      cb = cb || defaultCb('Failed to request user ', userName, ' to join group ', groupName );
+      dataRef.child('UsersDB').child(userName).child('usersGroups').update(tempObj, function(){
+        console.log("Callback from UserDB update");
+      });
+
   }else{
     console.log("User ", userName, " already is a member of ", groupName, " within ", communityName);
   }
-}; //1
+};
+
+// Updates group profile of all group members
+exports.requestGroupToUser = function(userName, groupName, communityName, cb){
+      console.log(groupName, " notified of request to join from ", userName);
+      var groupObj = {};
+      groupObj[userName] = false;
+      console.log("Temp group permission request object ", groupObj);
+      console.log("Group ", groupName, " updated with ", userName, "'s request.")
+      dataRef.child('CommunityDB').child(communityName).child('communityGroups').child(groupName).child('groupMembers').update(groupObj, cb);
+
+};
 
 exports.createCommunity = function(communityName, currentAdmin, cb){
 
@@ -204,13 +208,22 @@ exports.validateUserToGroup = function(userName, groupName, communityName, cb) {
   cb = cb || defaultCb('Failed to validate user ', userName, "to group ", groupName);
   dataRef.child('UsersDB').child(userName).child('userProfile').child('usersGroups').update(tempObj)
 
-  // Update in group's profile
+  //To-do: Refactor with the requestUserToGroup / requestGroupToUser
+  //http://stackoverflow.com/questions/5135566/javascript-callbacks-and-optional-params
+};
 
-}; //1
+//Admin functions
+exports.validateUserToCommunity = function((userName, groupName, communityName, cb){
+  var tempObj = {};
+  tempObj[groupName] = true;
+  cb = cb || defaultCb('Failed to validate user ', userName, "to group ", groupName);
+  dataRef.child('UsersDB').child(userName).child('userProfile').child('usersGroups').update(tempObj)
 
-
-exports.validateUserToCommunity = function(user, community){};  //2
+};  //2
 exports.validateGroup = function(sessionInfo) {}; //3
+
+
+//Super Admin functions
 exports.validateCommunity = function(community){}; //4
 exports.deactivateUserFromGroup = function(user, group){};  //5
 
@@ -235,7 +248,3 @@ var defaultCb = function(message) {
 //   dataRef = newRef || dataRef;
 // };
 
-// Debugging tests purposes
-exports.helloWorld = function(){
-  console.log("Hello from dbUtils!");
-}

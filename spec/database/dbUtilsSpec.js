@@ -25,7 +25,7 @@ describe('dbUtils creating and updating profiles', function() {
     userName: 'Felurian',
     role: 'admin',
     usersCommunities: {Fae: true, MakerSquare:true},
-    usersGroups: {MKS17: true},
+    usersGroups: {"MKS17-MakerSquare": true},
     authType: 'Github',
     userProfile: {
       location: 'twilight woodland glade in Fae',
@@ -134,17 +134,17 @@ describe('dbUtils creating and updating profiles', function() {
 
 
   // Community profile and functions
-  xit('creates a new community', function(done) {
+  it('creates a new community', function(done) {
       console.log("Community buildling tests");
       dbUtils.createCommunity("MakerSquare", "Felurian-Github");
       done();
     });
    // Group profile and functions
-   xit('creates a new groups within a community', function(done) {
+   it('creates a new groups within a community', function(done) {
       dbUtils.createGroup("MKS17", 'MakerSquare', 'Felurian-Github');
       done();
     });
-   xit('creates a new group within a community', function(done) {
+   it('creates a new group within a community', function(done) {
       dbUtils.createGroup("MKS15", 'MakerSquare', 'Felurian-Github');
       done();
     });
@@ -170,7 +170,14 @@ describe('dbUtils creating and updating profiles', function() {
       dbUtils.requestUserToGroup("Felurian-Github", "MKS15", "MakerSquare");
       done();
     });
-  it('a user should not be able to request to join a group of which they are already a member', function(done) {
+  it('a group receives the request from the user', function(done) {
+      dbUtils.requestGroupToUser("Felurian-Github", "MKS15", "MakerSquare");
+      done();
+    });
+
+
+  // TO-DO: This is still over-writing exiting acceptances
+  xit('a user should not be able to request to join a group of which they are already a member', function(done) {
       dbUtils.requestUserToGroup("Felurian-Github", "MKS17", "MakerSquare");
       done();
     });
