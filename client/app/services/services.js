@@ -5,6 +5,8 @@ angular.module('interim.services', [])
   
   //This sends the OAth request to github through firebase's 
   //native functionalities and turns the results into a promise
+
+  //TODO -------REFACTOR TO ANGULAR FIRE INSTEAD OF Q PROMISES
   var githubAuth = function () {
     var deferred = $q.defer();
     var ref = new Firebase("https://interim.firebaseio.com/");
