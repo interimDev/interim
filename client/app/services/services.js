@@ -32,13 +32,8 @@ angular.module('interim.services', [])
     firePromise: firePromise
   }
 })
-.factory('Utilities', function ($q) {
+.factory('Utilities', function ($q, $firebaseAuth, $rootScope) {
   var dataRef = new Firebase('https://interim.firebaseio.com/');
-
-  // Initalize main folders in database
-  //dataRef.set('CommunityDB');
-  //dataRef.set('UsersDB');
-
   // Shorthand to access stored data
   var communityRef = function(community) {
     return dataRef.child('CommunityDB').child(community);
@@ -86,13 +81,28 @@ angular.module('interim.services', [])
     return userObj[username];
   }
 
-  var addSuperAdmin = function(user){ //TO-DO **********************************
-    //take name of user
-      //dataRef.child('superAdmin').update({"name_of_user" : true})
+  //creates a community authorized by their name and email
+  //note - does not add to the database
+  var createCommunity = function(community) {
+    var ref = new Firebase("https://interim.firebaseio.com/");
+    $rootScope.authObj = $firebaseAuth(ref);
+
+
+    return $rootScope.authObj.$createUser({
+      email: community.email,
+      password: community.password
+    }).then(function(userData) {
+      console.log("User created with uid: " + userData.uid);
+      console.log(userData," - userData")
+      return userData
+    }).catch(function(error) {
+      console.log("Error creating user: ", error);
+    });
   }
 
   return {
-    createUser: createUser
+    createUser: createUser,
+    createCommunity: createCommunity
   }
 })
 .factory('Permissions', function($q){
