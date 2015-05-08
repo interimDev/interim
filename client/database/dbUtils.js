@@ -7,14 +7,14 @@ var dataRef = new Firebase('https://unsheep.firebaseio.com/');
 //dataRef.set('UsersDB');
 
 // Shorthand to access stored data
-var communityRef = function(community) {
+exports.communityRef = function(community) {
   return dataRef.child('CommunityDB').child(community);
 };
-var groupRef = function(group) {
-  return dataRef.child('CommunityDB').child('group');
+exports.groupRef = function(group, community) {
+  return dataRef.child('CommunityDB').child(community).child('communityGroups');
 };
-var usersRef = function(user){
-  return dataRef.child('UsersDB');
+exports.usersRef = function(user){
+  return dataRef.child('UsersDB').child(user);
 };
 
 
@@ -72,25 +72,17 @@ var usersRef = function(user){
 
 */
 
-// Data validation that the appropriate parameters are present
-// var validateDataUser = function(userInfo) {
-//   return userInfo && userInfo.auth && userInfo.userId;
-// };
-// var validateDataGroup = function(groupInfo) {
-//   return validateUser(groupInfo.name) && sessionInfo.sessionId;
-// };
 
 // Creating Profiles adding to the database.
 // To-do: Data will need be to be validated when storing to datebase.
 // user argument should be a completed object
-var createUser = function(user, cb){
+exports.createUser = function(user, cb){
 // Generate a userId by storing in db
   var userObj = {};
   var dbName = user.userName +"-" + user.authType;
   userObj[dbName] = user;
 
-  //dataRef.child('UsersDB').push(user);
-    dataRef.child('UsersDB').set( userObj , function(error){
+    dataRef.child('UsersDB').update( userObj , function(error){
       if(!error){
       console.log("User ", user.userName, "sucessfully created.");
     }else{
@@ -102,67 +94,144 @@ var createUser = function(user, cb){
 // Updating Profiles that already exist in the database.
 // TBV: May only need generic update, where type indicates user/group/community.
 // To-do: Data will need be to be validated when storing to databse.
-// var updateProfile = function(name, type, profile);
+// To-do refactor: exports.updateProfile = function(name, type, profile);
 
-var updateUser = function(userName, changedField, fieldValue){
+exports.updateUser = function(userName, changedField, fieldValue, cb){
   console.log(userName, " requested a profile update");
+  cb = cb || defaultCb('Failed to update user profile for ', userName);
   var tempObj = {};
   tempObj[changedField] = fieldValue;
-  dataRef.child('UsersDB').child(userName).child('profile').update(tempObj);
+  dataRef.child('UsersDB').child(userName).child('userProfile').update(tempObj, cb);
+};
+
+exports.requestUserToGroup = function(userName, groupName, communityName, cb) {
+  // Check if user already authenitcated for this group
+  // We do not want to erase existing approval from the group by mis-click
+
+  var commGroupName = groupName +"-" + communityName;
+  console.log(userName, "'s request to join ", commGroupName, " in progress...")
+
+  if(dataRef.child('UsersDB').child(userName).child('usersGroups').child(commGroupName)){
+
+      // Update user profile to reflect request
+      console.log(userName, " requested to join ", groupName, " of ", communityName);
+      var tempObj = {};
+      // Pull data, check false || snapshot.val()
+      // TO-DO: This is still overwriting groupName:true for existing approvals
+      tempObj[commGroupName] = false;
+      cb = cb || defaultCb('Failed to request user ', userName, ' to join group ', groupName );
+      dataRef.child('UsersDB').child(userName).child('usersGroups').update(tempObj, function(){
+        console.log("Callback from UserDB update");
+      });
+
+  }else{
+    console.log("User ", userName, " already is a member of ", groupName, " within ", communityName);
+  }
+};
+
+// Updates group profile of all group members
+exports.requestGroupToUser = function(userName, groupName, communityName, cb){
+      console.log(groupName, " notified of request to join from ", userName);
+      var groupObj = {};
+      groupObj[userName] = false;
+      console.log("Temp group permission request object ", groupObj);
+      console.log("Group ", groupName, " updated with ", userName, "'s request.")
+      dataRef.child('CommunityDB').child(communityName).child('communityGroups').child(groupName).child('groupMembers').update(groupObj, cb);
 
 };
 
-var createCommunity = function(communityName, currentAdmin, cb){
+exports.createCommunity = function(communityName, currentAdmin, cb){
 
   if(dataRef.child('CommunityDB').child(communityName) ){
     dataRef.child('CommunityDB').set({ communityName: communityName,
                                        communityFounder: currentAdmin,
                                        communityFoundingDate: Firebase.ServerValue.TIMESTAMP,
-                                       communityGroups: {}
+                                       communityGroups: {},
+                                       communityLocation: 'unknown',
+                                       communityPrivacy: 'private'
                                        // communityGroups not made
                                      });
+  console.log("Community ", communityName, " sucessfully created");
   }else{
     console.log("Error: Community already exits in database.")
   }
 
 };
 
-var createGroup = function(groupName, communityName, currentAdmin){
-  if(dataRef.child('CommunityDB').child(communityName).child(groupName) ){
-    dataRef.child('CommunityDB').child(communityName).set({ groupName: groupName,
-                                       groupFounder: currentAdmin,
-                                       groupFoundingDate: Firebase.ServerValue.TIMESTAMP,
-                                       communityGroups: {}
-                                       // communityGroups not made yet
-                                     });
-    var newGroup = {};
-    newGroup[groupName] = groupName;
-    dataRef.child('CommunityDB').child(communityName).child('communityGroups').set(newGroup);
+exports.createGroup = function(groupName, communityName, currentAdmin, cb){
+  if(dataRef.child('CommunityDB').child(communityName).child(groupName)){
+     var newGroup = { groupName: groupName,
+                      groupFounder: currentAdmin,
+                      groupFoundingDate: Firebase.ServerValue.TIMESTAMP,
+                      groupLocation: 'unknown',
+                      groupPrivacy: 'private'
+                     };
+    cb = cb || defaultCb('Failed to create Group ', groupName, communityName );
+    var tempGroup ={};
+    tempGroup[groupName] = newGroup;
+    dataRef.child('CommunityDB').child(communityName).child('communityGroups').update(tempGroup, cb);
+    console.log("Group ", groupName, " sucessfully created in ", communityName);
   }else{
-    console.log("Error: Community already exits in database.")
+    console.log("Error: Group ", groupName ," already exits in under the ", communityName, " community.");
   }
-
 };
+
+// Group & Community update functions
+exports.updateGroup = function(communityName, groupName, changedField, fieldValue, cb){
+  var groupObj = {};
+  groupObj[changedField] = fieldValue;
+  cb = cb || defaultCb('Failed to update group ', groupName, "property: ", changedField, fieldValue);
+  dataRef.child('CommunityDB').child(communityName).child('communityGroups').child(groupName).update(groupObj, cb);
+  console.log("Group ", groupName, " updated ", changedField, " to ", fieldValue);
+};
+
+exports.updateCommunity = function(communityName, changedField, fieldValue, cb){
+  var commObj = {};
+  commObj[changedField] = fieldValue;
+  cb = cb || defaultCb('Failed to update community ', communityName, "'s property ", changedField, fieldValue);
+  dataRef.child('CommunityDB').child(communityName).update(commObj, cb);
+  console.log("Community ", communityName, " updated ", changedField, " to ", fieldValue);
+};
+
+
 
 // Creation of helpers in the Community frame
-var createRoom = function(room){};
-var createTag = function(tag){};
-
-var updateGroup = function(group, groupProfile){};
-var updateCommunity = function(community, communityProfile){};
+exports.createTag = function(tag){};  //last
 
 // Admin utilities: Validations during the creation process.
-var validateUserToGroup = function(user, group) {};
-var validateUserToCommunity = function(user, community){};
-var validateGroup = function(sessionInfo) {};
-var validateCommunity = function(community){};
-var deactivateUserFromGroup = function(user, group){};
+exports.validateUserToGroup = function(userName, groupName, communityName, cb) {
+
+  // Update in user's profile
+
+  var tempObj = {};
+  tempObj[groupName] = true;
+  cb = cb || defaultCb('Failed to validate user ', userName, "to group ", groupName);
+  dataRef.child('UsersDB').child(userName).child('userProfile').child('usersGroups').update(tempObj)
+
+  //To-do: Refactor with the requestUserToGroup / requestGroupToUser
+  //http://stackoverflow.com/questions/5135566/javascript-callbacks-and-optional-params
+};
+
+//Admin functions
+exports.validateUserToCommunity = function((userName, groupName, communityName, cb){
+  var tempObj = {};
+  tempObj[groupName] = true;
+  cb = cb || defaultCb('Failed to validate user ', userName, "to group ", groupName);
+  dataRef.child('UsersDB').child(userName).child('userProfile').child('usersGroups').update(tempObj)
+
+};  //2
+exports.validateGroup = function(sessionInfo) {}; //3
+
+
+//Super Admin functions
+exports.validateCommunity = function(community){}; //4
+exports.deactivateUserFromGroup = function(user, group){};  //5
 
 
 // Opening Groups & Communities, retrieving their info.
 // Expect these to be called by Angular front-end
-var openGroup = function(group){};
-var openCommunity = function(community){};
+exports.openGroup = function(group){};
+exports.openCommunity = function(community){};
 
 // Database helper methods
 var defaultCb = function(message) {
@@ -175,11 +244,7 @@ var defaultCb = function(message) {
 };
 
 // Switch to a new reference database for testing purposes
-// var _changeRef = function(newRef) {
+// exports._changeRef = function(newRef) {
 //   dataRef = newRef || dataRef;
 // };
 
-// Debugging tests purposes
-var helloWorld = function(){
-  console.log("Hello from dbUtils!");
-}
