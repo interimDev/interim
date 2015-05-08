@@ -8,7 +8,6 @@ angular.module('interim.dashboard', ["firebase"])
 
   //current user id
   $scope.userID = $rootScope.user.id;
-  console.log($rootScope.user.id);
   $scope.rooms = rooms;
   //adding room
   $scope.addRoom = function(event) {
