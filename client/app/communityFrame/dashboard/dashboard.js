@@ -7,7 +7,7 @@ angular.module('interim.dashboard', ["firebase"])
   var rooms = $firebaseArray(roomRef), usersRoom, usersAdded=[];
 
   //current user id
-  $scope.userID = $rootScope.user.id;
+  $scope.userID = $rootScope.userInfo.id;
   $scope.rooms = rooms;
   //adding room
   $scope.addRoom = function(event) {
@@ -34,7 +34,7 @@ angular.module('interim.dashboard', ["firebase"])
             var currentUsers = {};
             //if room is private add id of user
             if (roomType === 'private') {
-              currentUsers[$rootScope.user.id] = $rootScope.user.id;
+              currentUsers[$rootScope.userInfo.id] = $rootScope.userInfo.id;
             }
             console.log("Current Users", currentUsers)
             //create new room
@@ -68,7 +68,7 @@ angular.module('interim.dashboard', ["firebase"])
       for (var val in room) {
         for ( id in room[val]) {
           //if users members match current users id then allow user to see room
-          if (room[val][id] === $rootScope.user.id) {
+          if (room[val][id] === $rootScope.userInfo.id) {
             return true;
           }
         }
