@@ -66,6 +66,11 @@ angular.module('interim', [
     url: '/community-profile',
     templateUrl: '/app/communityProfile/communityProfile.html'
   })
+  .state('profileEditor', {
+    url: '/profileEditor',
+    controller: 'profileEditorController',
+    templateUrl: '/app/communityFrame/userBottomSidebar/profileEditor.html'
+  })
   .state('superadmin', {
     url:'/superadmin',
     templateUrl: '/app/superadmin/superadmin.html',
