@@ -3,11 +3,20 @@
   <div id="nameLoginPage">INTERIM</div>
   <!-- github login button -->
   <div id="github">
+  <h2>Have an account?</h2>
     <a class="btn btn-block btn-social btn-github" ng-click="githubAuth()">
       <i class="fa fa-github"></i> Sign in with GitHub
     </a>
     <br>
-    <a href class="createCommunity" ng-click="communityModal()">Or create a community.</a>
+    <h4>Communities</h4>
+    <form novalidate class="simple-form">
+      E-mail: <input type="email" ng-model="community.email" /><br/>
+      Password: <input type="password" ng-model="community.password" /><br/>
+      <input type="button" ng-click="reset()" value="Reset" />
+      <input type="submit" ng-click="signIn(community)" value="Submit" />
+    </form>
+    <br>
+    <a href class="createCommunity" ng-click="communityModal()">Create a community.</a>
   </div>
 
 </div>
