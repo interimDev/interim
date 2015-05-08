@@ -46,8 +46,8 @@ exports.usersRef = function(user){
         - communityFounder:
         - communityFoundingDate:
         - communityGroups:
-        - "Summer 2015"
-        - "Fall 2015"
+          - "Summer 2015"
+          - "Fall 2015"
         - "Summer 2016"
       - "MakerSquare"
         -"MKS15"
@@ -142,8 +142,8 @@ exports.requestGroupToUser = function(userName, groupName, communityName, cb){
 
 exports.createCommunity = function(communityName, currentAdmin, cb){
 
-  if(dataRef.child('CommunityDB').child(communityName) ){
-    dataRef.child('CommunityDB').set({ communityName: communityName,
+  if(dataRef.child('CommunityDB').child(communityName)){
+    dataRef.child('CommunityDB').update({ communityName: communityName,
                                        communityFounder: currentAdmin,
                                        communityFoundingDate: Firebase.ServerValue.TIMESTAMP,
                                        communityGroups: {},
@@ -159,12 +159,13 @@ exports.createCommunity = function(communityName, currentAdmin, cb){
 };
 
 exports.createGroup = function(groupName, communityName, currentAdmin, cb){
-  if(dataRef.child('CommunityDB').child(communityName).child(groupName)){
+  if(dataRef.child('CommunityDB').child(communityName).child('communityGroups').child(groupName)){
      var newGroup = { groupName: groupName,
                       groupFounder: currentAdmin,
                       groupFoundingDate: Firebase.ServerValue.TIMESTAMP,
                       groupLocation: 'unknown',
-                      groupPrivacy: 'private'
+                      groupPrivacy: 'private',
+                      groupIsValid: 'false'
                      };
     cb = cb || defaultCb('Failed to create Group ', groupName, communityName );
     var tempGroup ={};
@@ -181,7 +182,7 @@ exports.updateGroup = function(communityName, groupName, changedField, fieldValu
   var groupObj = {};
   groupObj[changedField] = fieldValue;
   cb = cb || defaultCb('Failed to update group ', groupName, "property: ", changedField, fieldValue);
-  dataRef.child('CommunityDB').child(communityName).child('communityGroups').child(groupName).update(groupObj, cb);
+  dataRef.child('CommunityDB').child(communityName).child('communityGroups').child('communityGroups').child(groupName).update(groupObj, cb);
   console.log("Group ", groupName, " updated ", changedField, " to ", fieldValue);
 };
 
@@ -193,10 +194,9 @@ exports.updateCommunity = function(communityName, changedField, fieldValue, cb){
   console.log("Community ", communityName, " updated ", changedField, " to ", fieldValue);
 };
 
-
-
 // Creation of helpers in the Community frame
 exports.createTag = function(tag){};  //last
+
 
 // Admin utilities: Validations during the creation process.
 exports.validateUserToGroup = function(userName, groupName, communityName, cb) {
@@ -213,20 +213,29 @@ exports.validateUserToGroup = function(userName, groupName, communityName, cb) {
 };
 
 //Admin functions
-exports.validateUserToCommunity = function((userName, groupName, communityName, cb){
+exports.validateUserToCommunity = function(userName, communityName, cb){
   var tempObj = {};
-  tempObj[groupName] = true;
+  tempObj[communityName] = true;
+  cb = cb || defaultCb('Failed to validate user ', userName, "to community ", communityName);
+  dataRef.child('UsersDB').child(userName).child('userProfile').child('usersCommunities').update(tempObj, cb)
+
+};
+
+
+exports.validateGroup = function(groupName, communityName, cb) {
+  var tempObj = {};
+  tempObj["groupIsValid"] = true;
+
   cb = cb || defaultCb('Failed to validate user ', userName, "to group ", groupName);
-  dataRef.child('UsersDB').child(userName).child('userProfile').child('usersGroups').update(tempObj)
+  dataRef.child('CommunityDB').child(communityName).child(groupName).update(tempObj);
 
-};  //2
-exports.validateGroup = function(sessionInfo) {}; //3
-
+}; //3
 
 //Super Admin functions
 exports.validateCommunity = function(community){}; //4
 exports.deactivateUserFromGroup = function(user, group){};  //5
 
+exports.deleteUserFromGroup = function(user, group){};  //5
 
 // Opening Groups & Communities, retrieving their info.
 // Expect these to be called by Angular front-end
