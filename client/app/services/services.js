@@ -106,18 +106,31 @@ angular.module('interim.services', [])
     //communities are stored in the database by their uid
     var uid = authObj.uid;
     var temp = {};
-    temp[uid] = communityObj;
+    var filteredCommunity = {
+      name: communityObj.name,
+      founder: null,
+      foundingDate: Firebase.ServerValue.TIMESTAMP,
+      groups: {},
+      location: communityObj.location,
+      privacy: true,
+      email: communityObj.email,
+      password: communityObj.password,
+      avi_url: communityObj.avi_url,
+      bio: communityObj.bio
+   }
+
+    temp[uid] = filteredCommunity;
 
     //dataRef.child('UsersDB').push(user);
     dataRef.child('CommunityDB').update(temp , function(error) {
       if(!error){
-        console.log("community inserted!")
+        console.log("community inserted: ", temp)
       }
       else{
         console.log(error);
       }
     })
-    $rootScope.Community = temp[uid];
+    $rootScope.currentCommunity = temp[uid];
   }
 
   return {
