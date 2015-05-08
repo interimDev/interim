@@ -94,7 +94,6 @@
   top:0;
   display: inline-block;
   z-index: 3;
-
 }
 /*communityTopSidebar.html css ends here*/
 
@@ -124,6 +123,33 @@
   width: 24%;
   height: 100%;
   z-index: 1;
+}
+
+/*modal for private room top and bottom div tag*/
+.privateRoomModal{
+  background-color: #2869b2;
+  color: white;
+}
+
+/*modal for private room, center*/
+.modalStyle {
+  overflow: auto;
+  height: 100px;
+}
+
+#myModal {
+  color:black;
+  left: 200px;
+  z-index: 10;
+}
+
+.userLinkColor {
+  color: #2869b2;
+  cursor:pointer;
+}
+
+.userLinkColor:active {
+  color: #80b1e8;
 }
 
 #roomsContent {
@@ -175,6 +201,12 @@
 
 #linkColor:hover {
     color: #2869b2;
+}
+
+.modalImage {
+  margin-right: 10px;
+  width:20px;
+  height:20px
 }
 /*dashboard.html css ends here*/
 

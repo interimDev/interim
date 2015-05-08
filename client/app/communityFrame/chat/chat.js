@@ -4,7 +4,7 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
 
   var ref = new Firebase("https://interim.firebaseio.com/room-messages");
   //get all messages for specific room
-  $rootScope.displayMessages = function(roomId) {
+  $rootScope.messages = function(roomId) {
     
     //get data for specific room
     var messages = $firebaseArray(ref.child(roomId));

@@ -4,14 +4,13 @@ angular.module('interim.dashboard', ["firebase"])
 
   var roomRef = new Firebase("https://interim.firebaseio.com/room-metadata");
   //display room names
-  var rooms = $firebaseArray(roomRef);
-  // $scope.rooms = $firebaseArray(roomRef);
+  var rooms = $firebaseArray(roomRef), usersRoom;
 
   //current user id
   $scope.userID = $rootScope.user.id;
   $scope.rooms = rooms;
   //adding room
-  $scope.add = function(event) {
+  $scope.addRoom = function(event) {
    //getting user room name here;
     var roomName, roomType = 'public';
     
@@ -32,19 +31,21 @@ angular.module('interim.dashboard', ["firebase"])
             }
             //creates entry
             var newRoom = roomRef.push();
+            var currentUsers = {};
+            //if room is private add id of user
+            if (roomType === 'private') {
+              currentUsers[$rootScope.user.id] = $rootScope.user.id;
+            }
+            console.log("Current Users", currentUsers)
             //create new room
             var room = {
               id: newRoom.key(),
               createdByUserId: $rootScope.user.id,
               name: roomName,
               type: roomType,
-              users: "undefined",
+              usersList: currentUsers,
               createdAt: Firebase.ServerValue.TIMESTAMP
             };
-            //if room is private add id of user
-            if (roomType === 'private') {
-              room.users = $rootScope.user.id;
-            }
 
             //sets data
             newRoom.set(room, function(error) {
@@ -56,17 +57,45 @@ angular.module('interim.dashboard', ["firebase"])
     });
   }
 
+  //setting private room when user clicks on adding users
+  $scope.selectingRoom = function(roomID) {
+    usersRoom = roomID;
+  }
+
+  //filter private rooms for current user
+  $scope.filterPrivate = function(room) {
+    if (room.type === "private") {
+      for (var val in room) {
+        for ( id in room[val]) {
+          //if users members match current users id then allow user to see room
+          if (room[val][id] === $rootScope.user.id) {
+            return true;
+          }
+        }
+      }
+    }
+  }
+
+  //adding user to private room
+  $scope.addUser = function(user) {
+    var newUsers = {};
+    var selectedRoom = new Firebase("https://interim.firebaseio.com/room-metadata");
+    newUsers[user]= user;
+    selectedRoom.child(usersRoom).child("usersList").update(newUsers);
+  }
+
   //get current room name
   $scope.roomName = function(obj) {
     //set current room (since no user just storing it globally)
-    $rootScope.displayMessages(obj.room.id);
+    $rootScope.messages(obj.room.id);
   }
-  
-  // //get all messages for specific room
-  // var userRef = new Firebase("https://interim.firebaseio.com/user-names-online");
-  // $scope.users = $firebaseArray(userRef);
 
+  //on click remove user from modal
+  $scope.removeUser = function(userID) {
+    $('#'+userID).remove();
+  };
+
+  //get all users
   var userRef = new Firebase("https://interim.firebaseio.com/UsersDB");
-  $scope.users = $firebaseArray(userRef);
-
+  $scope.allUsers = $firebaseArray(userRef);
 });
