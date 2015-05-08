@@ -111,12 +111,12 @@ angular.module('interim.services', [])
       founder: null,
       foundingDate: Firebase.ServerValue.TIMESTAMP,
       groups: {},
-      location: communityObj.location,
+      location: null,
       privacy: true,
       email: communityObj.email,
       password: communityObj.password,
-      avi_url: communityObj.avi_url,
-      bio: communityObj.bio
+      avi_url: null,
+      bio: null
    }
 
     temp[uid] = filteredCommunity;
