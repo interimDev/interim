@@ -5,20 +5,43 @@
     <div id="rooms">
     <h4 id="contentNames">Rooms
       <!-- button to add rooms -->
-      <div class="glyphicon glyphicon-plus" ng-click="add()"></div>
+      <div class="glyphicon glyphicon-plus" ng-click="addRoom()"></div>
     </h4>
 
       <!-- Rooms are added and removed here -->
       <div id="contentBucketRooms">
         <!-- Each public room -->
-        <h6 ng-repeat="room in rooms | orderBy: 'name'| filter:{ type: 'public' } | filter:{ users: 'undefined' }" id="insideContent"><a href="javascript:void(0);" ng-click="roomName(this);" id="linkColor">{{room.name}}</a> </h6>
+        <h6 ng-repeat="room in rooms | orderBy: 'name'| filter:{ type: 'public' }" id="insideContent"><a href="javascript:void(0);" ng-click="roomName(this);" id="linkColor">{{room.name}}</a> </h6>
    
 
         <!-- show each private room that matches user id -->
-        <h6 ng-repeat="room in rooms | orderBy: 'name'| filter:{ type: 'private' } | filter: {users: userID}" id="insideContent"><a href="javascript:void(0);" ng-click="roomName(this);" id="linkColor">{{room.name}}</a></h6>
-    
+        <h6 ng-repeat="room in rooms | orderBy: 'name'| filter: filterPrivate" id="insideContent"><a href="javascript:void(0);" ng-click="roomName(this);" id="linkColor">{{room.name}}</a>
+          <span class="glyphicon glyphicon-user" data-toggle="modal" data-target="#myModal" ng-click="selectingRoom(room.id)"></span>
+        </h6>
+
+        <!-- Modal for Adding Users To Private Room -->
+        <div data-backdrop="false" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header privateRoomModal">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add User to Private Room</h4>
+              </div>
+              <div class="modal-body modalStyle">
+                <h6 id="insideContent" ng-repeat="user in allUsers| orderBy: name" ng-click="addUser(user.id);"> 
+                  <span class =" userLinkColor" ng-click= "removeUser(user.id);" id={{user.id}}> <img src={{user.avi_url}} class="img-rounded modalImage"/>{{user.name}}</span>
+                </h6>
+              </div>
+              <div class="modal-footer privateRoomModal">
+                <span> * click on user to add user </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
+
 
     <!-- Tags Name -->
     <div id="tags">
@@ -26,7 +49,7 @@
       <!-- Tags are added and removed here -->
       <div id="contentBucketUsers">
         <!-- Each Tag -->
-        <h6 id="insideContent" ng-repeat="user in users| orderBy: name">{{user.github.cachedUserProfile.name}}</h6>
+        <h6 id="insideContent" ng-repeat="user in allUsers| orderBy: name">{{user.name}}</h6>
       </div>
     </div>
   </div>
