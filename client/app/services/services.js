@@ -5,6 +5,8 @@ angular.module('interim.services', [])
   
   //This sends the OAth request to github through firebase's 
   //native functionalities and turns the results into a promise
+
+  //TODO -------REFACTOR TO ANGULAR FIRE INSTEAD OF Q PROMISES
   var githubAuth = function () {
     var deferred = $q.defer();
     var ref = new Firebase("https://interim.firebaseio.com/");
@@ -32,13 +34,8 @@ angular.module('interim.services', [])
     firePromise: firePromise
   }
 })
-.factory('Utilities', function ($q) {
+.factory('Utilities', function ($q, $firebaseAuth, $rootScope) {
   var dataRef = new Firebase('https://interim.firebaseio.com/');
-
-  // Initalize main folders in database
-  //dataRef.set('CommunityDB');
-  //dataRef.set('UsersDB');
-
   // Shorthand to access stored data
   var communityRef = function(community) {
     return dataRef.child('CommunityDB').child(community);
@@ -86,13 +83,59 @@ angular.module('interim.services', [])
     return userObj[username];
   }
 
-  var addSuperAdmin = function(user){ //TO-DO **********************************
-    //take name of user
-      //dataRef.child('superAdmin').update({"name_of_user" : true})
+  //creates a community authorized by their name and email
+  //note - does not add to the database
+  var createCommunity = function(community) {
+    var ref = new Firebase("https://interim.firebaseio.com/");
+    $rootScope.authObj = $firebaseAuth(ref);
+
+
+    return $rootScope.authObj.$createUser({
+      email: community.email,
+      password: community.password
+    }).then(function(userData) {
+      console.log("User created with uid: " + userData.uid);
+      console.log(userData," - userData")
+      return addCommunity(userData, community);
+    }).catch(function(error) {
+      console.log("Error creating user: ", error);
+    });
+  }
+
+  var addCommunity = function(authObj, communityObj){
+    //communities are stored in the database by their uid
+    var uid = authObj.uid;
+    var temp = {};
+    var filteredCommunity = {
+      name: communityObj.name,
+      founder: null,
+      foundingDate: Firebase.ServerValue.TIMESTAMP,
+      groups: {},
+      location: communityObj.location,
+      privacy: true,
+      email: communityObj.email,
+      password: communityObj.password,
+      avi_url: communityObj.avi_url,
+      bio: communityObj.bio
+   }
+
+    temp[uid] = filteredCommunity;
+
+    //dataRef.child('UsersDB').push(user);
+    dataRef.child('CommunityDB').update(temp , function(error) {
+      if(!error){
+        console.log("community inserted: ", temp)
+      }
+      else{
+        console.log(error);
+      }
+    })
+    $rootScope.currentCommunity = temp[uid];
   }
 
   return {
-    createUser: createUser
+    createUser: createUser,
+    createCommunity: createCommunity
   }
 })
 .factory('Permissions', function($q){
