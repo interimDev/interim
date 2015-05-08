@@ -4,5 +4,4 @@ angular.module('interim.profileEditor', [])
   //getting users current name from github
   var ref = new Firebase("https://interim.firebaseio.com/UsersDB");
   $scope.userInfo = $firebaseArray(ref);
-  
 });

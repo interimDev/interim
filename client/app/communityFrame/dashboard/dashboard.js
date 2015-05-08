@@ -4,7 +4,7 @@ angular.module('interim.dashboard', ["firebase"])
 
   var roomRef = new Firebase("https://interim.firebaseio.com/room-metadata");
   //display room names
-  var rooms = $firebaseArray(roomRef), usersRoom;
+  var rooms = $firebaseArray(roomRef), usersRoom, usersAdded=[];
 
   //current user id
   $scope.userID = $rootScope.user.id;
@@ -92,8 +92,17 @@ angular.module('interim.dashboard', ["firebase"])
 
   //on click remove user from modal
   $scope.removeUser = function(userID) {
-    $('#'+userID).remove();
+    usersAdded.push(userID);
+    for (var user =0; user < usersAdded.length; user++) {
+      $('#'+usersAdded[user]).hide();
+    }
   };
+
+  $scope.updateUsersList =function(userID){
+    for (var user =0; user < usersAdded.length; user++) {
+      $('#'+usersAdded[user]).show();
+    }
+  }
 
   //get all users
   var userRef = new Firebase("https://interim.firebaseio.com/UsersDB");
