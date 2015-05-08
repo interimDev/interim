@@ -5,6 +5,8 @@ angular.module('interim.services', [])
   
   //This sends the OAth request to github through firebase's 
   //native functionalities and turns the results into a promise
+
+  //TODO -------REFACTOR TO ANGULAR FIRE INSTEAD OF Q PROMISES
   var githubAuth = function () {
     var deferred = $q.defer();
     var ref = new Firebase("https://interim.firebaseio.com/");
@@ -94,10 +96,41 @@ angular.module('interim.services', [])
     }).then(function(userData) {
       console.log("User created with uid: " + userData.uid);
       console.log(userData," - userData")
-      return userData
+      return addCommunity(userData, community);
     }).catch(function(error) {
       console.log("Error creating user: ", error);
     });
+  }
+
+  var addCommunity = function(authObj, communityObj){
+    //communities are stored in the database by their uid
+    var uid = authObj.uid;
+    var temp = {};
+    var filteredCommunity = {
+      name: communityObj.name,
+      founder: null,
+      foundingDate: Firebase.ServerValue.TIMESTAMP,
+      groups: {},
+      location: communityObj.location,
+      privacy: true,
+      email: communityObj.email,
+      password: communityObj.password,
+      avi_url: communityObj.avi_url,
+      bio: communityObj.bio
+   }
+
+    temp[uid] = filteredCommunity;
+
+    //dataRef.child('UsersDB').push(user);
+    dataRef.child('CommunityDB').update(temp , function(error) {
+      if(!error){
+        console.log("community inserted: ", temp)
+      }
+      else{
+        console.log(error);
+      }
+    })
+    $rootScope.currentCommunity = temp[uid];
   }
 
   return {
