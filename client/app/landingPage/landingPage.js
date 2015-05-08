@@ -8,7 +8,7 @@ angular.module('interim.landingPage', [])
       var filteredUser = Utilities.createUser(userObj)
 
       //set all our root scope necessities here
-      $rootScope.superAdmin = Permissions.isSuperAdmin(filteredUser);
+      Permissions.isSuperAdmin(filteredUser);
       $rootScope.userInfo = userObj.github.cachedUserProfile;
       $rootScope.user = userObj.github;
       
