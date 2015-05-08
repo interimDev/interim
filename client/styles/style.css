@@ -239,7 +239,11 @@
 
 #chatImage {
   width:60px;
-  height:60px
+  height:60px;
+}
+
+.img-rounded {
+  cursor: pointer;
 }
 
 #chatTime {
