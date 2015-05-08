@@ -96,10 +96,28 @@ angular.module('interim.services', [])
     }).then(function(userData) {
       console.log("User created with uid: " + userData.uid);
       console.log(userData," - userData")
-      return userData
+      return addCommunity(userData, community);
     }).catch(function(error) {
       console.log("Error creating user: ", error);
     });
+  }
+
+  var addCommunity = function(authObj, communityObj){
+    //communities are stored in the database by their uid
+    var uid = authObj.uid;
+    var temp = {};
+    temp[uid] = communityObj;
+
+    //dataRef.child('UsersDB').push(user);
+    dataRef.child('CommunityDB').update(temp , function(error) {
+      if(!error){
+        console.log("community inserted!")
+      }
+      else{
+        console.log(error);
+      }
+    })
+    $rootScope.Community = temp[uid];
   }
 
   return {
