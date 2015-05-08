@@ -138,7 +138,7 @@ angular.module('interim.services', [])
     createCommunity: createCommunity
   }
 })
-.factory('Permissions', function($q){
+.factory('Permissions', function ($q, $rootScope) {
   var dataRef = new Firebase('https://interim.firebaseio.com/');
 
   //determines if user is a super admin by
@@ -147,12 +147,13 @@ angular.module('interim.services', [])
   var isSuperAdmin = function(user){
     dataRef.child('superAdmin').on("value", function(snapshot) {
       var superAdminObj = snapshot.val();
+      console.log(superAdminObj, user.name+"-"+user.auth.provider)
       if(superAdminObj[user.name+"-"+user.auth.provider] === true){
         console.log("You are super!")
-        return true;
+        $rootScope.superAdmin = true;
       }
       else {
-        return false;
+        $rootScope.superAdmin = false;
       }
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
