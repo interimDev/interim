@@ -99,30 +99,34 @@ angular.module('interim.services', [])
     ref.child('CommunityDB').update(temp , function(error) {
       error ? console.log("Error inserting community: ", error) : console.log("community inserted: ", temp[uid]);
     })
-    $rootScope.currentCommunity = temp[uid];
+    $rootScope.communityInfo = temp[uid];
     communitySignIn(temp[uid])
   }
 
   // logs in the communities 
   // called directly after authorizaition
   var communitySignIn = function(community){
-
     authObj.$authWithPassword({
       email: community.email,
       password: community.password
     }).then(function(authData) {
       console.log("Logged in as:", authData.uid);
+      retrieveCommunity(authData.uid)
     }).catch(function(error) {
       console.error("Authentication failed:", error);
     });
   }
   
-
-  /* 
-  =================================
-            END OF AUTH 
-  =================================
-  */
+  var retrieveCommunity = function(communityId) {
+    ref.child('CommunityDB').on("value", function(snapshot) {
+      var communities = snapshot.val();
+      communityInfo = Communities[communityId]
+      $rootScope.communityInfo = communityInfo;
+      console.log($rootScope.communityInfo, " - super admin")
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+  }
 
   return {
     communitySignIn: communitySignIn,
@@ -131,8 +135,22 @@ angular.module('interim.services', [])
     communityAuth: communityAuth
   }
 })
+
+  /* 
+  =================================
+            END OF AUTH 
+  =================================
+  */
+
+
 .factory('Permissions', function ($rootScope) {
   var ref = new Firebase('https://interim.firebaseio.com/');
+
+  /* 
+  =================================
+          ROUTING PERMISSIONS
+  =================================
+  */
 
   //determines if user is a super admin by
   //querying the db and checking if the username exists

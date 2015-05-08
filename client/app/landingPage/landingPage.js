@@ -1,8 +1,9 @@
 angular.module('interim.landingPage', [])
 
 .controller('LandingPageController', function ($scope, Auth, Permissions, $state, $rootScope, $modal) {
+  $scope.master = {};
 
-  $scope.githubAuth = function(){
+  $scope.githubAuth = function() {
     Auth.githubAuth()
     .then(function(user){
       Auth.storeUser(user)
@@ -10,9 +11,11 @@ angular.module('interim.landingPage', [])
     })
   };
 
-  $scope.master = {};
+  $scope.signIn = function(community) {
+    Auth.communitySignIn(community)
+    $state.go('community-profile');
+  }
 
-  //TODO - REROUTE TO COMMUNITY PAGE ON SUBMISSION OR SIGN IN AS USER
   $scope.communityModal = function() {     
     $modal.open({
       templateUrl: 'app/landingPage/communitySignUp.html',
@@ -36,6 +39,7 @@ angular.module('interim.landingPage', [])
   $scope.reset = function() {
     $scope.community = {};
   };
+
 
   $scope.reset();
 });
