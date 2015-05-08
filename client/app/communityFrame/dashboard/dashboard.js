@@ -96,7 +96,6 @@ angular.module('interim.dashboard', ["firebase"])
     $('#'+userID).remove();
   };
 
-
   //get all users
   var userRef = new Firebase("https://interim.firebaseio.com/UsersDB");
   $scope.allUsers = $firebaseArray(userRef);
