@@ -98,6 +98,7 @@ angular.module('interim.dashboard', ["firebase"])
     }
   };
 
+  // reset users list for modal
   $scope.updateUsersList =function(userID){
     for (var user =0; user < usersAdded.length; user++) {
       $('#'+usersAdded[user]).show();

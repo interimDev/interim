@@ -116,6 +116,29 @@
 /*useruserBottomSidebar.html and communityTopSidebar.html css ends here*/
 
 /*dashboard.html css starts here*/
+
+/*adding rooms glyphicon icon*/
+.glyphicon-plus {
+  margin-left: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.glyphicon-plus:hover {
+  color: white;
+}
+
+
+/*private room glyphicon icon*/
+.glyphicon-user-add {
+  width: 16px;
+  height: 12px;
+}
+
+.glyphicon-user-add:hover {
+  opacity: 0.5;
+}
+
 .dashboard {
   position: absolute;
   padding-top: 5%;
@@ -247,8 +270,8 @@
 }
 
 #chatTime {
+  text-align: right;
   color: #888888;
-  margin-left: 10%;
 }
 
 .chatTags {

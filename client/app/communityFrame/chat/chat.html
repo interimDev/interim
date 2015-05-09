@@ -13,11 +13,11 @@
                 <img src={{message.userProfileImage}} ng-click="personalInfo(message)" class="img-rounded" id="chatImage"/>
                 </div>
                 <!-- displays users name -->
-                <div><i class="fa fa-user"></i> {{message.name}}
+                <span><i class="fa fa-user"></i> {{message.name}}
                   <!-- displays time when message was send -->
-                  <time id="chatTime"><i class="fa fa-clock-o"></i> {{ message.timestamp| date:'medium' }}
+                  <time id="chatTime"><i class="fa fa-clock-o"></i> {{ message.timestamp| date:'short' }}
                   </time>
-                </div>
+                </span>
                <!-- displays usesrs message -->
                 <div>
                   <p>

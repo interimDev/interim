@@ -5,7 +5,7 @@
     <div id="rooms">
     <h4 id="contentNames">Rooms
       <!-- button to add rooms -->
-      <div class="glyphicon glyphicon-plus" ng-click="addRoom()"></div>
+      <div class="glyphicon glyphicon-plus" ng-click="addRoom()" title="Add Room" ></div>
     </h4>
 
       <!-- Rooms are added and removed here -->
@@ -16,7 +16,7 @@
 
         <!-- show each private room that matches user id -->
         <h6 ng-repeat="room in rooms | orderBy: 'name'| filter: filterPrivate" id="insideContent"><a href="javascript:void(0);" ng-click="roomName(this);" id="linkColor">{{room.name}}</a>
-          <span class="glyphicon glyphicon-user" data-toggle="modal" data-target="#myModal" ng-click="selectingRoom(room.id)"></span>
+          <span data-toggle="modal" data-target="#myModal" ng-click="selectingRoom(room.id)"> <img  class = "glyphicon-user-add" title="Add User" src="/app/assets/glyphicons-user-add.png"/></span>
         </h6>
 
         <!-- Modal for Adding Users To Private Room -->
