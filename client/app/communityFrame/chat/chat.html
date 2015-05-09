@@ -10,14 +10,14 @@
               <div class="panel-body">
                 <!-- displays users picture -->
                 <div class="col-md-2 col-sm-2 hidden-xs">
-                <img src={{message.userProfileImage}} ng-click="personalInfo(message)" class="img-rounded" id="chatImage"/>
+                <img src={{message.userProfileImage}} title = {{message.name}} ng-click="personalInfo(message)" class="img-rounded" id="chatImage"/>
                 </div>
                 <!-- displays users name -->
-                <div><i class="fa fa-user"></i> {{message.name}}
+                <span class="userNameChat"><i class="fa fa-user"></i> {{message.name}}
                   <!-- displays time when message was send -->
-                  <time id="chatTime"><i class="fa fa-clock-o"></i> {{ message.timestamp| date:'medium' }}
+                  <time id="chatTime"><i class="fa fa-clock-o"></i> {{ message.timestamp| date:'short'}}
                   </time>
-                </div>
+                </span>
                <!-- displays usesrs message -->
                 <div>
                   <p>
@@ -32,8 +32,8 @@
     </div>
 
     <!-- chat input -->
-    <div class="row" id="chatRow">
-      <div class="col-lg-6">
+    <form class="row" id="chatRow" novalidate="">
+  
         <div class="input-group">
           <span class="input-group-btn">
             <!-- chat input settings button -->
@@ -42,12 +42,9 @@
             </button>
           </span>
           <!-- input sends message when user presses enter key on key board -->
-          <input type="text" ng-model="msg" ng-keyup="$event.keyCode == 13 && sendMessage()" class="form-control" placeholder="Enter message here..."/>
+          <input type="text" maxlength="120" data-minlength="1" class="form-control" ng-model="msg" placeholder="Enter message here..." ng-keyup="$event.keyCode == 13 && sendMessage()" required />
         </div>
-      </div>
-    </div>
 
-
-    <div>
+    </form>
   </div>
 </div>

@@ -116,6 +116,28 @@
 /*useruserBottomSidebar.html and communityTopSidebar.html css ends here*/
 
 /*dashboard.html css starts here*/
+/*adding rooms glyphicon icon*/
+.glyphicon-plus {
+  margin-left: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.glyphicon-plus:hover {
+  color: white;
+}
+
+
+/*private room glyphicon icon*/
+.glyphicon-user-add {
+  width: 16px;
+  height: 12px;
+}
+
+.glyphicon-user-add:hover {
+  opacity: 0.5;
+}
+
 .dashboard {
   position: absolute;
   padding-top: 5%;
@@ -248,21 +270,25 @@
 
 #chatTime {
   color: #888888;
-  margin-left: 10%;
+  margin-left: 1%;
+  opacity: 0.6;
 }
 
-.chatTags {
-  color:#888888;
+.userNameChat {
+  color:#2869b2;
+  opacity: 0.4;
 }
+
 /*css for displaying messages ends here*/
 
 /*chat input starts here*/
-#chatRow {
+#chatRow { 
   position: absolute;
-  right: 17%;
-  width: 70%;
-  bottom: 5px;
+  width: 60%;
+  bottom: 1%;
   visibility: hidden;
+  z-index: 2;
+  left:18%;
 }
 
 #chatUpButton {
@@ -270,8 +296,6 @@
 }
 /*chat input ends here*/
 /*chat.html css ends here*/
-
-
 
 /*community profile start*/
 #communityProfAvi {
@@ -283,7 +307,6 @@
   margin-top: 1%;
 }
 /*community profile end*/
-
 
 .superadminYeah{
   width: 100%;

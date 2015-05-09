@@ -36,7 +36,6 @@ angular.module('interim.dashboard', ["firebase"])
             if (roomType === 'private') {
               currentUsers[$rootScope.userInfo.id] = $rootScope.userInfo.id;
             }
-            console.log("Current Users", currentUsers)
             //create new room
             var room = {
               id: newRoom.key(),
@@ -46,7 +45,8 @@ angular.module('interim.dashboard', ["firebase"])
               usersList: currentUsers,
               createdAt: Firebase.ServerValue.TIMESTAMP
             };
-
+            //success notification
+            $.notify("Room Created", "success");
             //sets data
             newRoom.set(room, function(error) {
                 // room successfully created
@@ -91,17 +91,21 @@ angular.module('interim.dashboard', ["firebase"])
   }
 
   //on click remove user from modal
-  $scope.removeUser = function(userID) {
+  $scope.removeUser = function(userID, userName) {
+    //success notification
+    $.notify("User " + userName +" Added", "success");
     usersAdded.push(userID);
     for (var user =0; user < usersAdded.length; user++) {
       $('#'+usersAdded[user]).hide();
     }
   };
 
+  // reset users list for modal
   $scope.updateUsersList =function(userID){
     for (var user =0; user < usersAdded.length; user++) {
       $('#'+usersAdded[user]).show();
     }
+    usersAdded =[];
   }
 
   //get all users
