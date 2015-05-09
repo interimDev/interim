@@ -15,13 +15,6 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
     $("#chatRow").css('visibility', 'visible');
   }
 
-  //message character count
-  $scope.messageCount = function() {
-    if($scope.msg) {
-      console.log($scope.msg.length);
-    }
-  }
-
   //send messages to specific room
   $scope.sendMessage = function() {
 
