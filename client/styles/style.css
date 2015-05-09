@@ -282,12 +282,13 @@
 /*css for displaying messages ends here*/
 
 /*chat input starts here*/
-#chatRow {
+#chatRow { 
   position: absolute;
-  right: 17%;
-  width: 70%;
-  bottom: 5px;
+  width: 60%;
+  bottom: 1%;
   visibility: hidden;
+  z-index: 2;
+  left:18%;
 }
 
 #chatUpButton {
@@ -295,8 +296,6 @@
 }
 /*chat input ends here*/
 /*chat.html css ends here*/
-
-
 
 /*community profile start*/
 #communityProfAvi {
@@ -308,7 +307,6 @@
   margin-top: 1%;
 }
 /*community profile end*/
-
 
 .superadminYeah{
   width: 100%;

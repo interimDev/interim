@@ -15,28 +15,38 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
     $("#chatRow").css('visibility', 'visible');
   }
 
+  //message character count
+  $scope.messageCount = function() {
+    if($scope.msg) {
+      console.log($scope.msg.length);
+    }
+  }
+
   //send messages to specific room
   $scope.sendMessage = function() {
-    //won't send empty message
-    console.log("Message Length",$scope.msg.length);
-    // if ($scope.msg) {
-      var msg = ref.child($scope.roomId).push();
+    //check if message is empty
+    if ($scope.msg) {
+      // make sure message is under 120 characters
+      if ($scope.msg.length < 121) {
+        var msg = ref.child($scope.roomId).push();
         var message = {
           userId: $rootScope.userInfo.id,
-          userProfileImage: $rootScope.userInfo.avatar_url,
-          name: $rootScope.userInfo.displayName,
+          userProfileImage: $rootScope.userInfo.avi_url,
+          name: $rootScope.userInfo.name,
           timestamp: Firebase.ServerValue.TIMESTAMP,
           message: $scope.msg,
           type: 'default'
         }
-      //reset input box
-      $scope.msg = "";
-      msg.set(message);
-    // } else {
-    //   console.log("FAILED");
-    //   //success notification
-    //   $.notify("Please Enter Message", "error");
-    // }
+        //reset input box
+        $scope.msg = "";
+        msg.set(message);
+      } else {
+        //notify is message is over 120 characters
+        var lengthExceeded = $scope.msg.length - 120;
+        $.notify("Your message exceeds length by " + lengthExceeded +
+          "  characters", "error");
+      }
+    } 
   }
 
   var userRef = new Firebase("https://interim.firebaseio.com/UsersDB");
