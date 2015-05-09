@@ -1,26 +1,28 @@
 <div ng-controller="profileEditorController">
   <form>
     <div ng-show="selected"></div>
-    <h3>Where Are You From?</h3>
+    <h4>Where Are You From?</h4>
     <br>
-    <input type="text" name="input" value="">
-    <h3>Tech Interests</h3>
+    <input type="text" name="input" ng-model="userProfile.location">
+    <h4>Tech Interests</h4>
     <br>
-    <input type="text" name="input" value="">
-    <h3>Hobbies</h3>
+    <input type="text" name="input" ng-model="userProfile.interests">
+    <h4>Hobbies</h4>
     <br>
-    <input type="text" name="input" value="">
-    <h3>Favorite Movies</h3>
+    <input type="text" name="input" ng-model="userProfile.hobbies">
+    <h4>Favorite Movies</h4>
     <br>
-    <input type="text" name="input" value="">
-    <h3>Favorite Books</h3>
+    <input type="text" name="input" ng-model="userProfile.movies">
+    <h4>Favorite Books</h4>
     <br>
-    <input type="text" name="input" value="">
-    <h3>Favorite Quote(s)</h3>
+    <input type="text" name="input" ng-model="userProfile.books">
+    <h4>Favorite Quote</h4>
     <br>
-    <input type="text" name="input" value="">
-    <h3>3 Interesting Facts About Myself</h3>
+    <input type="text" name="input" ng-model="userProfile.quote">
+    <h4>3 Interesting Facts About Myself</h4>
     <br>
-    <input type="text" name="input" value="">
+    <input type="text" name="input" ng-model="userProfile.facts">
+    <br> 
+    <button ng-click="saveProfile()">Save</button>
   </form>
 </div>

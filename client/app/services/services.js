@@ -37,7 +37,8 @@ angular.module('interim.services', [])
       'auth' : user.auth,
       'communities' : null,
       'permissions' : null,
-      'avi_url' : user.github.cachedUserProfile.avatar_url
+      'avi_url' : user.github.cachedUserProfile.avatar_url,
+      'profile' : {}
       }
     var userObj = {};
     userObj[username] = filteredUser;

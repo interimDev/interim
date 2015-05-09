@@ -1,6 +1,6 @@
 var Firebase = require('firebase');
 //var dataRef = new Firebase('https://interim.firebaseio.com/');
-var dataRef = new Firebase('https://unsheep.firebaseio.com/');
+var dataRef = new Firebase('https://interim.firebaseio.com/');
 
 // Initalize main folders in database
 //dataRef.set('CommunityDB');
