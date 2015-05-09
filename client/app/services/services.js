@@ -7,7 +7,7 @@ angular.module('interim.services', [])
 
   /* 
   =================================
-            USER AUTH
+              USER 
   =================================
   */
 
@@ -52,9 +52,6 @@ angular.module('interim.services', [])
           error ? console.log("Error inserting user: ", error) : console.log("user inserted: ", userObj[username]);
         })
       }
-      else { 
-        console.log("user is already in the database");
-      }
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
@@ -63,10 +60,17 @@ angular.module('interim.services', [])
     $rootScope.userInfo = userObj[username];
   }
 
+  var updateUser = function(key, edits) {
+    console.log(key," edits in services: ", edits)
+    ref.child('UsersDB').child(key).child('profile').update(edits['profile'], function(error) {
+      error ? console.log("Error updating user: ", error) : console.log("user updated");
+    })
+  }
+
 
   /* 
   =================================
-          COMMUNITY AUTH
+            COMMUNITY
   =================================
   */
 
@@ -143,7 +147,8 @@ angular.module('interim.services', [])
     communitySignIn: communitySignIn,
     githubAuth: githubAuth,
     storeUser: storeUser,
-    communityAuth: communityAuth
+    communityAuth: communityAuth,
+    updateUser: updateUser
   }
 })
 
@@ -172,7 +177,7 @@ angular.module('interim.services', [])
       var user = $rootScope.userInfo;
       var userKey = user.name+"-"+user.auth.provider
       $rootScope.superAdmin = superAdminObj[userKey] ? true : false;
-      console.log($rootScope.superAdmin, " - super admin")
+      console.log("You're a SuperAdmin!")
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
