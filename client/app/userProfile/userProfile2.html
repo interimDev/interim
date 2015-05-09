@@ -1,0 +1,34 @@
+<div class="userProf" ng-controller="ChatController" ng-init="checkUser()" ng-if="!editorEnabled && !makeProfile">
+  <h1>{{clickedUser.name}}</h1>
+  <img id='modalProfilePic' ng-src='{{clickedUser.avi_url}}'/>
+  <br> 
+  Location: <p>{{clickedUser.profile.location}}</p>
+  <br>
+  Biography: <p>{{clickedUser.profile.bio}}</p>
+  <br> 
+  Links: 
+  <a target='_new' href="{{clickedUser.profile.twitter}}">Twitter</a> 
+  <a target='_new' href='{{clickedUser.profile.linkedIn}}'>LinkedIn</a>
+  <br>
+  <button type="button" class="btn btn-default" ng-if="editAllowed" ng-click="editProfile()">Edit Profile</button>
+</div>
+
+<div class="userProf" ng-controller="ChatController"  ng-if="editorEnabled || makeProfile">
+  <br>
+  <h1>{{clickedUser.name}}</h1>
+  <img id='modalProfilePic' ng-src='{{clickedUser.avi_url}}'/>
+  <br>
+  Location: 
+  <input ng-model="edit.location" placeholder='{{clickedUser.profile.location}}'>
+  <br>
+  Biography: 
+  <input ng-model="edit.bio" placeholder='{{clickedUser.profile.bio}}'>
+  <br> 
+  Links: 
+  <input ng-model="edit.twitter" placeholder='{{clickedUser.profile.twitter}}'>
+  <input ng-model="edit.linkedIn" placeholder='{{clickedUser.profile.linkedIn}}'>
+
+  <br>
+  <button type="button" class="btn btn-default" ng-if="editAllowed" ng-click="save(edit)">Save</button>
+  <button type="button" class="btn btn-default" ng-if="editAllowed" ng-click="cancel()">Cancel</button>
+</div>
