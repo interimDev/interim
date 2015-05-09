@@ -13,7 +13,8 @@ angular.module('interim', [
   'interim.chat',
   'interim.userBottomSidebar',
   'interim.userProfile',
-  'interim.profileEditor'
+  'interim.profileEditor',
+  'interim.communityProfile'
 ])
 
 .run(function($rootScope){
