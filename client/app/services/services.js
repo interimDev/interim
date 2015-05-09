@@ -1,6 +1,6 @@
 angular.module('interim.services', [])
 
-.factory('Auth', function ($firebaseAuth, $rootScope, Permissions) {
+.factory('Auth', function ($firebaseAuth, $rootScope, Permissions, $state) {
   var ref = new Firebase("https://interim.firebaseio.com/");
   var authObj = $firebaseAuth(ref);
   
@@ -29,7 +29,8 @@ angular.module('interim.services', [])
   var storeUser = function(user){
     //pulls data from the github user data to create a cleaner
     //filtered user object that we insert to the database
-    filteredUser = {
+    var username = user.github.displayName+"-"+user.provider;
+    var filteredUser = {
       'name' : user.github.displayName,
       'id' : user.github.id,
       'token' : user.token,
@@ -38,18 +39,26 @@ angular.module('interim.services', [])
       'permissions' : null,
       'avi_url' : user.github.cachedUserProfile.avatar_url
       }
-
-    //users are stored in the database by their name and auth provider
-    // example - "Trace Thompson-github"
-    var username = user.github.displayName+"-"+user.provider;
     var userObj = {};
     userObj[username] = filteredUser;
-
-    ref.child('UsersDB').update(userObj , function(error) {
-      error ? console.log("Error inserting user: ", error) : console.log("user inserted: ", userObj[username]);
-    })
-    Permissions.isSuperAdmin();
+      
+    ref.child('UsersDB').on("value", function(snapshot) {
+      var users = snapshot.val();
+      //check to see if user exists already
+      //if not then add them to the db
+      if(!users[username]) {
+        ref.child('UsersDB').update(userObj , function(error) {
+          error ? console.log("Error inserting user: ", error) : console.log("user inserted: ", userObj[username]);
+        })
+      }
+      else { 
+        console.log("user is already in the database");
+      }
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
     //set userInfo for reference in front end
+    Permissions.isSuperAdmin();
     $rootScope.userInfo = userObj[username];
   }
 
@@ -120,9 +129,10 @@ angular.module('interim.services', [])
   var retrieveCommunity = function(communityId) {
     ref.child('CommunityDB').on("value", function(snapshot) {
       var communities = snapshot.val();
-      communityInfo = Communities[communityId]
+      communityInfo = communities[communityId]
       $rootScope.communityInfo = communityInfo;
-      console.log($rootScope.communityInfo, " - super admin")
+      console.log($rootScope.communityInfo, " - being returned as com obj")
+      $state.go('community-profile');
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });

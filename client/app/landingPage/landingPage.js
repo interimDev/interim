@@ -13,7 +13,6 @@ angular.module('interim.landingPage', [])
 
   $scope.signIn = function(community) {
     Auth.communitySignIn(community)
-    $state.go('community-profile');
   }
 
   $scope.communityModal = function() {     
