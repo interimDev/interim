@@ -40,7 +40,7 @@ angular.module('interim.dashboard', ["firebase"])
             //create new room
             var room = {
               id: newRoom.key(),
-              createdByUserId: $rootScope.user.id,
+              createdByUserId: $rootScope.userInfo,
               name: roomName,
               type: roomType,
               usersList: currentUsers,
