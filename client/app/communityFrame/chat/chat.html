@@ -10,7 +10,7 @@
               <div class="panel-body">
                 <!-- displays users picture -->
                 <div class="col-md-2 col-sm-2 hidden-xs">
-                <img src={{message.userProfileImage}} title = {{message.name}} ng-click="personalInfo(message)" class="img-rounded" id="chatImage"/>
+                <img src={{message.userProfileImage}} ng-click="userModal(message)" class="img-rounded" id="chatImage"/>
                 </div>
                 <!-- displays users name -->
                 <span class="userNameChat"><i class="fa fa-user"></i> {{message.name}}
