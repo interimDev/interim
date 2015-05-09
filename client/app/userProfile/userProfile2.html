@@ -2,7 +2,7 @@
   <h1>{{clickedUser.name}}</h1>
   <img id='modalProfilePic' ng-src='{{clickedUser.avi_url}}'/>
   <br> 
-  Location: <p>{{clickedUser.location}}</p>
+  Location: <p>{{clickedUser.profile.location}}</p>
   <br>
   Biography: <p>{{clickedUser.profile.bio}}</p>
   <br> 
@@ -19,7 +19,7 @@
   <img id='modalProfilePic' ng-src='{{clickedUser.avi_url}}'/>
   <br>
   Location: 
-  <input ng-model="edit.location" placeholder='{{clickedUser.location}}'>
+  <input ng-model="edit.location" placeholder='{{clickedUser.profile.location}}'>
   <br>
   Biography: 
   <input ng-model="edit.bio" placeholder='{{clickedUser.profile.bio}}'>

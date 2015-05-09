@@ -2,9 +2,7 @@ angular.module('interim.services', [])
 
 .factory('Auth', function ($firebaseAuth, $rootScope, Permissions, $state) {
   var ref = new Firebase("https://interim.firebaseio.com/");
-  var usersRef = new Firebase("https://interim.firebaseio.com/UsersDB/");
   var authObj = $firebaseAuth(ref);
-  var usersObj = $firebaseAuth(usersRef) 
   
 
   /* 
@@ -45,16 +43,18 @@ angular.module('interim.services', [])
     var userObj = {};
     userObj[username] = filteredUser;
       
-    //check to see if user exists already
-    //if not then add them to the db
-    if(!usersObj[username]) {
-      ref.child('UsersDB').update(userObj , function(error) {
-        error ? console.log("Error inserting user: ", error) : console.log("user inserted: ", userObj[username]);
-      })
-    }
-    else { 
-      console.log("user is already in the database");
-    }
+    ref.child('UsersDB').on("value", function(snapshot) {
+      var users = snapshot.val();
+      //check to see if user exists already
+      //if not then add them to the db
+      if(!users[username]) {
+        ref.child('UsersDB').update(userObj , function(error) {
+          error ? console.log("Error inserting user: ", error) : console.log("user inserted: ", userObj[username]);
+        })
+      }
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
     //set userInfo for reference in front end
     Permissions.isSuperAdmin();
     $rootScope.userInfo = userObj[username];
@@ -65,7 +65,6 @@ angular.module('interim.services', [])
     ref.child('UsersDB').child(key).child('profile').update(edits['profile'], function(error) {
       error ? console.log("Error updating user: ", error) : console.log("user updated");
     })
-
   }
 
 
@@ -178,7 +177,7 @@ angular.module('interim.services', [])
       var user = $rootScope.userInfo;
       var userKey = user.name+"-"+user.auth.provider
       $rootScope.superAdmin = superAdminObj[userKey] ? true : false;
-      console.log($rootScope.superAdmin, " - super admin")
+      console.log("You're a SuperAdmin!")
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
