@@ -270,13 +270,16 @@
 }
 
 #chatTime {
-  text-align: right;
   color: #888888;
+  margin-left: 1%;
+  opacity: 0.6;
 }
 
-.chatTags {
-  color:#888888;
+.userNameChat {
+  color:#2869b2;
+  opacity: 0.4;
 }
+
 /*css for displaying messages ends here*/
 
 /*chat input starts here*/

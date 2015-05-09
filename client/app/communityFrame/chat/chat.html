@@ -10,12 +10,12 @@
               <div class="panel-body">
                 <!-- displays users picture -->
                 <div class="col-md-2 col-sm-2 hidden-xs">
-                <img src={{message.userProfileImage}} ng-click="personalInfo(message)" class="img-rounded" id="chatImage"/>
+                <img src={{message.userProfileImage}} title = {{message.name}} ng-click="personalInfo(message)" class="img-rounded" id="chatImage"/>
                 </div>
                 <!-- displays users name -->
-                <span><i class="fa fa-user"></i> {{message.name}}
+                <span class="userNameChat"><i class="fa fa-user"></i> {{message.name}}
                   <!-- displays time when message was send -->
-                  <time id="chatTime"><i class="fa fa-clock-o"></i> {{ message.timestamp| date:'short' }}
+                  <time id="chatTime"><i class="fa fa-clock-o"></i> {{ message.timestamp| date:'short'}}
                   </time>
                 </span>
                <!-- displays usesrs message -->

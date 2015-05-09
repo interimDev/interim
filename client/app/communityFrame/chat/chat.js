@@ -17,19 +17,21 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
 
   //send messages to specific room
   $scope.sendMessage = function() {
-    var msg = ref.child($scope.roomId).push();
-      var message = {
-        userId: $rootScope.userInfo.id,
-        userProfileImage: $rootScope.userInfo.avi_url,
-        name: $rootScope.userInfo.name,
-        timestamp: Firebase.ServerValue.TIMESTAMP,
-        message: $scope.msg,
-        type: 'default'
-      }
-    //reset input box
-    $scope.msg = "";
-
-    msg.set(message);
+    //won't send empty message
+    if ($scope.msg) {
+      var msg = ref.child($scope.roomId).push();
+        var message = {
+          userId: $rootScope.user.id,
+          userProfileImage: $rootScope.userInfo.avatar_url,
+          name: $rootScope.user.displayName,
+          timestamp: Firebase.ServerValue.TIMESTAMP,
+          message: $scope.msg,
+          type: 'default'
+        }
+      //reset input box
+      $scope.msg = "";
+      msg.set(message);
+    }
   }
 
   var userRef = new Firebase("https://interim.firebaseio.com/UsersDB");
