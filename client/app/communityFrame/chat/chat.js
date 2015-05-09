@@ -56,7 +56,7 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
     var name = user.name;   
     $scope.userName = name;
     $modal.open({
-      templateUrl: 'app/userProfile/userProfile2.html',
+      templateUrl: 'app/userProfile/userProfile.html',
       backdrop: true,
       windowClass: 'modal',
       controller: 'UserProfileController',

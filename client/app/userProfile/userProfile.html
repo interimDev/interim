@@ -1,24 +1,34 @@
-<div id="userProfile">
-  <div class="container-fluid well span6" id="user">
-    <div class="row-fluid">
-      <div class="span2 img-rounded" id="userProfileImage" >
-      <!-- user profile image -->
-      <img src="/app/assets/orgChatPage.png" class="img-rounded" id="profileImage">
-      </div>
-        
-      <div class="span8">
-        <!-- user profile name -->
-        <h3 id="userProfileName">MAKESQUARE</h3>
-        <!-- user profile bio -->
-        <h6 id="userBio">MakerSquare is a 3 month full-time career accelerator for software engineering. By teaching computer science fundamentals and modern web languages like JavaScript, we prepare students to join top flight engineering teams. 
+<div class="userProf" ng-controller="ChatController" ng-init="checkUser()" ng-if="!editorEnabled && !makeProfile">
+  <h1>{{clickedUser.name}}</h1>
+  <img id='modalProfilePic' ng-src='{{clickedUser.avi_url}}'/>
+  <br> 
+  Location: <p>{{clickedUser.profile.location}}</p>
+  <br>
+  Biography: <p>{{clickedUser.profile.bio}}</p>
+  <br> 
+  Links: 
+  <a target='_new' href="{{clickedUser.profile.twitter}}">Twitter</a> 
+  <a target='_new' href='{{clickedUser.profile.linkedIn}}'>LinkedIn</a>
+  <br>
+  <button type="button" class="btn btn-default" ng-if="editAllowed" ng-click="editProfile()">Edit Profile</button>
+</div>
 
+<div class="userProf" ng-controller="ChatController"  ng-if="editorEnabled || makeProfile">
+  <br>
+  <h1>{{clickedUser.name}}</h1>
+  <img id='modalProfilePic' ng-src='{{clickedUser.avi_url}}'/>
+  <br>
+  Location: 
+  <input ng-model="edit.location" autocomplete="on" placeholder='{{clickedUser.profile.location}}'>
+  <br>
+  Biography: 
+  <input ng-model="edit.bio" autocomplete="on" placeholder='{{clickedUser.profile.bio}}'>
+  <br> 
+  Links: 
+  <input ng-model="edit.twitter" autocomplete="on" placeholder='{{clickedUser.profile.twitter}}'>
+  <input ng-model="edit.linkedIn" autocomplete="on" placeholder='{{clickedUser.profile.linkedIn}}'>
 
-        By teaching computer science fundamentals and modern web languages like JavaScript, we prepare students to join top flight engineering teams. </h6>
-        <!-- user profile location -->
-        <h6>Location: San Francisco, CA</h6>
-        <!-- user profile website -->
-        <h6>website: www.makersquare.com</h6>
-      </div>     
-    </div>
-  </div>
+  <br>
+  <button type="button" class="btn btn-default" ng-if="editAllowed" ng-click="save(edit)">Save</button>
+  <button type="button" class="btn btn-default" ng-if="editAllowed" ng-click="cancel()">Cancel</button>
 </div>

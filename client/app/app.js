@@ -45,10 +45,6 @@ angular.module('interim', [
     url: '/communities',
     templateUrl: '/app/yourCommunityList/yourCommunityList.html'
   })
-  .state('userprofile', {
-    url: '/user',
-    templateUrl: '/app/userProfile/userProfile.html'
-  })
   .state('community', {
     url: '/community',
     views: {
@@ -64,7 +60,7 @@ angular.module('interim', [
     templateUrl: '/firechat/examples/anonymous/index.html'
   })
   .state('community-profile', {
-    url: '/community-profile',
+    url: '/community-profile/*path',
     templateUrl: '/app/communityProfile/communityProfile.html'
   })
   .state('profileEditor', {
@@ -80,3 +76,4 @@ angular.module('interim', [
     }
   })
 }]);
+
