@@ -10,7 +10,9 @@
   <a target='_new' href="{{clickedUser.profile.twitter}}">Twitter</a> 
   <a target='_new' href='{{clickedUser.profile.linkedIn}}'>LinkedIn</a>
   <br>
-  <button type="button" class="btn btn-default" ng-if="editAllowed" ng-click="editProfile()">Edit Profile</button>
+  <button type="button" class="btn btn-default" ng-if="editAllowed" ng-click="editProfile()">Edit Profile
+  <span class="glyphicon glyphicon-pencil"></span>
+  </button>
 </div>
 
 <div class="userProf" ng-controller="ChatController"  ng-if="editorEnabled || makeProfile">
