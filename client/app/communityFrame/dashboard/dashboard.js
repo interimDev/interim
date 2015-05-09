@@ -112,10 +112,3 @@ angular.module('interim.dashboard', ["firebase"])
   var userRef = new Firebase("https://interim.firebaseio.com/UsersDB");
   $scope.allUsers = $firebaseArray(userRef);
 });
-
-
-
-
-
-
-
