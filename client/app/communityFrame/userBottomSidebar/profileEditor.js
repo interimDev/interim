@@ -14,11 +14,11 @@ angular.module('interim.profileEditor', [])
 
   $scope.saveProfile = function() {
     //Setting the name of the logged in user
-    var name = users[authData.github.displayName + "-github"].name;
+    var name = authData.github.displayName + "-github";
     //Setting the users profile info object 
     var userObj = $scope.userProfile;
     //Updating firebase data with the new profile information
-    ref.child("Thomas Logan-github").child('profile').update(userObj, function(error) {
+    ref.child(name).child('profile').update(userObj, function(error) {
       console.log("User update: ", $scope.userProfile);
     });
   };
