@@ -1,57 +1,32 @@
 angular.module('interim.services', [])
 
-.factory('Github', function ($q) {
-  // Your code here
+.factory('Auth', function ($firebaseAuth, $rootScope, Permissions) {
+  var ref = new Firebase("https://interim.firebaseio.com/");
+  var authObj = $firebaseAuth(ref);
   
-  //This sends the OAth request to github through firebase's 
-  //native functionalities and turns the results into a promise
 
-  //TODO -------REFACTOR TO ANGULAR FIRE INSTEAD OF Q PROMISES
+  /* 
+  =================================
+            USER AUTH
+  =================================
+  */
+
+
+  //sends the OAth request to github through 
+  //and turns the results into a promise
   var githubAuth = function () {
-    var deferred = $q.defer();
-    var ref = new Firebase("https://interim.firebaseio.com/");
-    var githubAuth = ref.authWithOAuthPopup("github", function(error, authData) {
-      if (error) {
-        deferred.reject(error);
-      } else {
-        deferred.resolve(authData);
-      }
-    })
-    return deferred.promise;
-  }
-
-  //returns promise of authenticated user data to the controller
-  var firePromise = function(){
-    var githubPromisified = githubAuth();
-    return githubPromisified.then(function(auth) {
-      return auth;
-    }, function(reason) {
-      return reason;
+    return authObj.$authWithOAuthPopup("github").then(function(authData) {
+      console.log("Logged in as:", authData.uid);
+      return authData
+    }).catch(function(error) {
+      console.error("Authentication failed:", error);
     });
   }
 
-  return {
-    firePromise: firePromise
-  }
-})
-.factory('Utilities', function ($q, $firebaseAuth, $rootScope) {
-  var dataRef = new Firebase('https://interim.firebaseio.com/');
-  // Shorthand to access stored data
-  var communityRef = function(community) {
-    return dataRef.child('CommunityDB').child(community);
-  };
-  var groupRef = function(group) {
-    return dataRef.child('CommunityDB').child('group');
-  };
-  var usersRef = function(user){
-    return dataRef.child('UsersDB');
-  };
-
-
-  // Creating Profiles adding to the database.
+  // adding new users to the database.
   // To-do: Data will need be to be validated when storing to datebase.
   // user argument should be a completed object
-  var createUser = function(user){
+  var storeUser = function(user){
     //pulls data from the github user data to create a cleaner
     //filtered user object that we insert to the database
     filteredUser = {
@@ -64,46 +39,47 @@ angular.module('interim.services', [])
       'avi_url' : user.github.cachedUserProfile.avatar_url
       }
 
-
     //users are stored in the database by their name and auth provider
     // example - "Trace Thompson-github"
     var username = user.github.displayName+"-"+user.provider;
     var userObj = {};
     userObj[username] = filteredUser;
 
-    //dataRef.child('UsersDB').push(user);
-    dataRef.child('UsersDB').update(userObj , function(error) {
-      if(!error){
-        console.log("user inserted!")
-      }
-      else{
-        console.log(error);
-      }
+    ref.child('UsersDB').update(userObj , function(error) {
+      error ? console.log("Error inserting user: ", error) : console.log("user inserted: ", userObj[username]);
     })
-    return userObj[username];
+    Permissions.isSuperAdmin();
+    //set userInfo for reference in front end
+    $rootScope.userInfo = userObj[username];
   }
 
-  //creates a community authorized by their name and email
-  //note - does not add to the database
-  var createCommunity = function(community) {
+
+  /* 
+  =================================
+          COMMUNITY AUTH
+  =================================
+  */
+
+
+  //authorizes a community by their name and email
+  var communityAuth = function(community) {
     var ref = new Firebase("https://interim.firebaseio.com/");
-    $rootScope.authObj = $firebaseAuth(ref);
+    var authObj = $firebaseAuth(ref);
 
-
-    return $rootScope.authObj.$createUser({
+    return authObj.$createUser({
       email: community.email,
       password: community.password
     }).then(function(userData) {
-      console.log("User created with uid: " + userData.uid);
-      console.log(userData," - userData")
-      return addCommunity(userData, community);
+      console.log("Community created with uid: " + userData.uid);
+      return storeCommunity(userData, community);
     }).catch(function(error) {
-      console.log("Error creating user: ", error);
+      console.log("Error creating community: ", error);
     });
   }
 
-  var addCommunity = function(authObj, communityObj){
-    //communities are stored in the database by their uid
+  // adds community to the database
+  var storeCommunity = function(authObj, communityObj){
+    //communities are currently stored in the database by their uid
     var uid = authObj.uid;
     var temp = {};
     var filteredCommunity = {
@@ -111,50 +87,81 @@ angular.module('interim.services', [])
       founder: null,
       foundingDate: Firebase.ServerValue.TIMESTAMP,
       groups: {},
-      location: communityObj.location,
+      location: null,
       privacy: true,
       email: communityObj.email,
       password: communityObj.password,
-      avi_url: communityObj.avi_url,
-      bio: communityObj.bio
-   }
-
+      avi_url: null,
+      bio: null
+    }
     temp[uid] = filteredCommunity;
 
-    //dataRef.child('UsersDB').push(user);
-    dataRef.child('CommunityDB').update(temp , function(error) {
-      if(!error){
-        console.log("community inserted: ", temp)
-      }
-      else{
-        console.log(error);
-      }
+    ref.child('CommunityDB').update(temp , function(error) {
+      error ? console.log("Error inserting community: ", error) : console.log("community inserted: ", temp[uid]);
     })
-    $rootScope.currentCommunity = temp[uid];
+    $rootScope.communityInfo = temp[uid];
+    communitySignIn(temp[uid])
+  }
+
+  // logs in the communities 
+  // called directly after authorizaition
+  var communitySignIn = function(community){
+    authObj.$authWithPassword({
+      email: community.email,
+      password: community.password
+    }).then(function(authData) {
+      console.log("Logged in as:", authData.uid);
+      retrieveCommunity(authData.uid)
+    }).catch(function(error) {
+      console.error("Authentication failed:", error);
+    });
+  }
+  
+  var retrieveCommunity = function(communityId) {
+    ref.child('CommunityDB').on("value", function(snapshot) {
+      var communities = snapshot.val();
+      communityInfo = Communities[communityId]
+      $rootScope.communityInfo = communityInfo;
+      console.log($rootScope.communityInfo, " - super admin")
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
   }
 
   return {
-    createUser: createUser,
-    createCommunity: createCommunity
+    communitySignIn: communitySignIn,
+    githubAuth: githubAuth,
+    storeUser: storeUser,
+    communityAuth: communityAuth
   }
 })
-.factory('Permissions', function ($q, $rootScope) {
-  var dataRef = new Firebase('https://interim.firebaseio.com/');
+
+  /* 
+  =================================
+            END OF AUTH 
+  =================================
+  */
+
+
+.factory('Permissions', function ($rootScope) {
+  var ref = new Firebase('https://interim.firebaseio.com/');
+
+  /* 
+  =================================
+          ROUTING PERMISSIONS
+  =================================
+  */
 
   //determines if user is a super admin by
   //querying the db and checking if the username exists
   //returns true or false value
-  var isSuperAdmin = function(user){
-    dataRef.child('superAdmin').on("value", function(snapshot) {
+  var isSuperAdmin = function(){
+    ref.child('superAdmin').on("value", function(snapshot) {
       var superAdminObj = snapshot.val();
-      console.log(superAdminObj, user.name+"-"+user.auth.provider)
-      if(superAdminObj[user.name+"-"+user.auth.provider] === true){
-        console.log("You are super!")
-        $rootScope.superAdmin = true;
-      }
-      else {
-        $rootScope.superAdmin = false;
-      }
+      var user = $rootScope.userInfo;
+      var userKey = user.name+"-"+user.auth.provider
+      $rootScope.superAdmin = superAdminObj[userKey] ? true : false;
+      console.log($rootScope.superAdmin, " - super admin")
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
