@@ -2,12 +2,14 @@ angular.module('interim.services', [])
 
 .factory('Auth', function ($firebaseAuth, $rootScope, Permissions, $state) {
   var ref = new Firebase("https://interim.firebaseio.com/");
+  var usersRef = new Firebase("https://interim.firebaseio.com/UsersDB/");
   var authObj = $firebaseAuth(ref);
+  var usersObj = $firebaseAuth(usersRef) 
   
 
   /* 
   =================================
-            USER AUTH
+              USER 
   =================================
   */
 
@@ -43,30 +45,33 @@ angular.module('interim.services', [])
     var userObj = {};
     userObj[username] = filteredUser;
       
-    ref.child('UsersDB').on("value", function(snapshot) {
-      var users = snapshot.val();
-      //check to see if user exists already
-      //if not then add them to the db
-      if(!users[username]) {
-        ref.child('UsersDB').update(userObj , function(error) {
-          error ? console.log("Error inserting user: ", error) : console.log("user inserted: ", userObj[username]);
-        })
-      }
-      else { 
-        console.log("user is already in the database");
-      }
-    }, function (errorObject) {
-      console.log("The read failed: " + errorObject.code);
-    });
+    //check to see if user exists already
+    //if not then add them to the db
+    if(!usersObj[username]) {
+      ref.child('UsersDB').update(userObj , function(error) {
+        error ? console.log("Error inserting user: ", error) : console.log("user inserted: ", userObj[username]);
+      })
+    }
+    else { 
+      console.log("user is already in the database");
+    }
     //set userInfo for reference in front end
     Permissions.isSuperAdmin();
     $rootScope.userInfo = userObj[username];
   }
 
+  var updateUser = function(key, edits) {
+    console.log(key," edits in services: ", edits)
+    ref.child('UsersDB').child(key).child('profile').update(edits['profile'], function(error) {
+      error ? console.log("Error updating user: ", error) : console.log("user updated");
+    })
+
+  }
+
 
   /* 
   =================================
-          COMMUNITY AUTH
+            COMMUNITY
   =================================
   */
 
@@ -143,7 +148,8 @@ angular.module('interim.services', [])
     communitySignIn: communitySignIn,
     githubAuth: githubAuth,
     storeUser: storeUser,
-    communityAuth: communityAuth
+    communityAuth: communityAuth,
+    updateUser: updateUser
   }
 })
 
