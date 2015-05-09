@@ -1,6 +1,6 @@
 angular.module('interim.chat', ["firebase", "luegg.directives"])
 
-.controller('ChatController', function ($scope, $firebaseArray, $rootScope) {
+.controller('ChatController', function ($scope, $firebaseArray, $rootScope, $firebaseObject) {
 
   var ref = new Firebase("https://interim.firebaseio.com/room-messages");
   //get all messages for specific room
@@ -32,11 +32,25 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
     msg.set(message);
   }
 
+  var userRef = new Firebase("https://interim.firebaseio.com/UsersDB");
+
+  //This variable is an object containing the users in our database
+  var users = $firebaseObject(userRef);
+
   //this function creates a popup modal with the users information
   $scope.personalInfo = function(user) {
+
+    //Name of message author
+    var name = user.name;
+    var currentUser = users[name + "-github"];
+    console.log(currentUser);
+
     bootbox.dialog({
       //message provides us with most of the major details in the user profile.
-      message:  "<img id='modalProfilePic' src='" + user.userProfileImage + "'/>"+ "<br>",
+      message:  "<img id='modalProfilePic' src='" + currentUser.avi_url + "'/>"+ "<br>" + "<br>" + 
+                "Location: " + currentUser.profile.location + "<br>" +
+                "Biography: " + currentUser.profile.bio + "<br>" + 
+                "Links: <a target='_new' href='" + currentUser.profile.twitter + "'>Twitter</a> " + "<a target='_new' href='" + currentUser.profile.linkedIn + "'>LinkedIn</a>" ,
       title: user.name + "'s Profile",
       closeButton: true,
       onEscape: true
