@@ -5,7 +5,7 @@
     <div id="rooms">
     <h4 id="contentNames">Rooms
       <!-- button to add rooms -->
-      <div class="glyphicon glyphicon-plus" ng-click="addRoom()" title="Add Room" ></div>
+      <div class="glyphicon glyphicon-plus" ng-click="addRoom()" title="Add Room" data-target="#addRoomAlert" ></div>
     </h4>
 
       <!-- Rooms are added and removed here -->
@@ -29,7 +29,7 @@
               </div>
               <div class="modal-body modalStyle">
                 <h6 id="insideContent" ng-repeat="user in allUsers| orderBy: name" ng-click="addUser(user.id);"> 
-                  <span class =" userLinkColor" ng-click= "removeUser(user.id);" id={{user.id}}> <img src={{user.avi_url}} class="img-rounded modalImage"/>{{user.name}}</span>
+                  <span class =" userLinkColor" ng-click= "removeUser(user.id, user.name);" id={{user.id}}> <img src={{user.avi_url}} class="img-rounded modalImage"/>{{user.name}}</span>
                 </h6>
               </div>
               <div class="modal-footer privateRoomModal">

@@ -31,6 +31,10 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
       //reset input box
       $scope.msg = "";
       msg.set(message);
+    } else {
+      console.log("FAILED");
+      //success notification
+      $.notify("Please Enter Message", "error");
     }
   }
 
