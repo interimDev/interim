@@ -1,4 +1,4 @@
-<div id="yourCommunityList">
+<div id="yourCommunityList" ng-controller="YourCommunityListController">
   <div id="nav">
     <nav class="navbar navbar-default">
       <ul class="nav navbar-nav" id="navContent">
@@ -13,10 +13,33 @@
 
   <!-- Communities Title-->
   <div id="YourCommunitiesName">
-    Your Communities
-  </div>
+    <div>{{userInfo.name}}'s Communities
+    </div>
+
+    <!-- Placeholder Angular
+    <span class="currentCommunities" ng-repeat="community in communities">
+     <span class="thumbnail" id="communityThumbnail">
+        <img src="" ng-click="communityProfile()" id="communityImage"/>
+      </span>
+    </span>
+-->
+
   <!-- Icon for company -->
-  <div class="thumbnail" id="communityThumbnail">
-    <img src="/app/assets/mSquare.png" id="msIcon">
-  </div>
+    <span class="thumbnail" id="communityThumbnail">
+      <img src="/app/assets/mSquare.png" id="msIcon">
+    </span>
+    <span class="thumbnail" id="communityThumbnail">
+      <img src="/app/assets/mSquare.png" id="msIcon">
+    </span>
+    <span class="thumbnail" id="communityThumbnail">
+      <img src="/app/assets/mSquare.png" id="msIcon">
+    </span>
+  </span>
+
+
 </div>
+</div>
+
+<!-- -->
+<div id="CommunitiesSearch">
+ <input type="text" ng-model="msg" ng-keyup="$event.keyCode == 13 && sendSeach()" class="form-control"  placeholder="Enter group or community search here..."/>
