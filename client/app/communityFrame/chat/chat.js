@@ -73,4 +73,33 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
       onEscape: true
     });
   }
+
+
+
+  // $scope.communityModal = function() {     
+  //   $modal.open({
+  //     templateUrl: 'app/landingPage/communitySignUp.html',
+  //     backdrop: true,
+  //     windowClass: 'modal',
+  //     controller: 'LandingPageController',
+  //     resolve: {
+  //       community: function () {
+  //         return $scope.community;
+  //       }
+  //     }
+  //   });
+  // }
+
+  // $scope.update = function(community) {
+  //   $scope.master = angular.copy(community);
+  //   console.log($scope.master);
+  //   Auth.communityAuth($scope.master);
+  // };
+
+  // $scope.reset = function() {
+  //   $scope.community = {};
+  // };
+
+
+  // $scope.reset();
 });
