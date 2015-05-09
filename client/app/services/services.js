@@ -3,16 +3,16 @@ angular.module('interim.services', [])
 .factory('Auth', function ($firebaseAuth, $rootScope, Permissions, $state) {
   var ref = new Firebase("https://interim.firebaseio.com/");
   var authObj = $firebaseAuth(ref);
-  
 
-  /* 
+
+  /*
   =================================
             USER AUTH
   =================================
   */
 
 
-  //sends the OAth request to github through 
+  //sends the OAth request to github through
   //and turns the results into a promise
   var githubAuth = function () {
     return authObj.$authWithOAuthPopup("github").then(function(authData) {
@@ -21,9 +21,9 @@ angular.module('interim.services', [])
     }).catch(function(error) {
       console.error("Authentication failed:", error);
     });
-  }
+  };
 
-  // adding new users to the database.
+  // Creating Profiles adding to the database.
   // To-do: Data will need be to be validated when storing to datebase.
   // user argument should be a completed object
   var storeUser = function(user){
@@ -42,7 +42,7 @@ angular.module('interim.services', [])
       }
     var userObj = {};
     userObj[username] = filteredUser;
-      
+
     ref.child('UsersDB').on("value", function(snapshot) {
       var users = snapshot.val();
       //check to see if user exists already
@@ -52,7 +52,7 @@ angular.module('interim.services', [])
           error ? console.log("Error inserting user: ", error) : console.log("user inserted: ", userObj[username]);
         })
       }
-      else { 
+      else {
         console.log("user is already in the database");
       }
     }, function (errorObject) {
@@ -64,7 +64,7 @@ angular.module('interim.services', [])
   }
 
 
-  /* 
+  /*
   =================================
           COMMUNITY AUTH
   =================================
@@ -113,7 +113,7 @@ angular.module('interim.services', [])
     communitySignIn(temp[uid])
   }
 
-  // logs in the communities 
+  // logs in the communities
   // called directly after authorizaition
   var communitySignIn = function(community){
     authObj.$authWithPassword({
@@ -126,7 +126,7 @@ angular.module('interim.services', [])
       console.error("Authentication failed:", error);
     });
   }
-  
+
   var retrieveCommunity = function(communityId) {
     ref.child('CommunityDB').on("value", function(snapshot) {
       var communities = snapshot.val();
@@ -136,20 +136,19 @@ angular.module('interim.services', [])
       $state.go('community-profile');
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
-    });
-  }
 
   return {
     communitySignIn: communitySignIn,
     githubAuth: githubAuth,
     storeUser: storeUser,
     communityAuth: communityAuth
+
   }
 })
 
-  /* 
+  /*
   =================================
-            END OF AUTH 
+            END OF AUTH
   =================================
   */
 
@@ -157,7 +156,7 @@ angular.module('interim.services', [])
 .factory('Permissions', function ($rootScope) {
   var ref = new Firebase('https://interim.firebaseio.com/');
 
-  /* 
+  /*
   =================================
           ROUTING PERMISSIONS
   =================================
