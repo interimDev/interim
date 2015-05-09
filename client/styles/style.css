@@ -319,6 +319,16 @@
   text-align: center;
 }
 
+/*Profile Modal Styles*/
 .userProf {
   text-align: center;
 }
+
+#modalProfilePic {
+  border-radius: 2px;
+  box-shadow: 1.5px 1.5px 1.5px grey;
+  height: 45%;
+  width: 45%;
+}
+
+
