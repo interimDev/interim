@@ -24,6 +24,7 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
 
   //send messages to specific room
   $scope.sendMessage = function() {
+
     //check if message is empty
     if ($scope.msg) {
       // make sure message is under 120 characters
