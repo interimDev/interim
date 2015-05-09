@@ -1,0 +1,12 @@
+<div class="userProf" ng-controller="ChatController">
+  <h1>{{clickedUser.name}}</h1>
+  <img id='modalProfilePic' ng-src='{{clickedUser.avi_url}}'/>
+  <br> 
+  Location: <p>{{clickedUser.location}}</p>
+  <br>
+  Biography: <p>{{clickedUser.profile.bio}}</p>
+  <br> 
+  Links: 
+  <a target='_new' href="{{clickedUser.profile.twitter}}">Twitter</a> 
+  <a target='_new' href='{{clickedUser.profile.linkedIn}}'>LinkedIn</a>
+</div>
