@@ -37,8 +37,10 @@
   margin-right: auto;
   margin-left: auto;
   box-shadow: 1px 1px 5px #888888;
+  display: inline-block;
 }
 /*yourCommunityList.html css ends here*/
+
 
 /*userProfile.html css starts here*/
 #user {
