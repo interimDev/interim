@@ -17,40 +17,42 @@ angular.module('interim.dashboard', ["firebase"])
     bootbox.dialog({
       // input box for room name and set room to public
       message: "Enter New Room Name: <input type='text' id='room_name'></input>" + 
-      "<div><label><input type='checkbox' id = 'checkbox'> Private Room</label></div>",
+      "<div><label><input type='checkbox' id = 'checkbox' require> Private Room</label></div>",
       title: "Creating New Room",
       buttons: {
         main: {
           label: "Create",
-          className: "btn-primary",
+          className: "btn-primary createRoomButton",
           callback: function() {
-            roomName = $('#room_name').val();
-            //if checked then set room to private
-            if($("#checkbox").is(':checked') === true) {
-              roomType = 'private';
+            if ($("#room_name").val()) {
+              roomName = $('#room_name').val();
+              //if checked then set room to private
+              if($("#checkbox").is(':checked') === true) {
+                roomType = 'private';
+              }
+              //creates entry
+              var newRoom = roomRef.push();
+              var currentUsers = {};
+              //if room is private add id of user
+              if (roomType === 'private') {
+                currentUsers[$rootScope.userInfo.id] = $rootScope.userInfo.id;
+              }
+              //create new room
+              var room = {
+                id: newRoom.key(),
+                createdByUserId: $rootScope.userInfo.id,
+                name: roomName,
+                type: roomType,
+                usersList: currentUsers,
+                createdAt: Firebase.ServerValue.TIMESTAMP
+              };
+              //success notification
+              $.notify("Room Created", "success");
+              //sets data
+              newRoom.set(room, function(error) {
+                  // room successfully created
+              });
             }
-            //creates entry
-            var newRoom = roomRef.push();
-            var currentUsers = {};
-            //if room is private add id of user
-            if (roomType === 'private') {
-              currentUsers[$rootScope.userInfo.id] = $rootScope.userInfo.id;
-            }
-            //create new room
-            var room = {
-              id: newRoom.key(),
-              createdByUserId: $rootScope.userInfo.id,
-              name: roomName,
-              type: roomType,
-              usersList: currentUsers,
-              createdAt: Firebase.ServerValue.TIMESTAMP
-            };
-            //success notification
-            $.notify("Room Created", "success");
-            //sets data
-            newRoom.set(room, function(error) {
-                // room successfully created
-            });
           }
         }
       }
