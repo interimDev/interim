@@ -52,6 +52,9 @@ angular.module('interim.dashboard', ["firebase"])
               newRoom.set(room, function(error) {
                   // room successfully created
               });
+            } else {
+              //notify that room have not been created
+              $.notify("Room Name is Invalid", "error");
             }
           }
         }
