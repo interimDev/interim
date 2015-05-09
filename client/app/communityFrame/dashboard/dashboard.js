@@ -91,7 +91,7 @@ angular.module('interim.dashboard', ["firebase"])
 
   //get current room name
   $scope.roomName = function(obj) {
-    console.log("Trying to Get Room Messages", $rootScope.messages(obj.room.id));
+    console.log("Trying to Get Room Messages", obj.room.id);
     //set current room (since no user just storing it globally)
     $rootScope.messages(obj.room.id);
   }
