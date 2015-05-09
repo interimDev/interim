@@ -8,35 +8,22 @@ angular.module('interim.yourCommunityList', ["firebase"])
 
   // For each of these calls, userId needs to be in the form
   // userName-authSource   // Yoda-github
-  $scope.usersCommunities = function() {
+  $scope.usersCommunities = function(){
 
-    var userId = $scope.userInfo.name + "-" + $scope.userInfo.auth.provider;
+    var userId = '' + $scope.userInfo.name + "-" + $scope.userInfo.auth.provider;
 
-    var communities = $firebaseArray(ref.child('UsersDB').child(userId).child('usersCommunities'));
+    $scope.communities = $firebaseArray(ref.child('UsersDB').child(userId).child('usersCommunities'));
     console.log("Retrieved ", $scope.userInfo.name, "'s communities: ", communities);
-    $scope.communities = communities;
 
-  }
+  };
 
-  $scope.usersGroups = function(userId) {
+  $scope.usersGroups = function(){
     //Check all Group children for all communities
-    var groups = $firebaseArray(ref.child('UsersDB').child(userId).child('usersGroups'));
-    $scope.groups = groups;
-
-  }
-
-
-
-  $scope.cacheCommunities = function(userId) {
-    //AngularFire query to DB
-    //Store in $rootscope array
-
+    $scope.groups = $firebaseArray(ref.child('UsersDB').child(userId).child('usersGroups'));
 
   };
-  $scope.cacheGroups = function(userId) {
-    //AngularFire query to DB
-    //Store in $rootscope array
-  };
+
+
   $scope.displayUsersCommunities= function(){
     //Use $rootscope array of communties
 
