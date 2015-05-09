@@ -1,6 +1,6 @@
 angular.module('interim.landingPage', [])
 
-.controller('LandingPageController', function ($scope, Github, Utilities, Permissions, $state, $rootScope, $modal) {
+.controller('LandingPageController', function ($scope, Auth, Utilities, Permissions, $state, $rootScope, $modal) {
 
   $scope.githubAuth = function(){
     Github.firePromise()
