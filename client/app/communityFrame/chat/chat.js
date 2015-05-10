@@ -5,21 +5,14 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
   var ref = new Firebase("https://interim.firebaseio.com/room-messages");
   //get all messages for specific room
   $rootScope.messages = function(roomId) {
-    
     //get data for specific room
     var messages = $firebaseArray(ref.child(roomId));
+    
     $scope.messages = messages;
     $scope.roomId = roomId;
 
     //show chat input when room is selected
     $("#chatRow").css('visibility', 'visible');
-  }
-
-  //message character count
-  $scope.messageCount = function() {
-    if($scope.msg) {
-      console.log($scope.msg.length);
-    }
   }
 
   //send messages to specific room
@@ -49,7 +42,6 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
       }
     } 
   }
-
 
   //this function creates a popup modal with the users information
   $scope.userModal = function(user) {

@@ -1,4 +1,4 @@
-<div class="userProf" ng-controller="ChatController" ng-init="checkUser()" ng-if="!editorEnabled && !makeProfile">
+<div class="userProf" ng-init="checkUser()" ng-if="!editorEnabled && !makeProfile">
   <h1>{{clickedUser.name}}</h1>
   <img id='modalProfilePic' ng-src='{{clickedUser.avi_url}}'/>
   <br> 
@@ -13,7 +13,7 @@
   <button type="button" class="btn btn-default" ng-if="editAllowed" ng-click="editProfile()">Edit Profile</button>
 </div>
 
-<div class="userProf" ng-controller="ChatController"  ng-if="editorEnabled || makeProfile">
+<div class="userProf" ng-if="editorEnabled || makeProfile">
   <br>
   <h1>{{clickedUser.name}}</h1>
   <img id='modalProfilePic' ng-src='{{clickedUser.avi_url}}'/>
