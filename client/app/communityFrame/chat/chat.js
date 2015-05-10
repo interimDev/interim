@@ -43,7 +43,6 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
     } 
   }
 
-
   //this function creates a popup modal with the users information
   $scope.userModal = function(user) {
     var name = user.name;   
