@@ -13,7 +13,7 @@
 
   <!-- Communities Title-->
   <div id="YourCommunitiesName">
-    <div>{{userInfo.name}}'s Communities
+    <div><h1>{{userInfo.name}}'s Communities</h1>
     </div>
 
      <!-- Placeholder Angular -->
@@ -36,10 +36,7 @@
     </span>
   </span>
 
-
+  <div id="CommunitiesSearch">
+   <input type="text" ng-model="requested" ng-keyup="$event.keyCode == 13 && sendSearch(requested)" class="form-control"  placeholder="Enter group or community search here..." required/>
+  </div>
 </div>
-</div>
-
-<!-- -->
-<div id="CommunitiesSearch">
- <input type="text" ng-model="msg" ng-keyup="$event.keyCode == 13 && sendSeach()" class="form-control"  placeholder="Enter group or community search here..."/>
