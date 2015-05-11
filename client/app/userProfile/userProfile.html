@@ -5,12 +5,16 @@
   Location: <p>{{clickedUser.profile.location}}</p>
   <br>
   Biography: <p>{{clickedUser.profile.bio}}</p>
-  <br> 
-  Links: 
-  <a target='_new' href="{{clickedUser.profile.twitter}}">Twitter</a> 
-  <a target='_new' href='{{clickedUser.profile.linkedIn}}'>LinkedIn</a>
   <br>
-  <button type="button" class="btn btn-default" ng-if="editAllowed" ng-click="editProfile()">Edit Profile</button>
+  <!-- This adds buttons that link to the individual's other social profiles -->
+  <a target='_new' href="{{clickedUser.profile.twitter}}">
+    <i class="fa fa-twitter"></i>
+  </a>
+  <a target='_new' href='{{clickedUser.profile.linkedIn}}'>
+    <i class="fa fa-linkedin"></i> 
+  </a>
+  <br>
+  <button type="button" class="btn btn-default" ng-if="editAllowed" ng-click="editProfile()" id="profileEditor">Edit Profile</button>
 </div>
 
 <div class="userProf" ng-if="editorEnabled || makeProfile">

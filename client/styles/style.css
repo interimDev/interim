@@ -331,7 +331,7 @@
 }
 
 /*Profile Modal Styles*/
-/*.userProf {
+.userProf {
   text-align: center;
 }
 
@@ -341,5 +341,10 @@
   height: 45%;
   width: 45%;
 }
-*/
+
+#profileEditor {
+  margin-right: 100%;
+  background-color: white;
+}
+
 
