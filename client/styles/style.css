@@ -53,6 +53,7 @@
   margin-right: auto;
   margin-left: auto;
   box-shadow: 1px 1px 5px #888888;
+  display: inline-block;
 }
 /*yourCommunityList.html css ends here*/
 
@@ -303,7 +304,7 @@
 /*css for displaying messages ends here*/
 
 /*chat input starts here*/
-#chatRow { 
+#chatRow {
   position: absolute;
   width: 60%;
   bottom: 1%;
