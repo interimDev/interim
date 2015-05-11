@@ -1,41 +1,28 @@
 module.exports = function(grunt) {
-
-  // Testing plugins
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-mocha-test');
-
-  // Utility plugins
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-nodemon');
-  grunt.loadNpmTasks('grunt-notify');
-
-  // Grunt setup
   grunt.initConfig({
     jshint: {
-      files: ['public/client/**/*.js', 'server/**/*']
+      files: ['Gruntfile.js', 'client/app/**/*.js', 'client/database/**/*.js', 'spec/**/*.js']
     },
-
-    mochaTest: {
-      test: {
-        src: ['test/**/*.js']
+    concat: {
+      dist: {
+        src: ['client/app/**/*.js', 'client/database/**/*.js'],
+        dest: 'client/dist/<%= pkg.name %>.js'
       }
     },
-
-    nodemon: {
-      dev: {
-        script: 'server.js'
-      }
-    },
-
-    //'grunt watch' runs the watch function
-    watch: {
-      jshint: {
-        files: ['public/client/**/*.js', 'server/**/*', 'test/**/*.js'],
-        tasks: ['jshint', 'mochaTest']
+    uglify: {
+      dist: {
+        files : {
+          'dist/<%= pkg.name %>.min.js' : ['client/dist']
+        }
       }
     }
   });
 
-  grunt.registerTask('test', ['jshint', 'mochaTest']);
-  grunt.registerTask('serve', ['jshint', 'mochaTest', 'nodemon']);
-};
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+
+  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+
+}
