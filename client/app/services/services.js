@@ -99,6 +99,7 @@ angular.module('interim.services', [])
     });
   };
 
+
   // adds community to the database
   var storeCommunity = function(authObj, communityObj){
     //communities are currently stored in the database by their uid
@@ -116,6 +117,7 @@ angular.module('interim.services', [])
       email: communityObj.email,
       password: communityObj.password,
       avi_url: null,
+      valid: false,
       bio: null
     };
     temp[uid] = filteredCommunity;
@@ -128,7 +130,8 @@ angular.module('interim.services', [])
       }
     });
     $rootScope.communityInfo = temp[uid];
-    communitySignIn(temp[uid]);
+    //TODO - IF community.valid = true 
+      //communitySignIn(temp[uid])
   };
 
   // logs in the communities 

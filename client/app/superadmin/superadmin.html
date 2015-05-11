@@ -1,5 +1,24 @@
-<div class="superadminYeah">
+<div class="SuperAdmin" ng-controller="SuperAdminController">
   <h1> SUPER ADMIN </h1>
-<iframe height="700px" width="100%" src="https://www.youtube.com/embed/i_kF4zLNKio?start=5&autoplay=1" frameborder="0" allowfullscreen autoplay>
-</iframe>
+  <div class="requestedCommunity" ng-repeat="community in communities" ng-hide="community.valid">
+    <article class="row">
+      <div class="col-md-12 col-sm-12">
+        <div class="panel panel-default arrow left">
+          <div class="panel-body">
+              <div class="col-md-2 col-sm-2 hidden-xs">
+              <h4>{{community.name}}</h4>
+              </div>
+              <span>
+                {{community.email}}
+              </span>
+              <time>
+                {{community.foundingDate| date:'short'}}
+              </time>
+            </div> 
+            <button class="acceptCommunity" class="btn btn-default" ng-click="acceptCommunity(community)">Accept</button>
+            <button class="denyCommunity" class="btn btn-default" ng-click="denyCommunity(community)">Deny</button>
+        </div>
+      </div>
+    </article>
+  </div>
 </div>
