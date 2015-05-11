@@ -96,8 +96,9 @@ angular.module('interim.services', [])
     //communities are currently stored in the database by their uid
     var uid = authObj.uid;
     var temp = {};
+    var lowerName = communityObj.name.toLowerCase();
     var filteredCommunity = {
-      name: communityObj.name,
+      name: lowerName,
       founder: null,
       foundingDate: Firebase.ServerValue.TIMESTAMP,
       groups: {},

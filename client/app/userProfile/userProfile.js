@@ -1,7 +1,6 @@
 angular.module('interim.userProfile', [])
 
 .controller('UserProfileController', function ($scope, $modal, user, $firebaseObject, $rootScope, Auth) {
-  // Your code here
   ref = new Firebase("https://interim.firebaseio.com/UsersDB");
   var users = $firebaseObject(ref);
   var userKey = user+'-github';
