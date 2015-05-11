@@ -311,6 +311,17 @@
 .communityProfBasicInfo {
   margin-top: 1%;
 }
+
+.profileBucket {
+  width: 100%;
+  height: 200px;
+}
+
+#groupList {
+  height: 100px;
+  overflow-y: auto;
+}
+
 /*community profile end*/
 
 .superadminYeah{
