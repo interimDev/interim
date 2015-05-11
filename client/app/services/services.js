@@ -106,6 +106,7 @@ angular.module('interim.services', [])
     var temp = {};
     var lowerName = communityObj.name.toLowerCase();
     var filteredCommunity = {
+      id: uid,
       name: lowerName,
       founder: null,
       foundingDate: Firebase.ServerValue.TIMESTAMP,
