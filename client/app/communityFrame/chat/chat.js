@@ -1,7 +1,8 @@
 angular.module('interim.chat', ["firebase", "luegg.directives"])
 
 .controller('ChatController', function ($scope, $firebaseArray, $rootScope, $firebaseObject, $modal) {
-  $scope.userInfo = $rootScope.userInfo;
+  $scope.userInfo = $rootScope.userInfo ? $rootScope.userInfo : $rootScope.communityInfo;
+  var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
   var ref = new Firebase("https://interim.firebaseio.com/room-messages");
   //get all messages for specific room
   $rootScope.messages = function(roomId) {
@@ -13,7 +14,7 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
 
     //show chat input when room is selected
     $("#chatRow").css('visibility', 'visible');
-  };
+  }
 
   //send messages to specific room
   $scope.sendMessage = function() {
@@ -24,13 +25,13 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
       if ($scope.msg.length < 121) {
         var msg = ref.child($scope.roomId).push();
         var message = {
-          userId: $rootScope.userInfo.id,
-          userProfileImage: $rootScope.userInfo.avi_url,
-          name: $rootScope.userInfo.name,
+          userId: userCurrentID,
+          userProfileImage: $rootScope.userInfo ? $rootScope.userInfo.avi_url : null,
+          name: $rootScope.userInfo ? $rootScope.userInfo.name : $rootScope.communityInfo.name,
           timestamp: Firebase.ServerValue.TIMESTAMP,
           message: $scope.msg,
           type: 'default'
-        };
+        }
         //reset input box
         $scope.msg = "";
         msg.set(message);
@@ -41,7 +42,7 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
           "  characters", "error");
       }
     } 
-  };
+  }
 
   //this function creates a popup modal with the users information
   $scope.userModal = function(user) {
@@ -58,5 +59,5 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
         }
       }
     });
-  };
+  }
 });
