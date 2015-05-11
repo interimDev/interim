@@ -16,6 +16,10 @@ module.exports = function(grunt) {
           'client/dist/<%= pkg.name %>.min.js' : ['<%= concat.dist.dest %>']
         }
       }
+    },
+    watch: {
+      files: ['<%= jshint.files %>'],
+      tasks: ['jshint', 'concat', 'uglify']
     }
   });
 
