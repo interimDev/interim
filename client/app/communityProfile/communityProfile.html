@@ -22,12 +22,20 @@
         <h2>Members</h2>
         <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
         <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+
       </div>
-      <div class="col-md-4">
-        <h2>Groups</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-default" href="#" role="button" ng-click="test()">View details &raquo;</a></p>
+      <!-- groups here -->
+      <div class="col-md-4 profileBucket">
+        <h2>Groups
+          <!-- create groups by clicking on plus icon -->
+          <div class="glyphicon glyphicon-plus" ng-click="addGroup()" title="Add Group"></div>
+        </h2>
+        <div class="groupList">
+        <!-- show public groups -->
+        <h6 ng-repeat="group in groups | orderBy: 'name'| filter:{ type: 'public' }" id="insideContent"><a href="javascript:void(0);" ng-click="getGroup();">{{group.name}}</a> </h6>
+        </div>
      </div>
+
       <div class="col-md-4">
         <h2>Staff</h2>
         <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
