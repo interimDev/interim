@@ -1,5 +1,6 @@
 module.exports = function(grunt) {
   grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
     jshint: {
       files: ['Gruntfile.js', 'client/app/**/*.js', 'client/database/**/*.js', 'spec/**/*.js']
     },
@@ -12,7 +13,7 @@ module.exports = function(grunt) {
     uglify: {
       dist: {
         files : {
-          'dist/<%= pkg.name %>.min.js' : ['client/dist']
+          'client/dist/<%= pkg.name %>.min.js' : ['<%= concat.dist.dest %>']
         }
       }
     }
@@ -23,6 +24,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
 
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
-
-}
+  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
+};

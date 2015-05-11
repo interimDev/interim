@@ -26,7 +26,7 @@ angular.module('interim', [
     if(toState.data && toState.data.requirePermission){
       if(!$rootScope.superAdmin){
         alert("you are not an admin!");
-        event.preventDefault()
+        event.preventDefault();
       }
     }
   });
@@ -74,6 +74,6 @@ angular.module('interim', [
     data: {
       requirePermission: true
     }
-  })
+  });
 }]);
 

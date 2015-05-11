@@ -6,14 +6,14 @@ angular.module('interim.landingPage', [])
   $scope.githubAuth = function() {
     Auth.githubAuth()
     .then(function(user){
-      Auth.storeUser(user)
+      Auth.storeUser(user);
       $state.go('community');
-    })
+    });
   };
 
   $scope.signIn = function(community) {
-    Auth.communitySignIn(community)
-  }
+    Auth.communitySignIn(community);
+  };
 
   $scope.communityModal = function() {     
     $modal.open({
@@ -27,7 +27,7 @@ angular.module('interim.landingPage', [])
         }
       }
     });
-  }
+  };
 
   $scope.update = function(community) {
     $scope.master = angular.copy(community);

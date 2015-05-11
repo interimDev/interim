@@ -17,11 +17,11 @@ angular.module('interim.services', [])
   var githubAuth = function () {
     return authObj.$authWithOAuthPopup("github").then(function(authData) {
       console.log("Logged in as:", authData.uid);
-      return authData
+      return authData;
     }).catch(function(error) {
       console.error("Authentication failed:", error);
     });
-  }
+  };
 
   // adding new users to the database.
   // To-do: Data will need be to be validated when storing to datebase.
@@ -39,7 +39,7 @@ angular.module('interim.services', [])
       'permissions' : null,
       'avi_url' : user.github.cachedUserProfile.avatar_url,
       'profile' : {}
-      }
+      };
     var userObj = {};
     userObj[username] = filteredUser;
       
@@ -49,8 +49,12 @@ angular.module('interim.services', [])
       //if not then add them to the db
       if(!users[username]) {
         ref.child('UsersDB').update(userObj , function(error) {
-          error ? console.log("Error inserting user: ", error) : console.log("user inserted: ", userObj[username]);
-        })
+          if (error) {
+            console.log("Error inserting user: ", error);
+          } else {
+            console.log("user inserted: ", userObj[username]);
+          }
+        });
       }
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
@@ -58,14 +62,18 @@ angular.module('interim.services', [])
     //set userInfo for reference in front end
     Permissions.isSuperAdmin();
     $rootScope.userInfo = userObj[username];
-  }
+  };
 
   var updateUser = function(key, edits) {
-    console.log(key," edits in services: ", edits)
-    ref.child('UsersDB').child(key).child('profile').update(edits['profile'], function(error) {
-      error ? console.log("Error updating user: ", error) : console.log("user updated");
-    })
-  }
+    console.log(key," edits in services: ", edits);
+    ref.child('UsersDB').child(key).child('profile').update(edits.profile, function(error) {
+      if (error) {
+        console.log("Error updating user: ", error);
+      } else {
+        console.log("user updated");
+      }
+    });
+  };
 
 
   /* 
@@ -89,7 +97,7 @@ angular.module('interim.services', [])
     }).catch(function(error) {
       console.log("Error creating community: ", error);
     });
-  }
+  };
 
   // adds community to the database
   var storeCommunity = function(authObj, communityObj){
@@ -107,15 +115,19 @@ angular.module('interim.services', [])
       password: communityObj.password,
       avi_url: null,
       bio: null
-    }
+    };
     temp[uid] = filteredCommunity;
 
     ref.child('CommunityDB').update(temp , function(error) {
-      error ? console.log("Error inserting community: ", error) : console.log("community inserted: ", temp[uid]);
-    })
+      if (error) {
+        console.log("error inserting community: ");
+      } else {
+        console.log("community inserted: ", temp[uid]);
+      }
+    });
     $rootScope.communityInfo = temp[uid];
-    communitySignIn(temp[uid])
-  }
+    communitySignIn(temp[uid]);
+  };
 
   // logs in the communities 
   // called directly after authorizaition
@@ -125,23 +137,23 @@ angular.module('interim.services', [])
       password: community.password
     }).then(function(authData) {
       console.log("Logged in as:", authData.uid);
-      retrieveCommunity(authData.uid)
+      retrieveCommunity(authData.uid);
     }).catch(function(error) {
       console.error("Authentication failed:", error);
     });
-  }
+  };
   
   var retrieveCommunity = function(communityId) {
     ref.child('CommunityDB').on("value", function(snapshot) {
       var communities = snapshot.val();
-      communityInfo = communities[communityId]
+      communityInfo = communities[communityId];
       $rootScope.communityInfo = communityInfo;
-      console.log($rootScope.communityInfo, " - being returned as com obj")
+      console.log($rootScope.communityInfo, " - being returned as com obj");
       $state.go('community-profile');
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
-  }
+  };
 
   return {
     communitySignIn: communitySignIn,
@@ -149,7 +161,7 @@ angular.module('interim.services', [])
     storeUser: storeUser,
     communityAuth: communityAuth,
     updateUser: updateUser
-  }
+  };
 })
 
   /* 
@@ -175,16 +187,16 @@ angular.module('interim.services', [])
     ref.child('superAdmin').on("value", function(snapshot) {
       var superAdminObj = snapshot.val();
       var user = $rootScope.userInfo;
-      var userKey = user.name+"-"+user.auth.provider
+      var userKey = user.name+"-"+user.auth.provider;
       $rootScope.superAdmin = superAdminObj[userKey] ? true : false;
-      console.log("You're a SuperAdmin!")
+      console.log("You're a SuperAdmin!");
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
-  }
+  };
 
 
   return {
     isSuperAdmin : isSuperAdmin
-  }
-})
+  };
+});
