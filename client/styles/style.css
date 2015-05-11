@@ -37,7 +37,6 @@
   margin-right: auto;
   margin-left: auto;
   box-shadow: 1px 1px 5px #888888;
-  display: inline-block;
 }
 /*yourCommunityList.html css ends here*/
 
@@ -288,7 +287,7 @@
 /*css for displaying messages ends here*/
 
 /*chat input starts here*/
-#chatRow {
+#chatRow { 
   position: absolute;
   width: 60%;
   bottom: 1%;
@@ -319,3 +318,17 @@
   height: 100%;
   text-align: center;
 }
+
+/*Profile Modal Styles*/
+/*.userProf {
+  text-align: center;
+}
+
+#modalProfilePic {
+  border-radius: 2px;
+  box-shadow: 1.5px 1.5px 1.5px grey;
+  height: 45%;
+  width: 45%;
+}
+*/
+

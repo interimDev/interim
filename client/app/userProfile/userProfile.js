@@ -18,16 +18,16 @@ angular.module('interim.userProfile', [])
       $scope.editAllowed = true;
 
       //checks if user has a profile
-      if (!$scope.clickedUser['profile']) {
+      if (!$scope.clickedUser.profile) {
         $scope.makeProfile = true;
         $scope.clickedUser.profile = {};
       }
     }
-  }
+  };
 
   $scope.editProfile = function() {
     $scope.editorEnabled = true;
-  }
+  };
 
   $scope.cancel = function() {
     $scope.editorEnabled = false;
@@ -35,7 +35,7 @@ angular.module('interim.userProfile', [])
     
   $scope.save = function(edits) {
     $scope.edits = angular.copy(edits);
-    console.log("edits: ",$scope.edits)
+    console.log("edits: ",$scope.edits);
     $scope.clickedUser.profile.location =  $scope.edits.location ? $scope.edits.location : $scope.clickedUser.profile.location;
     $scope.clickedUser.profile.bio = $scope.edits.bio ? $scope.edits.bio : $scope.clickedUser.profile.bio;
     $scope.clickedUser.profile.twitter = $scope.edits.twitter ? $scope.edits.twitter : $scope.clickedUser.profile.twitter;

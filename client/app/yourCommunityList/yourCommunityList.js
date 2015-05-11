@@ -51,7 +51,7 @@ angular.module('interim.yourCommunityList', ["firebase"])
   };
 
   $scope.sendSearch = function(community) {
-    console.log("entered sendSearch")
+    console.log("entered sendSearch");
     searchName = community.toLowerCase();
 
     commObj.$loaded().then(function() {
@@ -59,7 +59,7 @@ angular.module('interim.yourCommunityList', ["firebase"])
       $scope.communitiesObj = commObj;
       angular.forEach($scope.communitiesObj, function(value, key) {
         if(keepGoing) {
-          if(value['name'] === searchName) {
+          if(value.name === searchName) {
             //TODO - APPEND THE REQUESTED COMMUNITY TO THE PAGE
             //REFACTOR TO MAKE ALL COMMUNITY NAMES .toLowerCase() WHEN
             //ADDING THEM TO THE DB
@@ -69,5 +69,5 @@ angular.module('interim.yourCommunityList', ["firebase"])
         }
       });
     });
-  }
+  };
 });

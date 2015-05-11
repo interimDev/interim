@@ -78,7 +78,7 @@ describe('dbUtils creating and updating profiles', function() {
         console.log("DB Tests initialized, database set");
     }
   });
-  }
+  };
 
   });
 
