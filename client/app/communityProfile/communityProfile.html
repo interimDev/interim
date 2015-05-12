@@ -32,8 +32,33 @@
         </h2>
         <div class="groupList">
         <!-- show public groups -->
-        <h6 ng-repeat="group in groups | orderBy: 'name'| filter:{ type: 'public' }" id="insideContent"><a href="javascript:void(0);" ng-click="getGroup();">{{group.name}}</a> </h6>
+        <h6 ng-repeat="group in groups | orderBy: 'name'| filter:{ type: 'public' }" id="insideContent"><a href="javascript:void(0);" ng-click="getGroup(group);">{{group.name}}</a></h6>
+
+        <!-- show private groups only to right users -->
+        <h6 ng-repeat="group in groups | orderBy: 'name'| filter: privateGroup" id="insideContent"><a href="javascript:void(0);" ng-click="getGroup(group);">{{group.name}}</a>
+          <span data-toggle="modal" data-target="#myModal" ng-click="selectingGroup(group.id)"> <img class = "glyphicon-user-add" title="Add User" src="/app/assets/glyphicons-user-addBlack.png"/></span>
+        </h6>
         </div>
+
+        <div data-backdrop="false" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header privateRoomModal">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" ng-click = 'updateUsersList();'>&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add User to Private Group</h4>
+              </div>
+              <div class="modal-body modalStyle">
+                <h6 id="insideContent" ng-repeat="user in allUsers| orderBy: name" ng-click="addUser(user.id);"> 
+                  <span class =" userLinkColor" ng-click= "removeUser(user.id, user.name);" id={{user.id}}> <img src={{user.avi_url}} class="img-rounded modalImage"/>{{user.name}}</span>
+                </h6>
+              </div>
+              <div class="modal-footer privateRoomModal">
+                <span> * click on user to add user </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
      </div>
 
       <div class="col-md-4">

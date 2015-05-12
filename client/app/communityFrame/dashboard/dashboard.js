@@ -6,6 +6,8 @@ angular.module('interim.dashboard', ["firebase"])
   //display room names
   var rooms = $firebaseArray(roomRef), usersRoom, usersAdded=[];
 
+  console.log("My group", $rootScope.group);
+
   //current user id
   var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
   $scope.userID = userCurrentID;
@@ -45,7 +47,8 @@ angular.module('interim.dashboard', ["firebase"])
                 name: roomName,
                 type: roomType,
                 usersList: currentUsers,
-                createdAt: Firebase.ServerValue.TIMESTAMP
+                createdAt: Firebase.ServerValue.TIMESTAMP,
+                groupid: $rootScope.group.id
               };
               //success notification
               $.notify("Room Created", "success");
@@ -68,9 +71,15 @@ angular.module('interim.dashboard', ["firebase"])
     usersRoom = roomID;
   };
 
+  $scope.filterPublic = function(room) {
+    if (room.type === "public" && room.groupid === $rootScope.group.id) {
+      return true;
+    }
+  };
+
   //filter private rooms for current user
   $scope.filterPrivate = function(room) {
-    if (room.type === "private") {
+    if (room.type === "private" && room.groupid === $rootScope.group.id) {
       for (var val in room) {
         for (var id in room[val]) {
           //if users members match current users id then allow user to see room

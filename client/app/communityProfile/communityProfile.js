@@ -5,12 +5,15 @@ angular.module('interim.communityProfile', [])
    var communityGroupsRef = new Firebase("https://interim.firebaseio.com/community-groups-metadata");
 
    //show current groups
-   var groups = $firebaseArray(communityGroupsRef);
+   var groups = $firebaseArray(communityGroupsRef), usersGroup;
    $scope.groups = groups;
+
+   //current user for private groups
+   var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
 
    //adding group
    $scope.addGroup = function(event) {
-   //user sets group name;
+   //user sets group name
     var groupName, groupType = 'public';
     bootbox.dialog({
       // input box for group name and set group to public or private
@@ -60,9 +63,45 @@ angular.module('interim.communityProfile', [])
     });
   };
 
+  //filter private rooms for current user
+  $scope.privateGroup = function(group) {
+    if (group.type === "private") {
+      for (var val in group) {
+        for (var id in group[val]) {
+          //if users members match current users id then allow user to see room
+          if (group[val][id] === userCurrentID) {
+            return true;
+          }
+        }
+      }
+    }
+  };
+
+  //get all Users 
+  var userRef = new Firebase("https://interim.firebaseio.com/UsersDB");
+  $scope.allUsers = $firebaseArray(userRef);
+
+  //setting private group when user clicks on adding users
+  $scope.selectingGroup = function(groupID) {
+    console.log("GROUP ID",groupID);
+    usersGroup = groupID;
+  };
+
+  //adding user to private group
+  $scope.addUser = function(user) {
+    var newUsers = {};
+    var selectedGroup = new Firebase("https://interim.firebaseio.com/community-groups-metadata");
+    newUsers[user]= user;
+    console.log("am i getting groups", usersGroup);
+    selectedGroup.child(usersGroup).child("usersList").update(newUsers);
+  };
+
   //get each group
-  $scope.getGroup = function() {
-    window.location = "#/community";
+  $scope.getGroup = function(group) {
+    //setting group in rootscope
+    $rootScope.group = group;
+    //sending user to profile page
+    $state.go('community');
   };
 
   console.log("community obj: ",$rootScope.communityInfo);
