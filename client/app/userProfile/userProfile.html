@@ -1,5 +1,5 @@
 <div class="userProf" ng-init="checkUser()" ng-if="!editorEnabled && !makeProfile">
-  <h1>{{clickedUser.name}}</h1>
+  <h2>{{clickedUser.name}}</h2>
   <img id='modalProfilePic' ng-src='{{clickedUser.avi_url}}'/>
   <br>
   <div id="profileHeaders"> 
@@ -21,18 +21,20 @@
 
 <div class="userProf" ng-if="editorEnabled || makeProfile">
   <br>
-  <h1>{{clickedUser.name}}</h1>
+  <h2>{{clickedUser.name}}</h2>
   <img id='modalProfilePic' ng-src='{{clickedUser.avi_url}}'/>
   <br>
-  Location: 
-  <input ng-model="edit.location" autocomplete="on" placeholder="{{clickedUser.profile.location}}">
-  <br>
-  Biography: 
-  <input ng-model="edit.bio" autocomplete="on" placeholder='{{clickedUser.profile.bio}}'>
+  <div id="profileHeaders">
+    <h4>Location: </h4>
+    <input id="locationEditor" ng-model="edit.location" autocomplete="on" placeholder="{{clickedUser.profile.location}}">
+    <br>
+    <h4>Biography: </h4>
+    <textarea id="bioEditor" ng-model="edit.bio" autocomplete="on" placeholder='{{clickedUser.profile.bio}}'></textarea> 
+  </div>
   <br> 
   Links: 
-  <input ng-model="edit.twitter" autocomplete="on" placeholder='{{clickedUser.profile.twitter}}'>
-  <input ng-model="edit.linkedIn" autocomplete="on" placeholder='{{clickedUser.profile.linkedIn}}'>
+  <input class="urlEditor" ng-model="edit.twitter" autocomplete="on" placeholder='{{clickedUser.profile.twitter}}'>
+  <input class="urlEditor" ng-model="edit.linkedIn" autocomplete="on" placeholder='{{clickedUser.profile.linkedIn}}'>
 
   <br>
   <button type="button" class="btn btn-success" ng-if="editAllowed" ng-click="save(edit)">Save</button>

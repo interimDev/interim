@@ -360,3 +360,21 @@
 #profileHeaders {
   margin-top: 20px;
 }
+
+/*Profile Modal Editor Styles*/
+
+#locationEditor, #bioEditor, .urlEditor {
+  margin: 1%, 0;
+  border-radius: 1px;
+}
+
+#bioEditor {
+  width: 45%;
+  height: 30%;
+  padding: 5px;
+  border-color: grey;
+}
+
+.urlEditor {
+  margin-bottom: 1%;
+}
