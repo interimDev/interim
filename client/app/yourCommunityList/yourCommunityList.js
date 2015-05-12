@@ -63,8 +63,8 @@ angular.module('interim.yourCommunityList', ["firebase"])
             //THIS IS THE OBJECT OF THE REQUESTED COMMUNITY
             $scope.requestedCommunity = value;
             $rootScope.communityInfo = value;
-            console.log("state to go: ", value)
-            $state.go("community-profile", {communityName: value['name']})
+            console.log("state to go: ", value);
+            $state.go("community-profile", {communityName: value.name});
             keepGoing = false;
           }
         }

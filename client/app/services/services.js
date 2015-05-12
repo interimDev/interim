@@ -101,7 +101,6 @@ angular.module('interim.services', [])
   // adds community to the database
   var storeCommunity = function(authObj, communityObj){
     //communities are currently stored in the database by their uid
-    console.log("entered storeCommunity")
     var uid = authObj.uid;
     var temp = {};
     var lowerName = communityObj.name.toLowerCase();
