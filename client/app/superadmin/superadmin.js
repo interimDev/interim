@@ -16,15 +16,17 @@ angular.module('interim.superAdmin', ["firebase"])
   });
 
 
-  //community is accepted if approved - valid = true and create a route for their profile
+  //community is accepted 
   $scope.acceptCommunity = function(community) {
     console.log("acceptComm: ", community); 
     var uid = community.id;
+    // valid attribute is set to true
     ref.child(uid).update({valid : true}, function(error) {
       if(error) {
         console.log("Error updating community: ", error);
       }
       else {
+        //prevents community from showing up on admin page again
         $scope.communities[uid].valid = true;
         $scope.$apply();
       } 

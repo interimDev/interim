@@ -57,8 +57,11 @@ angular.module('interim', [
     }
   })
   .state('community-profile', {
-    url: '/community-profile/*path',
-    templateUrl: '/app/communityProfile/communityProfile.html'
+    url: '/community-profile/:communityName',
+    templateUrl: '/app/communityProfile/communityProfile.html',
+    controller: function($stateParams){
+      console.log($stateParams.communityName);
+    }
   })
   .state('profileEditor', {
     url: '/profileEditor',
