@@ -67,7 +67,7 @@ angular.module('interim.communityProfile', [])
   $scope.privateGroup = function(group) {
     if (group.type === "private") {
       for (var val in group) {
-        for ( id in group[val]) {
+        for (var id in group[val]) {
           //if users members match current users id then allow user to see room
           if (group[val][id] === userCurrentID) {
             return true;
@@ -75,7 +75,7 @@ angular.module('interim.communityProfile', [])
         }
       }
     }
-  }
+  };
 
   //get all Users 
   var userRef = new Firebase("https://interim.firebaseio.com/UsersDB");
@@ -85,7 +85,7 @@ angular.module('interim.communityProfile', [])
   $scope.selectingGroup = function(groupID) {
     console.log("GROUP ID",groupID);
     usersGroup = groupID;
-  }
+  };
 
   //adding user to private group
   $scope.addUser = function(user) {
@@ -94,7 +94,7 @@ angular.module('interim.communityProfile', [])
     newUsers[user]= user;
     console.log("am i getting groups", usersGroup);
     selectedGroup.child(usersGroup).child("usersList").update(newUsers);
-  }
+  };
 
   //get each group
   $scope.getGroup = function(group) {
@@ -102,7 +102,7 @@ angular.module('interim.communityProfile', [])
     $rootScope.group = group;
     //sending user to profile page
     $state.go('community');
-  }
+  };
 
   console.log("community obj: ",$rootScope.communityInfo);
   $scope.community = $rootScope.communityInfo;

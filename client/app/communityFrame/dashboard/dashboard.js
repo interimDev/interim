@@ -75,7 +75,7 @@ angular.module('interim.dashboard', ["firebase"])
     if (room.type === "public" && room.groupid === $rootScope.group.id) {
       return true;
     }
-  }
+  };
 
   //filter private rooms for current user
   $scope.filterPrivate = function(room) {
@@ -91,12 +91,6 @@ angular.module('interim.dashboard', ["firebase"])
     }
   };
 
-  //get current room name
-  $scope.roomName = function(obj) {
-    //set current room (since no user just storing it globally)
-    $rootScope.messages(obj.room.id);
-  }
-
   //adding user to private room
   $scope.addUser = function(user) {
     var newUsers = {};
@@ -105,15 +99,12 @@ angular.module('interim.dashboard', ["firebase"])
     selectedRoom.child(usersRoom).child("usersList").update(newUsers);
   };
 
-<<<<<<< HEAD
   //get current room name
   $scope.roomName = function(obj) {
     //set current room (since no user just storing it globally)
     $rootScope.messages(obj.room.id);
   };
 
-=======
->>>>>>> [refactor] Style groups
   //on click remove user from modal
   $scope.removeUser = function(userID, userName) {
     //success notification
