@@ -3,7 +3,7 @@ angular.module('interim.yourCommunityList', ["firebase"])
 .controller('YourCommunityListController', function ($scope, $firebaseObject, $rootScope, $state) {
   // Initially identifying user and displaying their current groups & communities
 
-  var ref = new Firebase("https://interim.firebaseio.com/CommunityDB/");
+  var ref = new Firebase("https://interim.firebaseio.com/");
   var commObj = $firebaseObject(ref);
   $scope.userInfo = $rootScope.userInfo;
 
@@ -16,21 +16,41 @@ angular.module('interim.yourCommunityList', ["firebase"])
     var commObj = $firebaseObject(ref.child('UsersDB').child(userId).child('usersCommunities'));
     //var commObj = $firebaseObject(ref.child('UsersDB').child(userId)); //Contains communities & groups
     //$scope.communities = $firebaseArray(ref.child('UsersDB').child(userId).child('usersCommunities'));
-    console.log("commObj: ", commObj);
-
-    //var communities = $scope.Utils.keys(commObj);
-    // for (var key in commObj){
-    //   if(commObj[key]){
-    //     communities.push(key);
-    //   }
-    // }
-    $scope.communities = commObj;
 
 
-    //console.log("Retrieved ", $scope.userInfo.name, "'s community object: ", $scope.communities);
-    //var $scope.commKeys = $rootScope.Utils.keys(commObj);
+
+    // Currently stores user's communities as {communityName1: true, communityName2: true}
+    // Can set object in place of each true with following properties (at min), or full communitry profile:
+    // avi_url: http://.........png   // To display icon
+    // route: #/id/                   // Route to jump directly to community page
+
+    //var tempObjInfo = $firebaseObject(ref.child('CommunityDB').
+
+    var communitySnapshot;
+
+     ref.child('CommunityDB').on("value", function(snapshot) {
+        communitySnapshot = snapshot.val();
+        //console.log("Snapshot:", snapshot.val(), " as saved in cS: ", communitySnapshot);
+        }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+     });
+
+    for (var key in communitySnapshot){
+      // To-Do check what's in communitySnapshot
+      // Need to distinguish between the userKeys (group names) and the communityKeys (random IDs)
+      // If the .name = one of the communities from the UserDB, save entire community object
+
+      //var tempObjInfo = $firebaseObject(ref.child('CommunityDB')); // to-do: finish reference
+      // Add the community object properties to the user's specific communities object
+      if( commObj.hasOwnProperty( communitySnapshot[key].name ) ){     //To-Do check what's in communitySnapshot
+        //
+        commObj[key] = communitySnapshot[key]
+
+      }
+    }
+
+
     console.log($scope.userInfo.name, "'s communities ", $scope.communities);
-
 
   };
 
@@ -43,10 +63,14 @@ angular.module('interim.yourCommunityList', ["firebase"])
   };
 
 
-  $scope.displayUsersCommunities= function(){
+  $scope.displayCommunities= function(){
     //Use $rootScope array of communties
 
+
   };
+
+
+
   $scope.displayUsersGroups= function(){
     //Use $rootScope array of communties
   };

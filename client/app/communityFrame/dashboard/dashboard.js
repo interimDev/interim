@@ -16,10 +16,10 @@ angular.module('interim.dashboard', ["firebase"])
   $scope.addRoom = function(event) {
    //getting user room name here;
     var roomName, roomType = 'public';
-    
+
     bootbox.dialog({
       // input box for room name and set room to public
-      message: "Enter New Room Name: <input type='text' id='room_name'></input>" + 
+      message: "Enter New Room Name: <input type='text' id='room_name'></input>" +
       "<div><label><input type='checkbox' id = 'checkbox' require> Private Room</label></div>",
       title: "Creating New Room",
       buttons: {
