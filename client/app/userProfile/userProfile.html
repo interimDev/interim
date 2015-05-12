@@ -14,7 +14,7 @@
     <i class="fa fa-linkedin"></i> 
   </a>
   <br>
-  <button type="button" class="btn btn-default" ng-if="editAllowed" ng-click="editProfile()" id="profileEditor">Edit Profile</button>
+  <button type="button" class="btn btn-warning" ng-if="editAllowed" ng-click="editProfile()" id="profileEditor">Edit Profile</button>
 </div>
 
 <div class="userProf" ng-if="editorEnabled || makeProfile">
@@ -23,7 +23,7 @@
   <img id='modalProfilePic' ng-src='{{clickedUser.avi_url}}'/>
   <br>
   Location: 
-  <input ng-model="edit.location" autocomplete="on" placeholder="{{clickedUser.profile.location}}" id="#bioEditor">
+  <input ng-model="edit.location" autocomplete="on" placeholder="{{clickedUser.profile.location}}">
   <br>
   Biography: 
   <input ng-model="edit.bio" autocomplete="on" placeholder='{{clickedUser.profile.bio}}'>
