@@ -46,7 +46,8 @@ angular.module('interim.communityProfile', [])
                 name: groupName,
                 type: groupType,
                 usersList: currentUsers,
-                createdAt: Firebase.ServerValue.TIMESTAMP
+                createdAt: Firebase.ServerValue.TIMESTAMP,
+                community: $rootScope.communityInfo.name
               };
               //success notification
               $.notify("Group Created", "success");
@@ -64,9 +65,16 @@ angular.module('interim.communityProfile', [])
     });
   };
 
-  //filter private rooms for current user
+  //filter public groups for community
+  $scope.publicGroup = function(group) {
+    if (group.type === "public" && group.community === $rootScope.communityInfo.name) {
+      return true;  
+    }
+  };
+
+  //filter private groups for community
   $scope.privateGroup = function(group) {
-    if (group.type === "private") {
+    if (group.type === "private" && group.community === $rootScope.communityInfo.name) {
       for (var val in group) {
         for (var id in group[val]) {
           //if users members match current users id then allow user to see room
