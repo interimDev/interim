@@ -323,6 +323,15 @@
   overflow-x: auto;
 }
 
+#addNewGroup {
+  color: black;
+  visibility: hidden;
+}
+
+#addNewGroup:hover {
+  color: gray;
+}
+
 /*community profile end*/
 
 .superadminYeah{

@@ -32,13 +32,14 @@ angular.module('interim.landingPage', [])
   $scope.update = function(community) {
     $scope.master = angular.copy(community);
     console.log($scope.master);
+    $.notify("Created New Comminity", "success");
     Auth.communityAuth($scope.master);
+
   };
 
   $scope.reset = function() {
     $scope.community = {};
   };
-
 
   $scope.reset();
 });

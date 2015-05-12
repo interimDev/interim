@@ -3,18 +3,23 @@ angular.module('interim.communityProfile', [])
 .controller('CommunityProfileController', function ($scope, $firebaseArray, $rootScope, $stateParams, $state) {
 
   //get all groups for community
-   var communityGroupsRef = new Firebase("https://interim.firebaseio.com/community-groups-metadata");
+  var communityGroupsRef = new Firebase("https://interim.firebaseio.com/community-groups-metadata");
 
-   //show current groups
-   var groups = $firebaseArray(communityGroupsRef), usersGroup;
-   $scope.groups = groups;
+  //show current groups
+  var groups = $firebaseArray(communityGroupsRef), usersGroup;
+  $scope.groups = groups;
 
-   //current user for private groups
-   var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
+  //current user for private groups
+  var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
 
-   //adding group
-   $scope.addGroup = function(event) {
-   //user sets group name
+  //only communities can see add feature for groups
+  if ($rootScope.communityInfo.id) {
+    $("#addNewGroup").css('visibility', 'visible');
+  }
+
+  //adding group
+  $scope.addGroup = function(event) {
+  //user sets group name
     var groupName, groupType = 'public';
     bootbox.dialog({
       // input box for group name and set group to public or private
@@ -42,7 +47,7 @@ angular.module('interim.communityProfile', [])
               //create new group
               var group = {
                 id: newGroup.key(),
-                createdByUserId: $rootScope.communityInfo.id,
+                createdByUserId: userCurrentID,
                 name: groupName,
                 type: groupType,
                 usersList: currentUsers,
@@ -100,9 +105,9 @@ angular.module('interim.communityProfile', [])
   $scope.addUser = function(user) {
     var newUsers = {};
     var selectedGroup = new Firebase("https://interim.firebaseio.com/community-groups-metadata");
-    newUsers[user]= user;
-    console.log("am i getting groups", usersGroup);
+    newUsers[user.id]= user.id;
     selectedGroup.child(usersGroup).child("usersList").update(newUsers);
+    $.notify(user.name +" is added to group", "success");
   };
 
   //get each group
