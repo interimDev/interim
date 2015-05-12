@@ -79,7 +79,7 @@ angular.module('interim.dashboard', ["firebase"])
 
   //filter private rooms for current user
   $scope.filterPrivate = function(room) {
-    if (room.type === "private") {
+    if (room.type === "private" && room.groupid === $rootScope.group.id) {
       for (var val in room) {
         for (var id in room[val]) {
           //if users members match current users id then allow user to see room
