@@ -70,7 +70,7 @@ angular.module('interim.communityProfile', [])
     if (group.type === "public" && group.community === $rootScope.communityInfo.name) {
       return true;  
     }
-  }
+  };
 
   //filter private groups for community
   $scope.privateGroup = function(group) {
