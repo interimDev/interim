@@ -32,7 +32,7 @@
         </h2>
         <div class="groupList">
         <!-- show public groups -->
-        <h6 ng-repeat="group in groups | orderBy: 'name'| filter:{ type: 'public' }" id="insideContent"><a href="javascript:void(0);" ng-click="getGroup();">{{group.name}}</a> </h6>
+        <h6 ng-repeat="group in groups | orderBy: 'name'| filter:{ type: 'public' }" id="insideContent"><a href="javascript:void(0);" ng-click="getGroup(group);">{{group.name}}</a> </h6>
         </div>
      </div>
 

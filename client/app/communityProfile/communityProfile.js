@@ -61,9 +61,12 @@ angular.module('interim.communityProfile', [])
   };
 
   //get each group
-  $scope.getGroup = function() {
-    window.location = "#/community";
-  };
+  $scope.getGroup = function(group) {
+    //setting group in rootscope
+    $rootScope.group = group;
+    //sending user to profile page
+    $state.go('community');
+  }
 
   console.log("community obj: ",$rootScope.communityInfo);
   $scope.community = $rootScope.communityInfo;
