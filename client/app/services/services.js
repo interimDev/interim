@@ -24,8 +24,6 @@ angular.module('interim.services', [])
   };
 
   // adding new users to the database.
-  // To-do: Data will need be to be validated when storing to datebase.
-  // user argument should be a completed object
   var storeUser = function(user){
     //pulls data from the github user data to create a cleaner
     //filtered user object that we insert to the database
@@ -103,6 +101,7 @@ angular.module('interim.services', [])
   // adds community to the database
   var storeCommunity = function(authObj, communityObj){
     //communities are currently stored in the database by their uid
+    console.log("entered storeCommunity")
     var uid = authObj.uid;
     var temp = {};
     var lowerName = communityObj.name.toLowerCase();
@@ -131,7 +130,10 @@ angular.module('interim.services', [])
     });
     $rootScope.communityInfo = temp[uid];
     //TODO - IF community.valid = true 
-      //communitySignIn(temp[uid])
+      //sign them in
+    // if(temp[uid].valid === true) {
+    //   communitySignIn(temp[uid])
+    // }
   };
 
   // logs in the communities 

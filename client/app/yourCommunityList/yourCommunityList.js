@@ -1,12 +1,11 @@
 angular.module('interim.yourCommunityList', ["firebase"])
 
-.controller('YourCommunityListController', function ($scope, $firebaseObject, $rootScope) {
+.controller('YourCommunityListController', function ($scope, $firebaseObject, $rootScope, $state) {
   // Initially identifying user and displaying their current groups & communities
 
   var ref = new Firebase("https://interim.firebaseio.com/CommunityDB/");
   var commObj = $firebaseObject(ref);
   $scope.userInfo = $rootScope.userInfo;
-  console.log($scope.userInfo.name);
 
   // For each of these calls, userId needs to be in the form
   // userName-authSource   // Yoda-github
@@ -61,9 +60,11 @@ angular.module('interim.yourCommunityList', ["firebase"])
         if(keepGoing) {
           if(value.name === searchName) {
             //TODO - APPEND THE REQUESTED COMMUNITY TO THE PAGE
-            //REFACTOR TO MAKE ALL COMMUNITY NAMES .toLowerCase() WHEN
-            //ADDING THEM TO THE DB
-            $scope.requestedCommunity = value; //THIS IS THE OBJECT OF THE REQUESTED COMMUNITY
+            //THIS IS THE OBJECT OF THE REQUESTED COMMUNITY
+            $scope.requestedCommunity = value;
+            $rootScope.communityInfo = value;
+            console.log("state to go: ", value)
+            $state.go("community-profile", {communityName: value['name']})
             keepGoing = false;
           }
         }
