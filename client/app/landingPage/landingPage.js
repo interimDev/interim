@@ -7,7 +7,7 @@ angular.module('interim.landingPage', [])
     Auth.githubAuth()
     .then(function(user){
       Auth.storeUser(user);
-      $state.go('community');
+      $state.go('community-profile');
     });
   };
 

@@ -14,8 +14,13 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
 
     //show chat input when room is selected
     $("#chatRow").css('visibility', 'visible');
+<<<<<<< HEAD
   };
 
+=======
+  }
+ 
+>>>>>>> [refactor] Style groups
   //send messages to specific room
   $scope.sendMessage = function() {
 

@@ -317,9 +317,10 @@
   height: 200px;
 }
 
-#groupList {
-  height: 100px;
-  overflow-y: auto;
+.groupList {
+  width: 200px;
+  height: 200px;
+  overflow-x: auto;
 }
 
 /*community profile end*/
