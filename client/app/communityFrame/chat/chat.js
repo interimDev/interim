@@ -14,7 +14,7 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
 
     //show chat input when room is selected
     $("#chatRow").css('visibility', 'visible');
-  }
+  };
 
   //send messages to specific room
   $scope.sendMessage = function() {
@@ -31,7 +31,7 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
           timestamp: Firebase.ServerValue.TIMESTAMP,
           message: $scope.msg,
           type: 'default'
-        }
+        };
         //reset input box
         $scope.msg = "";
         msg.set(message);
@@ -42,7 +42,7 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
           "  characters", "error");
       }
     } 
-  }
+  };
 
   //this function creates a popup modal with the users information
   $scope.userModal = function(user) {
@@ -59,5 +59,5 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
         }
       }
     });
-  }
+  };
 });

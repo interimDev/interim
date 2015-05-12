@@ -7,7 +7,7 @@ angular.module('interim.superAdmin', ["firebase"])
 
   ref.on("child_added", function(snapshot) {
     var newCommunity = snapshot.val();
-    var uid = newCommunity.id
+    var uid = newCommunity.id;
     if(!newCommunity.valid){
       $scope.communities[uid] = snapshot.val();
     }
@@ -18,24 +18,24 @@ angular.module('interim.superAdmin', ["firebase"])
 
   //community is accepted if approved - valid = true and create a route for their profile
   $scope.acceptCommunity = function(community) {
-    console.log("acceptComm: ",community); 
+    console.log("acceptComm: ", community); 
     var uid = community.id;
     ref.child(uid).update({valid : true}, function(error) {
       if(error) {
-        console.log("Error updating community: ", error)
+        console.log("Error updating community: ", error);
       }
       else {
         $scope.communities[uid].valid = true;
         $scope.$apply();
       } 
-    })
-  }
+    });
+  };
 
   //if denied notify them by email or something and delete them from the db
   $scope.denyCommunity = function(community) {
-    var uid = community.id
-    ref.child(uid).remove()
+    var uid = community.id;
+    ref.child(uid).remove();
     $scope.communities[uid].valid = true;
     $scope.$apply();
-  }
+  };
 });
