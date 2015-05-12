@@ -1,6 +1,7 @@
 angular.module('interim.communityProfile', [])
 
-.controller('CommunityProfileController', function ($scope, $firebaseArray, $rootScope, $stateParams) {
+.controller('CommunityProfileController', function ($scope, $firebaseArray, $rootScope, $stateParams, $state) {
+
   //get all groups for community
    var communityGroupsRef = new Firebase("https://interim.firebaseio.com/community-groups-metadata");
 
