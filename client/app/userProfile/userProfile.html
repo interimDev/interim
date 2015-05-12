@@ -1,11 +1,13 @@
 <div class="userProf" ng-init="checkUser()" ng-if="!editorEnabled && !makeProfile">
   <h1>{{clickedUser.name}}</h1>
   <img id='modalProfilePic' ng-src='{{clickedUser.avi_url}}'/>
-  <br> 
-  Location: <p>{{clickedUser.profile.location}}</p>
   <br>
-  Biography: <p>{{clickedUser.profile.bio}}</p>
-  <br>
+  <div id="profileHeaders"> 
+    <h4>Location: </h4><p id="userLocation">{{clickedUser.profile.location}}</p>
+    <br>
+    <h4>Biography: </h4><p>{{clickedUser.profile.bio}}</p>
+    <br>
+  </div>
   <!-- This adds buttons that link to the individual's other social profiles -->
   <a target='_new' href="{{clickedUser.profile.twitter}}">
     <i class="fa fa-twitter"></i>

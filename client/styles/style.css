@@ -351,8 +351,12 @@
   margin: 0 10%;
 }
 
-.userProf i {
+.userProf a {
   margin: 0 2%;
+  font-size: 35px;
+  text-decoration: none;
 }
 
-
+#profileHeaders {
+  margin-top: 20px;
+}

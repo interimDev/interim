@@ -56,10 +56,6 @@ angular.module('interim', [
       'chat@community': { templateUrl: '/app/communityFrame/chat/chat.html' }
     }
   })
-  .state('exampleChat', {
-    url: '/exampleChat',
-    templateUrl: '/firechat/examples/anonymous/index.html'
-  })
   .state('community-profile', {
     url: '/community-profile/*path',
     templateUrl: '/app/communityProfile/communityProfile.html'
