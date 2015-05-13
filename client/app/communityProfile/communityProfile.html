@@ -28,7 +28,7 @@
       <div class="col-md-4 profileBucket">
         <h2>Groups
           <!-- create groups by clicking on plus icon -->
-          <div class="glyphicon glyphicon-plus" ng-click="addGroup()" title="Add Group"></div>
+          <div class="glyphicon glyphicon-plus" id="addNewGroup" ng-click="addGroup()" title="Add Group"></div>
         </h2>
         <div class="groupList">
         <!-- show public groups -->
@@ -48,7 +48,7 @@
                 <h4 class="modal-title" id="myModalLabel">Add User to Private Group</h4>
               </div>
               <div class="modal-body modalStyle">
-                <h6 id="insideContent" ng-repeat="user in allUsers| orderBy: name" ng-click="addUser(user.id);"> 
+                <h6 id="insideContent" ng-repeat="user in allUsers| orderBy: name" ng-click="addUser(user);"> 
                   <span class =" userLinkColor" ng-click= "removeUser(user.id, user.name);" id={{user.id}}> <img src={{user.avi_url}} class="img-rounded modalImage"/>{{user.name}}</span>
                 </h6>
               </div>

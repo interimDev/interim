@@ -7,16 +7,18 @@
     <a class="btn btn-block btn-social btn-github" ng-click="githubAuth()">
       <i class="fa fa-github"></i> Sign in with GitHub
     </a>
+    <h4 class= "communitiesName">Communities</h4>
+    <a href class="createCommunity" data-toggle="collapse" data-target="#demo">Community Sign In</a>
+    <div id="demo" class="collapse out">
+      <form novalidate class="simple-form landingPageForm">
+        <input type="email" class="landingPageInput" ng-model="community.email" placeholder="E-mail"/>
+        <input type="password" class="landingPageInput" ng-model="community.password" placeholder="Password"/>
+        <input type="button" ng-click="reset()" value="Reset" />
+        <input type="submit" ng-click="signIn(community)" value="Submit" />
+      </form>
+    </div>
     <br>
-    <h4>Communities</h4>
-    <form novalidate class="simple-form">
-      E-mail: <input type="email" ng-model="community.email" /><br/>
-      Password: <input type="password" ng-model="community.password" /><br/>
-      <input type="button" ng-click="reset()" value="Reset" />
-      <input type="submit" ng-click="signIn(community)" value="Submit" />
-    </form>
-    <br>
-    <a href class="createCommunity" ng-click="communityModal()">Create a community.</a>
+    <a href class="createCommunity" ng-click="communityModal()">Create a community</a>
   </div>
 
 </div>

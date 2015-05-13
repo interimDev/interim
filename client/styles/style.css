@@ -13,7 +13,23 @@
   color: #0288d1;
   font-size: 450%;
   text-align: center;
-  margin-top: 15%;
+  margin-top: 8%;
+}
+
+.communitiesName {
+  margin-top: 30px;
+}
+
+.landingPageForm {
+  margin-top: 0;
+}
+
+.landingPageInput {
+  margin-bottom: 10px;
+}
+
+.createCommunity {
+  margin-bottom: 10px;
 }
 /*landingPage.html css ends here*/
 
@@ -323,7 +339,50 @@
   overflow-x: auto;
 }
 
+#addNewGroup {
+  color: black;
+  visibility: hidden;
+}
+
+#addNewGroup:hover {
+  color: gray;
+}
+
 /*community profile end*/
+
+/*community communitySingUp start*/
+.modal-singUp .modal-dialog{
+  margin-right: auto;
+  margin-left: auto;
+  width: 300px;
+  height: 200px;
+}
+
+.singUpTitle {
+  margin-top: 10px;
+  color: #2869b2;
+  font-size: 150%;
+}
+
+.singUpForm {
+  margin-bottom: 20px;
+}
+
+.singUp {
+  text-align: center;
+}
+
+.singUpTable {
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 20px;
+  width:80%;
+}
+
+tr {
+  height:40px;
+}
+/*community communitySingUp end*/
 
 .superadminYeah{
   width: 100%;
