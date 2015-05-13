@@ -7,6 +7,7 @@ angular.module('interim.createGroup', [])
   
   $scope.createGroup = function(group) {
     $scope.master = angular.copy(group);
+    $scope.master.private;
     console.log("private: ", $scope.master.private);
     var newGroup = communityGroupsRef.push();
     var currentUsers = {};
@@ -14,27 +15,26 @@ angular.module('interim.createGroup', [])
     if(group.private) {
       currentUsers[$rootScope.communityInfo.id] = $rootScope.communityInfo.id;
     }
-    else {
-      //create new group
-      var group = {
-        id: newGroup.key(),
-        createdByUserId: $rootScope.communityInfo.id,
-        name: $scope.master.name,
-        type: $scope.master.private ? 'private' : 'public',
-        usersList: currentUsers,
-        createdAt: Firebase.ServerValue.TIMESTAMP,
-        community: $rootScope.communityInfo.name
-      };
 
-      newGroup.set(group, function(error) {
-        if(error) {
-          console.log("error setting group: ",error)
-        }
-        else {
-          $scope.closeModal();
-        }
-      });
-    }
+    //create new group
+    var group = {
+      id: newGroup.key(),
+      createdByUserId: $rootScope.communityInfo.id,
+      name: $scope.master.name,
+      type: $scope.master.private ? 'private' : 'public',
+      usersList: currentUsers,
+      createdAt: Firebase.ServerValue.TIMESTAMP,
+      community: $rootScope.communityInfo.name
+    };
+
+    newGroup.set(group, function(error) {
+      if(error) {
+        console.log("error setting group: ",error)
+      }
+      else {
+        $scope.closeModal();
+      }
+    });
   }
 
   $scope.closeModal = function(){

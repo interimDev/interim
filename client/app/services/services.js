@@ -165,7 +165,6 @@ angular.module('interim.services', [])
 
   var queryCommunityDB = function(name) {
     var setName = name;
-    console.log("name: ",name);
     var keepGoing = true;
     var result;
     return communityObjects.$loaded().then(function (){
