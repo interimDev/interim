@@ -1,6 +1,7 @@
 angular.module('interim.chat', ["firebase", "luegg.directives"])
 
 .controller('ChatController', function ($scope, $firebaseArray, $rootScope, $firebaseObject, $modal) {
+  // TO-DO: Change rootScope here
   $scope.userInfo = $rootScope.userInfo ? $rootScope.userInfo : $rootScope.communityInfo;
   var ref = new Firebase("https://interim.firebaseio.com/room-messages");
   //get all messages for specific room
@@ -21,9 +22,10 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
     if ($scope.msg) {
       var msg = ref.child($scope.roomId).push();
       var message = {
-        userId: userCurrentID,
+        userId: $scope.userInfo.id,
+        // TO-DO: Change rootScope here
         userProfileImage: $rootScope.userInfo ? $rootScope.userInfo.avi_url : null,
-        name: $rootScope.userInfo ? $rootScope.userInfo.name : $rootScope.communityInfo.name,
+        name: $scope.userInfo.name,
         timestamp: Firebase.ServerValue.TIMESTAMP,
         message: $scope.msg,
         type: 'default'
