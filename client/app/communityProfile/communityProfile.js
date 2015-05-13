@@ -12,9 +12,9 @@ angular.module('interim.communityProfile', [])
   var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
 
   //only communities can see add feature for groups
-  if ($rootScope.communityInfo.id) {
-    $("#addNewGroup").css('visibility', 'visible');
-  }
+  // if ($rootScope.communityInfo.id) {
+  //   $("#addNewGroup").css('visibility', 'visible');
+  // }
 
   //this function creates a popup modal allowing users to add groups
   $scope.groupModal = function() {
