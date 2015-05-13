@@ -41,6 +41,7 @@ angular.module('interim.yourCommunityList', ["firebase"])
         }
       });
     });
+    $scope.communities = communitiesObj;
 
     // Vanilla JS only access non-enumerable keys, bad!
     // for(var key in communitiesObj) {
