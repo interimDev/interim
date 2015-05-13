@@ -70,7 +70,7 @@ angular.module('interim', [
         return Auth.queryCommunityDB($stateParams.communityName)
         .then(function (data) {
           return data;
-        })
+        });
       }
     },
     controller: 'CommunityProfileController'
