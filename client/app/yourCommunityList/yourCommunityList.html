@@ -17,10 +17,10 @@
     </div>
 
      <!-- Placeholder Angular -->
-    <span class="communityName" id="communityThumbnail" ng-repeat="(key,value) in communities">
+    <span class="thumbnail" id="communityThumbnail" ng-repeat="(key,value) in communities">
         <a href="#/community-profile/{{value.name}}/">
          {{value.name.toUpperCase()}} </a>
-        <img class="communityImage" src={{value["avi_url"]}} ng-click="communityProfile(this)" />
+        <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)" />
     </span>
 
   <!-- Sample Icon for company -->
