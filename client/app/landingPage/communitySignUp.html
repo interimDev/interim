@@ -1,9 +1,18 @@
-<div>
-  <form novalidate class="simple-form">
-    Name: <input type="text" ng-model="community.name"/><br/>
-    E-mail: <input type="email" ng-model="community.email"/><br/>
-    Password: <input type="password" ng-model="community.password" /><br/>
-    <input type="button" ng-click="reset()" value="Reset" />
-    <input type="submit" ng-click="update(community)" value="Submit" />
+<div class="singUp" class ="modal-singUp">
+  <p class="singUpTitle"> Create New Community <p>
+  <form class="simple-form singUpForm">
+    <table class="singUpTable">
+      <tr>
+        <td><input type="text" ng-model="community.name" placeholder="Name" required/></td>
+      </tr>
+      <tr>
+        <td><input type="email" ng-model="community.email" placeholder="E-mail" required/></td>
+      </tr>
+      <tr>
+        <td><input type="password" ng-model="community.password" placeholder="Password" required/></td>
+      </tr>
+    </table>
+    <input type="button" ng-click="reset()" value="Reset"/>
+    <input type="submit" formvalidate ng-click="update(community)" value="Submit"/>
   </form>
 </div>
