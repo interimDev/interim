@@ -18,7 +18,8 @@
 
      <!-- Placeholder Angular -->
     <span class="communityName" id="communityThumbnail" ng-repeat="(key,value) in communities">
-        {{value.name.toUpperCase()}}
+        <a href="#/community-profile/{{value.name}}/">
+         {{value.name.toUpperCase()}} </a>
         <img class="communityImage" src={{value["avi_url"]}} ng-click="communityProfile(this)" />
     </span>
 
