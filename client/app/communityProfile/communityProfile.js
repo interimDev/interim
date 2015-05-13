@@ -15,7 +15,7 @@ angular.module('interim.communityProfile', [])
   //only communities can see add feature for groups
   // if ($rootScope.communityInfo.id) {
   //   $("#addNewGroup").css('visibility', 'visible');
-  // }
+  // };
 
   //this function creates a popup modal allowing users to add groups
   $scope.groupModal = function() {

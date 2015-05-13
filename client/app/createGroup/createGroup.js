@@ -5,9 +5,9 @@ angular.module('interim.createGroup', [])
   var communityGroupsRef = new Firebase("https://interim.firebaseio.com/community-groups-metadata");
   var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
   
-  $scope.createGroup = function(group) {
-    $scope.master = angular.copy(group);
-    $scope.master.private;
+  $scope.createGroup = function(goupInfo) {
+    $scope.master = angular.copy(groupInfo);
+    $scope.master.private = false;
     console.log("private: ", $scope.master.private);
     var newGroup = communityGroupsRef.push();
     var currentUsers = {};
@@ -29,7 +29,7 @@ angular.module('interim.createGroup', [])
 
     newGroup.set(group, function(error) {
       if(error) {
-        console.log("error setting group: ",error)
+        console.log("error setting group: ",error);
       }
       else {
         $scope.closeModal();

@@ -33,10 +33,6 @@ angular.module('interim', [
       }
     }
   });
-
-  $rootScope.$on('$routeChangeError', function(event, current, previous, rejection){
-      console.log(rejection);
-  });
 })
 
 
