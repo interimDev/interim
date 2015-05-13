@@ -81,6 +81,8 @@ angular.module('interim.communityProfile', [])
   //get all Users 
   var userRef = new Firebase("https://interim.firebaseio.com/UsersDB");
   $scope.allUsers = $firebaseArray(userRef);
+  
+  console.log("Here are the users: ", $scope.allUsers);
 
   //setting private group when user clicks on adding users
   $scope.selectingGroup = function(groupID) {
