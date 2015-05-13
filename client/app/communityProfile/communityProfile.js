@@ -1,7 +1,8 @@
 angular.module('interim.communityProfile', [])
 
-.controller('CommunityProfileController', function ($scope, $firebaseArray, $rootScope, $stateParams, $state) {
-
+.controller('CommunityProfileController', function ($scope, $firebaseArray, $rootScope, $state, $firebaseObject, communityObject) {
+  console.log("community object", communityObject);
+  $scope.community = communityObject;
   //get all groups for community
   var communityGroupsRef = new Firebase("https://interim.firebaseio.com/community-groups-metadata");
 
@@ -17,9 +18,9 @@ angular.module('interim.communityProfile', [])
     $("#addNewGroup").css('visibility', 'visible');
   }
 
-  //adding group
-  $scope.addGroup = function(event) {
-  //user sets group name
+   //adding group
+   $scope.addGroup = function(event) {
+   //user sets group name
     var groupName, groupType = 'public';
     bootbox.dialog({
       // input box for group name and set group to public or private
@@ -119,8 +120,4 @@ angular.module('interim.communityProfile', [])
     //sending user to profile page
     $state.go('community');
   };
-
-  console.log("community obj: ",$rootScope.communityInfo);
-  $scope.community = $rootScope.communityInfo;
-
 });

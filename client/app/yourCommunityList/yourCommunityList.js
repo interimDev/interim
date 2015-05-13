@@ -69,7 +69,6 @@ angular.module('interim.yourCommunityList', ["firebase"])
 
   // Seach and display results
   $scope.sendSearch = function(community) {
-    console.log("entered sendSearch");
     searchName = community.toLowerCase();
 
     commObj.$loaded().then(function() {
@@ -81,9 +80,8 @@ angular.module('interim.yourCommunityList', ["firebase"])
             //TODO - APPEND THE REQUESTED COMMUNITY TO THE PAGE
             //THIS IS THE OBJECT OF THE REQUESTED COMMUNITY
             $scope.requestedCommunity = value;
-            $rootScope.communityInfo = value;
-            console.log("state to go: ", value);
-            $state.go("community-profile", {communityName: value.name});
+            // $rootScope.communityInfo = value;
+            $state.go("community-profile", {communityName: value.name, id: value.id});
             keepGoing = false;
           }
         }
