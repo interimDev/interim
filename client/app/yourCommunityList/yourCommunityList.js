@@ -3,8 +3,10 @@ angular.module('interim.yourCommunityList', ["firebase"])
 .controller('YourCommunityListController', function ($scope, $firebaseObject, $rootScope, $state) {
   // Initially identifying user and displaying their current groups & communities
 
-  var ref = new Firebase("https://interim.firebaseio.com/CommunityDB/");
+  var ref = new Firebase("https://interim.firebaseio.com/");
+  var communityRef = new Firebase("https://interim.firebaseio.com/CommunityDB/");
   var commObj = $firebaseObject(ref);
+  var Communities = $firebaseObject(communityRef);
   $scope.userInfo = $rootScope.userInfo;
 
   // For each of these calls, userId needs to be in the form
@@ -12,43 +14,60 @@ angular.module('interim.yourCommunityList', ["firebase"])
   $scope.usersCommunities = function(){
 
     var userId = '' + $scope.userInfo.name + "-" + $scope.userInfo.auth.provider;
+    var communitiesObj = $firebaseObject(ref.child('UsersDB').child(userId).child('usersCommunities'));
 
-    $scope.communities = $firebaseArray(ref.child('UsersDB').child(userId).child('usersCommunities'));
-    console.log("Retrieved ", $scope.userInfo.name, "'s communities: ", communities);
+    //var commObj = $firebaseObject(ref.child('UsersDB').child(userId)); //Contains communities & groups
+    // Currently stores user's communities as {communityName1: true, communityName2: true}
 
+    $scope.communities = communitiesObj;
+    console.log("User's communities scoped ", $scope.communities);
+    console.log("Communities from CommunityDB: ", Communities);
+
+
+    // to take an action after the data loads, use $loaded() promise
+    communitiesObj.$loaded().then(function() {
+        console.log("Loaded records ", communitiesObj);
+
+      //To-do: not getting into this function...
+      angular.forEach($scope.communities, function(value,key){
+        console.log("Within communitiesObj in $scope search...key: ", key);
+        // Key is in communitiesObj (retrieved from UserDB), should be relatively small
+        // Need to search communitySnapshot[key].name === key
+        // Need to seach communitiesObj keys's
+        if( Communities[key] ) {
+          console.log("Found community match: ", Communities[key], " as ", Communities[key].name);
+          communitiesObj[key] = Communities[key];
+          console.log("Set community info : ", communitiesObj[key]);
+        }
+      });
+    });
+    $scope.communities = communitiesObj;
+
+    // Vanilla JS only access non-enumerable keys, bad!
+    // for(var key in communitiesObj) {
+    //   console.log("Test non-angular forEach: ", key, ': ', communitiesObj[key]);
+    // };
+
+    //console.log($scope.userInfo.name, "'s communities ", $scope.communities);
   };
+
+  $scope.usersCommunities();
 
   $scope.usersGroups = function(){
     //Check all Group children for all communities
     $scope.groups = $firebaseArray(ref.child('UsersDB').child(userId).child('usersGroups'));
-
   };
 
 
-  $scope.displayUsersCommunities= function(){
-    //Use $rootscope array of communties
-
+  $scope.displayCommunities= function(){
+    //Use $rootScope array of communties
   };
   $scope.displayUsersGroups= function(){
-    //Use $rootscope array of communties
+    //Use $rootScope array of communties
   };
 
 
   // Seach and display results
-  $scope.searchCommunities = function(searchTerm) {
-  };
-  $scope.searchGroups = function(searchTerm) {
-  };
-  $scope.displayResults = function(searchTerm) {
-  };
-
-  // Selecting groups or communities after search results to request permission
-
-  $scope.selectCommunities = function(){
-  };
-  $scope.selectGroups = function(){
-  };
-
   $scope.sendSearch = function(community) {
     console.log("entered sendSearch");
     searchName = community.toLowerCase();
@@ -71,4 +90,6 @@ angular.module('interim.yourCommunityList', ["firebase"])
       });
     });
   };
+
+
 });

@@ -53,7 +53,18 @@
   margin-right: auto;
   margin-left: auto;
   box-shadow: 1px 1px 5px #888888;
+  display: inline-block;
 }
+.communityImage {
+  width: 180px;
+}
+.communityName {
+  color: #0288d1;
+  font-size: 100%;
+  text-align: center;
+  margin-top: 15%;
+}
+
 /*yourCommunityList.html css ends here*/
 
 /*userProfile.html css starts here*/
@@ -303,7 +314,7 @@
 /*css for displaying messages ends here*/
 
 /*chat input starts here*/
-#chatRow { 
+#chatRow {
   position: absolute;
   width: 60%;
   bottom: 1%;

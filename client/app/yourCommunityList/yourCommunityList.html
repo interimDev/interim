@@ -17,15 +17,14 @@
     </div>
 
      <!-- Placeholder Angular -->
-    <span class="currentCommunities" ng-repeat="community in communities">
-     <span class="thumbnail" id="communityThumbnail">
-        <img src="" ng-click="communityProfile()" id="communityImage"/>
-      </span>
+    <span class="communityName" id="communityThumbnail" ng-repeat="(key,value) in communities">
+        <a href="#/community-profile/{{value.name}}/">
+         {{value.name.toUpperCase()}} </a>
+        <img class="communityImage" src={{value["avi_url"]}} ng-click="communityProfile(this)" />
     </span>
 
-
-  <!-- Icon for company -->
-    <span class="thumbnail" id="communityThumbnail">
+  <!-- Sample Icon for company -->
+ <!--    <span class="thumbnail" id="communityThumbnail">
       <img src="/app/assets/mSquare.png" id="msIcon">
     </span>
     <span class="thumbnail" id="communityThumbnail">
@@ -34,7 +33,7 @@
     <span class="thumbnail" id="communityThumbnail">
       <img src="/app/assets/mSquare.png" id="msIcon">
     </span>
-  </span>
+  </span> -->
 
   <div id="CommunitiesSearch">
    <input type="text" ng-model="requested" ng-keyup="$event.keyCode == 13 && sendSearch(requested)" class="form-control"  placeholder="Enter group or community search here..." required/>
