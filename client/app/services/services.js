@@ -92,6 +92,7 @@ angular.module('interim.services', [])
       email: community.email,
       password: community.password
     }).then(function(userData) {
+      $.notify("Created "+community.email, "success");
       console.log("Community created with uid: " + userData.uid);
       return storeCommunity(userData, community);
     }).catch(function(error) {
