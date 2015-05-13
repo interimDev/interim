@@ -1,7 +1,13 @@
 angular.module('interim.communityProfile', [])
 
+<<<<<<< HEAD
 .controller('CommunityProfileController', function ($scope, $firebaseArray, $rootScope, $state, $firebaseObject, community, $modal) {
   $scope.community = community;
+=======
+.controller('CommunityProfileController', function ($scope, $firebaseArray, $firebaseObject, $rootScope, $stateParams, $state) {
+
+  //get all groups for community
+>>>>>>> [feature] Community Profile now shows members only, not every user.
   var communityGroupsRef = new Firebase("https://interim.firebaseio.com/community-groups-metadata");
 
   //show current groups
@@ -57,11 +63,8 @@ angular.module('interim.communityProfile', [])
   var userRef = new Firebase("https://interim.firebaseio.com/UsersDB");
   $scope.allUsers = $firebaseArray(userRef);
   
-  console.log("Here are the users: ", $scope.allUsers);
-
   //setting private group when user clicks on adding users
   $scope.selectingGroup = function(groupID) {
-    console.log("GROUP ID",groupID);
     usersGroup = groupID;
   };
 
@@ -81,4 +84,16 @@ angular.module('interim.communityProfile', [])
     //sending user to profile page
     $state.go('community');
   };
+]
+
+  $scope.community = $rootScope.communityInfo;
+
+  //get information about the community that is logged in
+  var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
+  //We currently have the simple login id!
+  //Next we need to find the group object containing the userCurrentID
+  var communityRef = new Firebase("https://interim.firebaseio.com/CommunityDB/"+userCurrentID);
+  $scope.users = $firebaseArray(communityRef.child("users"));
+
+
 });
