@@ -92,8 +92,7 @@ angular.module('interim.services', [])
       email: community.email,
       password: community.password
     }).then(function(userData) {
-      $.notify("Created "+community.email, "success");
-      console.log("Community created with uid: " + userData.uid);
+      $.notify("Community Request Recived", "success");
       return storeCommunity(userData, community);
     }).catch(function(error) {
       console.log("Error creating community: ", error);
@@ -143,6 +142,7 @@ angular.module('interim.services', [])
       console.log("Logged in as:", authData.uid);
       retrieveCommunity(authData.uid);
     }).catch(function(error) {
+       $.notify("Email or Password is invalid", "error");
       console.error("Authentication failed:", error);
     });
   };
