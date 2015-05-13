@@ -15,7 +15,8 @@ angular.module('interim', [
   'interim.userProfile',
   'interim.communityProfile',
   'interim.superAdmin',
-  'interim.communityTopSidebar'
+  'interim.communityTopSidebar',
+  'interim.createGroup'
 ])
 
 .run(function($rootScope){
