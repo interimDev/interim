@@ -57,6 +57,7 @@ angular.module('interim.yourCommunityList', ["firebase"])
     $scope.groups = $firebaseArray(ref.child('UsersDB').child(userId).child('usersGroups'));
   };
 
+
   $scope.sendSearch = function(community) {
     searchName = community.toLowerCase();
 
@@ -75,6 +76,4 @@ angular.module('interim.yourCommunityList', ["firebase"])
       });
     });
   };
-
-
 });
