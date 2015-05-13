@@ -1,8 +1,10 @@
 angular.module('interim.services', [])
 
-.factory('Auth', function ($firebaseAuth, $rootScope, Permissions, $state) {
+.factory('Auth', function ($firebaseAuth, $rootScope, Permissions, $state, $firebaseObject, $firebase) {
   var ref = new Firebase("https://interim.firebaseio.com/");
   var authObj = $firebaseAuth(ref);
+  var commRef = new Firebase("https://interim.firebaseio.com/CommunityDB/");
+  var communityObjects = $firebaseObject(commRef);
   
 
   /* 
@@ -161,12 +163,30 @@ angular.module('interim.services', [])
     });
   };
 
+  var queryCommunityDB = function(name) {
+    var setName = name;
+    var keepGoing = true;
+    var result;
+    return communityObjects.$loaded().then(function (){
+      angular.forEach(communityObjects, function(value, key) {
+        if(keepGoing) {
+          if(value.name === name) {
+            keepGoing = false;
+            result = value;
+          }
+        }
+      }); 
+      return result;
+    })
+  }
+
   return {
     communitySignIn: communitySignIn,
     githubAuth: githubAuth,
     storeUser: storeUser,
     communityAuth: communityAuth,
-    updateUser: updateUser
+    updateUser: updateUser,
+    queryCommunityDB: queryCommunityDB
   };
 })
 

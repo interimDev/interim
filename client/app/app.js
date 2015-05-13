@@ -15,7 +15,8 @@ angular.module('interim', [
   'interim.userProfile',
   'interim.communityProfile',
   'interim.superAdmin',
-  'interim.communityTopSidebar'
+  'interim.communityTopSidebar',
+  'interim.createGroup'
 ])
 
 .run(function($rootScope){
@@ -32,10 +33,14 @@ angular.module('interim', [
       }
     }
   });
+
+  $rootScope.$on('$routeChangeError', function(event, current, previous, rejection){
+      console.log(rejection);
+  });
 })
 
 
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider, $firebaseObject, Auth) {
   $urlRouterProvider.otherwise('/signin');
   $stateProvider
   .state('signin', {
@@ -60,9 +65,15 @@ angular.module('interim', [
   .state('community-profile', {
     url: '/community-profile/:communityName',
     templateUrl: '/app/communityProfile/communityProfile.html',
-    controller: function($stateParams){
-      console.log($stateParams.communityName);
-    }
+    resolve:{
+      community: function($stateParams, Auth) { 
+        return Auth.queryCommunityDB($stateParams.communityName)
+        .then(function (data) {
+          return data;
+        })
+      }
+    },
+    controller: 'CommunityProfileController'
   })
   .state('profileEditor', {
     url: '/profileEditor',

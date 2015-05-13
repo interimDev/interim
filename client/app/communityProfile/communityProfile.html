@@ -1,7 +1,6 @@
 <!-- Insert nav here -->
 
-<!-- Main jumbotron for a primary marketing message or call to action -->
-<div ng-controller="CommunityProfileController">
+<div>
   <div class="jumbotron">
     <div class="container">
       <!-- Icon for company -->
@@ -28,7 +27,8 @@
       <div class="col-md-4 profileBucket">
         <h2>Groups
           <!-- create groups by clicking on plus icon -->
-          <div class="glyphicon glyphicon-plus" id="addNewGroup" ng-click="addGroup()" title="Add Group"></div>
+          <!-- TODO ---- HIDE THE CREATE GROUP DIV IF USER IS NOT A COMMUNITY ADMIN -->
+          <div class="glyphicon glyphicon-plus" ng-click="groupModal()" title="Add Group"></div>
         </h2>
         <div class="groupList">
         <!-- show public groups -->
