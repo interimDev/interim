@@ -34,7 +34,7 @@ angular.module('interim.communityProfile', [])
 
   //filter public groups for community
   $scope.publicGroup = function(group) {
-    communityName = $rootScope.communityInfo ? $rootScope.communityInfo.name : $scope.community.name
+    communityName = $rootScope.communityInfo ? $rootScope.communityInfo.name : $scope.community.name;
     if (group.type === "public" && group.community === communityName) {
       return true;  
     }

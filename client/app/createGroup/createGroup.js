@@ -35,9 +35,9 @@ angular.module('interim.createGroup', [])
         $scope.closeModal();
       }
     });
-  }
+  };
 
   $scope.closeModal = function(){
      $modalInstance.close();
-  }
+  };
 });

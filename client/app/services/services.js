@@ -177,8 +177,8 @@ angular.module('interim.services', [])
         }
       }); 
       return result;
-    })
-  }
+    });
+  };
 
   return {
     communitySignIn: communitySignIn,
