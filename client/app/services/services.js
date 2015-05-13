@@ -4,7 +4,7 @@ angular.module('interim.services', [])
   var ref = new Firebase("https://interim.firebaseio.com/");
   var authObj = $firebaseAuth(ref);
   var commRef = new Firebase("https://interim.firebaseio.com/CommunityDB/");
-  var communityObject = $firebaseObject(commRef);
+  var communityObjects = $firebaseObject(commRef);
   
 
   /* 
@@ -163,20 +163,21 @@ angular.module('interim.services', [])
     });
   };
 
-  var queryCommunityDB = function(name, id) {
+  var queryCommunityDB = function(name) {
     var setName = name;
     console.log("name: ",name);
     var keepGoing = true;
-    return communityObject.$loaded().then(function (){
-      return angular.forEach(communityObject, function(value, key) {
+    var result;
+    return communityObjects.$loaded().then(function (){
+      angular.forEach(communityObjects, function(value, key) {
         if(keepGoing) {
           if(value.name === name) {
             keepGoing = false;
-            console.log("value returned: ", value);
-            return value;
+            result = value;
           }
         }
       }); 
+      return result;
     })
   }
 

@@ -1,8 +1,10 @@
 angular.module('interim.communityProfile', [])
 
-.controller('CommunityProfileController', function ($scope, $firebaseArray, $rootScope, $state, $firebaseObject, communityObject) {
-  console.log("community object", communityObject);
-  $scope.community = communityObject;
+.controller('CommunityProfileController', function ($scope, $firebaseArray, $rootScope, $state, $firebaseObject, community) {
+  $scope.community = community;
+  // console.log("community object", Community);
+  // $scope.community = Community;
+  // console.log("$scope.community: ", $scope.community);
   //get all groups for community
   var communityGroupsRef = new Firebase("https://interim.firebaseio.com/community-groups-metadata");
 
@@ -73,14 +75,15 @@ angular.module('interim.communityProfile', [])
 
   //filter public groups for community
   $scope.publicGroup = function(group) {
-    if (group.type === "public" && group.community === $rootScope.communityInfo.name) {
+    communityName = $rootScope.communityInfo ? $rootScope.communityInfo.name : $scope.community.name
+    if (group.type === "public" && group.community === communityName) {
       return true;  
     }
   };
 
   //filter private groups for community
   $scope.privateGroup = function(group) {
-    if (group.type === "private" && group.community === $rootScope.communityInfo.name) {
+    if (group.type === "private" && group.community === communityName) {
       for (var val in group) {
         for (var id in group[val]) {
           //if users members match current users id then allow user to see room

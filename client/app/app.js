@@ -64,15 +64,15 @@ angular.module('interim', [
   .state('community-profile', {
     url: '/community-profile/:communityName',
     templateUrl: '/app/communityProfile/communityProfile.html',
-    controller: 'CommunityProfileController',
     resolve:{
-      communityObject: function($stateParams, Auth) { 
+      community: function($stateParams, Auth) { 
         return Auth.queryCommunityDB($stateParams.communityName)
         .then(function (data) {
-          console.log(data)
+          return data;
         })
       }
-    }
+    },
+    controller: 'CommunityProfileController'
   })
   .state('profileEditor', {
     url: '/profileEditor',

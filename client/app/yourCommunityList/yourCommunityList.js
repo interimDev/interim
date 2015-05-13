@@ -58,16 +58,6 @@ angular.module('interim.yourCommunityList', ["firebase"])
     $scope.groups = $firebaseArray(ref.child('UsersDB').child(userId).child('usersGroups'));
   };
 
-
-  $scope.displayCommunities= function(){
-    //Use $rootScope array of communties
-  };
-  $scope.displayUsersGroups= function(){
-    //Use $rootScope array of communties
-  };
-
-
-  // Seach and display results
   $scope.sendSearch = function(community) {
     searchName = community.toLowerCase();
 
@@ -81,7 +71,7 @@ angular.module('interim.yourCommunityList', ["firebase"])
             //THIS IS THE OBJECT OF THE REQUESTED COMMUNITY
             $scope.requestedCommunity = value;
             // $rootScope.communityInfo = value;
-            $state.go("community-profile", {communityName: value.name, id: value.id});
+            $state.go("community-profile", {communityName: value.name});
             keepGoing = false;
           }
         }
