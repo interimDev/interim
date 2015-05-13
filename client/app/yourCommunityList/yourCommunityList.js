@@ -4,7 +4,9 @@ angular.module('interim.yourCommunityList', ["firebase"])
   // Initially identifying user and displaying their current groups & communities
 
   var ref = new Firebase("https://interim.firebaseio.com/");
-  var communitiesObj = $firebaseObject(ref);
+  var communityRef = new Firebase("https://interim.firebaseio.com/CommunityDB/");
+  var commObj = $firebaseObject(ref);
+  var Communities = $firebaseObject(communityRef);
   $scope.userInfo = $rootScope.userInfo;
 
   // For each of these calls, userId needs to be in the form
@@ -12,51 +14,38 @@ angular.module('interim.yourCommunityList', ["firebase"])
   $scope.usersCommunities = function(){
 
     var userId = '' + $scope.userInfo.name + "-" + $scope.userInfo.auth.provider;
-
     var communitiesObj = $firebaseObject(ref.child('UsersDB').child(userId).child('usersCommunities'));
+
     //var commObj = $firebaseObject(ref.child('UsersDB').child(userId)); //Contains communities & groups
-
     // Currently stores user's communities as {communityName1: true, communityName2: true}
-    // Can set object in place of each true with following properties (at min), or full communitry profile:
-    // avi_url: http://.........png   // To display icon
-    // route: #/id/                   // Route to jump directly to community page
+
     $scope.communities = communitiesObj;
+    console.log("User's communities scoped ", $scope.communities);
+    console.log("Communities from CommunityDB: ", Communities);
 
-    var communitySnapshot;
 
-     ref.child('CommunityDB').on("value", function(snapshot) {
-        communitySnapshot = snapshot.val();
-        //console.log("Snapshot:", snapshot.val(), " as saved in cS: ", communitySnapshot);
-        }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
-     });
+    // to take an action after the data loads, use $loaded() promise
+    communitiesObj.$loaded().then(function() {
+        console.log("Loaded records ", communitiesObj);
 
-    var searchName;
-    for (var key in communitiesObj){
-      // Key is in communitiesObj (retrieved from UserDB)
-      // Need to find matching communities from communities DB and add their info
-      // Need to distinguish between the userKeys (group names) and the communityKeys (random IDs)
-      // If the .name = one of the communities from the UserDB, save entire community object
-
-      // Trace's search
-      //
-      searchName = key.toLowerCase();
-
-      communitiesObj.$loaded().then(function() {
-        var keepGoing = true;
-        angular.forEach($scope.communitiesObj, function(value, key) {
-          if(keepGoing) {
-            // if(value.name === searchName) {
-            //   // Put all the community properties into the $scope.communities object
-            //   $scope.communties[value] = value;
-            //   console.log("Community info retrieved: ", value);
-            //   keepGoing = false;
-            // }
-          }
-        });
+      //To-do: not getting into this function...
+      angular.forEach($scope.communities, function(value,key){
+        console.log("Within communitiesObj in $scope search...key: ", key);
+        // Key is in communitiesObj (retrieved from UserDB), should be relatively small
+        // Need to search communitySnapshot[key].name === key
+        // Need to seach communitiesObj keys's
+        if( Communities[key] ) {
+          console.log("Found community match: ", Communities[key], " as ", Communities[key].name);
+          communitiesObj[key] = Communities[key];
+          console.log("Set community info : ", communitiesObj[key]);
+        }
       });
-      /// Trace's search
-      }
+    });
+
+    // Vanilla JS only access non-enumerable keys, bad!
+    // for(var key in communitiesObj) {
+    //   console.log("Test non-angular forEach: ", key, ': ', communitiesObj[key]);
+    // };
 
     //console.log($scope.userInfo.name, "'s communities ", $scope.communities);
   };
