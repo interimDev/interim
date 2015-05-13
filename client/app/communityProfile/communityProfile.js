@@ -1,13 +1,8 @@
 angular.module('interim.communityProfile', [])
 
-<<<<<<< HEAD
 .controller('CommunityProfileController', function ($scope, $firebaseArray, $rootScope, $state, $firebaseObject, community, $modal) {
   $scope.community = community;
-=======
-.controller('CommunityProfileController', function ($scope, $firebaseArray, $firebaseObject, $rootScope, $stateParams, $state) {
 
-  //get all groups for community
->>>>>>> [feature] Community Profile now shows members only, not every user.
   var communityGroupsRef = new Firebase("https://interim.firebaseio.com/community-groups-metadata");
 
   //show current groups
@@ -84,7 +79,7 @@ angular.module('interim.communityProfile', [])
     //sending user to profile page
     $state.go('community');
   };
-]
+
 
   $scope.community = $rootScope.communityInfo;
 
