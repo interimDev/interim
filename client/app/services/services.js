@@ -130,11 +130,6 @@ angular.module('interim.services', [])
       }
     });
     $rootScope.communityInfo = temp[uid];
-    //TODO - IF community.valid = true 
-      //sign them in
-    // if(temp[uid].valid === true) {
-    //   communitySignIn(temp[uid])
-    // }
   };
 
   // logs in the communities 
@@ -157,7 +152,7 @@ angular.module('interim.services', [])
       communityInfo = communities[communityId];
       $rootScope.communityInfo = communityInfo;
       console.log($rootScope.communityInfo, " - being returned as com obj");
-      $state.go('community-profile');
+      $state.go('community-profile', {communityName: communityInfo.name});
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });

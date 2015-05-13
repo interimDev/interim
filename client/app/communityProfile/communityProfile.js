@@ -11,11 +11,11 @@ angular.module('interim.communityProfile', [])
 
   //current user for private groups
   var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
-
+  
   //only communities can see add feature for groups
   // if ($rootScope.communityInfo.id) {
   //   $("#addNewGroup").css('visibility', 'visible');
-  // }
+  // };
 
   //this function creates a popup modal allowing users to add groups
   $scope.groupModal = function() {
@@ -81,14 +81,10 @@ angular.module('interim.communityProfile', [])
   };
 
 
-  $scope.community = $rootScope.communityInfo;
+  $scope.communityUsers = $rootScope.communityInfo;
 
-  //get information about the community that is logged in
-  var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
   //We currently have the simple login id!
   //Next we need to find the group object containing the userCurrentID
   var communityRef = new Firebase("https://interim.firebaseio.com/CommunityDB/"+userCurrentID);
   $scope.users = $firebaseArray(communityRef.child("users"));
-
-
 });
