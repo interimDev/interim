@@ -1,7 +1,8 @@
 angular.module('interim.communityProfile', [])
 
-.controller('CommunityProfileController', function ($scope, $firebaseArray, $rootScope, $state, $firebaseObject, community, $modal) {
+.controller('CommunityProfileController', function ($scope, $firebaseArray, $rootScope, $state, $firebaseObject, community, $modal, Auth) {
   $scope.community = community;
+  $scope.user = $rootScope.userInfo;
 
   var communityGroupsRef = new Firebase("https://interim.firebaseio.com/community-groups-metadata");
 
@@ -12,8 +13,10 @@ angular.module('interim.communityProfile', [])
   //current user for private groups
   var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
   
-  $scope.joinCommunity = function(user) {
-    console.log($rootScope.userInfo);
+  $scope.joinCommunity = function() {
+    console.log("join community user: ",$scope.user);
+    console.log("community to join: ", $scope.community);
+    Auth.joinCommunity($scope.user, $scope.community);
   }
 
   //this function creates a popup modal allowing users to add groups

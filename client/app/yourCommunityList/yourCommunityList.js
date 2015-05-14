@@ -8,7 +8,6 @@ angular.module('interim.yourCommunityList', ["firebase"])
   var Communities = $firebaseObject(communityRef);
   $scope.userInfo = $rootScope.userInfo;
   $scope.Communities = Communities;
-  console.log("$scoped Communities: ", Communities);
 
   // For each of these calls, userId needs to be in the form
   // userName-authSource   // Yoda-github
@@ -22,8 +21,6 @@ angular.module('interim.yourCommunityList', ["firebase"])
 
     // to take an action after the data loads, use $loaded() promise
     communitiesObj.$loaded().then(function() {
-        console.log("Loaded records ", communitiesObj);
-
       angular.forEach($scope.communities, function(value,key){
         if( Communities[key] ) {
           communitiesObj[key] = Communities[key];

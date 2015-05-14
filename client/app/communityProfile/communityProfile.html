@@ -11,7 +11,7 @@
       <div class="communityProfBasicInfo"
         <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
       </div>
-      <button type="button" class="btn btn-warning">Join!</button>
+      <button type="button" class="btn btn-warning" ng-click="joinCommunity()">Join!</button>
     </div>
   </div>
 
@@ -28,7 +28,7 @@
       <div class="col-md-4 profileBucket">
         <h2>Groups
           <!-- create groups by clicking on plus icon -->
-          <!-- TODO ---- HIDE THE CREATE GROUP DIV IF USER IS NOT A COMMUNITY ADMIN -->
+          <!-- TODO - HIDE THE CREATE GROUP DIV IF USER IS NOT A COMMUNITY ADMIN -->
           <div class="glyphicon glyphicon-plus" ng-click="groupModal()" title="Add Group"></div>
         </h2>
         <div class="groupList">
