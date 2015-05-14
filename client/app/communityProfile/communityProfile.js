@@ -19,6 +19,7 @@ angular.module('interim.communityProfile', [])
     Auth.joinCommunity($scope.user, $scope.community);
   };
 
+
   //this function creates a popup modal allowing users to add groups
   $scope.groupModal = function() {
    $modal.open({

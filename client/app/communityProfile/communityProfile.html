@@ -28,8 +28,8 @@
       <div class="col-md-4 profileBucket">
         <h2>Groups
           <!-- create groups by clicking on plus icon -->
-          <!-- TODO - HIDE THE CREATE GROUP DIV IF USER IS NOT A COMMUNITY ADMIN -->
-          <div class="glyphicon glyphicon-plus" ng-click="groupModal()" title="Add Group"></div>
+          <!-- TODO ---- HIDE THE CREATE GROUP DIV IF USER IS NOT A COMMUNITY ADMIN -->
+          <div class="glyphicon glyphicon-plus" ng-hide="addNewGroup" ng-click="groupModal()" title="Add Group"></div>
         </h2>
         <div class="groupList">
         <!-- show public groups -->
