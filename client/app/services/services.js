@@ -59,7 +59,7 @@ angular.module('interim.services', [])
     //set userInfo for reference in front end
     Permissions.isSuperAdmin();
     $rootScope.userInfo = userObj[username];
-  };
+  }
 
   var updateUser = function(key, edits) {
     ref.child('UsersDB').child(key).child('profile').update(edits.profile, function(error) {
@@ -175,13 +175,13 @@ angular.module('interim.services', [])
 
     userRef.child(userId).child('usersCommunities').update(userUpdate, function(error) {
     if (error) {
-      console.log("Error joining community: ",error)
+      console.log("Error joining community: ",error);
       } 
     });
 
     commRef.child(community.id).child('users').update(communityUpdate, function(error) {
     if (error) {
-      console.log("Error adding user: ",error)
+      console.log("Error adding user: ",error);
     }  
     });
   };
