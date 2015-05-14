@@ -19,6 +19,16 @@ angular.module('interim.communityProfile', [])
     Auth.joinCommunity($scope.user, $scope.community);
   };
 
+  //user will not be able to see add icon for groups
+  var validateGroups = $rootScope.communityInfo ? $rootScope.communityInfo.id : false;
+  //if community admin
+  if (validateGroups) {
+    $scope.addNewGroup = false;
+  // else if user
+  } else {
+    $scope.addNewGroup = true;
+  }
+
   //this function creates a popup modal allowing users to add groups
   $scope.groupModal = function() {
    $modal.open({
