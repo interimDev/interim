@@ -15,7 +15,6 @@
   text-align: center;
   margin-top: 15%;
 }
-
 /*landingPage.html css ends here*/
 
 /*yourCommunityList.html css starts here*/
@@ -339,6 +338,48 @@
 }
 
 /*community profile end*/
+
+/*community communitySingUp start*/
+
+.error-block {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: red;
+}
+
+.modal-singUp .modal-dialog{
+  margin-right: auto;
+  margin-left: auto;
+  width: 300px;
+  height: 200px;
+}
+
+.singUpTitle {
+  margin-top: 10px;
+  color: #2869b2;
+  font-size: 150%;
+}
+
+.singUpForm {
+  margin-bottom: 20px;
+}
+
+.singUp {
+  text-align: center;
+}
+
+.singUpTable {
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 20px;
+  width:80%;
+}
+
+tr {
+  height:40px;
+}
+/*community communitySingUp end*/
 
 .superadminYeah{
   width: 100%;
