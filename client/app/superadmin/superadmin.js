@@ -18,7 +18,6 @@ angular.module('interim.superAdmin', ["firebase"])
 
   //community is accepted 
   $scope.acceptCommunity = function(community) {
-    console.log("acceptComm: ", community); 
     var uid = community.id;
     // valid attribute is set to true
     ref.child(uid).update({valid : true}, function(error) {

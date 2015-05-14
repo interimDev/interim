@@ -35,7 +35,6 @@ angular.module('interim.userProfile', [])
     
   $scope.save = function(edits) {
     $scope.edits = angular.copy(edits);
-    console.log("edits: ",$scope.edits);
     $scope.clickedUser.profile.location =  $scope.edits.location ? $scope.edits.location : $scope.clickedUser.profile.location;
     $scope.clickedUser.profile.bio = $scope.edits.bio ? $scope.edits.bio : $scope.clickedUser.profile.bio;
     $scope.clickedUser.profile.twitter = $scope.edits.twitter ? $scope.edits.twitter : $scope.clickedUser.profile.twitter;

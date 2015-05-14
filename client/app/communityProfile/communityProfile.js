@@ -14,8 +14,6 @@ angular.module('interim.communityProfile', [])
   var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
   
   $scope.joinCommunity = function() {
-    console.log("join community user: ",$scope.user);
-    console.log("community to join: ", $scope.community);
     Auth.joinCommunity($scope.user, $scope.community);
   };
 

@@ -6,8 +6,6 @@ angular.module('interim.dashboard', ["firebase"])
   //display room names
   var rooms = $firebaseArray(roomRef), usersRoom, usersAdded=[];
 
-  console.log("My group", $rootScope.group);
-
   //current user id
   var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
   $scope.userID = userCurrentID;
