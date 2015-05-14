@@ -94,6 +94,7 @@ angular.module('interim.communityProfile', [])
 
   //We currently have the simple login id!
   //Next we need to find the group object containing the userCurrentID
-  var communityRef = new Firebase("https://interim.firebaseio.com/CommunityDB/"+userCurrentID);
+
+  var communityRef = new Firebase("https://interim.firebaseio.com/CommunityDB/"+community.id);
   $scope.users = $firebaseArray(communityRef.child("users"));
 });
