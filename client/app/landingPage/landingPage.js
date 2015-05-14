@@ -16,10 +16,10 @@ angular.module('interim.landingPage', [])
   };
 
   $scope.communityModal = function() {     
-    $modal.open({
+    $modal.win = $modal.open({
       templateUrl: 'app/landingPage/communitySignUp.html',
       backdrop: true,
-      windowClass: 'modal-singUp',
+      windowClass: 'modal-signUp',
       controller: 'LandingPageController',
       resolve: {
         community: function () {
@@ -32,6 +32,7 @@ angular.module('interim.landingPage', [])
   $scope.update = function(community) {
     $scope.master = angular.copy(community);
     Auth.communityAuth($scope.master);
+    $modal.win.close();
   };
 
   $scope.reset = function() {
