@@ -1,42 +1,31 @@
 <div id="yourCommunityList" ng-controller="YourCommunityListController">
- <!--
-  <div id="nav">
-    <nav class="navbar navbar-default">
-      <ul class="nav navbar-nav" id="navContent">
-        <li><a href="#">ABOUT</a></li>
-        <li><a href="#">PORTFOLIO</a></li>
-        <li><a href="#">SERVICES</a></li>
-        <li><a href="#">CONTACT</a></li>
-      </ul>
-    </nav>
-  </div>
-  -->
 
   <!-- Communities Title-->
   <div id="YourCommunitiesName">
     <div><h1>Your Communities</h1>
     </div>
 
-     <!-- Placeholder Angular -->
+     <!-- Your Communities -->
     <span class="thumbnail" id="communityThumbnail" ng-repeat="(key,value) in communities">
-        <a href="#/community-profile/{{value.name}}/">
+        <a href="#/community-profile/{{value.name}}" >
+          <!-- <a href="#/contacts/3" ui-sref="contacts.detail({ id: contact.id })"> -->
          {{value.name.toUpperCase()}} </a>
         <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)" />
     </span>
 
-  <!-- Sample Icon for company -->
- <!--    <span class="thumbnail" id="communityThumbnail">
-      <img src="/app/assets/mSquare.png" id="msIcon">
-    </span>
-    <span class="thumbnail" id="communityThumbnail">
-      <img src="/app/assets/mSquare.png" id="msIcon">
-    </span>
-    <span class="thumbnail" id="communityThumbnail">
-      <img src="/app/assets/mSquare.png" id="msIcon">
-    </span>
-  </span> -->
-
+<!-- Search -->
   <div id="CommunitiesSearch">
    <input type="text" ng-model="requested" ng-keyup="$event.keyCode == 13 && sendSearch(requested)" class="form-control"  placeholder="Enter group or community search here..." required/>
   </div>
 </div>
+
+<!-- All Existing Communities. To-Do: filtered by search terms-->
+  <div id="YourCommunitiesName">
+    <div><h1>All Communities</h1>
+    </div>
+
+    <span class="thumbnail" id="communityThumbnail" ng-repeat="(key,value) in Communities">
+        <a href="#/community-profile/{{value.name}}">
+         {{value.name.toUpperCase()}} </a>
+        <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)" />
+    </span>
