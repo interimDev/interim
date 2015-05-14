@@ -12,10 +12,9 @@ angular.module('interim.communityProfile', [])
   //current user for private groups
   var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
   
-  //only communities can see add feature for groups
-  // if ($rootScope.communityInfo.id) {
-  //   $("#addNewGroup").css('visibility', 'visible');
-  // };
+  $scope.joinCommunity = function(user) {
+    console.log($rootScope.userInfo);
+  }
 
   //this function creates a popup modal allowing users to add groups
   $scope.groupModal = function() {
