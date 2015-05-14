@@ -6,7 +6,7 @@ angular.module('interim.communityProfile', [])
   var communityGroupsRef = new Firebase("https://interim.firebaseio.com/community-groups-metadata");
 
   //show current groups
-  var groups = $firebaseArray(communityGroupsRef), usersGroup;
+  var groups = $firebaseArray(communityGroupsRef), usersGroup, communityName;
   $scope.groups = groups;
 
   //current user for private groups
@@ -79,9 +79,6 @@ angular.module('interim.communityProfile', [])
     //sending user to profile page
     $state.go('community');
   };
-
-
-  $scope.communityUsers = $rootScope.communityInfo;
 
   //We currently have the simple login id!
   //Next we need to find the group object containing the userCurrentID

@@ -1,6 +1,7 @@
 angular.module('interim.chat', ["firebase", "luegg.directives"])
 
 .controller('ChatController', function ($scope, $firebaseArray, $rootScope, $firebaseObject, $modal) {
+  // TO-DO: Change rootScope here
   $scope.userInfo = $rootScope.userInfo ? $rootScope.userInfo : $rootScope.communityInfo;
   var ref = new Firebase("https://interim.firebaseio.com/room-messages");
   //get all messages for specific room
@@ -17,29 +18,21 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
 
   //send messages to specific room
   $scope.sendMessage = function() {
-
     //check if message is empty
     if ($scope.msg) {
-      // make sure message is under 120 characters
-      if ($scope.msg.length < 121) {
-        var msg = ref.child($scope.roomId).push();
-        var message = {
-          userId: userCurrentID,
-          userProfileImage: $rootScope.userInfo ? $rootScope.userInfo.avi_url : null,
-          name: $rootScope.userInfo ? $rootScope.userInfo.name : $rootScope.communityInfo.name,
-          timestamp: Firebase.ServerValue.TIMESTAMP,
-          message: $scope.msg,
-          type: 'default'
-        };
-        //reset input box
-        $scope.msg = "";
-        msg.set(message);
-      } else {
-        //notify is message is over 120 characters
-        var lengthExceeded = $scope.msg.length - 120;
-        $.notify("Your message exceeds length by " + lengthExceeded +
-          "  characters", "error");
-      }
+      var msg = ref.child($scope.roomId).push();
+      var message = {
+        userId: $scope.userInfo.id,
+        // TO-DO: Change rootScope here
+        userProfileImage: $rootScope.userInfo ? $rootScope.userInfo.avi_url : null,
+        name: $scope.userInfo.name,
+        timestamp: Firebase.ServerValue.TIMESTAMP,
+        message: $scope.msg,
+        type: 'default'
+      };
+      //reset input box
+      $scope.msg = "";
+      msg.set(message);
     } 
   };
 

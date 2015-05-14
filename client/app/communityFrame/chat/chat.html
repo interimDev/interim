@@ -33,18 +33,10 @@
 
     <!-- chat input -->
     <form class="row" id="chatRow" novalidate="">
-  
-        <div class="input-group">
-          <span class="input-group-btn">
-            <!-- chat input settings button -->
-            <button class="btn btn-default" type="button" id="chatUpButton">
-              <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-            </button>
-          </span>
-          <!-- input sends message when user presses enter key on key board -->
-          <input type="text" maxlength="120" data-minlength="1" class="form-control" ng-model="msg" placeholder="Enter message here..." ng-keyup="$event.keyCode == 13 && sendMessage()" required />
-        </div>
-
+      <div>
+        <!-- input sends message when user presses enter key on key board -->
+        <input type="text" maxlength="120" data-minlength="1" class="form-control inputChatField" ng-model="msg" placeholder="Enter message here..." ng-keyup="$event.keyCode == 13 && sendMessage()" required />
+      </div>
     </form>
   </div>
 </div>

@@ -31,6 +31,7 @@
 .createCommunity {
   margin-bottom: 10px;
 }
+
 /*landingPage.html css ends here*/
 
 /*yourCommunityList.html css starts here*/
@@ -231,7 +232,7 @@
   top:0;
 }
 
-#tags {
+#users {
   position: absolute;
   top: 300px;
   width: 100%;
@@ -323,8 +324,8 @@
   left:18%;
 }
 
-#chatUpButton {
-  height:34px;
+.inputChatField {
+  width: 100%;
 }
 /*chat input ends here*/
 /*chat.html css ends here*/
