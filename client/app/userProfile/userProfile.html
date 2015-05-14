@@ -19,24 +19,25 @@
   <button type="button" class="btn btn-warning" ng-if="editAllowed" ng-click="editProfile()" id="profileEditor">Edit Profile</button>
 </div>
 
-<div class="userProf" ng-if="editorEnabled || makeProfile">
+<form name="editProfile" class="userProf" ng-if="editorEnabled || makeProfile">
   <br>
   <h2>{{clickedUser.name}}</h2>
   <img id='modalProfilePic' ng-src='{{clickedUser.avi_url}}'/>
   <br>
   <div id="profileHeaders">
     <h4>Location: </h4>
-    <input id="locationEditor" ng-model="edit.location" autocomplete="on" placeholder="{{clickedUser.profile.location}}">
-    <br>
+    <input name="location" id="locationEditor"ng-model="edit.location" autocomplete="on" placeholder="{{clickedUser.profile.location}}" required>
+    <p ng-show="editProfile.location.$invalid && !editProfile.location.$pristine" class="error-block">Please enter location.</p>
     <h4>Biography: </h4>
-    <textarea id="bioEditor" ng-model="edit.bio" autocomplete="on" placeholder='{{clickedUser.profile.bio}}'></textarea> 
+    <textarea name="bio" id="bioEditor" ng-model="edit.bio" autocomplete="on" placeholder="{{clickedUser.profile.bio}}" required></textarea>
+    <p ng-show="editProfile.bio.$invalid && !editProfile.bio.$pristine" class="error-block">Please enter biography.</p> 
   </div>
   <br> 
   Links: 
-  <input class="urlEditor" ng-model="edit.twitter" autocomplete="on" placeholder='{{clickedUser.profile.twitter}}'>
-  <input class="urlEditor" ng-model="edit.linkedIn" autocomplete="on" placeholder='{{clickedUser.profile.linkedIn}}'>
-
+  <input name="twitter "class="urlEditor" ng-model="edit.twitter" autocomplete="on" placeholder='Twitter' required/>
+  <input name="linkedin "class="urlEditor" ng-model="edit.linkedIn" autocomplete="on" placeholder='LinkedIn' required/>
+</input>
   <br>
-  <button type="button" class="btn btn-success" ng-if="editAllowed" ng-click="save(edit)">Save</button>
-  <button type="button" class="btn btn-danger" ng-if="editAllowed" ng-click="cancel()">Cancel</button>
-</div>
+  <button type="button" class="btn btn-success" ng-disabled="editProfile.$invalid" ng-if="editAllowed" ng-click="save(edit)">Save</button>
+  <button type="button" class="btn btn-danger"  ng-if="editAllowed" ng-click="cancel()">Cancel</button>
+</form>
