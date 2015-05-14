@@ -183,8 +183,6 @@ angular.module('interim.services', [])
     communityUpdate[user.id] = user.name;
     var userUpdate = {};
     userUpdate[community.id]  = true;
-    console.log("user in joinCommunity service :", user)
-    console.log("community in joinCommunity service :", community)
 
     userRef.child(userId).child('usersCommunities').update(userUpdate, function(error) {
       error ? console.log("Error joining community: ",error) : console.log("You're now a member of "+community.name);
@@ -193,7 +191,7 @@ angular.module('interim.services', [])
     commRef.child(community.id).child('users').update(communityUpdate, function(error) {
       error ? console.log("Error adding user: ",error) : console.log(user.name+" is now a member!");
     });
-  }
+  };
 
   return {
     communitySignIn: communitySignIn,
