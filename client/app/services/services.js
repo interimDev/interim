@@ -5,6 +5,7 @@ angular.module('interim.services', [])
   var authObj = $firebaseAuth(ref);
   var commRef = new Firebase("https://interim.firebaseio.com/CommunityDB/");
   var communityObjects = $firebaseObject(commRef);
+  var userRef = new Firebase("https://interim.firebaseio.com/UsersDB/");
   
 
   /* 
@@ -32,7 +33,7 @@ angular.module('interim.services', [])
     var username = user.github.displayName+"-"+user.provider;
     var filteredUser = {
       'name' : user.github.displayName,
-      'id' : user.github.id,
+      'id' : username,
       'token' : user.token,
       'auth' : user.auth,
       'communities' : null,
@@ -176,13 +177,32 @@ angular.module('interim.services', [])
     });
   };
 
+  var joinCommunity = function(user, community) {
+    var userId = user.id;
+    var communityUpdate = {};
+    communityUpdate[user.id] = user.name;
+    var userUpdate = {};
+    userUpdate[community.id]  = true;
+    console.log("user in joinCommunity service :", user)
+    console.log("community in joinCommunity service :", community)
+
+    userRef.child(userId).child('usersCommunities').update(userUpdate, function(error) {
+      error ? console.log("Error joining community: ",error) : console.log("You're now a member of "+community.name);
+    });
+
+    commRef.child(community.id).child('users').update(communityUpdate, function(error) {
+      error ? console.log("Error adding user: ",error) : console.log(user.name+" is now a member!");
+    });
+  }
+
   return {
     communitySignIn: communitySignIn,
     githubAuth: githubAuth,
     storeUser: storeUser,
     communityAuth: communityAuth,
     updateUser: updateUser,
-    queryCommunityDB: queryCommunityDB
+    queryCommunityDB: queryCommunityDB,
+    joinCommunity: joinCommunity
   };
 })
 
