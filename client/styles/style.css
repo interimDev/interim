@@ -435,3 +435,24 @@ tr {
 .urlEditor {
   margin-bottom: 1%;
 }
+
+/*Create Groupe Modal Styles*/
+
+.groupModal {
+  text-align: center;
+  margin: 0 -5%;
+}
+
+#group_name {
+  margin-bottom: 3%;
+  border-radius: 2px;
+}
+
+#checkbox {
+  margin-bottom: 3%;
+}
+
+.groupModal button {
+  margin-bottom: 2%;
+}
+
