@@ -7,6 +7,8 @@ angular.module('interim.yourCommunityList', ["firebase"])
   var communityRef = new Firebase("https://interim.firebaseio.com/CommunityDB/");
   var Communities = $firebaseObject(communityRef);
   $scope.userInfo = $rootScope.userInfo;
+  $scope.Communities = Communities;
+  console.log("$scoped Communities: ", Communities);
 
   // For each of these calls, userId needs to be in the form
   // userName-authSource   // Yoda-github
@@ -15,20 +17,16 @@ angular.module('interim.yourCommunityList', ["firebase"])
     var userId = '' + $scope.userInfo.name + "-" + $scope.userInfo.auth.provider;
     var communitiesObj = $firebaseObject(ref.child('UsersDB').child(userId).child('usersCommunities'));
 
-    //var commObj = $firebaseObject(ref.child('UsersDB').child(userId)); //Contains communities & groups
     // Currently stores user's communities as {communityName1: true, communityName2: true}
-
     $scope.communities = communitiesObj;
 
 
-    // to take an action after the data loads, use $loaded() promise
+    // To take an action after the data loads, use $loaded() promise
+    // Updates the user's communities on local scope to have full community profile information
     communitiesObj.$loaded().then(function() {
         console.log("Loaded records ", communitiesObj);
 
       angular.forEach($scope.communities, function(value,key){
-        // Key is in communitiesObj (retrieved from UserDB), should be relatively small
-        // Need to search communitySnapshot[key].name === key
-        // Need to seach communitiesObj keys's
         if( Communities[key] ) {
           communitiesObj[key] = Communities[key];
         }
@@ -37,6 +35,22 @@ angular.module('interim.yourCommunityList', ["firebase"])
   };
 
   $scope.usersCommunities();
+
+   $scope.allCommunities = function(){
+
+    Communities.$loaded().then(function() {
+        console.log("Loaded records ", Communities);
+
+      angular.forEach(Communities, function(value,key){
+        // Key is in communitiesObj (retrieved from UserDB), smaller compared to CommunitiesDB
+        if( Communities[key] ) {
+          communitiesObj[key] = Communities[key];
+        }
+      });
+    });
+  };
+
+
 
   $scope.usersGroups = function(){
     //Check all Group children for all communities
@@ -52,10 +66,9 @@ angular.module('interim.yourCommunityList', ["firebase"])
       angular.forEach($scope.communitiesObj, function(value, key) {
         if(keepGoing) {
           if(value.name === searchName) {
-            //TODO - APPEND THE REQUESTED COMMUNITY TO THE PAGE
+            //TODO - FILTER ALL REQUESTED COMMUNITIES BASED ON THIS SEARCH
             //THIS IS THE OBJECT OF THE REQUESTED COMMUNITY
             $scope.requestedCommunity = value;
-            $state.go("community-profile", {communityName: value.name});
             keepGoing = false;
           }
         }
