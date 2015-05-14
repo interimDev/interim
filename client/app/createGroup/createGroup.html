@@ -1,12 +1,13 @@
 <div class="groupModal">
-  Enter New Group Name: 
+  <h4>Enter New Group Name:</h4>
+  <br> 
   <input type='text' id='group_name' ng-model='group.name'></input> 
   <div>
     <label>
-      <input type='checkbox' id ='checkbox' ng-model='group.private'>
-        Private Group
+      <input type='checkbox' id='checkbox' ng-model='group.private'>
+        Is This a Private Group?
       </input>
     </label>
   </div>
-  <button class="btn-primary createRoomButton" ng-click="createGroup(group)">Create Group</button>
+  <button class="btn btn-primary createRoomButton" ng-click="createGroup(group)">Create Group</button>
 </div>
