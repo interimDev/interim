@@ -8,7 +8,6 @@ angular.module('interim.yourCommunityList', ["firebase"])
   var Communities = $firebaseObject(communityRef);
   $scope.userInfo = $rootScope.userInfo;
   $scope.Communities = Communities;
-  console.log("$scoped Communities: ", Communities);
 
   // For each of these calls, userId needs to be in the form
   // userName-authSource   // Yoda-github
@@ -20,12 +19,8 @@ angular.module('interim.yourCommunityList', ["firebase"])
     // Currently stores user's communities as {communityName1: true, communityName2: true}
     $scope.communities = communitiesObj;
 
-
-    // To take an action after the data loads, use $loaded() promise
-    // Updates the user's communities on local scope to have full community profile information
+    // to take an action after the data loads, use $loaded() promise
     communitiesObj.$loaded().then(function() {
-        console.log("Loaded records ", communitiesObj);
-
       angular.forEach($scope.communities, function(value,key){
         if( Communities[key] ) {
           communitiesObj[key] = Communities[key];
@@ -57,6 +52,7 @@ angular.module('interim.yourCommunityList', ["firebase"])
     $scope.groups = $firebaseArray(ref.child('UsersDB').child(userId).child('usersGroups'));
   };
 
+
   $scope.sendSearch = function(community) {
     searchName = community.toLowerCase();
 
@@ -66,8 +62,6 @@ angular.module('interim.yourCommunityList', ["firebase"])
       angular.forEach($scope.communitiesObj, function(value, key) {
         if(keepGoing) {
           if(value.name === searchName) {
-            //TODO - FILTER ALL REQUESTED COMMUNITIES BASED ON THIS SEARCH
-            //THIS IS THE OBJECT OF THE REQUESTED COMMUNITY
             $scope.requestedCommunity = value;
             keepGoing = false;
           }
@@ -75,6 +69,4 @@ angular.module('interim.yourCommunityList', ["firebase"])
       });
     });
   };
-
-
 });
