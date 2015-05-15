@@ -1,7 +1,7 @@
 angular.module('interim.createGroup', [])
 
 .controller('CreateGroupController', function ($scope, $rootScope, $firebaseObject, $modal, $modalInstance) {
-  //to-do change the fucking modal buttons into here FUCK
+  //TO-DO: change the modal buttons into here
   var communityGroupsRef = new Firebase("https://interim.firebaseio.com/community-groups-metadata");
   var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
   

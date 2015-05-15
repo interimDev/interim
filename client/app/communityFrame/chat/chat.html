@@ -8,17 +8,17 @@
           <div class="col-md-12 col-sm-12">
             <div class="panel panel-default arrow left">
               <div class="panel-body">
-                <!-- displays users picture -->
+                <!-- displays user's picture -->
                 <div class="col-md-2 col-sm-2 hidden-xs">
                 <img src={{message.userProfileImage}} ng-click="userModal(message)" class="img-rounded" id="chatImage"/>
                 </div>
-                <!-- displays users name -->
+                <!-- displays user's name -->
                 <span class="userNameChat"><i class="fa fa-user"></i> {{message.name}}
                   <!-- displays time when message was send -->
                   <time id="chatTime"><i class="fa fa-clock-o"></i> {{ message.timestamp| date:'short'}}
                   </time>
                 </span>
-               <!-- displays usesrs message -->
+               <!-- displays usesr's message -->
                 <div>
                   <p class="messageText">
                     {{message.message}}

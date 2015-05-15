@@ -16,7 +16,8 @@ angular.module('interim.dashboard', ["firebase"])
     var roomName, roomType = 'public';
 
     bootbox.dialog({
-      // input box for room name and set room to public
+      //TO-DO: refactor into new modal style
+      //input box for room name and set room to public
       message: "Enter New Room Name: <input type='text' id='room_name'></input>" +
       "<div><label><input type='checkbox' id = 'checkbox' require> Private Room</label></div>",
       title: "Creating New Room",
@@ -113,7 +114,7 @@ angular.module('interim.dashboard', ["firebase"])
     }
   };
 
-  // reset users list for modal
+  //reset users list for modal
   $scope.updateUsersList =function(userID){
     for (var user =0; user < usersAdded.length; user++) {
       $('#'+usersAdded[user]).show();

@@ -1,14 +1,14 @@
 
 <div class="dashboard" ng-controller="DashboardController">
   <div id="roomsContent">
-    <!-- Rooms Name -->
+    <!-- room's Name -->
     <div id="rooms">
     <h4 id="contentNames">Rooms
       <!-- button to add rooms -->
       <div class="glyphicon glyphicon-plus" ng-click="addRoom()" title="Add Room" data-target="#addRoomAlert" ></div>
     </h4>
 
-      <!-- Rooms are added and removed here -->
+      <!-- rooms are added and removed here -->
       <div id="contentBucketRooms">
         <!-- Each public room -->
         <h6 ng-repeat="room in rooms | orderBy: 'name'| filter: filterPublic" id="insideContent"><a href="javascript:void(0);" ng-click="roomName(this);" id="linkColor">{{room.name}}</a> </h6>
@@ -19,7 +19,7 @@
           <span data-toggle="modal" data-target="#myModal" ng-click="selectingRoom(room.id)"> <img  class = "glyphicon-user-add" title="Add User" src="/app/assets/glyphicons-user-add.png"/></span>
         </h6>
 
-        <!-- Modal for Adding Users To Private Room -->
+        <!-- modal for adding users to private room -->
         <div data-backdrop="false" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -43,12 +43,12 @@
     </div>
 
 
-    <!-- Users Name -->
+    <!-- user's name -->
     <div id="users">
     <h4 id="contentNames">Users</h4>
-      <!-- Users are added and removed here -->
+      <!-- users are added and removed here -->
       <div id="contentBucketUsers">
-        <!-- Each User -->
+        <!-- each user -->
         <h6 id="insideContent" ng-repeat="user in allUsers| orderBy: name">{{user.name}}</h6>
       </div>
     </div>

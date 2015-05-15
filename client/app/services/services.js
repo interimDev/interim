@@ -25,7 +25,7 @@ angular.module('interim.services', [])
     });
   };
 
-  // adding new users to the database.
+  //adding new users to the database.
   var storeUser = function(user){
     //pulls data from the github user data to create a cleaner
     //filtered user object that we insert to the database
@@ -94,7 +94,7 @@ angular.module('interim.services', [])
   };
 
 
-  // adds community to the database
+  //adds community to the database
   var storeCommunity = function(authObj, communityObj){
     //communities are currently stored in the database by their uid
     var uid = authObj.uid;
@@ -124,8 +124,8 @@ angular.module('interim.services', [])
     $rootScope.communityInfo = temp[uid];
   };
 
-  // logs in the communities 
-  // called directly after authorizaition
+  //logs in the communities 
+  //called directly after authorizaition
   var communitySignIn = function(community){
     authObj.$authWithPassword({
       email: community.email,

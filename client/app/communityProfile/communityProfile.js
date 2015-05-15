@@ -90,9 +90,8 @@ angular.module('interim.communityProfile', [])
     $state.go('community');
   };
 
-  //We currently have the simple login id!
-  //Next we need to find the group object containing the userCurrentID
 
+  //display's the members that belong to the community that is being visited
   var communityRef = new Firebase("https://interim.firebaseio.com/CommunityDB/"+community.id);
   $scope.users = $firebaseArray(communityRef.child("users"));
 });

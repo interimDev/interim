@@ -3,6 +3,7 @@ angular.module('interim.landingPage', [])
 .controller('LandingPageController', function ($scope, Auth, Permissions, $state, $rootScope, $modal) {
   $scope.master = {};
 
+  //authenticates user at sign in
   $scope.githubAuth = function() {
     Auth.githubAuth()
     .then(function(user){

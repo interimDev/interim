@@ -32,7 +32,7 @@ angular.module('interim.superAdmin', ["firebase"])
     });
   };
 
-  //if denied notify them by email or something and delete them from the db
+  //if denied notify them by email and delete them from the db
   $scope.denyCommunity = function(community) {
     var uid = community.id;
     ref.child(uid).remove();
