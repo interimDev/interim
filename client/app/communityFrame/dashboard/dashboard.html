@@ -11,7 +11,7 @@
       <!-- Rooms are added and removed here -->
       <div id="contentBucketRooms">
         <!-- Each public room -->
-        <h6 ng-repeat="room in rooms | orderBy: 'name'| filter: filterPublic" id="insideContent"><a href="javascript:void(0);" ng-click="roomName(this);" id="linkColor">{{room.name}}</a> </h6>
+        <h6 ng-repeat="room in rooms | orderBy: 'name'| filter: filterPublic" repeat-done="roomName(this);" id="insideContent"><a href="javascript:void(0);" ng-click="roomName(this);" id="linkColor">{{room.name}}</a> </h6>
    
 
         <!-- show each private room that matches user id -->

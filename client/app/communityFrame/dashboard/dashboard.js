@@ -6,8 +6,6 @@ angular.module('interim.dashboard', ["firebase"])
   //display room names
   var rooms = $firebaseArray(roomRef), usersRoom, usersAdded=[];
 
-  console.log("My group", $rootScope.group);
-
   //current user id
   var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
   $scope.userID = userCurrentID;
@@ -103,7 +101,15 @@ angular.module('interim.dashboard', ["firebase"])
   $scope.roomName = function(obj) {
     //set current room (since no user just storing it globally)
     $rootScope.messages(obj.room.id);
+    console.log("HERERERERE OBJ")
   };
+
+  if ($("#linkColor")) {
+    setTimeout(function(){$("#linkColor").click();},3000)
+    console.log("TRUEUEUUEUEU");
+
+    $("#linkColor").click();
+  }
 
   //on click remove user from modal
   $scope.removeUser = function(userID, userName) {
