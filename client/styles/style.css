@@ -396,17 +396,22 @@
   margin-top: 80px;
 }
 
+#YourCommunitiesName h1 {
+  margin-top: -4%;
+}
+
 #communityThumbnail {
   font-size: 24px;
   text-align: center;
   background-color: #ccd3dc;
   width: 200px;
   height: 200px;
-  margin-top: 50px;
-  margin-right: 10px;
+  margin-top: 4%;
+  margin-right: 1.5%;
   margin-left: auto;
-  box-shadow: 1px 1px 5px #888888;
+  box-shadow: 5px 5px 15px #888888;
   display: inline-block;
+  border-radius: 0;
 }
 .communityImage {
   width: 80%;
