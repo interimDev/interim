@@ -52,6 +52,7 @@ angular.module('interim.services', [])
           if (error) {
             console.log("Error inserting user: ", error);
           }
+        });
       }
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
@@ -59,7 +60,7 @@ angular.module('interim.services', [])
     //set userInfo for reference in front end
     Permissions.isSuperAdmin();
     $rootScope.userInfo = userObj[username];
-  }
+  };
 
   var updateUser = function(key, edits) {
     ref.child('UsersDB').child(key).child('profile').update(edits.profile, function(error) {
