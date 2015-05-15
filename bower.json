@@ -13,6 +13,5 @@
   "dependencies": {
     "angular-bootstrap": "~0.12.1",
     "angular-scroll-glue": "~2.0.5",
-    "firechat": "~2.0.1"
   }
 }
