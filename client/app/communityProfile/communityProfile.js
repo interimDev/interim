@@ -98,5 +98,5 @@ angular.module('interim.communityProfile', [])
   var communityRef = new Firebase("https://interim.firebaseio.com/CommunityDB/"+community.id);
   $scope.users = $firebaseArray(communityRef.child("users"));
   //get community picture
-  $scope.communityPic = $firebaseObject(communityRef);
+  $scope.communityPic = $scope.community;
 });
