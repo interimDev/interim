@@ -9,11 +9,16 @@ angular.module('interim.communityProfile', [])
   $scope.community = community;
   $scope.users = $scope.community['users'];
   $scope.user = $rootScope.userInfo;
+  $scope.editAllowed = true;
+
+  $scope.save = function() {
+    console.log("entered save")
+    console.log("community: ", $scope.community);
+    //Auth.updateUser(userKey, $scope.clickedUser);
+  };
+
 
   //current user for private groups
-
-  var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
-
   $scope.joinCommunity = function() {
     Auth.joinCommunity($scope.user, $scope.community);
   };
