@@ -1,21 +1,18 @@
 angular.module('interim.communityProfile', [])
 
 .controller('CommunityProfileController', function ($scope, $firebaseArray, $rootScope, $state, $firebaseObject, community, $modal, Auth) {
+  var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
+  var communityGroupsRef = new Firebase("https://interim.firebaseio.com/community-groups-metadata");
+  var groups = $firebaseArray(communityGroupsRef)
+
+  $scope.groups = groups;
   $scope.community = community;
+  $scope.users = $scope.community['users'];
   $scope.user = $rootScope.userInfo;
 
-  var communityGroupsRef = new Firebase("https://interim.firebaseio.com/community-groups-metadata");
-
-  //show current groups
-  var groups = $firebaseArray(communityGroupsRef), usersGroup, communityName;
-  $scope.groups = groups;
-
   //current user for private groups
-  var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
   
   $scope.joinCommunity = function() {
-    console.log("join community user: ",$scope.user);
-    console.log("community to join: ", $scope.community);
     Auth.joinCommunity($scope.user, $scope.community);
   };
 
@@ -46,7 +43,7 @@ angular.module('interim.communityProfile', [])
 
   //filter public groups for community
   $scope.publicGroup = function(group) {
-    communityName = $rootScope.communityInfo ? $rootScope.communityInfo.name : $scope.community.name;
+    var communityName = $rootScope.communityInfo ? $rootScope.communityInfo.name : $scope.community.name;
     if (group.type === "public" && group.community === communityName) {
       return true;  
     }
@@ -66,13 +63,10 @@ angular.module('interim.communityProfile', [])
     }
   };
 
-  //get all Users 
-  var userRef = new Firebase("https://interim.firebaseio.com/UsersDB");
-  $scope.allUsers = $firebaseArray(userRef);
   
   //setting private group when user clicks on adding users
   $scope.selectingGroup = function(groupID) {
-    usersGroup = groupID;
+    var usersGroup = groupID;
   };
 
   //adding user to private group
@@ -92,12 +86,4 @@ angular.module('interim.communityProfile', [])
     $state.go('community');
   };
 
-  //We currently have the simple login id!
-  //Next we need to find the group object containing the userCurrentID
-
-  var communityRef = new Firebase("https://interim.firebaseio.com/CommunityDB/"+community.id);
-  console.log($scope.community['users'])
-  $scope.users = $scope.community['users'];
-  //get community picture
-  $scope.community;
 });
