@@ -24,7 +24,7 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
       var message = {
         userId: $scope.userInfo.id,
         // TO-DO: Change rootScope here
-        userProfileImage: $rootScope.userInfo ? $rootScope.userInfo.avi_url : null,
+        userProfileImage: $scope.userInfo.avi_url,
         name: $scope.userInfo.name,
         timestamp: Firebase.ServerValue.TIMESTAMP,
         message: $scope.msg,
