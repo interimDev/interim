@@ -46,7 +46,11 @@ angular.module('interim', [
   })
   .state('communities', {
     url: '/communities',
-    templateUrl: '/app/yourCommunityList/yourCommunityList.html'
+    views: {
+      '': { templateUrl: '/app/communityFrame/communityFrame.html' },
+      'navBar@communities': {templateUrl: '/app/nav/nav.html'}
+    },
+    controller: 'NavController'
   })
   .state('community', {
     url: '/community',
@@ -62,7 +66,7 @@ angular.module('interim', [
     url: '/community-profile/:communityName',
     templateUrl: '/app/communityProfile/communityProfile.html',
     resolve:{
-      community: function($stateParams, Auth) { 
+      community: function($stateParams, Auth) {
         return Auth.queryCommunityDB($stateParams.communityName)
         .then(function (data) {
           return data;

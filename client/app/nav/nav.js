@@ -1,6 +1,6 @@
-angular.module('interim.nav', [])
+angular.module('interim.nav', ["firebase"])
 
-.controller('NavController', function ($scope, factoryPlaceHolder) {
+.controller('NavController', function ($scope, $rootScope) {
   // Your code here
-  
+
 });
