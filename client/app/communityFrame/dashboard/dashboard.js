@@ -1,72 +1,65 @@
 angular.module('interim.dashboard', ["firebase"])
 
-.controller('DashboardController', function($scope, $firebaseArray, $rootScope) {
+.controller('DashboardController', function($scope, $firebaseArray, $rootScope, $modal) {
 
-  var roomRef = new Firebase("https://interim.firebaseio.com/room-metadata");
+  var dbRef = new Firebase("https://interim.firebaseio.com/");
+
   //display room names
-  var rooms = $firebaseArray(roomRef), usersRoom, usersAdded=[];
-
+  $scope.rooms = $firebaseArray(dbRef.child("room-metadata"));
+  //get all users
+  $scope.allUsers = $firebaseArray(dbRef.child("UsersDB"));
   //current user id
-  var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
-  $scope.userID = userCurrentID;
-  $scope.rooms = rooms;
-  //adding room
-  $scope.addRoom = function(event) {
-   //getting user room name here;
-    var roomName, roomType = 'public';
+  $scope.userID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
 
-    bootbox.dialog({
-      // input box for room name and set room to public
-      message: "Enter New Room Name: <input type='text' id='room_name'></input>" +
-      "<div><label><input type='checkbox' id = 'checkbox' require> Private Room</label></div>",
-      title: "Creating New Room",
-      buttons: {
-        main: {
-          label: "Create",
-          className: "btn-primary createRoomButton",
-          callback: function() {
-            if ($("#room_name").val()) {
-              roomName = $('#room_name').val();
-              //if checked then set room to private
-              if($("#checkbox").is(':checked') === true) {
-                roomType = 'private';
-              }
-              //creates entry
-              var newRoom = roomRef.push();
-              var currentUsers = {};
-              //if room is private add id of user
-              if (roomType === 'private') {
-                currentUsers[userCurrentID] = userCurrentID;
-              }
-              //create new room
-              var room = {
-                id: newRoom.key(),
-                createdByUserId: userCurrentID,
-                name: roomName,
-                type: roomType,
-                usersList: currentUsers,
-                createdAt: Firebase.ServerValue.TIMESTAMP,
-                groupid: $rootScope.group.id
-              };
-              //success notification
-              $.notify("Room Created", "success");
-              //sets data
-              newRoom.set(room, function(error) {
-                  // room successfully created
-              });
-            } else {
-              //notify that room have not been created
-              $.notify("Room Name is Invalid", "error");
-            }
-          }
+  //$modal for creting new room
+  $scope.addRoom = function(event) {
+    $modal.rooms = $modal.open({
+      templateUrl: 'app/communityFrame/dashboard/createRoom.html',
+      backdrop: true,
+      windowClass: 'roomModal',
+      controller: 'DashboardController',
+      resolve: {
+        community: function () {
+          return $scope.community;
         }
+      }
+    });
+  };
+
+  //add room to db
+  $scope.createRoom = function(roomInfo) {
+    $scope.master = angular.copy(roomInfo);
+    var newRoom = dbRef.child("room-metadata").push();
+    var currentUsers = {};
+
+    if(roomInfo.private) {
+      currentUsers[$scope.userID] = $scope.userID;
+    }
+
+    var room = {
+      id: newRoom.key(),
+      createdByUserId: $scope.userID,
+      name: $scope.master.name,
+      type: $scope.master.private ? 'private' : 'public',
+      usersList: currentUsers,
+      createdAt: Firebase.ServerValue.TIMESTAMP,
+      groupid: $rootScope.group.id
+    };
+
+    newRoom.set(room, function(error) {
+      if(error) {
+        $.notify("Room Name is Invalid", "error");
+      }
+      else {
+        $.notify("Room Created", "success");
+        $modal.rooms.close();
       }
     });
   };
 
   //setting private room when user clicks on adding users
   $scope.selectingRoom = function(roomID) {
-    usersRoom = roomID;
+    $scope.usersRoom = roomID;
   };
 
   $scope.filterPublic = function(room) {
@@ -81,7 +74,7 @@ angular.module('interim.dashboard', ["firebase"])
       for (var val in room) {
         for (var id in room[val]) {
           //if users members match current users id then allow user to see room
-          if (room[val][id] === userCurrentID) {
+          if (room[val][id] === $scope.userID) {
             return true;
           }
         }
@@ -92,44 +85,30 @@ angular.module('interim.dashboard', ["firebase"])
   //adding user to private room
   $scope.addUser = function(user) {
     var newUsers = {};
-    var selectedRoom = new Firebase("https://interim.firebaseio.com/room-metadata");
-    newUsers[user]= user;
-    selectedRoom.child(usersRoom).child("usersList").update(newUsers);
+    newUsers[user.id]= user.id;
+    dbRef.child("room-metadata").child($scope.usersRoom).child("usersList").update(newUsers);
+    $.notify("User " + user.name +" Added", "success");
   };
 
-  //get current room name
+  //get current room messages
   $scope.roomName = function(obj) {
-    //set current room (since no user just storing it globally)
     $rootScope.messages(obj.room.id);
-    console.log("HERERERERE OBJ")
   };
 
-  if ($("#linkColor")) {
-    setTimeout(function(){$("#linkColor").click();},3000)
-    console.log("TRUEUEUUEUEU");
+  //if there is no room get first room
+  $scope.noRoom = true;
+  $scope.firstRoom = function(obj) {
+    if ($scope.noRoom) {
+      $rootScope.messages(obj.room.id);
+      //after getting first room chat messages, set to false
+      $scope.noRoom = false;
+    }
+  };
 
-    $("#linkColor").click();
-  }
-
-  //on click remove user from modal
+  //on click add user to room
   $scope.removeUser = function(userID, userName) {
     //success notification
     $.notify("User " + userName +" Added", "success");
-    usersAdded.push(userID);
-    for (var user =0; user < usersAdded.length; user++) {
-      $('#'+usersAdded[user]).hide();
-    }
+    $scope.usersAdded.push(userID);
   };
-
-  // reset users list for modal
-  $scope.updateUsersList =function(userID){
-    for (var user =0; user < usersAdded.length; user++) {
-      $('#'+usersAdded[user]).show();
-    }
-    usersAdded =[];
-  };
-
-  //get all users
-  var userRef = new Firebase("https://interim.firebaseio.com/UsersDB");
-  $scope.allUsers = $firebaseArray(userRef);
 });

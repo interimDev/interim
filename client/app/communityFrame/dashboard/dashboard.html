@@ -11,11 +11,11 @@
       <!-- Rooms are added and removed here -->
       <div id="contentBucketRooms">
         <!-- Each public room -->
-        <h6 ng-repeat="room in rooms | orderBy: 'name'| filter: filterPublic" repeat-done="roomName(this);" id="insideContent"><a href="javascript:void(0);" ng-click="roomName(this);" id="linkColor">{{room.name}}</a> </h6>
+        <h6 ng-repeat="room in rooms | orderBy: 'name'| filter: filterPublic"id="insideContent"><a href="javascript:void(0);" ng-click="roomName(this);" ng-init="firstRoom(this);" id="linkColor">{{room.name}}</a> </h6>
    
 
         <!-- show each private room that matches user id -->
-        <h6 ng-repeat="room in rooms | orderBy: 'name'| filter: filterPrivate" id="insideContent"><a href="javascript:void(0);" ng-click="roomName(this);" id="linkColor">{{room.name}}</a>
+        <h6 ng-repeat="room in rooms | orderBy: 'name'| filter: filterPrivate" id="insideContent"><a href="javascript:void(0);" ng-click="roomName(this);" ng-init="firstRoom(this);" id="linkColor">{{room.name}}</a>
           <span data-toggle="modal" data-target="#myModal" ng-click="selectingRoom(room.id)"> <img  class = "glyphicon-user-add" title="Add User" src="/app/assets/glyphicons-user-add.png"/></span>
         </h6>
 
@@ -28,8 +28,8 @@
                 <h4 class="modal-title" id="myModalLabel">Add User to Private Room</h4>
               </div>
               <div class="modal-body modalStyle">
-                <h6 id="insideContent" ng-repeat="user in allUsers| orderBy: name" ng-click="addUser(user.id);"> 
-                  <span class =" userLinkColor" ng-click= "removeUser(user.id, user.name);" id={{user.id}}> <img src={{user.avi_url}} class="img-rounded modalImage"/>{{user.name}}</span>
+                <h6 id="insideContent" ng-repeat="user in allUsers| orderBy: name" ng-click="addUser(user);"> 
+                  <span class =" userLinkColor"> <img src={{user.avi_url}} class="img-rounded modalImage"/>{{user.name}}</span>
                 </h6>
               </div>
               <div class="modal-footer privateRoomModal">
