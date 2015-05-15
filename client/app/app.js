@@ -65,7 +65,10 @@ angular.module('interim', [
   .state('community-profile', {
     url: '/community-profile/:communityName',
      views: {
-      '': { templateUrl: '/app/communityProfile/communityProfile.html'},
+      '': {
+        templateUrl: '/app/communityProfile/communityProfile.html',
+        controller: "CommunityProfileController"
+      },
       'navBar@community-profile': {templateUrl: '/app/nav/nav.html'}
     },
     resolve:{
@@ -75,8 +78,8 @@ angular.module('interim', [
           return data;
         });
       }
-    },
-    controller: 'CommunityProfileController'
+    }
+    // controller: 'CommunityProfileController'
   })
   .state('profileEditor', {
     url: '/profileEditor',
