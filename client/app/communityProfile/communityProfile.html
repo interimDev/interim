@@ -16,7 +16,7 @@
           </span>
         </div>
         <button type="button" class="btn btn-warning" ng-click="joinCommunity()" ng-hide="editProfile.$visible">Join!</button>
-        <button type="button" class="btn btn default" ng-if="editAllowed" ng-click="editProfile.$show()" ng-hide="editProfile.$visible" id="profileEditor">Edit Profile</button>
+        <button type="button" class="btn btn-default" ng-if="editAllowed" ng-click="editProfile.$show()" ng-hide="editProfile.$visible" id="profileEditor">Edit Profile</button>
         <!-- buttons to submit / cancel form -->
           <span ng-show="editProfile.$visible">
             <button type="submit" class="btn btn-primary" ng-disabled="editProfile.$waiting">
