@@ -1,43 +1,35 @@
-<div class="userProf" ng-init="checkUser()" ng-if="!editorEnabled && !makeProfile">
-  <h2>{{clickedUser.name}}</h2>
-  <img id='modalProfilePic' ng-src='{{clickedUser.avi_url}}'/>
-  <br>
-  <div id="profileHeaders"> 
-    <h4>Location: </h4><p id="userLocation">{{clickedUser.profile.location}}</p>
+<form editable-form name="editProfile" onaftersave="save()" class="userProf" ng-init="checkUser()">
+  <div class="userProf">
+    <h2>{{clickedUser.name}}</h2>
+    <img id='modalProfilePic' ng-src='{{clickedUser.avi_url}}'/>
     <br>
-    <h4>Biography: </h4><p>{{clickedUser.profile.bio}}</p>
+    <span editable-text="clickedUser.avi_url" e-form="editProfile"></span>
     <br>
-  </div>
-  <!-- This adds buttons that link to the individual's other social profiles -->
-  <a target='_new' href="{{clickedUser.profile.twitter}}">
-    <i class="fa fa-twitter"></i>
-  </a>
-  <a target='_new' href='{{clickedUser.profile.linkedIn}}'>
-    <i class="fa fa-linkedin"></i> 
-  </a>
-  <br>
-  <button type="button" class="btn btn-warning" ng-if="editAllowed" ng-click="editProfile()" id="profileEditor">Edit Profile</button>
-</div>
+    <div id="profileHeaders"> 
+      <h4>Location: </h4><p id="userLocation" editable-text="clickedUser.profile.location" e-form="editProfile">{{clickedUser.profile.location}}</p>
+      <br>
+      <h4>Biography: </h4><p editable-textarea="clickedUser.profile.bio" e-form="editProfile" e-rows="7" e-cols="40">{{clickedUser.profile.bio}}</p>
+      <br>
+    </div>
+    <!-- This adds buttons that link to the individual's other social profiles -->
+    <a target='_new' href="{{clickedUser.profile.twitter}}">
+      <i class="fa fa-twitter"></i>
+    </a>
+    <span editable-text="clickedUser.profile.twitter" e-form="editProfile"></span>
+    <a target='_new' href='{{clickedUser.profile.linkedIn}}'>
+      <i class="fa fa-linkedin"></i> 
+    </a>
+    <span editable-text="clickedUser.profile.linkedIn" e-form="editProfile"></span>
+    <br>
+    <button type="button" class="btn btn-warning"  ng-if="editAllowed" ng-click="editProfile.$show()" ng-hide="editProfile.$visible" id="editProfile">Edit Profile</button>
 
-<form name="editProfile" class="userProf" ng-if="editorEnabled || makeProfile">
-  <br>
-  <h2>{{clickedUser.name}}</h2>
-  <img id='modalProfilePic' ng-src='{{clickedUser.avi_url}}'/>
-  <br>
-  <div id="profileHeaders">
-    <h4>Location: </h4>
-    <input name="location" id="locationEditor"ng-model="edit.location" autocomplete="on" placeholder="{{clickedUser.profile.location}}" required>
-    <p ng-show="editProfile.location.$invalid && !editProfile.location.$pristine" class="error-block">Please enter location.</p>
-    <h4>Biography: </h4>
-    <textarea name="bio" id="bioEditor" ng-model="edit.bio" autocomplete="on" placeholder="{{clickedUser.profile.bio}}" required></textarea>
-    <p ng-show="editProfile.bio.$invalid && !editProfile.bio.$pristine" class="error-block">Please enter biography.</p> 
+    <span ng-show="editProfile.$visible">
+      <button type="submit" class="btn btn-primary" ng-disabled="editProfile.$waiting">
+        Save
+      </button>
+      <button type="button" class="btn btn-default" ng-disabled="editProfile.$waiting" ng-click="editProfile.$cancel()">
+        Cancel
+      </button>
+    </span>
   </div>
-  <br> 
-  Links: 
-  <input name="twitter "class="urlEditor" ng-model="edit.twitter" autocomplete="on" placeholder='Twitter' required/>
-  <input name="linkedin "class="urlEditor" ng-model="edit.linkedIn" autocomplete="on" placeholder='LinkedIn' required/>
-</input>
-  <br>
-  <button type="button" class="btn btn-success" ng-disabled="editProfile.$invalid" ng-if="editAllowed" ng-click="save(edit)">Save</button>
-  <button type="button" class="btn btn-danger"  ng-if="editAllowed" ng-click="cancel()">Cancel</button>
 </form>
