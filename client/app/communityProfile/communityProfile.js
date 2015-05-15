@@ -45,14 +45,9 @@ angular.module('interim.communityProfile', [])
 
   //filter public groups for community
   $scope.publicGroup = function(group) {
-<<<<<<< HEAD
     if (group.type === "public" && group.community === community.name) {
       return true;
-=======
-    communityName = $rootScope.communityInfo ? $rootScope.communityInfo.name : $scope.community.name;
-    if (group.type === "public" && group.community === communityName) {
-      return true;
->>>>>>> [feature] NavBar appearing and styled for community profile and user's communities
+
     }
   };
 
@@ -78,14 +73,7 @@ angular.module('interim.communityProfile', [])
     }
   };
 
-<<<<<<< HEAD
 
-=======
-  //get all Users
-  var userRef = new Firebase("https://interim.firebaseio.com/UsersDB");
-  $scope.allUsers = $firebaseArray(userRef);
-
->>>>>>> [feature] NavBar appearing and styled for community profile and user's communities
   //setting private group when user clicks on adding users
   $scope.selectingGroup = function(groupID) {
     $scope.usersGroup = groupID;
@@ -101,12 +89,4 @@ angular.module('interim.communityProfile', [])
   };
 
 
-<<<<<<< HEAD
-=======
-  var communityRef = new Firebase("https://interim.firebaseio.com/CommunityDB/"+community.id);
-  $scope.users = $firebaseArray(communityRef.child("users"));
-  //get community picture
-  $scope.communityPic = $scope.community;
-  console.log($scope.communityPic);
->>>>>>> [feature] NavBar appearing and styled for community profile and user's communities
 });
