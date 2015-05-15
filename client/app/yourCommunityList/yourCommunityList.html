@@ -11,9 +11,11 @@
      <!-- Your Communities -->
     <span class="thumbnail" id="communityThumbnail" ng-repeat="(key,value) in communities">
       <a href="#/community-profile/{{value.name}}" >
-        <!-- <a href="#/contacts/3" ui-sref="contacts.detail({ id: contact.id })"> -->
-       {{value.name.toUpperCase()}} </a>
-      <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)" />
+        
+          <!-- <a href="#/contacts/3" ui-sref="contacts.detail({ id: contact.id })"> -->
+         {{value.name.toUpperCase()}} 
+        <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)" />
+      </a>
     </span>
   </div>
 <!-- Search -->
