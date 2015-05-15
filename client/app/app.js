@@ -21,7 +21,7 @@ angular.module('interim', [
 
 .run(function($rootScope){
 
-  // handles routing permission authorization by checking the privelege of the user
+  //handles routing permission authorization by checking the privelege of the user
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, $state) {
     //checks the state's data (held in the router config) to see
     //if the route requires permission
