@@ -1,0 +1,13 @@
+<div class="groupModal">
+  <h4>Enter New Room Name:</h4>
+  <br> 
+  <input type='text' id='group_name' ng-model='room.name'></input> 
+  <div>
+    <label>
+      <input type='checkbox' id='checkbox' ng-model='room.private'>
+        Is This a Private Room?
+      </input>
+    </label>
+  </div>
+  <button class="btn btn-primary createRoomButton" ng-click="createRoom(room)">Create Room</button>
+</div>
