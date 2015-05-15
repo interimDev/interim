@@ -47,10 +47,9 @@ angular.module('interim', [
   .state('communities', {
     url: '/communities',
     views: {
-      '': { templateUrl: '/app/communityFrame/communityFrame.html' },
+      '': { templateUrl: '/app/yourCommunityList/yourCommunityList.html' },
       'navBar@communities': {templateUrl: '/app/nav/nav.html'}
-    },
-    controller: 'NavController'
+    }
   })
   .state('community', {
     url: '/community',
@@ -59,12 +58,16 @@ angular.module('interim', [
       'communityTopSidebar@community': { templateUrl: '/app/communityFrame/communityTopSidebar/communityTopSidebar.html' },
       'dashboard@community': { templateUrl: '/app/communityFrame/dashboard/dashboard.html' },
       'userBottomSidebar@community': { templateUrl: '/app/communityFrame/userBottomSidebar/userBottomSidebar.html' },
-      'chat@community': { templateUrl: '/app/communityFrame/chat/chat.html' }
+      'chat@community': { templateUrl: '/app/communityFrame/chat/chat.html' },
+      'navBar@community': {templateUrl: '/app/nav/nav.html'}
     }
   })
   .state('community-profile', {
     url: '/community-profile/:communityName',
-    templateUrl: '/app/communityProfile/communityProfile.html',
+     views: {
+      '': { templateUrl: '/app/communityProfile/communityProfile.html'},
+      'navBar@community-profile': {templateUrl: '/app/nav/nav.html'}
+    },
     resolve:{
       community: function($stateParams, Auth) {
         return Auth.queryCommunityDB($stateParams.communityName)
