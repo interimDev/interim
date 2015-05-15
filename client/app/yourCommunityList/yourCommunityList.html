@@ -1,3 +1,5 @@
+ <div ui-view="navBar"></div>
+
 <div id="yourCommunityList" ng-controller="YourCommunityListController">
 
   <!-- Communities Title-->
@@ -15,7 +17,7 @@
 
 <!-- Search -->
   <div id="CommunitiesSearch">
-   <input type="text" ng-model="requested" ng-keyup="$event.keyCode == 13 && sendSearch(requested)" class="form-control"  placeholder="Enter group or community search here..." required/>
+   <input type="text" ng-model="requested" ng-keyup="$event.keyCode == 13 && sendSearch(requested)" class="searchBar" maxlength="40" data-minlength="1" placeholder="Search for new groups!" required/>
   </div>
 </div>
 
@@ -24,7 +26,7 @@
     <div><h1>All Communities</h1>
     </div>
 
-    <span class="thumbnail" id="communityThumbnail" ng-repeat="(key,value) in Communities">
+    <span class="thumbnail" id="communityThumbnail" ng-repeat="(key,value) in Communities | limitTo:5">
         <a href="#/community-profile/{{value.name}}">
          {{value.name.toUpperCase()}} </a>
         <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)" />

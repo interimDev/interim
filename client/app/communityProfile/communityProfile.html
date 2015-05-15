@@ -1,5 +1,4 @@
-<!-- Insert nav here -->
-
+<div ui-view="navBar"></div>
 <div>
   <div class="jumbotron">
     <div class="container">
@@ -22,7 +21,7 @@
         <h2>Members</h2>
         <div ng-repeat="(key, value) in users">
           <div>{{value}}</div>
-        </div>  
+        </div>
       </div>
       <!-- groups here -->
       <div class="col-md-4 profileBucket">
@@ -47,7 +46,7 @@
                 <h4 class="modal-title" id="myModalLabel">Add User to Private Group</h4>
               </div>
               <div class="modal-body modalStyle">
-                <h6 id="insideContent" ng-repeat="user in allUsers| orderBy: name" ng-click="addUser(user);"> 
+                <h6 id="insideContent" ng-repeat="user in allUsers| orderBy: name" ng-click="addUser(user);">
                   <span class =" userLinkColor" ng-click= "removeUser(user.id, user.name);" id={{user.id}}> <img src={{user.avi_url}} class="img-rounded modalImage"/>{{user.name}}</span>
                 </h6>
               </div>

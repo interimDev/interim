@@ -11,7 +11,9 @@ angular.module('interim.communityProfile', [])
   $scope.user = $rootScope.userInfo;
 
   //current user for private groups
-  
+
+  var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
+
   $scope.joinCommunity = function() {
     Auth.joinCommunity($scope.user, $scope.community);
   };
@@ -44,7 +46,8 @@ angular.module('interim.communityProfile', [])
   //filter public groups for community
   $scope.publicGroup = function(group) {
     if (group.type === "public" && group.community === community.name) {
-      return true;  
+      return true;
+
     }
   };
 
@@ -70,7 +73,7 @@ angular.module('interim.communityProfile', [])
     }
   };
 
-  
+
   //setting private group when user clicks on adding users
   $scope.selectingGroup = function(groupID) {
     $scope.usersGroup = groupID;
