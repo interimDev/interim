@@ -66,7 +66,6 @@ angular.module('interim.services', [])
   };
 
   var updateUser = function(key, edits) {
-    console.log(key," edits in services: ", edits);
     ref.child('UsersDB').child(key).child('profile').update(edits.profile, function(error) {
       if (error) {
         console.log("Error updating user: ", error);
@@ -153,7 +152,6 @@ angular.module('interim.services', [])
       var communities = snapshot.val();
       communityInfo = communities[communityId];
       $rootScope.communityInfo = communityInfo;
-      console.log($rootScope.communityInfo, " - being returned as com obj");
       $state.go('community-profile', {communityName: communityInfo.name});
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
@@ -193,6 +191,16 @@ angular.module('interim.services', [])
     });
   };
 
+  var updateCommunity = function (community) {
+    commRef.child(community.id).update(community, function(error) {
+      if (error) {
+        console.log("Error updating community: ", error);
+      } else {
+        console.log("community updated");
+      }
+    });
+  }
+
   return {
     communitySignIn: communitySignIn,
     githubAuth: githubAuth,
@@ -200,7 +208,8 @@ angular.module('interim.services', [])
     communityAuth: communityAuth,
     updateUser: updateUser,
     queryCommunityDB: queryCommunityDB,
-    joinCommunity: joinCommunity
+    joinCommunity: joinCommunity,
+    updateCommunity: updateCommunity
   };
 })
 

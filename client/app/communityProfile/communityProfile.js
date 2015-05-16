@@ -9,12 +9,25 @@ angular.module('interim.communityProfile', [])
   $scope.community = community;
   $scope.users = $scope.community.users;
   $scope.user = $rootScope.userInfo;
-  $scope.editAllowed = true;
+  $scope.editAllowed = false;
+  $scope.makeProfile = false;
 
   $scope.save = function() {
     console.log("entered save");
     console.log("community: ", $scope.community);
-    //Auth.updateUser(userKey, $scope.clickedUser);
+    Auth.updateCommunity($scope.community);
+  };
+
+  $scope.checkUser = function(){
+    if(userCurrentID === $scope.community.id) {
+      $scope.editAllowed = true;
+
+      //checks if user has a profile
+      if (!$scope.community.profile) {
+        $scope.makeProfile = true;
+        $scope.community.profile = {};
+      }
+    }
   };
 
 
