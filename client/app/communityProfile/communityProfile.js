@@ -7,12 +7,12 @@ angular.module('interim.communityProfile', [])
 
   $scope.groups = groups;
   $scope.community = community;
-  $scope.users = $scope.community['users'];
+  $scope.users = $scope.community.users;
   $scope.user = $rootScope.userInfo;
   $scope.editAllowed = true;
 
   $scope.save = function() {
-    console.log("entered save")
+    console.log("entered save");
     console.log("community: ", $scope.community);
     //Auth.updateUser(userKey, $scope.clickedUser);
   };
