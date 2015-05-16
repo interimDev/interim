@@ -1,3 +1,102 @@
+/*dashboard.html css starts here*/
+.dashboard {
+  height: 34vh;
+  background-color: #80b1e8;
+  overflow-x: scroll;
+}
+
+/*user and community profile*/
+.dashboardProfile {
+  height: 8vh;
+  background-color: #2869b2;
+  color: white;
+}
+
+/*users and rooms title*/
+.dashboardInfo {
+  height: 8vh;
+  background-color: #80b1e8;
+}
+
+.dashboardTitle{
+  position: absolute;
+  color: #2869b2;
+  margin-top: 4vh;
+  margin-left: 4%;
+}
+
+.dashboardContent {
+  margin-left: 10%;
+}
+
+#contentImage {
+  margin-top: 2%;
+  margin-left: 4%;
+  height: 40px;
+  width: 40px;
+} 
+
+.glyphicon-plus:hover {
+  color: white;
+  cursor: pointer;
+}
+
+/*private room glyphicon icon*/
+.glyphicon-user-add {
+  width: 16px;
+  height: 12px;
+}
+
+.glyphicon-user-add:hover {
+  opacity: 0.5;
+}
+
+#linkColor {
+  color: white;
+}
+
+#linkColor:hover {
+  color: #2869b2;
+}
+
+.dashboardName {
+  margin-left: 4%;
+}
+
+/*Modal private room start here*/
+.privateRoomModal{
+  background-color: #2869b2;
+  color: white;
+}
+
+.modalStyle {
+  overflow: auto;
+  height: 100px;
+}
+
+#myModal {
+  color:black;
+  left: 200px;
+  z-index: 10;
+}
+
+.userLinkColor {
+  color: #2869b2;
+  cursor:pointer;
+}
+
+.userLinkColor:active {
+  color: #80b1e8;
+}
+
+.modalImage {
+  margin-right: 10px;
+  width:20px;
+  height:20px
+}
+/*Modal private room end here*/
+/*dashboard.html css ends here*/
+
 /*landingPage.html css starts here*/
 /*github button*/
 #github {
@@ -91,163 +190,7 @@
 }
 /*userProfile.html css ends here*/
 
-/*useruserBottomSidebar.html css starts here*/
-#userBottomSidebar {
-  position: absolute;
-  background-color: #2869b2;
-  width:24%;
-  height: 60px;
-  bottom:0;
-  z-index: 3;
-}
-/*useruserBottomSidebar.html css ends here*/
 
-/*communityTopSidebar.html css starts here*/
-#communityTopSidebar {
-  position: absolute;
-  background-color: #2869b2;
-  width:24%;
-  height: 60px;
-  top:0;
-  display: inline-block;
-  z-index: 3;
-}
-/*communityTopSidebar.html css ends here*/
-
-/*useruserBottomSidebar.html and communityTopSidebar.html css starts here*/
-/*aligns image and limits display size*/
-#contentImage {
-  margin-top: 4%;
-  margin-left: 6%;
-  height: 40px;
-  width: 40px;
-}
-
-/*aligns text for username*/
-.text-right {
-  top: 20px;
-  left: 80px;
-  position: absolute;
-  color: white;
-}
-/*useruserBottomSidebar.html and communityTopSidebar.html css ends here*/
-
-/*dashboard.html css starts here*/
-/*adding rooms glyphicon icon*/
-.glyphicon-plus {
-  margin-left: 5px;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.glyphicon-plus:hover {
-  color: white;
-}
-
-
-/*private room glyphicon icon*/
-.glyphicon-user-add {
-  width: 16px;
-  height: 12px;
-}
-
-.glyphicon-user-add:hover {
-  opacity: 0.5;
-}
-
-.dashboard {
-  position: absolute;
-  padding-top: 5%;
-  background-color: #80b1e8;
-  width: 24%;
-  height: 100%;
-  z-index: 1;
-}
-
-/*modal for private room top and bottom div tag*/
-.privateRoomModal{
-  background-color: #2869b2;
-  color: white;
-}
-
-/*modal for private room, center*/
-.modalStyle {
-  overflow: auto;
-  height: 100px;
-}
-
-#myModal {
-  color:black;
-  left: 200px;
-  z-index: 10;
-}
-
-.userLinkColor {
-  color: #2869b2;
-  cursor:pointer;
-}
-
-.userLinkColor:active {
-  color: #80b1e8;
-}
-
-#roomsContent {
-  color: white;
-  margin-left: 10%;
-}
-
-#contentNames {
-  margin-top: 10%;
-  color: #2869b2;
-  text-shadow: 1px 1px #888888;
-}
-
-#contentBucketRooms {
-  position: absolute;
-  overflow: auto;
-  height: 30%;
-  width: 90%;
-}
-
-#contentBucketUsers {
-  position: absolute;
-  overflow: auto;
-  height: 100%;
-  width: 90%;
-}
-
-#rooms {
-  position: inherit;
-  top:0;
-}
-
-#users {
-  position: absolute;
-  top: 300px;
-  width: 100%;
-  height: 30%;
-  color: #2869b2;
-}
-
-#insideContent {
-  margin-left: 4%;
-  margin-right: 3%;
-}
-
-#linkColor {
-    color: white;
-}
-
-#linkColor:hover {
-    color: #2869b2;
-}
-
-.modalImage {
-  margin-right: 10px;
-  width:20px;
-  height:20px
-}
-/*dashboard.html css ends here*/
 
 /*chat.html css starts here*/
 .chat {
@@ -343,7 +286,6 @@
 /*community profile end*/
 
 /*community communitySingUp start*/
-
 .error-block {
   display: block;
   margin-top: 5px;
@@ -383,12 +325,6 @@ tr {
   height:40px;
 }
 /*community communitySingUp end*/
-
-.superadminYeah{
-  width: 100%;
-  height: 100%;
-  text-align: center;
-} 
 
 /*Profile Modal Styles*/
 .userProf {

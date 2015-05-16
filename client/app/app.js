@@ -11,11 +11,9 @@ angular.module('interim', [
   'interim.yourCommunityList',
   'interim.dashboard',
   'interim.chat',
-  'interim.userBottomSidebar',
   'interim.userProfile',
   'interim.communityProfile',
   'interim.superAdmin',
-  'interim.communityTopSidebar',
   'interim.createGroup',
   'xeditable'
 ])
@@ -58,9 +56,7 @@ angular.module('interim', [
     url: '/community',
     views: {
       '': { templateUrl: '/app/communityFrame/communityFrame.html' },
-      'communityTopSidebar@community': { templateUrl: '/app/communityFrame/communityTopSidebar/communityTopSidebar.html' },
       'dashboard@community': { templateUrl: '/app/communityFrame/dashboard/dashboard.html' },
-      'userBottomSidebar@community': { templateUrl: '/app/communityFrame/userBottomSidebar/userBottomSidebar.html' },
       'chat@community': { templateUrl: '/app/communityFrame/chat/chat.html' },
       'navBar@community': {templateUrl: '/app/nav/nav.html'}
     }
