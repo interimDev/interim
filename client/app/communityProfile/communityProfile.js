@@ -2,10 +2,10 @@ angular.module('interim.communityProfile', [])
 
 .controller('CommunityProfileController', function ($scope, $firebaseArray, $rootScope, $state, $firebaseObject, community, $modal, Auth) {
   var userCurrentID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
-  var communityGroupsRef = new Firebase("https://interim.firebaseio.com/community-groups-metadata");
-  var groups = $firebaseArray(communityGroupsRef);
+  var dbRef = new Firebase("https://interim.firebaseio.com/");
 
-  $scope.groups = groups;
+  $scope.allUsers = $firebaseArray(dbRef.child("UsersDB"));
+  $scope.groups = $firebaseArray(dbRef.child("community-groups-metadata"));
   $scope.community = community;
   $scope.users = $scope.community.users;
   $scope.user = $rootScope.userInfo;
@@ -29,7 +29,6 @@ angular.module('interim.communityProfile', [])
       }
     }
   };
-
 
   //current user for private groups
   $scope.joinCommunity = function() {
@@ -65,7 +64,6 @@ angular.module('interim.communityProfile', [])
   $scope.publicGroup = function(group) {
     if (group.type === "public" && group.community === community.name) {
       return true;
-
     }
   };
 
@@ -91,7 +89,6 @@ angular.module('interim.communityProfile', [])
     }
   };
 
-
   //setting private group when user clicks on adding users
   $scope.selectingGroup = function(groupID) {
     $scope.usersGroup = groupID;
@@ -100,11 +97,8 @@ angular.module('interim.communityProfile', [])
   //adding user to private group
   $scope.addUser = function(user) {
     var newUsers = {};
-    var selectedGroup = new Firebase("https://interim.firebaseio.com/community-groups-metadata");
     newUsers[user.id]= user.id;
-    selectedGroup.child($scope.usersGroup).child("usersList").update(newUsers);
+    dbRef.child("community-groups-metadata").child($scope.usersGroup).child("usersList").update(newUsers);
     $.notify(user.name +" is added to group", "success");
   };
-
-
 });
