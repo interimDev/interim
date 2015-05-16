@@ -10,6 +10,8 @@ angular.module('interim.dashboard', ["firebase"])
   $scope.allUsers = $firebaseArray(dbRef.child("UsersDB"));
   //current user id
   $scope.userID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
+  //current groups
+  $scope.currentGroup = $rootScope.group;
 
   //$modal for creting new room
   $scope.addRoom = function(event) {
@@ -43,7 +45,7 @@ angular.module('interim.dashboard', ["firebase"])
       type: $scope.master.private ? 'private' : 'public',
       usersList: currentUsers,
       createdAt: Firebase.ServerValue.TIMESTAMP,
-      groupid: $rootScope.group.id
+      groupid: $scope.currentGroup.id
     };
 
     newRoom.set(room, function(error) {
@@ -111,4 +113,7 @@ angular.module('interim.dashboard', ["firebase"])
     $.notify("User " + userName +" Added", "success");
     $scope.usersAdded.push(userID);
   };
+
+  //Current Group Name
+  $scope.groupName = $scope.currentGroup.name;
 });
