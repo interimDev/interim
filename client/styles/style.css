@@ -1,17 +1,43 @@
-/*chat.js starts here*/
-.messageInput{
-  height: 8vh;
-}
+/* 
+=================================
+            LANDING PAGE
+=================================
+*/
 
-.messageData{
-  height: 92vh;
-  overflow-x: scroll;
-}
 
-.inputSize{
+/*github button*/
+#github {
+  width: 180px;
+  margin-top: 5%;
   margin-right: auto;
   margin-left: auto;
-  width: 90%;
+  text-align: center;
+}
+
+.jumbotron {
+  font-weight: lighter;
+  color: white;
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background: -webkit-gradient(linear, left top, right top, from(#2869b2), to(#FFB5AF));
+}
+
+.jumbotron h1 {
+  font-size: 40px;
+}
+
+
+/* 
+=================================
+            COMMUNITY LIST
+=================================
+*/
+
+
+#navContent {
+  float:right;
+  padding-right: 2%;
 }
 
 .messageText {
@@ -37,6 +63,24 @@
 .userNameChat {
   color:#2869b2;
   opacity: 0.6;
+}
+
+/* 
+=================================
+            USER PROFILE
+=================================
+*/
+
+
+#user {
+  background-image: url("/app/assets/profilebg.png");
+  background-size: 100% 100%;
+  width: 260px;
+  height: 390px;
+  margin-top: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  box-shadow: 1px 1px 5px #888888;
 }
 
 .inputChatField {
@@ -69,7 +113,15 @@
   background-color: #80b1e8;
 }
 
-.dashboardTitle{
+
+/* 
+=================================
+          BOTTOM SIDEBAR
+=================================
+*/
+
+
+#userBottomSidebar {
   position: absolute;
   color: #2869b2;
   margin-top: 4vh;
@@ -80,6 +132,25 @@
   margin-left: 10%;
 }
 
+
+/* 
+=================================
+            TOP SIDEBAR
+=================================
+*/
+
+
+#communityTopSidebar {
+  position: absolute;
+  background-color: #2869b2;
+  width:24%;
+  height: 60px;
+  top:0;
+  display: inline-block;
+  z-index: 3;
+}
+
+
 #contentImage {
   margin-top: 2%;
   margin-left: 4%;
@@ -89,6 +160,20 @@
 
 .glyphicon-plus:hover {
   color: white;
+}
+
+
+/* 
+=================================
+            DASHBOARD
+=================================
+*/
+
+
+/*adding rooms glyphicon icon*/
+.glyphicon-plus {
+  margin-left: 5px;
+  font-size: 15px;
   cursor: pointer;
 }
 
@@ -116,6 +201,10 @@
 
 .dashboardName {
   margin-left: 4%;
+}
+
+.usersColor {
+  color: #2869b2;
 }
 
 /*Modal private room start here*/
@@ -149,11 +238,7 @@
   width:20px;
   height:20px
 }
-/*Modal private room end here*/
-/*dashboard.html css ends here*/
 
-/*landingPage.html css starts here*/
-/*github button*/
 #github {
   width: 180px;
   margin-top: 5%;
@@ -168,6 +253,73 @@
   font-size: 450%;
   text-align: center;
   margin-top: 15%;
+}
+/* 
+=================================
+            CHAT
+=================================
+*/
+
+.messageInput{
+ height: 8vh;
+}
+
+.messageData{
+ height: 92vh;
+ overflow-x: scroll;
+}
+
+.inputSize{
+ margin-right: auto;
+ margin-left: auto;
+ width: 90%;
+}
+
+.messageText {
+ word-wrap: break-word;
+}
+
+#chatImage {
+ width: 36px;
+ height: 36px;
+}
+
+.img-rounded {
+ cursor: pointer;
+}
+
+.chatTime {
+ color: #888888 ;
+ opacity: 0.4;
+ margin-left: 5px;
+ cursor: pointer;
+}
+
+.userNameChat {
+ color:#2869b2 ;
+ opacity: 0.6;
+}
+
+.inputChatField {
+ width: 100%;
+}
+
+.messagesSpace {
+ margin-bottom: 10px;
+}
+
+/* 
+=================================
+            MESSAGES
+=================================
+*/
+
+
+#chatMessage {
+  position: absolute;
+  top: 2%;
+  right:0;
+  height: 95vh;
 }
 /*landingPage.html css ends here*/
 
@@ -209,9 +361,7 @@
   width: 400px;
 }
 
-/*yourCommunityList.html css ends here*/
 
-/*userProfile.html css starts here*/
 #user {
   background-image: url("/app/assets/profilebg.png");
   background-size: 100% 100%;
@@ -238,14 +388,36 @@
   text-align: center;
   color: white;
 }
+/* 
+=================================
+             CHAT INPUT
+=================================
+*/
+
+
+#chatRow {
+  position: absolute;
+  width: 60%;
+  bottom: 1%;
+  visibility: hidden;
+  z-index: 2;
+  left:18%;
+}
 
 #userBio {
   height: 30%;
   overflow: auto;
 }
-/*userProfile.html css ends here*/
 
-/*community profile start*/
+
+
+/* 
+=================================
+           COMMNUNITY PROFILE
+=================================
+*/
+
+
 #communityProfAvi {
   margin-right: 5%;
   float: left;
@@ -266,9 +438,13 @@
   overflow-x: auto;
 }
 
-/*community profile end*/
+/* 
+=================================
+          COMMUNITY SIGN UP
+=================================
+*/
 
-/*community communitySingUp start*/
+
 .error-block {
   display: block;
   margin-top: 5px;
@@ -307,16 +483,23 @@
 tr {
   height:40px;
 }
-/*community communitySingUp end*/
 
-/*Profile Modal Styles*/
+
+/* 
+=================================
+          PROFILE MODAL 
+=================================
+*/
+
+
+
 .userProf {
   text-align: center;
 }
 
 #modalProfilePic {
   border-radius: 2px;
-  box-shadow: 1.5px 1.5px 1.5px grey;
+  box-shadow: 1.5px 1.5px 1.5px gray;
   height: 45%;
   width: 45%;
 }
@@ -340,7 +523,13 @@ tr {
   margin-top: 20px;
 }
 
-/*Profile Modal Editor Styles*/
+
+/* 
+=================================
+          EDIT PROFILE
+=================================
+*/
+
 
 #locationEditor, #bioEditor, .urlEditor {
   margin: 1%, 0;
@@ -351,14 +540,20 @@ tr {
   width: 45%;
   height: 30%;
   padding: 5px;
-  border-color: grey;
+  border-color: gray;
 }
 
 .urlEditor {
   margin-bottom: 1%;
 }
 
-/*Create Groupe Modal Styles*/
+
+/* 
+=================================
+          CREATE GROUP
+=================================
+*/
+
 
 .groupModal {
   text-align: center;
