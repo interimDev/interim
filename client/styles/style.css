@@ -324,6 +324,12 @@
   text-align: center;
 }
 
+/*Nav Bar*/
+
+.navbar-default {
+  box-shadow: 0px 3px 3px grey !important;
+}
+
 /*Interim Name*/
 #nameLoginPage {
   color: #0288d1;
@@ -403,7 +409,7 @@
 
 /*yourCommunityList.html css starts here*/
 #welcomeMessage {
-  font-size: 75px;
+  font-size: 40px;
 }
 
 .community-image {
@@ -432,18 +438,9 @@
   margin-top: 80px;
 }
 
-#search-button {
-  margin-left: -24px;
-  width: 10%;
-  margin-top: 5%;
-}
-
-#searchbarform {
-  margin-top: -8%;
-}
-
 #YourCommunitiesName h1 {
   margin-top: -4%;
+  margin-bottom: 2%;
 }
 
 #communityThumbnail {
@@ -469,8 +466,26 @@
   text-align: center;
   margin-top: 15%;
 }
-.searchBar{
-  width: 400px;
+
+.thumbnail {
+  box-shadow: 0px 3px 3px grey !important;
+}
+
+#community-search {
+  text-align: center;
+}
+
+#search-bar {
+  font-size: 25px;
+  height: 40px;
+  width: 30%;
+  margin: 0 auto;
+  margin-bottom: 4%;
+  font: 30px;
+}
+
+#community-tabs {
+  text-align: center;
 }
 
 
