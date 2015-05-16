@@ -6,9 +6,6 @@
     <div id="YourCommunitiesName">
       <div>
         <h1>Your Communities</h1>
-        <div id="CommunitiesSearch">
-         <input type="text" ng-model="requested" ng-keyup="$event.keyCode == 13 && sendSearch(requested)" class="form-control"  placeholder="Search" required/>
-        </div>
       </div>
 
        <!-- Your Communities -->
@@ -16,7 +13,7 @@
         <a href="#/community-profile/{{value.name}}" >
           <!-- <a href="#/contacts/3" ui-sref="contacts.detail({ id: contact.id })"> -->
            {{value.name.toUpperCase()}} 
-          <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)" />
+          <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)"/>
         </a>
       </span>
 
@@ -24,8 +21,20 @@
 
   <!-- All Existing Communities. To-Do: filtered by search terms-->
     <div id="YourCommunitiesName">
-      <div>
-        <h1>All Communities</h1>
+   <!--    <div>
+        <div id="CommunitiesSearch">
+         <input type="text" ng-model="requested" ng-keyup="$event.keyCode == 13 && sendSearch(requested)" class="form-control"  placeholder="Search for new communities..." required/>
+         <button class="btn btn-default" type="button">Go!</button>
+        </div>
+      </div> -->
+
+      <div id="searchbar" class="col-mid-8">
+        <form class="search-bar-form" id="searchbarform">
+          <input id="search-box" placeholder="Discover More">
+          <button id="search-button" type="submit">
+            <span class="glyphicon glyphicon-search"></span>
+          </button> 
+        </form>
       </div>
 
       <span class="thumbnail" id="communityThumbnail" ng-repeat="(key,value) in Communities">

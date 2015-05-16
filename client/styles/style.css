@@ -396,11 +396,10 @@
   margin-top: 80px;
 }
 
-#CommunitiesSearch input {
-  width: 12%;
-  margin-left: 87.5%;
-  margin-top: -3.3%;
-  margin-bottom: 3.3%;
+#search-button {
+  margin-left: -24px;
+  width: 10%;
+  margin-top: 5%;
 }
 
 #YourCommunitiesName h1 {
