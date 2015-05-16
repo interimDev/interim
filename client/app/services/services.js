@@ -6,6 +6,7 @@ angular.module('interim.services', [])
   var commRef = new Firebase("https://interim.firebaseio.com/CommunityDB/");
   var communityObjects = $firebaseObject(commRef);
   var userRef = new Firebase("https://interim.firebaseio.com/UsersDB/");
+  var allUsers = $firebaseObject(userRef);
   
 
   /* 
@@ -62,7 +63,7 @@ angular.module('interim.services', [])
     });
     //set userInfo for reference in front end
     Permissions.isSuperAdmin();
-    $rootScope.userInfo = userObj[username];
+    $rootScope.userInfo = allUsers[username];
   };
 
   var updateUser = function(key, edits) {
