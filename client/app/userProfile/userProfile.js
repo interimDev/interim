@@ -29,18 +29,8 @@ angular.module('interim.userProfile', [])
     $scope.editorEnabled = true;
   };
 
-  $scope.cancel = function() {
-    $scope.editorEnabled = false;
-  };
-    
-  $scope.save = function(edits) {
-    $scope.edits = angular.copy(edits);
-    console.log("edits: ",$scope.edits);
-    $scope.clickedUser.profile.location =  $scope.edits.location ? $scope.edits.location : $scope.clickedUser.profile.location;
-    $scope.clickedUser.profile.bio = $scope.edits.bio ? $scope.edits.bio : $scope.clickedUser.profile.bio;
-    $scope.clickedUser.profile.twitter = $scope.edits.twitter ? $scope.edits.twitter : $scope.clickedUser.profile.twitter;
-    $scope.clickedUser.profile.linkedIn = $scope.edits.linkedIn ? $scope.edits.linkedIn : $scope.clickedUser.profile.linkedIn;
-    $scope.cancel();
+  $scope.save = function() {
+    console.log("edits: entered ");
     Auth.updateUser(userKey, $scope.clickedUser);
   };
 
