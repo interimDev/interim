@@ -1,17 +1,103 @@
-/*chat.js starts here*/
-.messageInput{
-  height: 8vh;
-}
+/*
+=================================
+            LANDING PAGE
+=================================
+*/
 
-.messageData{
-  height: 92vh;
-  overflow-x: scroll;
-}
-
-.inputSize{
-  margin-right: auto;
+/*github button*/
+#sign-in-btn {
+  background: #2869b2;
+  font-size: 18px;
+  width: 100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin-left: auto;
-  width: 90%;
+  margin-right: auto;
+}
+
+.btn-github{
+  width: 220px;
+  background: #2869b2;
+  font-size: 18px;
+  left: 50%;
+  margin-left: -110px;
+}
+
+.btn-github:hover {
+  background: #2869b2;
+}
+
+.landingJumbo {
+  font-weight: lighter;
+  color: white;
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background: -webkit-gradient(linear, left top, right top, from(#2869b2), to(#63CCB6));
+}
+
+.landingJumbo h1 {
+  font-size: 40px;
+}
+
+#landing-sign-in {
+  margin-top: 70px;
+  text-align: center;
+}
+
+#landing-form {
+  width: 30em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.communitySignIn {
+  margin-top: 30px;
+}
+
+.form-signin-heading {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #71787F;
+}
+
+.communitySignIn p{
+  color: #71787F;
+}
+
+.newCommunity {
+  color: #71787F;
+  padding-bottom: 10px;
+}
+
+.create-community-landing {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 70px;
+}
+
+.create-community-landing {
+  color: #71787F;
+}
+
+#create-cm-btn {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 
+=================================
+            COMMUNITY LIST
+=================================
+*/
+
+
+#navContent {
+  float:right;
+  padding-right: 2%;
 }
 
 .messageText {
@@ -39,6 +125,24 @@
   opacity: 0.6;
 }
 
+/* 
+=================================
+            USER PROFILE
+=================================
+*/
+
+
+#user {
+  background-image: url("/app/assets/profilebg.png");
+  background-size: 100% 100%;
+  width: 260px;
+  height: 390px;
+  margin-top: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  box-shadow: 1px 1px 5px #888888;
+}
+
 .inputChatField {
   width: 100%;
 }
@@ -50,6 +154,494 @@
 
 
 /*dashboard.html css starts here*/
+.dashboard {
+  height: 34vh;
+  background-color: #80b1e8;
+  overflow-x: scroll;
+}
+
+/*user and community profile*/
+.dashboardProfile {
+  height: 8vh;
+  background-color: #2869b2;
+  color: white;
+}
+
+/*users and rooms title*/
+.dashboardInfo {
+  height: 8vh;
+  background-color: #80b1e8;
+}
+
+
+/* 
+=================================
+          BOTTOM SIDEBAR
+=================================
+*/
+
+
+#userBottomSidebar {
+  position: absolute;
+  color: #2869b2;
+  margin-top: 4vh;
+  margin-left: 4%;
+}
+
+.dashboardContent {
+  margin-left: 10%;
+}
+
+
+/* 
+=================================
+            TOP SIDEBAR
+=================================
+*/
+
+
+#communityTopSidebar {
+  position: absolute;
+  background-color: #2869b2;
+  width:24%;
+  height: 60px;
+  top:0;
+  display: inline-block;
+  z-index: 3;
+}
+
+
+#contentImage {
+  margin-top: 2%;
+  margin-left: 4%;
+  height: 40px;
+  width: 40px;
+} 
+
+.glyphicon-plus:hover {
+  color: white;
+}
+
+
+/* 
+=================================
+            DASHBOARD
+=================================
+*/
+
+
+/*adding rooms glyphicon icon*/
+.glyphicon-plus {
+  margin-left: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.usersColor {
+  color: #2869b2;
+}
+
+/*private room glyphicon icon*/
+.glyphicon-user-add {
+  width: 16px;
+  height: 12px;
+}
+
+.glyphicon-user-add:hover {
+  opacity: 0.5;
+}
+
+#linkColor {
+  color: white;
+}
+
+#linkColor:hover {
+  color: #2869b2;
+}
+
+.dashboardName {
+  margin-left: 4%;
+}
+
+.usersColor {
+  color: #2869b2;
+}
+
+/*Modal private room start here*/
+.privateRoomModal{
+  background-color: #2869b2;
+  color: white;
+}
+
+.modalStyle {
+  overflow: auto;
+  height: 100px;
+}
+
+#myModal {
+  color:black;
+  left: 200px;
+  z-index: 10;
+}
+
+.userLinkColor {
+  color: #2869b2;
+  cursor:pointer;
+}
+
+.userLinkColor:active {
+  color: #80b1e8;
+}
+
+.modalImage {
+  margin-right: 10px;
+  width:20px;
+  height:20px
+}
+
+#github {
+  width: 180px;
+  margin-top: 5%;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+/*Interim Name*/
+#nameLoginPage {
+  color: #0288d1;
+  font-size: 450%;
+  text-align: center;
+  margin-top: 15%;
+}
+
+/* 
+=================================
+            CHAT
+=================================
+*/
+
+.messageInput{
+ height: 8vh;
+}
+
+.messageData{
+ height: 92vh;
+ overflow-x: scroll;
+}
+
+.inputSize{
+ margin-right: auto;
+ margin-left: auto;
+ width: 90%;
+}
+
+.messageText {
+ word-wrap: break-word;
+}
+
+#chatImage {
+ width: 36px;
+ height: 36px;
+}
+
+.img-rounded {
+ cursor: pointer;
+}
+
+.chatTime {
+ color: #888888 ;
+ opacity: 0.4;
+ margin-left: 5px;
+ cursor: pointer;
+}
+
+.userNameChat {
+ color:#2869b2 ;
+ opacity: 0.6;
+}
+
+.inputChatField {
+ width: 100%;
+}
+
+.messagesSpace {
+ margin-bottom: 10px;
+}
+
+/* 
+=================================
+            MESSAGES
+=================================
+*/
+
+
+#chatMessage {
+  position: absolute;
+  top: 2%;
+  right:0;
+  height: 95vh;
+}
+/*landingPage.html css ends here*/
+
+/*yourCommunityList.html css starts here*/
+#navContent {
+  float:right;
+  padding-right: 2%;
+}
+
+#YourCommunitiesName {
+  font-size: 250%;
+  text-align: center;
+  margin-top: 80px;
+}
+
+#communityThumbnail {
+  font-size: 24px;
+  text-align: center;
+  background-color: #ccd3dc;
+  width: 200px;
+  height: 200px;
+  margin-top: 50px;
+  margin-right: 10px;
+  margin-left: auto;
+  box-shadow: 1px 1px 5px #888888;
+  display: inline-block;
+}
+.communityImage {
+  width: 80%;
+  height: 70%
+}
+.communityName {
+  color: #0288d1;
+  font-size: 100%;
+  text-align: center;
+  margin-top: 15%;
+}
+.searchBar{
+  width: 400px;
+}
+
+
+#user {
+  background-image: url("/app/assets/profilebg.png");
+  background-size: 100% 100%;
+  width: 260px;
+  height: 390px;
+  margin-top: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  box-shadow: 1px 1px 5px #888888;
+}
+
+#userProfileImage {
+  border: 2px solid white;
+  width: 100%;
+  height: 42%;
+}
+
+#profileImage {
+  width: 98%;
+  height: 98%;
+}
+
+#userProfileName {
+  text-align: center;
+  color: white;
+}
+/* 
+=================================
+             CHAT INPUT
+=================================
+*/
+
+
+#chatRow {
+  position: absolute;
+  width: 60%;
+  bottom: 1%;
+  visibility: hidden;
+  z-index: 2;
+  left:18%;
+}
+
+#userBio {
+  height: 30%;
+  overflow: auto;
+}
+
+
+
+/* 
+=================================
+           COMMNUNITY PROFILE
+=================================
+*/
+
+
+#communityProfAvi {
+  margin-right: 5%;
+  float: left;
+}
+
+.communityProfBasicInfo {
+  margin-top: 1%;
+}
+
+.profileBucket {
+  width: 100%;
+  height: 200px;
+}
+
+.groupList {
+  width: 200px;
+  height: 200px;
+  overflow-x: auto;
+}
+
+/* 
+=================================
+          COMMUNITY SIGN UP
+=================================
+*/
+
+
+.error-block {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: red;
+}
+
+.modal-singUp .modal-dialog{
+  margin-right: auto;
+  margin-left: auto;
+  width: 300px;
+  height: 200px;
+}
+
+.singUpTitle {
+  margin-top: 10px;
+  color: #2869b2;
+  font-size: 150%;
+}
+
+.singUpForm {
+  margin-bottom: 20px;
+}
+
+.singUp {
+  text-align: center;
+}
+
+.singUpTable {
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 20px;
+  width:80%;
+}
+
+tr {
+  height:40px;
+}
+
+
+/* 
+=================================
+          PROFILE MODAL 
+=================================
+*/
+
+
+.userProf {
+  text-align: center;
+}
+
+#modalProfilePic {
+  border-radius: 2px;
+  box-shadow: 1.5px 1.5px 1.5px gray;
+  height: 45%;
+  width: 45%;
+}
+
+#profileEditor {
+  margin-right: 100%;
+  background-color: white;
+}
+
+.userProf p {
+  margin: 0 10%;
+}
+
+.userProf a {
+  margin: 0 2%;
+  font-size: 35px;
+  text-decoration: none;
+}
+
+#profileHeaders {
+  margin-top: 20px;
+}
+
+
+/* 
+=================================
+          EDIT PROFILE
+=================================
+*/
+
+
+#locationEditor, #bioEditor, .urlEditor {
+  margin: 1%, 0;
+  border-radius: 1px;
+}
+
+#bioEditor {
+  width: 45%;
+  height: 30%;
+  padding: 5px;
+  border-color: gray;
+}
+
+.urlEditor {
+  margin-bottom: 1%;
+}
+
+
+/* 
+=================================
+          CREATE GROUP
+=================================
+*/
+
+
+.groupModal {
+  text-align: center;
+  margin: 0 -5%;
+}
+
+#group_name {
+  margin-bottom: 3%;
+  border-radius: 2px;
+}
+
+#checkbox {
+  margin-bottom: 3%;
+}
+
+.groupModal button {
+  margin-bottom: 2%;
+}
+
+
+
+/* 
+=================================
+          DASHBOARD
+=================================
+*/
+
+
 .dashboard {
   height: 34vh;
   background-color: #80b1e8;
@@ -90,10 +682,6 @@
 .glyphicon-plus:hover {
   color: white;
   cursor: pointer;
-}
-
-.usersColor {
-  color: #2869b2;
 }
 
 /*private room glyphicon icon*/
@@ -149,232 +737,3 @@
   width:20px;
   height:20px
 }
-/*Modal private room end here*/
-/*dashboard.html css ends here*/
-
-/*landingPage.html css starts here*/
-/*github button*/
-#github {
-  width: 180px;
-  margin-top: 5%;
-  margin-right: auto;
-  margin-left: auto;
-  text-align: center;
-}
-
-/*Interim Name*/
-#nameLoginPage {
-  color: #0288d1;
-  font-size: 450%;
-  text-align: center;
-  margin-top: 15%;
-}
-/*landingPage.html css ends here*/
-
-/*yourCommunityList.html css starts here*/
-#navContent {
-  float:right;
-  padding-right: 2%;
-}
-
-#YourCommunitiesName {
-  font-size: 250%;
-  text-align: center;
-  margin-top: 80px;
-}
-
-#communityThumbnail {
-  font-size: 24px;
-  text-align: center;
-  background-color: #ccd3dc;
-  width: 200px;
-  height: 200px;
-  margin-top: 50px;
-  margin-right: 10px;
-  margin-left: auto;
-  box-shadow: 1px 1px 5px #888888;
-  display: inline-block;
-}
-.communityImage {
-  width: 80%;
-  height: 70%
-}
-.communityName {
-  color: #0288d1;
-  font-size: 100%;
-  text-align: center;
-  margin-top: 15%;
-}
-.searchBar{
-  width: 400px;
-}
-
-/*yourCommunityList.html css ends here*/
-
-/*userProfile.html css starts here*/
-#user {
-  background-image: url("/app/assets/profilebg.png");
-  background-size: 100% 100%;
-  width: 260px;
-  height: 390px;
-  margin-top: 50px;
-  margin-right: auto;
-  margin-left: auto;
-  box-shadow: 1px 1px 5px #888888;
-}
-
-#userProfileImage {
-  border: 2px solid white;
-  width: 100%;
-  height: 42%;
-}
-
-#profileImage {
-  width: 98%;
-  height: 98%;
-}
-
-#userProfileName {
-  text-align: center;
-  color: white;
-}
-
-#userBio {
-  height: 30%;
-  overflow: auto;
-}
-/*userProfile.html css ends here*/
-
-/*community profile start*/
-#communityProfAvi {
-  margin-right: 5%;
-  float: left;
-}
-
-.communityProfBasicInfo {
-  margin-top: 1%;
-}
-
-.profileBucket {
-  width: 100%;
-  height: 200px;
-}
-
-.groupList {
-  width: 200px;
-  height: 200px;
-  overflow-x: auto;
-}
-
-/*community profile end*/
-
-/*community communitySingUp start*/
-.error-block {
-  display: block;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  color: red;
-}
-
-.modal-singUp .modal-dialog{
-  margin-right: auto;
-  margin-left: auto;
-  width: 300px;
-  height: 200px;
-}
-
-.singUpTitle {
-  margin-top: 10px;
-  color: #2869b2;
-  font-size: 150%;
-}
-
-.singUpForm {
-  margin-bottom: 20px;
-}
-
-.singUp {
-  text-align: center;
-}
-
-.singUpTable {
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: 20px;
-  width:80%;
-}
-
-tr {
-  height:40px;
-}
-/*community communitySingUp end*/
-
-/*Profile Modal Styles*/
-.userProf {
-  text-align: center;
-}
-
-#modalProfilePic {
-  border-radius: 2px;
-  box-shadow: 1.5px 1.5px 1.5px grey;
-  height: 45%;
-  width: 45%;
-}
-
-#profileEditor {
-  margin-right: 100%;
-  background-color: white;
-}
-
-.userProf p {
-  margin: 0 10%;
-}
-
-.userProf a {
-  margin: 0 2%;
-  font-size: 35px;
-  text-decoration: none;
-}
-
-#profileHeaders {
-  margin-top: 20px;
-}
-
-/*Profile Modal Editor Styles*/
-
-#locationEditor, #bioEditor, .urlEditor {
-  margin: 1%, 0;
-  border-radius: 1px;
-}
-
-#bioEditor {
-  width: 45%;
-  height: 30%;
-  padding: 5px;
-  border-color: grey;
-}
-
-.urlEditor {
-  margin-bottom: 1%;
-}
-
-/*Create Groupe Modal Styles*/
-
-.groupModal {
-  text-align: center;
-  margin: 0 -5%;
-}
-
-#group_name {
-  margin-bottom: 3%;
-  border-radius: 2px;
-}
-
-#checkbox {
-  margin-bottom: 3%;
-}
-
-.groupModal button {
-  margin-bottom: 2%;
-}
-
