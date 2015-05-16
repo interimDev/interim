@@ -1,16 +1,14 @@
 angular.module('interim.nav', ["firebase"])
 
-.controller('NavController', function ($scope, $rootScope, Auth, Permissions, $state) {
-  // Your code here
+.controller('NavController', function ($scope, $rootScope, Auth, $state) {
   var ref = new Firebase("https://interim.firebaseio.com/");
+  $scope.userInfo = $rootScope.userInfo;
 
   $scope.signOut = function() {
-
-    console.log("User will sign out here! .... well, not yet");
-    //To-do: Need to unauth current user. May need to update Auth in services.js
-    ref.unauth();
-
-  };
+    var userId = '' + $scope.userInfo.name + "-" + $scope.userInfo.auth.provider;
+    ref.child('UsersDB').child(userId).child('auth').remove();
+    $rootScope.userInfo = [];
+    };
 
 });
 
