@@ -20,7 +20,7 @@
 
 .dashboardTitle{
   position: absolute;
-  color: white;
+  color: #2869b2;
   margin-top: 4vh;
   margin-left: 4%;
 }
@@ -30,7 +30,7 @@
 }
 
 #contentImage {
-  margin-top: 1.5%;
+  margin-top: 2%;
   margin-left: 4%;
   height: 40px;
   width: 40px;
@@ -52,13 +52,49 @@
 }
 
 #linkColor {
-    color: white;
+  color: white;
 }
 
 #linkColor:hover {
-    color: #2869b2;
+  color: #2869b2;
 }
 
+.dashboardName {
+  margin-left: 4%;
+}
+
+/*Modal private room start here*/
+.privateRoomModal{
+  background-color: #2869b2;
+  color: white;
+}
+
+.modalStyle {
+  overflow: auto;
+  height: 100px;
+}
+
+#myModal {
+  color:black;
+  left: 200px;
+  z-index: 10;
+}
+
+.userLinkColor {
+  color: #2869b2;
+  cursor:pointer;
+}
+
+.userLinkColor:active {
+  color: #80b1e8;
+}
+
+.modalImage {
+  margin-right: 10px;
+  width:20px;
+  height:20px
+}
+/*Modal private room end here*/
 /*dashboard.html css ends here*/
 
 /*landingPage.html css starts here*/

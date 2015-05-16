@@ -9,7 +9,7 @@ angular.module('interim.dashboard', ["firebase"])
   //get all users
   $scope.allUsers = $firebaseArray(dbRef.child("UsersDB"));
   //current user id
-  $scope.userID = $rootScope.userInfo ? $rootScope.userInfo.id : $rootScope.communityInfo.id;
+  $scope.user = $rootScope.userInfo ? $rootScope.userInfo: $rootScope.communityInfo;
   //current groups
   $scope.currentGroup = $rootScope.group;
 
@@ -35,12 +35,12 @@ angular.module('interim.dashboard', ["firebase"])
     var currentUsers = {};
 
     if(roomInfo.private) {
-      currentUsers[$scope.userID] = $scope.userID;
+      currentUsers[$scope.user.id] = $scope.user.id;
     }
 
     var room = {
       id: newRoom.key(),
-      createdByUserId: $scope.userID,
+      createdByUserId: $scope.user.id,
       name: $scope.master.name,
       type: $scope.master.private ? 'private' : 'public',
       usersList: currentUsers,
@@ -65,18 +65,18 @@ angular.module('interim.dashboard', ["firebase"])
   };
 
   $scope.filterPublic = function(room) {
-    if (room.type === "public" && room.groupid === $rootScope.group.id) {
+    if (room.type === "public" && room.groupid === $scope.currentGroup.id) {
       return true;
     }
   };
 
   //filter private rooms for current user
   $scope.filterPrivate = function(room) {
-    if (room.type === "private" && room.groupid === $rootScope.group.id) {
+    if (room.type === "private" && room.groupid === $scope.currentGroup.id) {
       for (var val in room) {
         for (var id in room[val]) {
           //if users members match current users id then allow user to see room
-          if (room[val][id] === $scope.userID) {
+          if (room[val][id] === $scope.user.id) {
             return true;
           }
         }
@@ -116,4 +116,8 @@ angular.module('interim.dashboard', ["firebase"])
 
   //Current Group Name
   $scope.groupName = $scope.currentGroup.name;
+
+  //getting users current image and name
+  $scope.userName = $scope.user.name;
+  $scope.profileImage = $scope.user.avi_url;
 });

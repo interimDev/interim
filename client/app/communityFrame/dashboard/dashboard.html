@@ -3,7 +3,7 @@
     <div class="row dashboardProfile">
       <!-- community profile image -->
         <img src="/app/assets/makersquareProfile.png" class="img-rounded" id="contentImage"> 
-        {{groupName}}
+        <span class="dashboardName">{{groupName}}</span>
     </div>
 
     <div class="row dashboardInfo">
@@ -23,6 +23,26 @@
       </h6>
     </div> 
 
+    <!-- Modal for Adding Users To Private Room -->
+    <div data-backdrop="false" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header privateRoomModal">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" ng-click = 'updateUsersList();'>&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Add User to Private Room</h4>
+          </div>
+          <div class="modal-body modalStyle">
+            <h6 id="insideContent" ng-repeat="user in allUsers| orderBy: name" ng-click="addUser(user);"> 
+              <span class =" userLinkColor"> <img src={{user.avi_url}} class="img-rounded modalImage"/>{{user.name}}</span>
+            </h6>
+          </div>
+          <div class="modal-footer privateRoomModal">
+            <span> * click on user to add user </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="row dashboardInfo">
       <span class="dashboardTitle">Users</span>
     </div>
@@ -35,7 +55,7 @@
     <div class="row dashboardProfile"> 
       <!-- user's profile image -->
       <img src="{{profileImage}}" class="img-circle" id="contentImage">
-      {{userName}} 
+      <span class="dashboardName">{{userName}}</span>
       <span class="glyphicon glyphicon-pencil"></span>
     </div>
 
