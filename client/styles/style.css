@@ -385,6 +385,10 @@
 /*landingPage.html css ends here*/
 
 /*yourCommunityList.html css starts here*/
+#welcomeMessage {
+  font-size: 90px
+}
+
 #navContent {
   float:right;
   padding-right: 2%;
@@ -400,6 +404,10 @@
   margin-left: -24px;
   width: 10%;
   margin-top: 5%;
+}
+
+#searchbarform {
+  margin-top: -8%;
 }
 
 #YourCommunitiesName h1 {
