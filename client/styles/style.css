@@ -1,3 +1,54 @@
+/*chat.js starts here*/
+.messageInput{
+  height: 8vh;
+}
+
+.messageData{
+  height: 92vh;
+  overflow-x: scroll;
+}
+
+.inputSize{
+  margin-right: auto;
+  margin-left: auto;
+  width: 90%;
+}
+
+.messageText {
+  word-wrap: break-word;
+}
+
+#chatImage {
+  width: 36px;
+  height: 36px;
+}
+
+.img-rounded {
+  cursor: pointer;
+}
+
+.chatTime {
+  color: #888888;
+  opacity: 0.4;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.userNameChat {
+  color:#2869b2;
+  opacity: 0.6;
+}
+
+.inputChatField {
+  width: 100%;
+}
+
+.messagesSpace {
+  margin-bottom: 10px;
+}
+/*chat.js ends here*/
+
+
 /*dashboard.html css starts here*/
 .dashboard {
   height: 34vh;
@@ -39,6 +90,10 @@
 .glyphicon-plus:hover {
   color: white;
   cursor: pointer;
+}
+
+.usersColor {
+  color: #2869b2;
 }
 
 /*private room glyphicon icon*/
@@ -189,78 +244,6 @@
   overflow: auto;
 }
 /*userProfile.html css ends here*/
-
-
-
-/*chat.html css starts here*/
-.chat {
-  right: 0px;
-  width: 66%;
-}
-
-/*css for displaying messages starts here*/
-#chatMessage {
-  position: absolute;
-  top: 2%;
-  right:0;
-  height: 95vh;
-}
-
-#contentMessages {
-  position: inherit;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  width: 90%;
-  height: 90vh;
-  left: 5%;
-  bottom:20px;
-}
-
-.messageText {
-  word-wrap: break-word;
-}
-
-.message {
-  width:90%;
-}
-
-#chatImage {
-  width:60px;
-  height:60px;
-}
-
-.img-rounded {
-  cursor: pointer;
-}
-
-#chatTime {
-  color: #888888;
-  margin-left: 1%;
-  opacity: 0.6;
-}
-
-.userNameChat {
-  color:#2869b2;
-  opacity: 0.4;
-}
-
-/*css for displaying messages ends here*/
-
-/*chat input starts here*/
-#chatRow {
-  position: absolute;
-  width: 60%;
-  bottom: 1%;
-  visibility: hidden;
-  z-index: 2;
-  left:18%;
-}
-
-.inputChatField {
-  width: 100%;
-}
-/*chat input ends here*/
-/*chat.html css ends here*/
 
 /*community profile start*/
 #communityProfAvi {
