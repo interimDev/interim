@@ -125,6 +125,23 @@
   opacity: 0.6;
 }
 
+#search-bar {
+  margin: 0 auto;
+  width: 30%;
+  margin-bottom: 3%;
+}
+
+.community-thumbnail {
+  text-align: center;
+  display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  box-shadow: 0 3px 3px grey;
+}
+
 /* 
 =================================
             USER PROFILE
@@ -386,19 +403,12 @@
 
 /*yourCommunityList.html css starts here*/
 #welcomeMessage {
-  font-size: 90px
-}
-
-.search-bar-form {
-  text-align: center;
-}
-#community-tabs {
-  width: 22.5%;
-  height: 22.5%;
+  font-size: 75px;
 }
 
 .community-image {
-
+  height: 90%;
+  width: 90%;
 }
 
 .thumbnail {
@@ -519,7 +529,6 @@
 =================================
 */
 
-
 #communityProfAvi {
   margin-right: 5%;
   float: left;
@@ -585,6 +594,7 @@
 tr {
   height:40px;
 }
+
 
 
 /* 

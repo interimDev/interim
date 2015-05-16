@@ -8,10 +8,30 @@
         <h1 id="welcomeMessage">Your Communities</h1>
       </div>
        <!-- Your Communities -->
-      <div class="col-md-4" ng-repeat="(key,value) in communities" id="community-tabs">
-        <div class="thumbnail">
+      <div class="col-xs-10 col-xs-push-1">
+        <div class="col-md-3" ng-repeat="(key,value) in communities" id="community-tabs">
+          <div class="community-thumbnail">
+            <a href="#/community-profile/{{value.name}}" >
+              <!-- <img src={{value["avi_url"]}}> -->
+              <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)"/>
+              <div class="caption">
+                <h3 id="thubnail-label">{{value.name.toUpperCase()}}</h3>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Search -->
+      <div id="community-search">
+        <input id="search-bar" type="text" class="form-control" placeholder="Find New Communities">
+      </div>
+    </div>
+
+
+    <div class="col-xs-10 col-xs-push-1">
+      <div class="col-md-3" ng-repeat="(key,value) in Communities" id="community-tabs">
+        <div class="community-thumbnail">
           <a href="#/community-profile/{{value.name}}" >
-            <!-- <img src={{value["avi_url"]}}> -->
             <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)"/>
             <div class="caption">
               <h3 id="thubnail-label">{{value.name.toUpperCase()}}</h3>
@@ -20,35 +40,4 @@
         </div>
       </div>
     </div>
-
-  <!-- Search -->
-
-  <!-- All Existing Communities. To-Do: filtered by search terms-->
-    <div id="YourCommunitiesName">
-      <div id="searchbar" class="col-mid-8">
-        <form class="search-bar-form" id="searchbarform">
-          <input id="search-box" placeholder="Discover More">
-          <button id="search-button" type="submit">
-            <span class="glyphicon glyphicon-search"></span>
-          </button> 
-        </form>
-      </div>
-
-      <div class="col-sm-6 col-md-4" ng-repeat="(key,value) in Communities" id="community-tabs">
-        <div class="thumbnail">
-          <a href="#/community-profile/{{value.name}}" >
-            <!-- <img src={{value["avi_url"]}}> -->
-            <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)"/>
-            <div class="caption">
-              <h3 id="thubnail-label">{{value.name.toUpperCase()}}</h3>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <!-- <span class="thumbnail" id="communityThumbnail" ng-repeat="(key,value) in Communities">
-        <a href="#/community-profile/{{value.name}}">
-           {{value.name.toUpperCase()}}
-          <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)" />
-        </a>
-      </span> -->
+  </div>
