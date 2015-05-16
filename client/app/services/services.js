@@ -66,7 +66,8 @@ angular.module('interim.services', [])
   };
 
   var updateUser = function(key, edits) {
-    ref.child('UsersDB').child(key).child('profile').update(edits.profile, function(error) {
+    console.log("edits: ", edits);
+    ref.child('UsersDB').child(key).update(edits, function(error) {
       if (error) {
         console.log("Error updating user: ", error);
       } else {
