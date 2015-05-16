@@ -1,42 +1,29 @@
-<div class="chat" ng-controller="ChatController">
-  <div class="col-xs-9 hundred" id ="chatMessage">
-    <!-- contains all messages -->
-    <div id="contentMessages" scroll-glue>
-      <!-- single message -->
-      <div class="message" ng-repeat="message in messages ">
-        <article class="row">
-          <div class="col-md-12 col-sm-12">
-            <div class="panel panel-default arrow left">
-              <div class="panel-body">
-                <!-- displays users picture -->
-                <div class="col-md-2 col-sm-2 hidden-xs">
-                <img src={{message.userProfileImage}} ng-click="userModal(message)" class="img-rounded" id="chatImage"/>
-                </div>
-                <!-- displays users name -->
-                <span class="userNameChat"><i class="fa fa-user"></i> {{message.name}}
-                  <!-- displays time when message was send -->
-                  <time id="chatTime"><i class="fa fa-clock-o"></i> {{ message.timestamp| date:'short'}}
-                  </time>
-                </span>
-               <!-- displays usesrs message -->
-                <div>
-                  <p class="messageText">
-                    {{message.message}}
-                  </p>
-                </div>
-              </div> 
-            </div>
+<div ng-controller="ChatController">
+  <div class="row messageData" scroll-glue>
+    <div class="inputSize">
+      <article class="row messagesSpace" ng-repeat="message in messages">
+        <div class="row col-sx-12">
+          <!-- displays users picture -->
+          <div class="col-xs-1">
+            <img src={{message.userProfileImage}} ng-click="userModal(message)" class="img-rounded" id="chatImage"/>
           </div>
-        </article>
-      </div>
+          <div class="row col-xs-11"> 
+            <!-- displays users name -->
+            <span class="userNameChat">{{message.name}}</span>
+              <!-- displays time when message was send -->
+            <span class="chatTime" title={{message.timestamp|date:'fullDate'}}>{{ message.timestamp|date:'shortTime'}}</span><br>
+            <!-- displays usesrs message -->
+            <span class="messageText"> {{message.message}} </span>
+          </div>
+        </div>
+      </article>
     </div>
+  </div>
 
-    <!-- chat input -->
-    <form class="row" id="chatRow" novalidate="">
-      <div>
-        <!-- input sends message when user presses enter key on key board -->
-        <input type="text" maxlength="120" data-minlength="1" class="form-control inputChatField" ng-model="msg" placeholder="Enter message here..." ng-keyup="$event.keyCode == 13 && sendMessage()" required />
-      </div>
-    </form>
+  <div class="row messageInput" novalidate>
+    <div class="inputSize">
+    <!-- input sends message when user presses enter key on key board -->
+    <input type="text" maxlength="300" data-minlength="1" class="form-control inputChatField" ng-model="msg" placeholder="Enter message here..." ng-keyup="$event.keyCode == 13 && sendMessage()" required />
+  </div>
   </div>
 </div>
