@@ -7,15 +7,19 @@
       <div>
         <h1 id="welcomeMessage">Your Communities</h1>
       </div>
-
        <!-- Your Communities -->
-      <span class="thumbnail" id="communityThumbnail" ng-repeat="(key,value) in communities">
-        <a href="#/community-profile/{{value.name}}" >
-          <!-- <a href="#/contacts/3" ui-sref="contacts.detail({ id: contact.id })"> -->
-           {{value.name.toUpperCase()}} 
-          <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)"/>
-        </a>
-      </span>
+      <div class="col-md-4" ng-repeat="(key,value) in communities" id="community-tabs">
+        <div class="thumbnail">
+          <a href="#/community-profile/{{value.name}}" >
+            <!-- <img src={{value["avi_url"]}}> -->
+            <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)"/>
+            <div class="caption">
+              <h3 id="thubnail-label">{{value.name.toUpperCase()}}</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
 
   <!-- Search -->
 
@@ -30,9 +34,21 @@
         </form>
       </div>
 
-      <span class="thumbnail" id="communityThumbnail" ng-repeat="(key,value) in Communities">
+      <div class="col-sm-6 col-md-4" ng-repeat="(key,value) in Communities" id="community-tabs">
+        <div class="thumbnail">
+          <a href="#/community-profile/{{value.name}}" >
+            <!-- <img src={{value["avi_url"]}}> -->
+            <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)"/>
+            <div class="caption">
+              <h3 id="thubnail-label">{{value.name.toUpperCase()}}</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- <span class="thumbnail" id="communityThumbnail" ng-repeat="(key,value) in Communities">
         <a href="#/community-profile/{{value.name}}">
            {{value.name.toUpperCase()}}
           <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)" />
         </a>
-      </span>
+      </span> -->
