@@ -1,32 +1,92 @@
-/* 
+/*
 =================================
             LANDING PAGE
 =================================
 */
 
-
 /*github button*/
-#github {
-  width: 180px;
-  margin-top: 5%;
-  margin-right: auto;
+#sign-in-btn {
+  background: #2869b2;
+  font-size: 18px;
+  width: 100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin-left: auto;
-  text-align: center;
+  margin-right: auto;
 }
 
-.jumbotron {
+.btn-github{
+  width: 220px;
+  background: #2869b2;
+  font-size: 18px;
+  left: 50%;
+  margin-left: -110px;
+}
+
+.btn-github:hover {
+  background: #2869b2;
+}
+
+.landingJumbo {
   font-weight: lighter;
   color: white;
   text-align: center;
   padding-top: 100px;
   padding-bottom: 100px;
-  background: -webkit-gradient(linear, left top, right top, from(#2869b2), to(#FFB5AF));
+  background: -webkit-gradient(linear, left top, right top, from(#2869b2), to(#63CCB6));
 }
 
-.jumbotron h1 {
+.landingJumbo h1 {
   font-size: 40px;
 }
 
+#landing-sign-in {
+  margin-top: 70px;
+  text-align: center;
+}
+
+#landing-form {
+  width: 30em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.communitySignIn {
+  margin-top: 30px;
+}
+
+.form-signin-heading {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #71787F;
+}
+
+.communitySignIn p{
+  color: #71787F;
+}
+
+.newCommunity {
+  color: #71787F;
+  padding-bottom: 10px;
+}
+
+.create-community-landing {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 70px;
+}
+
+.create-community-landing {
+  color: #71787F;
+}
+
+#create-cm-btn {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* 
 =================================
@@ -254,6 +314,7 @@
   text-align: center;
   margin-top: 15%;
 }
+
 /* 
 =================================
             CHAT
@@ -492,7 +553,6 @@ tr {
 */
 
 
-
 .userProf {
   text-align: center;
 }
@@ -573,3 +633,107 @@ tr {
   margin-bottom: 2%;
 }
 
+
+
+/* 
+=================================
+          DASHBOARD
+=================================
+*/
+
+
+.dashboard {
+  height: 34vh;
+  background-color: #80b1e8;
+  overflow-x: scroll;
+}
+
+/*user and community profile*/
+.dashboardProfile {
+  height: 8vh;
+  background-color: #2869b2;
+  color: white;
+}
+
+/*users and rooms title*/
+.dashboardInfo {
+  height: 8vh;
+  background-color: #80b1e8;
+}
+
+.dashboardTitle{
+  position: absolute;
+  color: #2869b2;
+  margin-top: 4vh;
+  margin-left: 4%;
+}
+
+.dashboardContent {
+  margin-left: 10%;
+}
+
+#contentImage {
+  margin-top: 2%;
+  margin-left: 4%;
+  height: 40px;
+  width: 40px;
+} 
+
+.glyphicon-plus:hover {
+  color: white;
+  cursor: pointer;
+}
+
+/*private room glyphicon icon*/
+.glyphicon-user-add {
+  width: 16px;
+  height: 12px;
+}
+
+.glyphicon-user-add:hover {
+  opacity: 0.5;
+}
+
+#linkColor {
+  color: white;
+}
+
+#linkColor:hover {
+  color: #2869b2;
+}
+
+.dashboardName {
+  margin-left: 4%;
+}
+
+/*Modal private room start here*/
+.privateRoomModal{
+  background-color: #2869b2;
+  color: white;
+}
+
+.modalStyle {
+  overflow: auto;
+  height: 100px;
+}
+
+#myModal {
+  color:black;
+  left: 200px;
+  z-index: 10;
+}
+
+.userLinkColor {
+  color: #2869b2;
+  cursor:pointer;
+}
+
+.userLinkColor:active {
+  color: #80b1e8;
+}
+
+.modalImage {
+  margin-right: 10px;
+  width:20px;
+  height:20px
+}

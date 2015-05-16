@@ -1,30 +1,32 @@
 <div id="landingPage">
-<!-- Main jumbotron for a primary marketing message or call to action -->
- <div class="jumbotron">
-   <div class="container">
-     <h1>Verified communities for you to build and explore.</h1>
-     <h4>Interim</h4>
-   </div>
- </div>
-  <!-- product name -->
-  <!-- github login button -->
-  <div id="github">
-  <h2>Have an account?</h2>
-    <a class="btn btn-block btn-social btn-github" ng-click="githubAuth()">
-      <i class="fa fa-github"></i> Sign in with GitHub
-    </a>
-    <h4 class= "communitiesName">Communities</h4>
-    <a href class="createCommunity" data-toggle="collapse" data-target="#singInInputs">Community Sign In</a>
-    <div id="singInInputs" class="collapse out">
-      <form novalidate class="simple-form landingPageForm">
-        <input type="email" class="landingPageInput" ng-model="community.email" placeholder="E-mail"/>
-        <input type="password" class="landingPageInput" ng-model="community.password" placeholder="Password"/>
-        <input type="button" ng-click="reset()" value="Reset" />
-        <input type="submit" ng-click="signIn(community)" value="Submit" />
-      </form>
+  <div class="landingJumbo">
+    <div class="container">
+      <h1>Verified communities for you to build and explore.</h1>
+      <h4>Interim</h4>
     </div>
-    <br>
-    <a href class="createCommunity" ng-click="communityModal()">Create a community</a>
   </div>
 
+    <div id="landing-sign-in">
+      <h2 class="form-signin-heading">Have an account?</h2>
+        <a class="btn btn-block btn-social btn-github"  ng-click="githubAuth()">
+          <i class="fa fa-github"></i> Sign in with GitHub
+        </a>
+
+        <div id="singInInputs" class="communitySignIn">
+          <p>Communities:</p>
+          <form novalidate class="form-signin">
+            <input type="email" class="form-control" ng-model="community.email" placeholder="E-mail" id="landing-form" autofocus/>
+            <br>
+            <input type="password" class="form-control" ng-model="community.password" placeholder="Password" id="landing-form"/>
+            <br>
+            <input type="submit" class="btn btn-lg btn-primary btn-block" id="sign-in-btn" ng-click="signIn(community)" value="Submit" />
+          </form>
+        </div>
+    </div>
+
+    <div class="create-community-landing">
+      <h2 class= "newCommunity">Join Interim</h4>
+      <p>Sign up and create a verified network for your organization, business, or group!</p>
+      <button class="btn btn-lg btn-primary btn-block" id="create-cm-btn" ng-click="communityModal()">Create a community</button>
+   </div>
 </div>
