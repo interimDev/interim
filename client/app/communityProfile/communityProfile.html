@@ -1,9 +1,10 @@
 <div ui-view="navBar"></div>
-<div>
+<div ng-init="checkUser()">
   <div class="jumbotron">
     <div class="container">
+
       <form editable-form name="editProfile" onaftersave="save()">
-        <!-- Icon for company -->
+
         <div class="communityProfAvi" id="communityProfAvi">
           <img src="{{community.avi_url}}" id="msIcon" width="200" height="200">
           <br>
@@ -14,16 +15,19 @@
           <span editable-textarea="community.profile.bio" e-form="editProfile" e-rows="7" e-cols="40">
             {{community.profile.bio}}
           </span>
-        </div>
         <button type="button" class="btn btn-warning" ng-click="joinCommunity()" ng-hide="editProfile.$visible">Join!</button>
         <button type="button" class="btn btn-default" ng-if="editAllowed" ng-click="editProfile.$show()" ng-hide="editProfile.$visible">Edit Profile</button>
+        </div>
+
+
+
         <!-- buttons to submit / cancel form -->
           <span ng-show="editProfile.$visible">
-            <button type="submit" class="btn btn-primary" ng-disabled="editProfile.$waiting">
-              Save
-            </button>
             <button type="button" class="btn btn-default" ng-disabled="editProfile.$waiting" ng-click="editProfile.$cancel()">
               Cancel
+            </button>
+            <button type="submit" class="btn btn-primary" ng-disabled="editProfile.$waiting">
+              Save
             </button>
           </span>
       </form>

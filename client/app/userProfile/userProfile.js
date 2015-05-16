@@ -5,7 +5,6 @@ angular.module('interim.userProfile', [])
   var users = $firebaseObject(ref);
   var userKey = user+'-github';
   $scope.editAllowed = false;
-  $scope.editorEnabled = false;
   $scope.makeProfile = false;
 
   users.$loaded().then(function() {
@@ -23,10 +22,6 @@ angular.module('interim.userProfile', [])
         $scope.clickedUser.profile = {};
       }
     }
-  };
-
-  $scope.editProfile = function() {
-    $scope.editorEnabled = true;
   };
 
   $scope.save = function() {
