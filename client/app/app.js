@@ -16,10 +16,13 @@ angular.module('interim', [
   'interim.communityProfile',
   'interim.superAdmin',
   'interim.communityTopSidebar',
-  'interim.createGroup'
+  'interim.createGroup',
+  'xeditable'
 ])
 
-.run(function($rootScope){
+.run(function ($rootScope, editableOptions){
+
+  editableOptions.theme = 'bs3';
 
   // handles routing permission authorization by checking the privelege of the user
   // ~check ur privelege~ https://alizetigirl.files.wordpress.com/2014/10/check-your-privilege.jpg

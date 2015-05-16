@@ -2,15 +2,31 @@
 <div>
   <div class="jumbotron">
     <div class="container">
-      <!-- Icon for company -->
-      <div class="communityProfAvi" id="communityProfAvi">
-        <img src="{{community.avi_url}}" id="msIcon" width="200" height="200">
-      </div>
-        <h2>{{community.name}}</h2>
-      <div class="communityProfBasicInfo"
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-      </div>
-      <button type="button" class="btn btn-warning" ng-click="joinCommunity()">Join!</button>
+      <form editable-form name="editProfile" onaftersave="save()">
+        <!-- Icon for company -->
+        <div class="communityProfAvi" id="communityProfAvi">
+          <img src="{{community.avi_url}}" id="msIcon" width="200" height="200">
+          <br>
+          <span editable-text="community.avi_url" e-form="editProfile"></span>
+        </div>
+          <h2>{{community.name}}</h2>
+        <div class="communityProfBasicInfo">
+          <span editable-textarea="community.profile.bio" e-form="editProfile" e-rows="7" e-cols="40">
+            {{community.profile.bio}}
+          </span>
+        </div>
+        <button type="button" class="btn btn-warning" ng-click="joinCommunity()" ng-hide="editProfile.$visible">Join!</button>
+        <button type="button" class="btn btn-default" ng-if="editAllowed" ng-click="editProfile.$show()" ng-hide="editProfile.$visible">Edit Profile</button>
+        <!-- buttons to submit / cancel form -->
+          <span ng-show="editProfile.$visible">
+            <button type="submit" class="btn btn-primary" ng-disabled="editProfile.$waiting">
+              Save
+            </button>
+            <button type="button" class="btn btn-default" ng-disabled="editProfile.$waiting" ng-click="editProfile.$cancel()">
+              Cancel
+            </button>
+          </span>
+      </form>
     </div>
   </div>
 
