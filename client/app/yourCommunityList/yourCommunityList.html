@@ -13,10 +13,7 @@
           <div class="community-thumbnail">
             <a href="#/community-profile/{{value.name}}" >
               <!-- <img src={{value["avi_url"]}}> -->
-              <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)"/>
-              <div class="caption">
-                <h3 id="thubnail-label">{{value.name.toUpperCase()}}</h3>
-              </div>
+              <img class="communityImage community-thumbnail" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)"/>
             </a>
           </div>
         </div>
@@ -31,10 +28,7 @@
         <div class="col-md-3" ng-repeat="(key,value) in Communities" id="community-tabs">
           <div class="community-thumbnail">
             <a href="#/community-profile/{{value.name}}" >
-              <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)"/>
-              <div class="caption">
-                <h3 id="thubnail-label">{{value.name.toUpperCase()}}</h3>
-              </div>
+              <img class="communityImage community-thumbnail" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)"/>
             </a>
           </div>
         </div>
