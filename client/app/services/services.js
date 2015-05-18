@@ -94,7 +94,7 @@ angular.module('interim.services', [])
       email: community.email,
       password: community.password
     }).then(function(userData) {
-      $.notify("Community Request Recived", "success");
+      $.notify("Community Request Recieved", "success");
       return storeCommunity(userData, community);
     }).catch(function(error) {
       console.log("Error creating community: ", error);

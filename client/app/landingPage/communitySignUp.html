@@ -1,24 +1,24 @@
-<div class ="modal-singUp singUp">
-  <p class="singUpTitle"> Create New Community <p>
+<div class ="modal-signUp singUp">
+  <h4 class="singUpTitle"> Create a New Community <h4>
   <form name="myForm" class="simple-form singUpForm" novalidate>
     <table class="singUpTable">
       <tr>
-        <td><input type="text" name="name" pattern="[a-zA-Z0-9]+" maxlength="11" ng-model="community.name" placeholder="Name" required/>
+        <td><input type="text" name="name" pattern="[a-zA-Z0-9]+" maxlength="11" ng-model="community.name" placeholder="Name" class="form-control" id="landing-form" autofocus required/>
           <p ng-show="myForm.name.$invalid && !myForm.name.$pristine" class="error-block">No special characters or whitespace</p>
         </td>
       </tr>
       <tr>
-        <td><input type="email" name="email" ng-model="community.email" placeholder="E-mail" required/>
+        <td><input type="email" name="email" ng-model="community.email" placeholder="E-mail" class="form-control" id="landing-form" required/>
           <p ng-show="myForm.email.$invalid && !myForm.email.$pristine" class="error-block">Enter a valid email.</p>
         </td>
       </tr>
       <tr>
-        <td><input type="password" name="password" ng-model="community.password" placeholder="Password" required/>
+        <td><input type="password" name="password" ng-model="community.password" placeholder="Password"  class="form-control" id="landing-form" required/>
            <p ng-show="myForm.password.$invalid && !myForm.password.$pristine" class="error-block">Enter a valid password.</p>
         </td>
       </tr>
     </table>
-    <input type="button" ng-click="reset()" value="Reset"/>
-    <input type="submit" ng-disabled="myForm.$invalid" ng-click="update(community)" value="Submit"/>
+    <input type="button" ng-click="reset()" value="Clear" id="sign-in-btn" class="btn btn-lg btn-primary"/>
+    <input type="submit" class="btn btn-lg btn-primary" id="sign-in-btn" ng-click="update(community)" value="Submit"/>
   </form>
 </div>

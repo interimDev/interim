@@ -570,7 +570,6 @@
 =================================
 */
 
-
 .error-block {
   display: block;
   margin-top: 5px;
@@ -586,9 +585,9 @@
 }
 
 .singUpTitle {
-  margin-top: 10px;
-  color: #2869b2;
-  font-size: 150%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: #71787F;
 }
 
 .singUpForm {
@@ -625,7 +624,6 @@ tr {
 
 #modalProfilePic {
   border-radius: 2px;
-  box-shadow: 1.5px 1.5px 1.5px gray;
   height: 45%;
   width: 45%;
 }
