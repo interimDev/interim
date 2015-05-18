@@ -139,7 +139,7 @@
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 2px;
-  box-shadow: 0 3px 3px grey;
+  box-shadow: 0 3px 3px #CCCCE0;
 }
 
 /* 
@@ -327,7 +327,7 @@
 /*Nav Bar*/
 
 .navbar-default {
-  box-shadow: 0px 3px 3px grey !important;
+  box-shadow: 0px 3px 3px #CCCCE0 !important;
 }
 
 /*Interim Name*/
