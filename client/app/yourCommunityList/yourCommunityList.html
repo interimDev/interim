@@ -21,22 +21,22 @@
           </div>
         </div>
       </div>
-      <!-- Search -->
-      <div id="community-search">
-        <input id="search-bar" type="text" class="form-control" placeholder="Find New Communities">
-      </div>
     </div>
 
-
-    <div class="col-xs-10 col-xs-push-1">
-      <div class="col-md-3" ng-repeat="(key,value) in Communities" id="community-tabs">
-        <div class="community-thumbnail">
-          <a href="#/community-profile/{{value.name}}" >
-            <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)"/>
-            <div class="caption">
-              <h3 id="thubnail-label">{{value.name.toUpperCase()}}</h3>
-            </div>
-          </a>
+    <div id="discover-panel">
+      <div class="col-md-6 col-md-push-3">
+        <input id="search-bar" type="text" class="form-control" placeholder="Find New Communities">
+      </div>
+      <div class="col-xs-10 col-xs-push-1">
+        <div class="col-md-3" ng-repeat="(key,value) in Communities" id="community-tabs">
+          <div class="community-thumbnail">
+            <a href="#/community-profile/{{value.name}}" >
+              <img class="communityImage" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)"/>
+              <div class="caption">
+                <h3 id="thubnail-label">{{value.name.toUpperCase()}}</h3>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </div>
