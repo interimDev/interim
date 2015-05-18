@@ -8,9 +8,9 @@
         <h1 id="welcomeMessage">Your Communities</h1>
       </div>
        <!-- Your Communities -->
-      <div class="col-xs-10 col-xs-push-1 thumbnailCenter">
-        <div class="col-md-3" ng-repeat="(key,value) in communities" id="community-tabs">
-          <div class="community-thumbnail community-thumbnail2">
+      <div class="col-xs-10 col-xs-push-1">
+        <div class="col-md-3 thumbnailCenter" ng-repeat="(key,value) in communities" id="community-tabs">
+          <div class="community-thumbnail">
             <a href="#/community-profile/{{value.name}}" >
               <span class="thumbnailOverlay community-thumbnail">
               <span id="thumbnailText">{{value.name.toUpperCase()}}</span></span>
@@ -26,8 +26,8 @@
         <input id="search-bar" type="text" class="form-control" placeholder="Find New Communities">
       </div>
       <div class="col-xs-10 col-xs-push-1">
-        <div class="col-md-3" ng-repeat="(key,value) in Communities" id="community-tabs">
-          <div class="community-thumbnail community-thumbnail2">
+        <div class="col-md-3 thumbnailCenter" ng-repeat="(key,value) in Communities" id="community-tabs">
+          <div class="community-thumbnail">
             <a href="#/community-profile/{{value.name}}" >
               <span class="thumbnailOverlay community-thumbnail">
               <span id="thumbnailText">{{value.name.toUpperCase()}}</span></span>
