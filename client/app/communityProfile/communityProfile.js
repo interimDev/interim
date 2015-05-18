@@ -11,6 +11,7 @@ angular.module('interim.communityProfile', [])
   $scope.user = $rootScope.userInfo;
   $scope.editAllowed = false;
   $scope.makeProfile = false;
+  console.log("community.///",community);
 
   $scope.save = function() {
     console.log("entered save");
