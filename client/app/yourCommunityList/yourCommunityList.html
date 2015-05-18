@@ -10,10 +10,11 @@
        <!-- Your Communities -->
       <div class="col-xs-10 col-xs-push-1">
         <div class="col-md-3" ng-repeat="(key,value) in communities" id="community-tabs">
-          <div class="community-thumbnail">
+          <div class="community-thumbnail community-thumbnail2">
             <a href="#/community-profile/{{value.name}}" >
-              <!-- <img src={{value["avi_url"]}}> -->
-              <img class="communityImage community-thumbnail" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)"/>
+              <span class="thumbnailOverlay community-thumbnail">
+              <span id="thumbnailText">{{value.name.toUpperCase()}}</span></span>
+              <img class="communityImage community-thumbnail" src={{value["avi_url"]}} ng-click="communityProfile(this)"/>
             </a>
           </div>
         </div>
@@ -26,9 +27,11 @@
       </div>
       <div class="col-xs-10 col-xs-push-1">
         <div class="col-md-3" ng-repeat="(key,value) in Communities" id="community-tabs">
-          <div class="community-thumbnail">
+          <div class="community-thumbnail community-thumbnail2">
             <a href="#/community-profile/{{value.name}}" >
-              <img class="communityImage community-thumbnail" src={{value["avi_url"]}} id="communityIcon" ng-click="communityProfile(this)"/>
+              <span class="thumbnailOverlay community-thumbnail">
+              <span id="thumbnailText">{{value.name.toUpperCase()}}</span></span>
+              <img class="communityImage community-thumbnail" src={{value["avi_url"]}} ng-click="communityProfile(this)"/>
             </a>
           </div>
         </div>
