@@ -120,6 +120,8 @@
   cursor: pointer;
 }
 
+/*8db8ea*/
+
 .userNameChat {
   color:#2869b2;
   opacity: 0.6;
@@ -128,7 +130,7 @@
 #search-bar {
   font-size: 25px;
   height: 40px;
-  margin: 15% auto 8%;
+  margin: 10% auto 8%;
 }
 
 .community-thumbnail {
@@ -140,8 +142,14 @@
   border: 1px solid #ddd;
   border-radius: 10px;
   box-shadow: 0 3px 3px #CCCCE0;
+  height: 200px;
+  width: 200px;
 }
 
+#community-icon {
+  height: 300px;
+  width: 300px;
+}
 
 #welcomeMessage {
   font: 32px;
