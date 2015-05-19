@@ -215,6 +215,136 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
   margin-top: 350px;
 }
 
+
+/* 
+=================================
+           COMMNUNITY PROFILE
+=================================
+*/
+
+.community-profile-wrap {
+  font-family: 'lato';
+}
+.jumbotron {
+  margin-top: 50px;
+  background-color: #80b1e8;
+  color: #e9e9e9;
+}
+
+
+.communityAvi {
+  border-radius: 10px;
+}
+
+.communityProfAvi {
+  margin-right: 5%;
+  float: left;
+}
+
+.communityProfBasicInfo {
+  margin-top: 1%;
+}
+
+.profileBucket {
+  width: 100%;
+  height: 200px;
+}
+
+.groupList {
+  width: 200px;
+  height: 200px;
+  overflow-x: auto;
+}
+
+.communitySocial {
+  font-size: 15px;
+}
+
+.communitySocial span {
+  font-size: 12px;
+}
+
+.communitySocial a{
+  text-decoration: none;
+  color: #e9e9e9;
+}
+
+.communitySocial a:hover {
+  color: black;
+}
+
+#community-social-btn {
+  padding-left: 10px;
+}
+
+#communityIcon {
+  margin-bottom: 20px;
+}
+
+#location {
+  padding-right: 10px;
+}
+
+.button-holder {
+  margin-top: 75px;
+  margin-left: 80%; 
+}
+
+#community-name {
+  font-family: 'raleway';
+  font-weight: 200;
+  margin-bottom: 30px;
+  color: white;
+}
+
+
+/* 
+=================================
+          COMMUNITY SIGN UP
+=================================
+*/
+
+
+.error-block {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: red;
+}
+
+.modal-singUp .modal-dialog{
+  margin-right: auto;
+  margin-left: auto;
+  width: 300px;
+  height: 200px;
+}
+
+.singUpTitle {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: #71787F;
+}
+
+.singUpForm {
+  margin-bottom: 20px;
+}
+
+.singUp {
+  text-align: center;
+}
+
+.singUpTable {
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 20px;
+  width:80%;
+}
+
+tr {
+  height:40px;
+}
+
+
 /* 
 =================================
             USER PROFILE
@@ -562,131 +692,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
   height: 30%;
   overflow: auto;
 }
-
-
-
-/* 
-=================================
-           COMMNUNITY PROFILE
-=================================
-*/
-
-.jumbotron {
-  margin-top: 50px;
-  background-color: #80b1e8;
-  color: white;
-}
-
-.jumbotron p {
-  color: #e4e4e4;
-}
-
-.communityAvi {
-  border-radius: 10px;
-}
-
-.communityProfAvi {
-  margin-right: 5%;
-  float: left;
-}
-
-.communityProfBasicInfo {
-  margin-top: 1%;
-}
-
-.profileBucket {
-  width: 100%;
-  height: 200px;
-}
-
-.groupList {
-  width: 200px;
-  height: 200px;
-  overflow-x: auto;
-}
-
-.communitySocial {
-  font-size: 15px;
-}
-
-.communitySocial span {
-  font-size: 12px;
-}
-
-.communitySocial a{
-  text-decoration: none;
-  color: white;
-}
-
-.communitySocial a:hover {
-  color: #e4e4e4;
-}
-
-#community-social-btn {
-  padding-left: 10px;
-}
-
-#communityIcon {
-  margin-bottom: 20px;
-}
-
-#location {
-  padding-right: 10px;
-}
-
-.button-holder {
-  margin-top: 75px;
-  margin-left: 80%; 
-}
-
-#community-name {
-  margin-bottom: 30px;
-}
-/* 
-=================================
-          COMMUNITY SIGN UP
-=================================
-*/
-
-.error-block {
-  display: block;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  color: red;
-}
-
-.modal-singUp .modal-dialog{
-  margin-right: auto;
-  margin-left: auto;
-  width: 300px;
-  height: 200px;
-}
-
-.singUpTitle {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  color: #71787F;
-}
-
-.singUpForm {
-  margin-bottom: 20px;
-}
-
-.singUp {
-  text-align: center;
-}
-
-.singUpTable {
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: 20px;
-  width:80%;
-}
-
-tr {
-  height:40px;
-}
-
 
 
 /* 
