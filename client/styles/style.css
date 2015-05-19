@@ -488,7 +488,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 
 .thumbnail {
-  box-shadow: 0px 3px 3px grey !important;
+  box-shadow: 0px 3px 3px gray !important;
 }
 
 #community-search {
@@ -555,7 +555,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 =================================
 */
 
-#communityProfAvi {
+.jumbotron {
+  margin-top: 50px;
+  background-color: #80b1e8;
+  color: white;
+}
+
+.jumbotron p {
+  color: #e4e4e4;
+}
+
+.communityAvi {
+  border-radius: 10px;
+}
+
+.communityProfAvi {
   margin-right: 5%;
   float: left;
 }
@@ -575,6 +589,39 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
   overflow-x: auto;
 }
 
+.communitySocial {
+  font-size: 15px;
+}
+
+.communitySocial span {
+  font-size: 12px;
+}
+
+.communitySocial a{
+  text-decoration: none;
+  color: white;
+}
+
+.communitySocial a:hover {
+  color: #e4e4e4;
+}
+
+#community-social-btn {
+  padding-left: 10px;
+}
+
+#communityIcon {
+  margin-bottom: 20px;
+}
+
+#location {
+  padding-right: 10px;
+}
+
+.button-holder {
+  margin-top: 105px;
+  margin-left: 80%; 
+}
 /* 
 =================================
           COMMUNITY SIGN UP
