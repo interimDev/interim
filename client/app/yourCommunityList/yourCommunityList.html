@@ -1,4 +1,4 @@
-  <div ui-view="navBar"></div>
+<div ui-view="navBar"></div>
 
   <div id="yourCommunityList" ng-controller="YourCommunityListController">
 
@@ -13,7 +13,7 @@
           <div class="community-thumbnail">
             <a href="#/community-profile/{{value.name}}" >
               <span class="thumbnailOverlay community-thumbnail">
-              <span id="thumbnailText">{{value.name.toUpperCase()}}</span></span>
+              <span id="thumbnailText">{{value.name}}</span></span>
               <img class="communityImage community-thumbnail" src={{value["avi_url"]}} ng-click="communityProfile(this)"/>
             </a>
           </div>
@@ -23,14 +23,14 @@
 
     <div id="discover-panel">
       <div class="col-md-6 col-md-push-3">
-        <input id="search-bar" type="text" class="form-control" placeholder="Find New Communities">
+        <input id="search-bar" type="text" class="form-control" placeholder="Find New Communities..." autofocus/>
       </div>
       <div class="col-xs-10 col-xs-push-1">
         <div class="col-md-3 thumbnailCenter" ng-repeat="(key,value) in Communities" id="community-tabs">
           <div class="community-thumbnail">
             <a href="#/community-profile/{{value.name}}" >
               <span class="thumbnailOverlay community-thumbnail">
-              <span id="thumbnailText">{{value.name.toUpperCase()}}</span></span>
+              <span id="thumbnailText">{{value.name}}</span></span>
               <img class="communityImage community-thumbnail" src={{value["avi_url"]}} ng-click="communityProfile(this)"/>
             </a>
           </div>
