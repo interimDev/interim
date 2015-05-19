@@ -191,6 +191,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
   color: white;
   bottom:0;
 }
+
+.thumbnailCenter {
+  display: inline-block;
+  float: none;
+}
 /* 
 =================================
             USER PROFILE
