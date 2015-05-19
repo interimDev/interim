@@ -40,6 +40,10 @@
   font-size: 40px;
 }
 
+.landingJumbo {
+  font-family: 'raleway';
+}
+
 #landing-sign-in {
   margin-top: 70px;
   text-align: center;
@@ -149,7 +153,8 @@
 }
 
 #welcomeMessage {
-  font: 32px;
+  font-family: 'raleway';
+  font-size: 52px;
   margin-bottom: 4%;
   color: #80b1e8;
 }
@@ -463,9 +468,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 /*landingPage.html css ends here*/
 
 /*yourCommunityList.html css starts here*/
-#welcomeMessage {
-  font-size: 32px;
-}
 
 .community-image {
   height: 90%;
@@ -499,7 +501,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
   text-align: center;
 }
 
-
 #user {
   background-image: url("/app/assets/profilebg.png");
   background-size: 100% 100%;
@@ -525,6 +526,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 #userProfileName {
   text-align: center;
   color: white;
+}
+
+#thumbnailText {
+  font-family: 'raleway';
 }
 /* 
 =================================
