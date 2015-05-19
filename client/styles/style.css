@@ -28,25 +28,28 @@
 }
 
 .landingJumbo {
-  font-weight: lighter;
   color: white;
   text-align: center;
   padding-top: 100px;
   padding-bottom: 100px;
   background: -webkit-gradient(linear, left top, right top, from(#2869b2), to(#63CCB6));
+  font-family: 'raleway';
 }
 
 .landingJumbo h1 {
   font-size: 40px;
+  font-weight: 100;
 }
 
-.landingJumbo {
-  font-family: 'raleway';
+#landing-snippet {
+  font-size: 20px;
 }
 
 #landing-sign-in {
   margin-top: 70px;
   text-align: center;
+  font-family: 'lato';
+  font-weight: 200;
 }
 
 #landing-form {
@@ -70,6 +73,7 @@
 }
 
 .newCommunity {
+  font-family: 'lato';
   color: #71787F;
   padding-bottom: 10px;
 }
@@ -133,7 +137,7 @@
 #search-bar {
   font-size: 25px;
   height: 40px;
-  margin: 10% auto 8%;
+  margin: 10% auto 10%;
 }
 
 
@@ -154,9 +158,9 @@
 
 #welcomeMessage {
   font-family: 'raleway';
-  font-size: 52px;
   margin-bottom: 4%;
   color: #80b1e8;
+  font-weight: 300;
 }
 
 #YourCommunitiesName {
@@ -201,6 +205,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
   display: inline-block;
   float: none;
 }
+
+#yourCommunityList {
+  margin-top: 150px;
+  font-family: 'lato';
+}
+
+#discover-panel {
+  margin-top: 350px;
+}
+
 /* 
 =================================
             USER PROFILE
@@ -528,9 +542,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
   color: white;
 }
 
-#thumbnailText {
-  font-family: 'raleway';
-}
 /* 
 =================================
              CHAT INPUT
