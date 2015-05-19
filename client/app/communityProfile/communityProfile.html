@@ -29,7 +29,7 @@
 
         </div>
         <div class="communityProfBasicInfo">
-          <h2>{{community.name.toUpperCase()}}</h2>
+          <h2 id="community-name">{{community.name.toUpperCase()}}</h2>
           <span editable-textarea="community.profile.bio" e-form="editProfile" e-rows="7" e-cols="40">
             {{community.profile.bio}}
           </span>
@@ -45,8 +45,8 @@
         </span>
       </form>
       <div class='button-holder'>
-        <button type="button" class="btn btn-warning" ng-click="joinCommunity()" ng-hide="editProfile.$visible">Join!</button>
         <button type="button" class="btn btn-default" ng-if="editAllowed" ng-click="editProfile.$show()" ng-hide="editProfile.$visible">Edit Profile</button>
+        <button type="button" class="btn btn-warning" ng-click="joinCommunity()" ng-hide="editProfile.$visible">Join!</button>
       </div>
     </div>
   </div>

@@ -619,8 +619,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 
 .button-holder {
-  margin-top: 105px;
+  margin-top: 75px;
   margin-left: 80%; 
+}
+
+#community-name {
+  margin-bottom: 30px;
 }
 /* 
 =================================
