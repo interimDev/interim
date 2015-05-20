@@ -5,13 +5,13 @@
     <!-- Communities Title-->
     <div id="YourCommunitiesName">
       <div>
-        <h1 id="welcomeMessage">Your Communities</h1>
+        <h1 id="welcomeMessage" class="animated fadeIn">Your Communities</h1>
       </div>
        <!-- Your Communities -->
       <div class="col-xs-10 col-xs-push-1">
         <div class="col-md-3 thumbnailCenter" ng-repeat="(key,value) in communities" id="community-tabs">
           <div class="community-thumbnail">
-            <a href="#/community-profile/{{value.name}}" >
+            <a href="#/community-profile/{{value.name}}">
               <span class="thumbnailOverlay community-thumbnail">
               <span id="thumbnailText">{{value.name}}</span></span>
               <img class="communityImage community-thumbnail" src={{value["avi_url"]}} ng-click="communityProfile(this)"/>
@@ -23,7 +23,7 @@
 
     <div id="discover-panel">
       <div class="col-md-6 col-md-push-3">
-        <input id="search-bar" type="text" class="form-control" placeholder="Find New Communities..." autofocus/>
+        <input id="search-bar" ng-model="query" type="text" class="form-control" placeholder="Find New Communities..."/>
       </div>
       <div class="col-xs-10 col-xs-push-1">
         <div class="col-md-3 thumbnailCenter" ng-repeat="(key,value) in Communities" id="community-tabs">
