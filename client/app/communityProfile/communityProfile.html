@@ -53,16 +53,24 @@
 
   <div class="container">
     <!-- Example row of columns -->
-    <div class="row">
+    <div class="row" id="members-groups">
+
+
       <div class="col-xs-6">
-        <h2>Members</h2>
-        <div ng-repeat="(key, value) in users">
-          <div>{{value}}</div>
+        <h2 id="members">Members</h2>
+        <div class="media" ng-repeat="(key, value) in users">
+          <div class="media-left">
+              <img class="media-object" src="{{allUsersObj[key].avi_url}}" height="50" width="50">
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">{{value}}</h4>
+          </div>
         </div>
       </div>
-      <!-- groups here -->
+
+
       <div class="col-xs-6">
-        <h2>Groups
+        <h2>Groups</h2>
           <div class="glyphicon glyphicon-plus" ng-hide="addNewGroup" ng-click="groupModal()" title="Add Group"></div>
         </h2>
         <div class="groupList">

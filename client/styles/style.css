@@ -252,7 +252,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 .groupList {
   width: 200px;
-  height: 200px;
+  height: 400px;
   overflow-x: auto;
 }
 
@@ -295,6 +295,28 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
   font-weight: 200;
   margin-bottom: 30px;
   color: white;
+}
+
+.media-heading {
+  padding-top: 12px;
+}
+
+.media-object {
+  border-radius: 50%;
+}
+
+#members-groups {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#members {
+  margin-bottom: 30px;
+}
+
+#insideContent {
+  font-size: 20px;
+  padding-top: 10px;
 }
 
 

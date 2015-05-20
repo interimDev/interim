@@ -5,6 +5,7 @@ angular.module('interim.communityProfile', [])
   var dbRef = new Firebase("https://interim.firebaseio.com/");
 
   $scope.allUsers = $firebaseArray(dbRef.child("UsersDB"));
+  $scope.allUsersObj = $firebaseObject(dbRef.child("UsersDB"));
   $scope.groups = $firebaseArray(dbRef.child("community-groups-metadata"));
   $scope.community = community;
   $scope.users = $scope.community.users;
