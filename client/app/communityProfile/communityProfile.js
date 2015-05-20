@@ -103,4 +103,22 @@ angular.module('interim.communityProfile', [])
     dbRef.child("community-groups-metadata").child($scope.usersGroup).child("usersList").update(newUsers);
     $.notify(user.name +" is added to group", "success");
   };
+
+
+  //this function creates a popup modal with the users information
+  $scope.userModal = function(user) {
+    var name = user.name;   
+    $scope.userName = name;
+    $modal.open({
+      templateUrl: 'app/userProfile/userProfile.html',
+      backdrop: true,
+      windowClass: 'modal',
+      controller: 'UserProfileController',
+      resolve: {
+        user: function () {
+          return $scope.userName;
+        }
+      }
+    });
+  };
 });

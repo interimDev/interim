@@ -60,7 +60,7 @@
         <h2 id="members">Members</h2>
         <div class="media" ng-repeat="(key, value) in users">
           <div class="media-left">
-              <img class="media-object" src="{{allUsersObj[key].avi_url}}" height="50" width="50">
+              <img class="media-object" src="{{allUsersObj[key].avi_url}}" height="50" width="50" ng-click="userModal(allUsersObj[key])">
           </div>
           <div class="media-body">
             <h4 class="media-heading">{{value}}</h4>

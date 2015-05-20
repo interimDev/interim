@@ -305,6 +305,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
   border-radius: 50%;
 }
 
+.media-object:hover {
+  cursor: pointer;
+}
+
 #members-groups {
   margin-top: 50px;
   margin-bottom: 50px;
