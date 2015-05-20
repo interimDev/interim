@@ -319,6 +319,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
   padding-top: 10px;
 }
 
+.glyphicon-plus:hover {
+  color: #80b1e8;
+}
+
+.glyphicon-plus {
+  margin-left: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
 
 /* 
 =================================
@@ -460,9 +470,6 @@ tr {
   width: 40px;
 } 
 
-.glyphicon-plus:hover {
-  color: white;
-}
 
 
 /* 
@@ -472,12 +479,6 @@ tr {
 */
 
 
-/*adding rooms glyphicon icon*/
-.glyphicon-plus {
-  margin-left: 5px;
-  font-size: 15px;
-  cursor: pointer;
-}
 
 .usersColor {
   color: #2869b2;
@@ -848,10 +849,6 @@ tr {
   width: 40px;
 } 
 
-.glyphicon-plus:hover {
-  color: white;
-  cursor: pointer;
-}
 
 /*private room glyphicon icon*/
 .glyphicon-user-add {

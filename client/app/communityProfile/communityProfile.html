@@ -70,8 +70,8 @@
 
 
       <div class="col-xs-6">
-        <h2>Groups</h2>
-          <div class="glyphicon glyphicon-plus" ng-hide="addNewGroup" ng-click="groupModal()" title="Add Group"></div>
+        <h2>Groups
+          <span class="glyphicon glyphicon-plus" ng-hide="addNewGroup" ng-click="groupModal()" title="Add Group"></span>
         </h2>
         <div class="groupList">
         <!-- show public groups -->
@@ -79,7 +79,7 @@
 
         <!-- show private groups only to right users -->
         <h6 ng-repeat="group in groups | orderBy: 'name'| filter: privateGroup" id="insideContent"><a href="javascript:void(0);" ng-click="getGroup(group);">{{group.name}}</a>
-          <span data-toggle="modal" data-target="#myModal" ng-click="selectingGroup(group.id)"> <img class = "glyphicon-user-add" title="Add User" src="/app/assets/glyphicons-user-addBlack.png"/></span>
+          <span data-toggle="modal" data-target="#myModal" ng-click="selectingGroup(group.id)"> <img class="glyphicon-user-add" title="Add User" src="/app/assets/glyphicons-user-addBlack.png"/></span>
         </h6>
         </div>
 
