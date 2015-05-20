@@ -27,12 +27,12 @@ angular.module('interim', [
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, $state) {
     //checks the state's data (held in the router config) to see
     //if the route requires permission
-    if(toState.data && toState.data.requirePermission){
-      if(!$rootScope.superAdmin){
-        alert("you are not an admin!");
-        event.preventDefault();
-      }
-    }
+    // if(toState.data && toState.data.requirePermission){
+    //   if(!$rootScope.superAdmin){
+    //     alert("you are not an admin!");
+    //     event.preventDefault();
+    //   }
+    // }
   });
 })
 
