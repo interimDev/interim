@@ -12,11 +12,10 @@ angular.module('interim.communityProfile', [])
   $scope.user = $rootScope.userInfo;
   $scope.editAllowed = false;
   $scope.makeProfile = false;
+  $scope.joinHide = true;
   console.log("community.///",community);
 
   $scope.save = function() {
-    console.log("entered save");
-    console.log("community: ", $scope.community);
     Auth.updateCommunity($scope.community);
   };
 
@@ -30,6 +29,13 @@ angular.module('interim.communityProfile', [])
         $scope.community.profile = {};
       }
     }
+
+
+    var groups = $firebaseObject(dbRef.child('UsersDB').child(userCurrentID).child('usersCommunities'))
+    groups.$loaded().then(function() {
+      var id = community.id
+      $scope.joinHide = groups[id] === true ? false : true; 
+    })
   };
 
   //current user for private groups
