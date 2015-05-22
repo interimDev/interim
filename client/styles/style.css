@@ -503,6 +503,7 @@ tr {
 
 #linkColor {
   color: white;
+  font-family: 'raleway';
 }
 
 #linkColor:hover {
@@ -510,7 +511,7 @@ tr {
 }
 
 .usersColor {
-  color: #2869b2;
+  color: #ffffff;
 }
 
 /*Modal private room start here*/
