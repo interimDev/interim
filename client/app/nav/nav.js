@@ -9,5 +9,3 @@ angular.module('interim.nav', ["firebase"])
     ref.unauth();
   };
 });
-
-
