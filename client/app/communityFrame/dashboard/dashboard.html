@@ -15,12 +15,12 @@
     <!-- rooms list -->
     <div class="row dashboard">
       <!-- Each public room -->
-      <h6 ng-repeat="room in rooms | orderBy: 'name'| filter: filterPublic" class="dashboardContent"><a href="javascript:void(0);" ng-click="roomName(this);" ng-init="firstRoom(this);" id="linkColor">{{room.name}}</a> </h6>
+      <h4 ng-repeat="room in rooms | orderBy: 'name'| filter: filterPublic" class="dashboardContent"><a href="javascript:void(0);" ng-click="roomName(this);" ng-init="firstRoom(this);" id="linkColor">{{room.name}}</a> </h4>
 
       <!-- show each private room that matches user id -->
-      <h6 ng-repeat="room in rooms | orderBy: 'name'| filter: filterPrivate" class="dashboardContent"><a href="javascript:void(0);" ng-click="roomName(this);" ng-init="firstRoom(this);" id="linkColor">{{room.name}}</a>
+      <h4 ng-repeat="room in rooms | orderBy: 'name'| filter: filterPrivate" class="dashboardContent"><a href="javascript:void(0);" ng-click="roomName(this);" ng-init="firstRoom(this);" id="linkColor">{{room.name}}</a>
         <span data-toggle="modal" data-target="#myModal" ng-click="selectingRoom(room.id)"> <img class="glyphicon-user-add" title="Add User" src="/app/assets/glyphicons-user-add.png"/></span>
-      </h6>
+      </h4>
     </div> 
 
     <!-- Modal for Adding Users To Private Room -->
@@ -33,7 +33,7 @@
           </div>
           <div class="modal-body modalStyle">
             <h6 id="insideContent" ng-repeat="user in allUsers| orderBy: name" ng-click="addUser(user);"> 
-              <span class =" userLinkColor"> <img src={{user.avi_url}} class="img-rounded modalImage"/>{{user.name}}</span>
+              <span class="userLinkColor"> <img src={{user.avi_url}} class="img-rounded modalImage"/>{{user.name}}</span>
             </h6>
           </div>
           <div class="modal-footer privateRoomModal">
@@ -49,7 +49,7 @@
 
     <div class="row dashboard">
 
-      <h6 class="dashboardContent usersColor" ng-repeat="user in allUsers| orderBy: name">{{user.name}}</h6>
+      <h4 class="dashboardContent usersColor" ng-repeat="user in allUsers| orderBy: name">{{user.name}}</h4>
     </div>  
 
     <div class="row dashboardProfile"> 
