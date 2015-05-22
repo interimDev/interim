@@ -49,8 +49,7 @@
 
     <div class="row dashboard">
 
-      <h6 class="dashboardContent usersColor" ng-repeat="user in allUsers| orderBy: name">
-        <img src={{user.avi_url}} class="img-circle img-rounded modalImage"/>{{user.name}}</h6>
+      <h4 class="dashboardContent usersColor" ng-repeat="user in allUsers| orderBy: name">{{user.name}}</h4>
     </div>  
 
     <div class="row dashboardProfile"> 
