@@ -411,15 +411,14 @@ tr {
 .messagesSpace {
   margin-bottom: 10px;
 }
-/*chat.js ends here*/
 
 
-/*dashboard.html css starts here*/
-.dashboard {
-  height: 34vh;
-  background-color: #80b1e8;
-  overflow-x: scroll;
-}
+/* 
+=================================
+      TOP AND BOTTOM SIDEBAR
+=================================
+*/
+
 
 /*user and community profile*/
 .dashboardProfile {
@@ -428,38 +427,9 @@ tr {
   color: white;
 }
 
-/*users and rooms title*/
-.dashboardInfo {
-  height: 8vh;
-  background-color: #80b1e8;
-}
-
-
-/* 
-=================================
-          BOTTOM SIDEBAR
-=================================
-*/
-
-
-#userBottomSidebar {
-  position: absolute;
-  color: #2869b2;
-  margin-top: 4vh;
-  margin-left: 4%;
-}
-
 .dashboardContent {
   margin-left: 10%;
 }
-
-
-/* 
-=================================
-            TOP SIDEBAR
-=================================
-*/
-
 
 #communityTopSidebar {
   position: absolute;
@@ -471,14 +441,17 @@ tr {
   z-index: 3;
 }
 
-
 #contentImage {
-  margin-top: 2%;
-  margin-left: 4%;
-  height: 40px;
-  width: 40px;
+  height: 80%;
+  width: 15%;
+  max-width: 40px;
+  max-height: 40px;
+  margin: 1.6% 0 1.6% 4%;
 } 
 
+.dashboardName {
+  margin-left: 4%;
+}
 
 
 /* 
@@ -488,6 +461,24 @@ tr {
 */
 
 
+.dashboard {
+  height: 34vh;
+  background-color: #80b1e8;
+  overflow-x: scroll;
+}
+
+/*users and rooms title*/
+.dashboardInfo {
+  height: 8vh;
+  background-color: #80b1e8;
+}
+
+.dashboardTitle{
+  position: absolute;
+  color: #2869b2;
+  margin-top: 4vh;
+  margin-left: 4%;
+}
 
 .usersColor {
   color: #2869b2;
@@ -509,10 +500,6 @@ tr {
 
 #linkColor:hover {
   color: #2869b2;
-}
-
-.dashboardName {
-  margin-left: 4%;
 }
 
 .usersColor {
@@ -821,94 +808,3 @@ tr {
 */
 
 
-.dashboard {
-  height: 34vh;
-  background-color: #80b1e8;
-  overflow-x: scroll;
-}
-
-/*user and community profile*/
-.dashboardProfile {
-  height: 8vh;
-  background-color: #2869b2;
-  color: white;
-}
-
-/*users and rooms title*/
-.dashboardInfo {
-  height: 8vh;
-  background-color: #80b1e8;
-}
-
-.dashboardTitle{
-  position: absolute;
-  color: #2869b2;
-  margin-top: 4vh;
-  margin-left: 4%;
-}
-
-.dashboardContent {
-  margin-left: 10%;
-}
-
-#contentImage {
-  margin-top: 2%;
-  margin-left: 4%;
-  height: 40px;
-  width: 40px;
-} 
-
-
-/*private room glyphicon icon*/
-.glyphicon-user-add {
-  width: 16px;
-  height: 12px;
-}
-
-.glyphicon-user-add:hover {
-  opacity: 0.5;
-}
-
-#linkColor {
-  color: white;
-}
-
-#linkColor:hover {
-  color: #2869b2;
-}
-
-.dashboardName {
-  margin-left: 4%;
-}
-
-/*Modal private room start here*/
-.privateRoomModal{
-  background-color: #2869b2;
-  color: white;
-}
-
-.modalStyle {
-  overflow: auto;
-  height: 100px;
-}
-
-#myModal {
-  color:black;
-  left: 200px;
-  z-index: 10;
-}
-
-.userLinkColor {
-  color: #2869b2;
-  cursor:pointer;
-}
-
-.userLinkColor:active {
-  color: #80b1e8;
-}
-
-.modalImage {
-  margin-right: 10px;
-  width:20px;
-  height:20px
-}
