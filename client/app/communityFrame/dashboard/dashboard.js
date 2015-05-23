@@ -120,4 +120,20 @@ angular.module('interim.dashboard', ["firebase"])
   //getting users current image and name
   $scope.userName = $scope.user.name;
   $scope.profileImage = $scope.user.avi_url;
+
+  $scope.userModal = function(user) {
+    var name = user.name;   
+    $scope.userName = name;
+    $modal.open({
+      templateUrl: 'app/userProfile/userProfile.html',
+      backdrop: true,
+      windowClass: 'modal',
+      controller: 'UserProfileController',
+      resolve: {
+        user: function () {
+          return $scope.userName;
+        }
+      }
+    });
+  };
 });
