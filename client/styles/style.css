@@ -601,11 +601,11 @@ tr {
   float:right;
   margin-top: 1%;
   margin-right: 1%;
+  width: 160px;
 }
 .glyphicon-th-list {
   cursor: pointer;
   font-size: 20px;
-  width: 160px;
   margin-left: 87%;
 }
 
