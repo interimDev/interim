@@ -1,6 +1,6 @@
 angular.module('interim.dashboard', ["firebase"])
 
-.controller('DashboardController', function($scope, $firebaseArray, $rootScope, $modal) {
+.controller('DashboardController', function($scope, $firebaseArray, $firebaseObject, $rootScope, $modal) {
 
   var dbRef = new Firebase("https://interim.firebaseio.com/");
 
@@ -8,10 +8,16 @@ angular.module('interim.dashboard', ["firebase"])
   $scope.rooms = $firebaseArray(dbRef.child("room-metadata"));
   //get all users
   $scope.allUsers = $firebaseArray(dbRef.child("UsersDB"));
+  //get all communities
+  $scope.communities = $firebaseObject(dbRef.child("CommunityDB"));
   //current user id
   $scope.user = $rootScope.userInfo ? $rootScope.userInfo: $rootScope.communityInfo;
   //current groups
   $scope.currentGroup = $rootScope.group;
+  //setting current community
+  $scope.communityID  = $scope.currentGroup.createdByUserId;
+  //accessing the current communities url information
+  $scope.currentCommunity = $firebaseObject(dbRef.child("CommunityDB").child($scope.communityID).child("avi_url"));
 
   //$modal for creting new room
   $scope.addRoom = function(event) {
