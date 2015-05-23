@@ -419,7 +419,6 @@ tr {
 =================================
 */
 
-
 /*user and community profile*/
 .dashboardProfile {
   height: 8vh;
@@ -429,6 +428,7 @@ tr {
 
 .dashboardContent {
   margin-left: 10%;
+  font-family: 'raleway';
 }
 
 #communityTopSidebar {
@@ -485,6 +485,10 @@ tr {
   color: white;
 }
 
+.dashboardTitle h4 {
+  margin-top: -7%;
+}
+
 .usersColor {
   cursor: pointer;
   color: white;
@@ -502,6 +506,7 @@ tr {
 
 #linkColor {
   color: white;
+  font-family: 'raleway';
 }
 
 #linkColor:hover {
@@ -509,7 +514,7 @@ tr {
 }
 
 .usersColor {
-  color: #2869b2;
+  color: #ffffff;
 }
 
 /*Modal private room start here*/

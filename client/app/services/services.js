@@ -185,11 +185,19 @@ angular.module('interim.services', [])
     userUpdate[community.id]  = true;
 
     userRef.child(userId).child('usersCommunities').update(userUpdate, function(error) {
-      error ? console.log("Error joining community: ",error) : console.log("You're now a member of "+community.name);
+      if (error) {
+        console.log("Error joining community: ", error);
+      } else {
+        console.log("You're now a member of " + community.name);
+      }
     });
 
     commRef.child(community.id).child('users').update(communityUpdate, function(error) {
-      error ? console.log("Error adding user: ",error) : console.log(user.name+" is now a member!");
+      if (error) {
+        console.log("Error adding user: ", error);
+      } else {
+        console.log(user.name+" is now a member!");
+      }
     });
   };
 
@@ -201,7 +209,7 @@ angular.module('interim.services', [])
         console.log("community updated");
       }
     });
-  }
+  };
 
   return {
     communitySignIn: communitySignIn,
