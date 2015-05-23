@@ -36,6 +36,10 @@
   font-family: 'raleway';
 }
 
+.landingJumbo .container h1 {
+  font-size: 75px;
+}
+
 .landingJumbo h1 {
   font-size: 40px;
   font-weight: 100;
@@ -455,6 +459,8 @@ tr {
 
 .dashboardName {
   margin-left: 4%;
+  font-size: 25px;
+  font-family: 'raleway';
 }
 
 
@@ -493,6 +499,8 @@ tr {
 
 .dashboardTitle h4 {
   margin-top: -10%;
+  font-family: 'raleway';
+  font-weight: 900;
 
 }
 
@@ -616,7 +624,8 @@ tr {
 
 .navData{
   height: 8vh;
-  box-shadow: 3px 2px 2px #EBEBEB;;
+  box-shadow: 3px 2px 2px #EBEBEB;
+  margin-bottom: 2px;
 }
 
 .messageData{
@@ -738,6 +747,10 @@ tr {
 #userProfileName {
   text-align: center;
   color: white;
+}
+
+#editProfile {
+  margin-bottom: 1%;
 }
 
 /*
