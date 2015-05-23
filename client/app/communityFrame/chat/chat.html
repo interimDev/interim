@@ -1,5 +1,15 @@
 <div ng-controller="ChatController">
-  <div class="row navData"></div>
+  <div class="row navData">
+    <span class="currentRoomName">{{roomName}}</span>
+    <div class="btn-group">
+      <a class="glyphicon glyphicon-th-list" title="Menu" data-toggle="dropdown"></a>
+      <ul class="dropdown-menu">
+        <li role="presentation"><a href="#/communities">Communities</a></li>
+        <li role="presentation"><a href="#/signin" ng-click="signOut()">Sign out</a></li>
+      </ul>
+    </div>
+  </div>
+
   <div class="row messageData" scroll-glue>
     <div class="inputSize">
       <article class="row messagesSpace" ng-repeat="message in messages">

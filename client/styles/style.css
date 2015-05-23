@@ -577,10 +577,28 @@ tr {
             CHAT
 =================================
 */
+.currentRoomName {
+  position: absolute;
+  height: 8vh;
+  margin-top: 1.5%;
+  margin-left: 4%;
+  color: #2869b2;
+}
+
+.btn-group {
+  float:right;
+  margin-top: 1%;
+  margin-right: 1%;
+}
+.glyphicon-th-list {
+  cursor: pointer;
+  font-size: 20px;
+  width: 160px;
+  margin-left: 87%;
+}
 
 .messageInput{
   width:100%;
-  position: absolute;
   height: 8vh;
 }
 

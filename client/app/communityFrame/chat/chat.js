@@ -5,12 +5,13 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
   $scope.userInfo = $rootScope.userInfo ? $rootScope.userInfo : $rootScope.communityInfo;
   var ref = new Firebase("https://interim.firebaseio.com/room-messages");
   //get all messages for specific room
-  $rootScope.messages = function(roomId) {
+  $rootScope.messages = function(room) {
+
     //get data for specific room
-    var messages = $firebaseArray(ref.child(roomId));
-    
+    var messages = $firebaseArray(ref.child(room.id));
+    $scope.roomName=room.name;
     $scope.messages = messages;
-    $scope.roomId = roomId;
+    $scope.roomId = room.id;
 
     //show chat input when room is selected
     $("#chatRow").css('visibility', 'visible');
@@ -51,5 +52,10 @@ angular.module('interim.chat', ["firebase", "luegg.directives"])
         }
       }
     });
+  };
+
+  $scope.signOut = function() {
+    $rootScope.userInfo = null;
+    ref.unauth();
   };
 });
