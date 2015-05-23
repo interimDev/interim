@@ -442,6 +442,7 @@ tr {
 }
 
 #contentImage {
+  cursor: pointer;
   height: 80%;
   width: 15%;
   max-width: 40px;

@@ -52,7 +52,7 @@
       <h6 class="dashboardContent usersColor" ng-repeat="user in allUsers| orderBy: name">{{user.name}}</h6>
     </div>  
 
-    <div class="row dashboardProfile"> 
+    <div class="row dashboardProfile" ng-click="userModal(user)"> 
       <!-- user's profile image -->
       <img src="{{profileImage}}" class="img-circle" id="contentImage">
       <span class="dashboardName">{{userName}}</span>
