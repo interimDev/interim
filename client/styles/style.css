@@ -33,7 +33,7 @@
   padding-top: 100px;
   padding-bottom: 100px;
   background: -webkit-gradient(linear, left top, right top, from(#2869b2), to(#63CCB6));
-  font-family: 'raleway';
+  font-family: 'Raleway', sans-serif ;
 }
 
 .landingJumbo h1 {
@@ -96,7 +96,7 @@
   margin-right: auto;
 }
 
-/* 
+/*
 =================================
             COMMUNITY LIST
 =================================
@@ -221,7 +221,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 
 
-/* 
+/*
 =================================
            COMMNUNITY PROFILE
 =================================
@@ -292,7 +292,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 .button-holder {
   margin-top: 75px;
-  margin-left: 80%; 
+  margin-left: 80%;
 }
 
 #community-name {
@@ -339,7 +339,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 
 
-/* 
+/*
 =================================
           COMMUNITY SIGN UP
 =================================
@@ -386,7 +386,7 @@ tr {
 }
 
 
-/* 
+/*
 =================================
             USER PROFILE
 =================================
@@ -413,7 +413,7 @@ tr {
 }
 
 
-/* 
+/*
 =================================
       TOP AND BOTTOM SIDEBAR
 =================================
@@ -448,14 +448,14 @@ tr {
   max-width: 40px;
   max-height: 40px;
   margin: 1.6% 0 1.6% 4%;
-} 
+}
 
 .dashboardName {
   margin-left: 4%;
 }
 
 
-/* 
+/*
 =================================
             DASHBOARD
 =================================
@@ -567,7 +567,7 @@ tr {
   margin-top: 15%;
 }
 
-/* 
+/*
 =================================
             CHAT
 =================================
@@ -628,7 +628,7 @@ tr {
   margin-bottom: 10px;
 }
 
-/* 
+/*
 =================================
             MESSAGES
 =================================
@@ -704,7 +704,7 @@ tr {
   color: white;
 }
 
-/* 
+/*
 =================================
              CHAT INPUT
 =================================
@@ -726,9 +726,9 @@ tr {
 }
 
 
-/* 
+/*
 =================================
-          PROFILE MODAL 
+          PROFILE MODAL
 =================================
 */
 
@@ -763,7 +763,7 @@ tr {
 }
 
 
-/* 
+/*
 =================================
           EDIT PROFILE
 =================================
@@ -787,7 +787,7 @@ tr {
 }
 
 
-/* 
+/*
 =================================
           CREATE GROUP
 =================================
@@ -814,7 +814,7 @@ tr {
 
 
 
-/* 
+/*
 =================================
           DASHBOARD
 =================================
