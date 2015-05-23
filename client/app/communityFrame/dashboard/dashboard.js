@@ -100,14 +100,14 @@ angular.module('interim.dashboard', ["firebase"])
 
   //get current room messages
   $scope.roomName = function(obj) {
-    $rootScope.messages(obj.room.id);
+    $rootScope.messages(obj.room);
   };
 
   //if there is no room get first room
   $scope.noRoom = true;
   $scope.firstRoom = function(obj) {
     if ($scope.noRoom) {
-      $rootScope.messages(obj.room.id);
+      $rootScope.messages(obj.room);
       //after getting first room chat messages, set to false
       $scope.noRoom = false;
     }
