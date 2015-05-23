@@ -7,7 +7,6 @@ var app = express();
 app.use('/', express.static(__dirname + '/client'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 app.use('/node_modules',  express.static(__dirname + '/node_modules'));
-app.use('/firechat',  express.static(__dirname + '/firechat'));
 
 
 var port = process.env.PORT || 5000;
