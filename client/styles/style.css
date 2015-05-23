@@ -423,6 +423,7 @@ tr {
 
 /*user and community profile*/
 .dashboardProfile {
+  padding-top: 8px;
   height: 8vh;
   background-color: #2869b2;
   color: white;
