@@ -7,20 +7,22 @@
     </div>
 
     <div class="row dashboardInfo">
-      <span class="dashboardTitle"> Rooms 
-       <div class="glyphicon glyphicon-plus addRoomIcon" ng-click="addRoom()" title="Add Room" data-target="#addRoomAlert" ></div>
+      <span class="dashboardTitle"> 
+        <h4>Rooms
+          <div class="glyphicon glyphicon-plus" ng-click="addRoom()" title="Add Room" data-target="#addRoomAlert" ></div>
+        </h4> 
       </span>
     </div>
 
     <!-- rooms list -->
     <div class="row dashboard">
       <!-- Each public room -->
-      <h4 ng-repeat="room in rooms | orderBy: 'name'| filter: filterPublic" class="dashboardContent"><a href="javascript:void(0);" ng-click="roomName(this);" ng-init="firstRoom(this);" id="linkColor">{{room.name}}</a> </h4>
+      <h5 ng-repeat="room in rooms | orderBy: 'name'| filter: filterPublic" class="dashboardContent"><a href="javascript:void(0);" ng-click="roomName(this);" ng-init="firstRoom(this);" id="linkColor">{{room.name}}</a> </h5>
 
       <!-- show each private room that matches user id -->
-      <h4 ng-repeat="room in rooms | orderBy: 'name'| filter: filterPrivate" class="dashboardContent"><a href="javascript:void(0);" ng-click="roomName(this);" ng-init="firstRoom(this);" id="linkColor">{{room.name}}</a>
+      <h5 ng-repeat="room in rooms | orderBy: 'name'| filter: filterPrivate" class="dashboardContent"><a href="javascript:void(0);" ng-click="roomName(this);" ng-init="firstRoom(this);" id="linkColor">{{room.name}}</a>
         <span data-toggle="modal" data-target="#myModal" ng-click="selectingRoom(room.id)"> <img class="glyphicon-user-add" title="Add User" src="/app/assets/glyphicons-user-add.png"/></span>
-      </h4>
+      </h5>
     </div> 
 
     <!-- Modal for Adding Users To Private Room -->
@@ -29,7 +31,7 @@
         <div class="modal-content">
           <div class="modal-header privateRoomModal">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" ng-click = 'updateUsersList();'>&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Add User to Private Room</h4>
+            <h5 class="modal-title" id="myModalLabel">Add User to Private Room</h5>
           </div>
           <div class="modal-body modalStyle">
             <h6 id="insideContent" ng-repeat="user in allUsers| orderBy: name" ng-click="addUser(user);"> 
@@ -44,11 +46,13 @@
     </div>
 
     <div class="row dashboardInfo">
-      <span class="dashboardTitle">Users</span>
+      <span class="dashboardTitle">
+        <h4>Users</h4>
+      </span>
     </div>
 
     <div class="row dashboard">
-      <h4 class="dashboardContent usersColor" ng-repeat="user in allUsers| orderBy: name">{{user.name}}</h4>
+      <h5 class="dashboardContent usersColor" ng-repeat="user in allUsers| orderBy: name">{{user.name}}</h5>
     </div>  
 
     <div class="row dashboardProfile" ng-click="userModal(user)"> 

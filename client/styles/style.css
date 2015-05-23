@@ -419,7 +419,6 @@ tr {
 =================================
 */
 
-
 /*user and community profile*/
 .dashboardProfile {
   height: 8vh;
@@ -484,6 +483,10 @@ tr {
 
 .addRoomIcon:hover{
   color: white;
+}
+
+.dashboardTitle h4 {
+  margin-top: -5%;
 }
 
 .usersColor {
