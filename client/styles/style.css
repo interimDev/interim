@@ -481,6 +481,10 @@ tr {
   margin-left: 4%;
 }
 
+.addRoomIcon:hover{
+  color: white;
+}
+
 .usersColor {
   cursor: pointer;
   color: white;
