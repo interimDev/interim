@@ -52,7 +52,7 @@
     </div>
 
     <div class="row dashboard">
-      <h5 class="dashboardContent usersColor" ng-repeat="user in allUsers| orderBy: name">{{user.name}}</h5>
+      <h5 class="dashboardContent usersColor" ng-repeat="user in allUsers| orderBy: name" ng-click="userModal(user)">{{user.name}}</h5>
     </div>  
 
     <div class="row dashboardProfile" ng-click="userModal(user)"> 
