@@ -31,11 +31,11 @@ angular.module('interim.communityProfile', [])
     }
 
 
-    var groups = $firebaseObject(dbRef.child('UsersDB').child(userCurrentID).child('usersCommunities'))
+    var groups = $firebaseObject(dbRef.child('UsersDB').child(userCurrentID).child('usersCommunities'));
     groups.$loaded().then(function() {
-      var id = community.id
+      var id = community.id;
       $scope.joinHide = groups[id] === true ? false : true; 
-    })
+    });
   };
 
   //current user for private groups
