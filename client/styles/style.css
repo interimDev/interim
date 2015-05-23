@@ -33,7 +33,7 @@
   padding-top: 100px;
   padding-bottom: 100px;
   background: -webkit-gradient(linear, left top, right top, from(#2869b2), to(#63CCB6));
-  font-family: 'raleway', sans-serif ;
+  font-family: 'raleway';
 }
 
 .landingJumbo h1 {
@@ -226,6 +226,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
            COMMNUNITY PROFILE
 =================================
 */
+#comm-bio {
+  font-size: 18px;
+}
 
 .community-profile-wrap {
   font-family: 'lato';
@@ -266,7 +269,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 
 .communitySocial span {
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .communitySocial a{
@@ -315,7 +318,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 }
 
 #members-groups {
-  margin-top: 50px;
   margin-bottom: 50px;
 }
 
