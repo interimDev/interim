@@ -464,6 +464,9 @@ tr {
 =================================
 */
 
+.dopestcat{
+  box-shadow: 0px 3px 3px gray !important;
+}
 
 .dashboard {
   height: 34vh;
@@ -489,7 +492,8 @@ tr {
 }
 
 .dashboardTitle h4 {
-  margin-top: -7%;
+  margin-top: -10%;
+
 }
 
 .usersColor {
@@ -588,6 +592,11 @@ tr {
   color: #2869b2;
 }
 
+.currentRoomName h3 {
+  font-family: 'raleway';
+  margin: auto 0;
+}
+
 .btn-group {
   float:right;
   margin-top: 1%;
@@ -607,6 +616,7 @@ tr {
 
 .navData{
   height: 8vh;
+  box-shadow: 3px 2px 2px #EBEBEB;;
 }
 
 .messageData{
@@ -749,6 +759,10 @@ tr {
 #userBio {
   height: 30%;
   overflow: auto;
+}
+
+.form-control {
+  margin-top: 1%;
 }
 
 
