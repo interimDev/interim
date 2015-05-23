@@ -482,7 +482,8 @@ tr {
 }
 
 .usersColor {
-  color: #2869b2;
+  cursor: pointer;
+  color: white;
 }
 
 /*private room glyphicon icon*/
