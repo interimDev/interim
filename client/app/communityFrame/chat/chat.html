@@ -1,4 +1,7 @@
 <div ng-controller="ChatController">
+  <div class="row navData">
+    <div ui-view="navBar" class="nav-chat"></div>
+  </div>
   <div class="row messageData" scroll-glue>
     <div class="inputSize">
       <article class="row messagesSpace" ng-repeat="message in messages">

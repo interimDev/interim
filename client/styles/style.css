@@ -574,51 +574,58 @@ tr {
 */
 
 .messageInput{
- height: 8vh;
+  width:100%;
+  position: absolute;
+  height: 8vh;
+}
+
+.navData{
+  height: 8vh;
 }
 
 .messageData{
- height: 92vh;
- overflow-x: scroll;
+  height: 84vh;
+  overflow-x: scroll;
 }
 
 .inputSize{
- margin-right: auto;
- margin-left: auto;
- width: 90%;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  
 }
 
 .messageText {
- word-wrap: break-word;
+  word-wrap: break-word;
 }
 
 #chatImage {
- width: 36px;
- height: 36px;
+  width: 36px;
+  height: 36px;
 }
 
 .img-rounded {
- cursor: pointer;
+  cursor: pointer;
 }
 
 .chatTime {
- color: #888888 ;
- opacity: 0.4;
- margin-left: 5px;
- cursor: pointer;
+  color: #888888 ;
+  opacity: 0.4;
+  margin-left: 5px;
+  cursor: pointer;
 }
 
 .userNameChat {
- color:#2869b2 ;
- opacity: 0.6;
+  color:#2869b2 ;
+  opacity: 0.6;
 }
 
 .inputChatField {
- width: 100%;
+  width: 100%;
 }
 
 .messagesSpace {
- margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 /* 
