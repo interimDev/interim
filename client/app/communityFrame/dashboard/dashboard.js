@@ -1,6 +1,6 @@
 angular.module('interim.dashboard', ["firebase"])
 
-.controller('DashboardController', function($scope, $firebaseArray, $firebaseObject, $rootScope, $modal) {
+.controller('DashboardController', function($scope, $firebaseArray, $firebaseObject, $rootScope, $modal, $state) {
 
   var dbRef = new Firebase("https://interim.firebaseio.com/");
 
@@ -17,7 +17,9 @@ angular.module('interim.dashboard', ["firebase"])
   //setting current community
   $scope.communityID  = $scope.currentGroup.createdByUserId;
   //accessing the current communities url information
-  $scope.currentCommunity = $firebaseObject(dbRef.child("CommunityDB").child($scope.communityID).child("avi_url"));
+  $scope.currentCommunityAvi = $firebaseObject(dbRef.child("CommunityDB").child($scope.communityID).child("avi_url"));
+  $scope.currentCommunity = $firebaseObject(dbRef.child("CommunityDB").child($scope.communityID));
+
 
   //$modal for creting new room
   $scope.addRoom = function(event) {
@@ -32,6 +34,10 @@ angular.module('interim.dashboard', ["firebase"])
         }
       }
     });
+  };
+
+  $scope.routeMe = function() {
+    $state.go('community-profile', {communityName: $scope.currentCommunity.name});
   };
 
   //add room to db
