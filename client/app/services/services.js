@@ -1,3 +1,4 @@
+
 angular.module('interim.services', [])
 
 .factory('Auth', function ($firebaseAuth, $rootScope, Permissions, $state, $firebaseObject, $firebase) {
@@ -20,7 +21,6 @@ angular.module('interim.services', [])
   //and turns the results into a promise
   var githubAuth = function () {
     return authObj.$authWithOAuthPopup("github").then(function(authData) {
-      console.log("Logged in as:", authData.uid);
       return authData;
     }).catch(function(error) {
       console.error("Authentication failed:", error);
@@ -67,7 +67,6 @@ angular.module('interim.services', [])
   };
 
   var updateUser = function(key, edits) {
-    console.log("edits: ", edits);
     ref.child('UsersDB').child(key).update(edits, function(error) {
       if (error) {
         console.log("Error updating user: ", error);
@@ -141,7 +140,6 @@ angular.module('interim.services', [])
       email: community.email,
       password: community.password
     }).then(function(authData) {
-      console.log("Logged in as:", authData.uid);
       retrieveCommunity(authData.uid);
     }).catch(function(error) {
        $.notify("Email or Password is invalid", "error");
@@ -248,7 +246,6 @@ angular.module('interim.services', [])
       var user = $rootScope.userInfo;
       var userKey = user.name+"-"+user.auth.provider;
       $rootScope.superAdmin = superAdminObj[userKey] ? true : false;
-      console.log("You're a SuperAdmin!");
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });

@@ -34,7 +34,6 @@ angular.module('interim.yourCommunityList', ["firebase"])
    $scope.allCommunities = function(){
 
     Communities.$loaded().then(function() {
-        console.log("Loaded records ", Communities);
 
       angular.forEach(Communities, function(value,key){
         // Key is in communitiesObj (retrieved from UserDB), smaller compared to CommunitiesDB
