@@ -25,7 +25,6 @@ angular.module('interim.userProfile', [])
   };
 
   $scope.save = function() {
-    console.log("edits: entered ");
     Auth.updateUser(userKey, $scope.clickedUser);
   };
 

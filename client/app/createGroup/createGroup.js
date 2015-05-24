@@ -8,7 +8,6 @@ angular.module('interim.createGroup', [])
   $scope.createGroup = function(groupInfo) {
     $scope.master = angular.copy(groupInfo);
     $scope.master.private;
-    console.log("private: ", $scope.master.private);
     var newGroup = communityGroupsRef.push();
     var currentUsers = {};
     

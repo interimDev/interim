@@ -13,7 +13,6 @@ angular.module('interim.communityProfile', [])
   $scope.editAllowed = false;
   $scope.makeProfile = false;
   $scope.joinHide = true;
-  console.log("community.///",community);
 
   $scope.save = function() {
     Auth.updateCommunity($scope.community);
