@@ -281,12 +281,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
   color: #e9e9e9;
 }
 
-.communitySocial a:hover {
-  color: black;
+#com-soc-btn {
+  padding-right: 3px;
 }
 
-#community-social-btn {
-  padding-left: 10px;
+.communitySocial a:hover {
+  color: black;
 }
 
 #communityIcon {
@@ -351,6 +351,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 =================================
 */
 
+#white-link {
+  color: white;
+}
+
+#linky {
+  color: white;
+}
+
+#linky:hover {
+  color: black;
+}
 
 .error-block {
   display: block;
@@ -626,6 +637,7 @@ tr {
 }
 
 .messageData{
+  padding-top: 10px;
   height: 84vh;
   overflow-x: scroll;
 }
