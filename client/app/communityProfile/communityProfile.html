@@ -13,16 +13,19 @@
 
           <div class="communitySocial">
             <span editable-text="community.profile.location" e-form="editProfile" placeholder="Location">
-              <i class="fa fa-location-arrow" id="location"></i>{{community.profile.location}}
+              <i class="fa fa-location-arrow" id="com-soc-btn"></i>
+              <span id="white-link">{{community.profile.location}}</span>
             </span> 
             <br>
+            <i class="fa fa-link" id="com-soc-btn"></i>
             <a target='_new' href='{{community.profile.website}}'>
-              <span editable-text="community.profile.website" e-form="editProfile" placeholder="Website">
-                {{community.profile.website}}
-              </span>
+              <span id="linky">{{community.profile.website}}</span>
             </a>
-            <a target='_new' href="{{community.profile.twitter}}" id="community-social-btn" placeholder="Twitter">
-              <i class="fa fa-twitter"></i>
+            <span editable-text="community.profile.website" e-form="editProfile" placeholder="Website"></span>
+            <br>
+            <i class="fa fa-twitter" id="com-soc-btn"></i>  
+            <a target='_new' href="{{community.profile.twitter}}" placeholder="Twitter">
+              <span id="linky">{{community.profile.twitter}}</span>
             </a>
             <span editable-text="community.profile.twitter" e-form="editProfile"></span>
           </div>
