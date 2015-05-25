@@ -135,7 +135,7 @@ angular.module('interim.dashboard', ["firebase"])
 
   $scope.userModal = function(user) {
     var name = user.name;   
-    $scope.userName = name;
+    $scope.usersName = name;
     $modal.open({
       templateUrl: 'app/userProfile/userProfile.html',
       backdrop: true,
@@ -143,7 +143,7 @@ angular.module('interim.dashboard', ["firebase"])
       controller: 'UserProfileController',
       resolve: {
         user: function () {
-          return $scope.userName;
+          return $scope.usersName;
         }
       }
     });
