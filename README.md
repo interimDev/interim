@@ -1,7 +1,7 @@
 # Interim
 [![Stories in Ready](https://badge.waffle.io/interim-dev/interim.png?label=ready&title=Ready)](https://waffle.io/interim-dev/interim)
 
-Interim is a social platform that nables building temporary, authentic communities.
+Interim is a social platform that enables building temporary, authentic communities.
 It uses a modified  [Firechat](https://firechat.firebaseapp.com/) widget and is powered by [Firebase](https://www.firebase.com/?utm_source=firechat).
 
 
